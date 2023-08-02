@@ -1,0 +1,649 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\KURZ.bundle.scp.css",
+      "PackagePath": "staticwebassets\\KURZ.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\css\\fontawesome.css",
+      "PackagePath": "staticwebassets\\css\\fontawesome.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\css\\material-icons.css",
+      "PackagePath": "staticwebassets\\css\\material-icons.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\css\\preloader.css",
+      "PackagePath": "staticwebassets\\css\\preloader.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-brands-400.eot"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-brands-400.svg"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-brands-400.woff"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-regular-400.eot"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-regular-400.svg"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-regular-400.woff"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-solid-900.eot"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-solid-900.svg"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-solid-900.woff"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\fontawesome-free\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-free\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\material-icons\\MaterialIcons-Regular.eot",
+      "PackagePath": "staticwebassets\\fonts\\material-icons\\MaterialIcons-Regular.eot"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\material-icons\\MaterialIcons-Regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\material-icons\\MaterialIcons-Regular.ttf"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\material-icons\\MaterialIcons-Regular.woff",
+      "PackagePath": "staticwebassets\\fonts\\material-icons\\MaterialIcons-Regular.woff"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\fonts\\material-icons\\MaterialIcons-Regular.woff2",
+      "PackagePath": "staticwebassets\\fonts\\material-icons\\MaterialIcons-Regular.woff2"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\images\\kurz-v2-2.jpg",
+      "PackagePath": "staticwebassets\\images\\kurz-v2-2.jpg"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\images\\photodune-4161018-group-of-students-m.jpg",
+      "PackagePath": "staticwebassets\\images\\photodune-4161018-group-of-students-m.jpg"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\js\\app.js",
+      "PackagePath": "staticwebassets\\js\\app.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\js\\preloader.js",
+      "PackagePath": "staticwebassets\\js\\preloader.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\Chart.min.js",
+      "PackagePath": "staticwebassets\\vendor\\Chart.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\vendor\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\vendor\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\daterangepicker.css",
+      "PackagePath": "staticwebassets\\vendor\\daterangepicker.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\daterangepicker.js",
+      "PackagePath": "staticwebassets\\vendor\\daterangepicker.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\dom-factory.common.js",
+      "PackagePath": "staticwebassets\\vendor\\dom-factory.common.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\dom-factory.esm.js",
+      "PackagePath": "staticwebassets\\vendor\\dom-factory.esm.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\dom-factory.js",
+      "PackagePath": "staticwebassets\\vendor\\dom-factory.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\dragula\\dragula.min.css",
+      "PackagePath": "staticwebassets\\vendor\\dragula\\dragula.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\dragula\\dragula.min.js",
+      "PackagePath": "staticwebassets\\vendor\\dragula\\dragula.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\dropzone.min.js",
+      "PackagePath": "staticwebassets\\vendor\\dropzone.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\flatpickr\\airbnb.css",
+      "PackagePath": "staticwebassets\\vendor\\flatpickr\\airbnb.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\flatpickr\\flatpickr.min.css",
+      "PackagePath": "staticwebassets\\vendor\\flatpickr\\flatpickr.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\flatpickr\\flatpickr.min.js",
+      "PackagePath": "staticwebassets\\vendor\\flatpickr\\flatpickr.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\highlight.js",
+      "PackagePath": "staticwebassets\\vendor\\highlight.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\ion.rangeSlider.min.js",
+      "PackagePath": "staticwebassets\\vendor\\ion.rangeSlider.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jquery-jvectormap.css",
+      "PackagePath": "staticwebassets\\vendor\\jquery-jvectormap.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jquery.bootstrap-touchspin.js",
+      "PackagePath": "staticwebassets\\vendor\\jquery.bootstrap-touchspin.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jquery.fancytree-all.min.js",
+      "PackagePath": "staticwebassets\\vendor\\jquery.fancytree-all.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jquery.jvectormap.min.js",
+      "PackagePath": "staticwebassets\\vendor\\jquery.jvectormap.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jquery.mask.min.js",
+      "PackagePath": "staticwebassets\\vendor\\jquery.mask.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jquery.min.js",
+      "PackagePath": "staticwebassets\\vendor\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jquery.nestable.js",
+      "PackagePath": "staticwebassets\\vendor\\jquery.nestable.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\jquery.vmap.min.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\jquery.vmap.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\jqvmap.min.css",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\jqvmap.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.africa.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.africa.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.asia.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.asia.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.australia.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.australia.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.europe.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.europe.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.north-america.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.north-america.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.south-america.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\continents\\jquery.vmap.south-america.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.algeria.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.algeria.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.argentina.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.argentina.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.brazil.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.brazil.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.canada.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.canada.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.croatia.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.croatia.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.europe.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.europe.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.france.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.france.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.germany.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.germany.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.greece.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.greece.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.indonesia.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.indonesia.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.iran.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.iran.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.iraq.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.iraq.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.new_regions_france.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.new_regions_france.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.russia.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.russia.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.serbia.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.serbia.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.tunisia.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.tunisia.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.turkey.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.turkey.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.ukraine.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.ukraine.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.usa.counties.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.usa.counties.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.usa.districts.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.usa.districts.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.usa.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.usa.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\jqvmap\\maps\\jquery.vmap.world.js",
+      "PackagePath": "staticwebassets\\vendor\\jqvmap\\maps\\jquery.vmap.world.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\list.min.js",
+      "PackagePath": "staticwebassets\\vendor\\list.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\material-design-kit.js",
+      "PackagePath": "staticwebassets\\vendor\\material-design-kit.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\moment-range.js",
+      "PackagePath": "staticwebassets\\vendor\\moment-range.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\moment.min.js",
+      "PackagePath": "staticwebassets\\vendor\\moment.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\perfect-scrollbar.css",
+      "PackagePath": "staticwebassets\\vendor\\perfect-scrollbar.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\perfect-scrollbar.min.js",
+      "PackagePath": "staticwebassets\\vendor\\perfect-scrollbar.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\popper.min.js",
+      "PackagePath": "staticwebassets\\vendor\\popper.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\popper.min.js.map",
+      "PackagePath": "staticwebassets\\vendor\\popper.min.js.map"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\quill.min.js",
+      "PackagePath": "staticwebassets\\vendor\\quill.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\select2\\select2.min.css",
+      "PackagePath": "staticwebassets\\vendor\\select2\\select2.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\select2\\select2.min.js",
+      "PackagePath": "staticwebassets\\vendor\\select2\\select2.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\spinkit.css",
+      "PackagePath": "staticwebassets\\vendor\\spinkit.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\sweetalert.min.js",
+      "PackagePath": "staticwebassets\\vendor\\sweetalert.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\toastr.min.css",
+      "PackagePath": "staticwebassets\\vendor\\toastr.min.css"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\toastr.min.js",
+      "PackagePath": "staticwebassets\\vendor\\toastr.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\vue.min.js",
+      "PackagePath": "staticwebassets\\vendor\\vue.min.js"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.KURZ.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.KURZ.props",
+      "PackagePath": "build\\KURZ.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.KURZ.props",
+      "PackagePath": "buildMultiTargeting\\KURZ.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.KURZ.props",
+      "PackagePath": "buildTransitive\\KURZ.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
