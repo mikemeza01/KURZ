@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ccgUv8bLQ+iccAORzbDe5RpOaOeKFNus6jKpYeziNh4=",
+  "Hash": "cPp6XlnxPGZVlKG6+ySpP96URMt783kIF6twyUffTT4=",
   "Source": "KURZ",
   "BasePath": "_content/KURZ",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\fontawesome.css"
+    },
+    {
+      "Identity": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\css\\fullcalendar.css",
+      "SourceId": "KURZ",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\",
+      "BasePath": "_content/KURZ",
+      "RelativePath": "css/fullcalendar.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\fullcalendar.css"
     },
     {
       "Identity": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\css\\material-icons.css",
@@ -476,6 +493,23 @@
       "OriginalItemSpec": "wwwroot\\fonts\\material-icons\\MaterialIcons-Regular.woff2"
     },
     {
+      "Identity": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\images\\guy-3.jpg",
+      "SourceId": "KURZ",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\",
+      "BasePath": "_content/KURZ",
+      "RelativePath": "images/guy-3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\guy-3.jpg"
+    },
+    {
       "Identity": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\images\\kurz-v2-2.jpg",
       "SourceId": "KURZ",
       "SourceType": "Discovered",
@@ -510,6 +544,23 @@
       "OriginalItemSpec": "wwwroot\\images\\photodune-4161018-group-of-students-m.jpg"
     },
     {
+      "Identity": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\images\\woman-6.jpg",
+      "SourceId": "KURZ",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\",
+      "BasePath": "_content/KURZ",
+      "RelativePath": "images/woman-6.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\woman-6.jpg"
+    },
+    {
       "Identity": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\js\\app.js",
       "SourceId": "KURZ",
       "SourceType": "Discovered",
@@ -525,6 +576,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\app.js"
+    },
+    {
+      "Identity": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\js\\fullcalendar.js",
+      "SourceId": "KURZ",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\",
+      "BasePath": "_content/KURZ",
+      "RelativePath": "js/fullcalendar.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\fullcalendar.js"
     },
     {
       "Identity": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\js\\preloader.js",
@@ -1766,6 +1834,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\vendor\\flatpickr\\flatpickr.min.js"
+    },
+    {
+      "Identity": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\fullcalendar.min.js",
+      "SourceId": "KURZ",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\",
+      "BasePath": "_content/KURZ",
+      "RelativePath": "vendor/fullcalendar.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\vendor\\fullcalendar.min.js"
     },
     {
       "Identity": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\highlight.js",

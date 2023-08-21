@@ -16,6 +16,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Universidad\7 Cuatrimestre\Diseño y Desarrollo de Sistemas\Proyecto\KURZ\KURZ\KURZ
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Authentication/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cRm9yZ290UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Authentication/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Dashboard/DashboardAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXERhc2hib2FyZEFkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -28,12 +40,144 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_Authentication.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BdXRoZW50aWNhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_Public.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QdWJsaWMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_Student.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TdHVkZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_StudentH.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TdHVkZW50SC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_Teacher.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZWFjaGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_TeacherH.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZWFjaGVySC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/Advice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxBZHZpY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/Calendar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxDYWxlbmRhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/DeleteAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxEZWxldGVBY2NvdW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/EditAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxFZGl0QWNjb3VudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/MyAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxNeUFjY291bnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/RegisterStudents.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxSZWdpc3RlclN0dWRlbnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/Advice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxBZHZpY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/Calendar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxDYWxlbmRhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/DeleteAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxEZWxldGVBY2NvdW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/EditAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxFZGl0QWNjb3VudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/MyAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxNeUFjY291bnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/RegisterTeachers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxSZWdpc3RlclRlYWNoZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/CategoriesList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXENhdGVnb3JpZXNMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/CreateCategorie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXENyZWF0ZUNhdGVnb3JpZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/CreateTopic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXENyZWF0ZVRvcGljLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/DeleteCategorie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXERlbGV0ZUNhdGVnb3JpZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/DeleteTopic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXERlbGV0ZVRvcGljLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/EditCategorie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXEVkaXRDYXRlZ29yaWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/EditTopic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXEVkaXRUb3BpYy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/TopicsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXFRvcGljc0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Users/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Users/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Users/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Users/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Users/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/_ViewImports.cshtml]

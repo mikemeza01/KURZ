@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Eliminar Categoría";
+    Layout = "_Admin";
+}
+<div class="page-separator">
+    <div class="page-separator__text">Matematica</div>
+</div>
+<div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+    <div class="card-body d-flex flex-column">
+        <form asp-action="DeleteCategorie" class="align-items-center">
+            <div class="flex"
+                 style="max-width: 100%">
+                <div class="d-flex align-items-center">
+                    <p>Desea realmente eliminar la categoría: <strong>Matematica</strong></p>
+                </div>
+                <input type="hidden" name="delete" value="1">
+                <button type="submit"
+                        class="btn btn-primary">
+                    Confirmar
+                </button>
+                <a asp-controller="Topics" asp-action="CategoriesList" class="btn btn-accent">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

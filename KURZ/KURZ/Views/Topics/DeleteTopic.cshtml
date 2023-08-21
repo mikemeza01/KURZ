@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Eliminar Tema";
+    Layout = "_Admin";
+}
+<div class="page-separator">
+    <div class="page-separator__text">Funciones Lineales</div>
+</div>
+<div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+    <div class="card-body d-flex flex-column">
+        <form asp-action="DeleteTopic" class="align-items-center">
+            <div class="flex"
+                 style="max-width: 100%">
+                <div class="d-flex align-items-center">
+                    <p>Desea realmente eliminar el tema: <strong>Funciones Lineales</strong></p>
+                </div>
+                <input type="hidden" name="delete" value="1">
+                <button type="submit"
+                        class="btn btn-primary">
+                    Confirmar
+                </button>
+                <a asp-controller="Topics" asp-action="TopicList" class="btn btn-accent">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

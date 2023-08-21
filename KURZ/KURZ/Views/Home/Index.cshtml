@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
     Layout = "_Public";
 }
 
@@ -16,13 +16,17 @@
             <div class="card card--transparent mb-0">
                 <div class="card-body px-32pt py-24pt">
                     <h1>Asesorías en Línea</h1>
-                    <p class="lead measure-lead mx-auto mb-32pt">Busca el tema, selecciona el profesor y lleva la asesoría que necesitas.</p>
-
-                    <a href="signup.html"
-                       class="btn btn-lg btn-kurz btn--raised mb-16pt">Registrarse - Sin Costo</a>
-
-                    <p class="mb-0"><a href=""><strong>¿Deseas impatir asesorías?</strong></a></p>
-
+                    <p class="lead measure-lead mx-auto mb-32pt">Registrate para impartir o recibir alguna asesoría.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a asp-controller="Teacher" asp-action="RegisterTeachers"
+                               class="btn btn-lg btn-kurz btn--raised mb-16pt"><span class="mr-2">Profesor(a)</span> <i class="fa fa-long-arrow-alt-right"></i></a>
+                        </div>
+                        <div class="col-md-6">
+                        <a asp-controller="Student" asp-action="RegisterStudents"
+                           class="btn btn-lg btn-kurz btn--raised mb-16pt"><span class="mr-2">Estudiante</span> <i class="fa fa-long-arrow-alt-right"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

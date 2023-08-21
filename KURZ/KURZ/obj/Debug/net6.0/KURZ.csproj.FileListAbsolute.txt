@@ -6,7 +6,6 @@ D:\Universidad\7 Cuatrimestre\Diseño y Desarrollo de Sistemas\Proyecto\KURZ\KUR
 D:\Universidad\7 Cuatrimestre\Diseño y Desarrollo de Sistemas\Proyecto\KURZ\KURZ\KURZ\bin\Debug\net6.0\KURZ.runtimeconfig.json
 D:\Universidad\7 Cuatrimestre\Diseño y Desarrollo de Sistemas\Proyecto\KURZ\KURZ\KURZ\bin\Debug\net6.0\KURZ.dll
 D:\Universidad\7 Cuatrimestre\Diseño y Desarrollo de Sistemas\Proyecto\KURZ\KURZ\KURZ\bin\Debug\net6.0\KURZ.pdb
-D:\Universidad\7 Cuatrimestre\Diseño y Desarrollo de Sistemas\Proyecto\KURZ\KURZ\KURZ\obj\Debug\net6.0\KURZ.csproj.AssemblyReference.cache
 D:\Universidad\7 Cuatrimestre\Diseño y Desarrollo de Sistemas\Proyecto\KURZ\KURZ\KURZ\obj\Debug\net6.0\KURZ.GeneratedMSBuildEditorConfig.editorconfig
 D:\Universidad\7 Cuatrimestre\Diseño y Desarrollo de Sistemas\Proyecto\KURZ\KURZ\KURZ\obj\Debug\net6.0\KURZ.AssemblyInfoInputs.cache
 D:\Universidad\7 Cuatrimestre\Diseño y Desarrollo de Sistemas\Proyecto\KURZ\KURZ\KURZ\obj\Debug\net6.0\KURZ.AssemblyInfo.cs

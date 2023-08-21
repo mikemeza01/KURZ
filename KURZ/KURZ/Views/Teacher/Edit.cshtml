@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Editar Perfil";
+    Layout = "_TeacherH";
+}
+<div class="col-md-7 p-0">
+    <div class="form-group">
+        <label class="form-label">Foto</label>
+        <div class="media align-items-center">
+            <a href=""
+                class="media-left mr-16pt">
+                <img src="~/images/guy-3.jpg"
+                     alt="people"
+                     width="56"
+                     class="rounded-circle" />
+            </a>
+            <div class="media-body">
+                <div class="custom-file">
+                    <input type="file"
+                            class="custom-file-input"
+                            id="inputGroupFile01">
+                    <label class="custom-file-label"
+                            for="inputGroupFile01">Elegir Foto</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="form-label">Nombre</label>
+        <input type="text"
+               class="form-control"
+               value="Profesor">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Apellidos</label>
+        <input type="text"
+               class="form-control"
+               value="Perez Vargas">
+    </div>
+    <div class="form-group">
+        <label class="form-label">Perfil</label>
+        <textarea rows="3"
+                  class="form-control">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce cursus dui justo, ut pulvinar ante malesuada ut. Proin tortor lectus, tempor eget urna in, malesuada molestie metus. Cras nisl tellus, scelerisque eget neque a, finibus luctus eros. Donec vitae auctor ex. Maecenas arcu lectus, feugiat eget metus nec, posuere porta nunc. Aliquam vel auctor ante. Nullam tincidunt sit amet metus quis fringilla. Phasellus placerat, tellus ac ultricies volutpat, nulla purus aliquet sapien, in bibendum nisl justo in libero. Maecenas bibendum dolor ut fringilla fermentum.</textarea>
+        <small class="form-text text-muted">Una descripción de tu perfil que se mostrará para que el estudiante conozca tu experiencia y en los temas que puedes darle asesorías.</small>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">País</label>
+        <select class="form-control">
+            <option value="CR">Costa Rica</option>
+            <option value="PN">Panama</option>
+            <option value="CO">Colombia</option>
+        </select>
+    </div>
+   
+    <button type="submit"
+            class="btn btn-primary">
+        Guardar Cambios
+    </button>
+</div>

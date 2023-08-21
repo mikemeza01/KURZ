@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\fontawesome.css"
     },
     {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\css\\fullcalendar.css",
+      "PackagePath": "staticwebassets\\css\\fullcalendar.css"
+    },
+    {
       "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\css\\material-icons.css",
       "PackagePath": "staticwebassets\\css\\material-icons.css"
     },
@@ -105,6 +109,10 @@
       "PackagePath": "staticwebassets\\fonts\\material-icons\\MaterialIcons-Regular.woff2"
     },
     {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\images\\guy-3.jpg",
+      "PackagePath": "staticwebassets\\images\\guy-3.jpg"
+    },
+    {
       "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\images\\kurz-v2-2.jpg",
       "PackagePath": "staticwebassets\\images\\kurz-v2-2.jpg"
     },
@@ -113,8 +121,16 @@
       "PackagePath": "staticwebassets\\images\\photodune-4161018-group-of-students-m.jpg"
     },
     {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\images\\woman-6.jpg",
+      "PackagePath": "staticwebassets\\images\\woman-6.jpg"
+    },
+    {
       "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\js\\app.js",
       "PackagePath": "staticwebassets\\js\\app.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\js\\fullcalendar.js",
+      "PackagePath": "staticwebassets\\js\\fullcalendar.js"
     },
     {
       "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\js\\preloader.js",
@@ -407,6 +423,10 @@
     {
       "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\flatpickr\\flatpickr.min.js",
       "PackagePath": "staticwebassets\\vendor\\flatpickr\\flatpickr.min.js"
+    },
+    {
+      "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\fullcalendar.min.js",
+      "PackagePath": "staticwebassets\\vendor\\fullcalendar.min.js"
     },
     {
       "Id": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\wwwroot\\vendor\\highlight.js",
