@@ -1,7 +1,13 @@
+using KURZ.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<KurzContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("KurzContext")));
 
 var app = builder.Build();
 
