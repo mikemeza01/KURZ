@@ -18,7 +18,7 @@
 /KURZ/.fleet/
 
 # Code Rush
-/KURZ/.cr/
+/KURZ/.cr
 
 # User-specific files
 *.suo
@@ -27,17 +27,17 @@
 *.sln.docstates
 
 # Build results
-/KURZ/[Dd]ebug/
-/KURZ/[Dd]ebugPublic/
-/KURZ/[Rr]elease/
-/KURZ/[Rr]eleases/
-/KURZ/x64/
-/KURZ/x86/
-/KURZ/build/
-/KURZ/bld/
-/KURZ/[Bb]in/
-/KURZ/[Oo]bj/
-/KURZ/[Oo]ut/
-/KURZ/msbuild.log
-/KURZ/msbuild.err
-/KURZ/msbuild.wrn
+/KURZ/KURZ/[Dd]ebug/
+/KURZ/KURZ/[Dd]ebugPublic/
+/KURZ/KURZ/[Rr]elease/
+/KURZ/KURZ/[Rr]eleases/
+/KURZ/KURZ/x64/
+/KURZ/KURZ/x86/
+/KURZ/KURZ/build/
+/KURZ/KURZ/bld/
+/KURZ/KURZ/[Bb]in/
+/KURZ/KURZ/[Oo]bj/
+/KURZ/KURZ/[Oo]ut/
+/KURZ/KURZ/msbuild.log
+/KURZ/KURZ/msbuild.err
+/KURZ/KURZ/msbuild.wrn
