@@ -1,24 +1,24 @@
 *.swp
 *.*~
-project.lock.json
-.DS_Store
+/KURZ/project.lock.json
+/KURZ/.DS_Store
 *.pyc
-nupkg/
+/KURZ/nupkg/
 
 # Visual Studio Code
-.vscode/
+/KURZ/.vscode/
 
 # Rider
-.idea/
+/KURZ/.idea/
 
 # Visual Studio
-.vs/
+/KURZ/.vs/
 
 # Fleet
-.fleet/
+/KURZ/.fleet/
 
 # Code Rush
-.cr/
+/KURZ/.cr/
 
 # User-specific files
 *.suo
@@ -27,17 +27,17 @@ nupkg/
 *.sln.docstates
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-build/
-bld/
-[Bb]in/
-[Oo]bj/
-[Oo]ut/
-msbuild.log
-msbuild.err
-msbuild.wrn
+/KURZ/[Dd]ebug/
+/KURZ/[Dd]ebugPublic/
+/KURZ/[Rr]elease/
+/KURZ/[Rr]eleases/
+/KURZ/x64/
+/KURZ/x86/
+/KURZ/build/
+/KURZ/bld/
+/KURZ/[Bb]in/
+/KURZ/[Oo]bj/
+/KURZ/[Oo]ut/
+/KURZ/msbuild.log
+/KURZ/msbuild.err
+/KURZ/msbuild.wrn
