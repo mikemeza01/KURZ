@@ -4,10 +4,25 @@ namespace KURZ.Controllers
 {
     public class AuthenticationController : Controller
     {
+        private readonly ILogger<AuthenticationController> _logger;
+
+        public AuthenticationController(ILogger<AuthenticationController> logger)
+        {
+            _logger = logger;
+        }
+
         [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            try
+            {
+                HttpContext.Session.Clear();
+                return View();
+            }
+            catch
+            {
+                return View("Error");
+            }
         }
 
         [HttpPost]
