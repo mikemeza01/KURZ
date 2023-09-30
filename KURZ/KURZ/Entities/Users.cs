@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.Net.Mail;
 
 namespace KURZ.Entities
 {
@@ -9,26 +12,25 @@ namespace KURZ.Entities
         [Display(Name = "ID de Usuario")]
         public int ID_USER { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "La identificación es requerida")]
         [Display(Name = "Identificación")]
-        public int IDENTIFICATION { get; set; }
+        public int? IDENTICATION { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El nombre de usuario es requerida")]
         [Display(Name = "Nombre de Usuario")]
         [StringLength(20, ErrorMessage = "El nombre del usuario no puede exceder de 20 carácteres")]
         public string? USERNAME { get; set; }
 
-        [Required]
         [Display(Name = "Contraseña")]
         [StringLength(30, ErrorMessage = "La contraseña no puede exceder de 30 carácteres")]
         public string? PASSWORD { get; set; }
 
         [Display(Name = "Nombre")]
-        [Required]
+        [Required(ErrorMessage = "El nombre es requerido")]
         [StringLength(20, ErrorMessage = "El nombre no puede exceder de 20 carácteres")]
         public string? NAME { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Los apellidos son requeridos")]
         [Display(Name = "Apellidos")]
         [StringLength(50, ErrorMessage = "Los apellidos no pueden exceder de 50 carácteres")]
         public string? LASTNAME { get; set; }
@@ -40,7 +42,7 @@ namespace KURZ.Entities
         [Display(Name = "Foto")]
         public string? PHOTO { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El correo electrónico es requerido")]
         [Display(Name = "Correo Electrónico")]
         [StringLength(50, ErrorMessage = "El correo electrónico no pueden exceder de 50 carácteres")]
         public string? EMAIL { get; set; }

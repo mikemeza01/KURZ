@@ -1,12 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KURZ.Entities;
+using KURZ.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KURZ.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class UsersController : Controller
     {
+        private readonly IUsersModel _usersModel;
+
+        public UsersController(IUsersModel usersModel)
+        {
+            _usersModel = usersModel;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var datos = _usersModel.UsersList();
+            return View(datos);
         }
 
         [HttpGet]
@@ -16,9 +28,30 @@ namespace KURZ.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string email)
+        public IActionResult Create(Users user)
         {
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var resultado = _usersModel.UserCreate(user);
+                    if (resultado > 0)
+                    {
+                        ViewBag.mensaje = "SUCCESS";
+                        return View(user);
+                    }
+                    else
+                        ViewBag.mensaje = "ERROR";
+                        return View(user);
+                }
+                else {
+                    return View(user);
+                }
+                    
+            }
+            catch (Exception) {
+                return View("Error");
+            }
         }
 
 
@@ -50,5 +83,7 @@ namespace KURZ.Controllers
         {
             return RedirectToAction(nameof(Index));
         }
+
+        
     }
 }

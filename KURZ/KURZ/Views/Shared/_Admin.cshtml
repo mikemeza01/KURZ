@@ -9,6 +9,9 @@
     <title>@ViewData["Title"] - KURZ</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
           rel="stylesheet">
+    <!-- Datatables -->
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css" rel="stylesheet">
     <!-- Preloader -->
     <link href="~/vendor/spinkit.css" rel="stylesheet" asp-append-version="true" />
     <!-- Perfect Scrollbar -->
@@ -21,6 +24,8 @@
     <link href="~/css/preloader.css" rel="stylesheet" asp-append-version="true" />
     <!-- App CSS -->
     <link href="~/css/app.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body class="layout-sticky-subnav layout-learnly">
@@ -90,7 +95,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item"
-                                   asp-controller="Home" asp-action="Index">Cerrar Sesión</a>
+                                   asp-controller="Authentication" asp-action="Logout">Cerrar Sesión</a>
                             </div>
                         </div>
                     </div>
@@ -563,6 +568,15 @@
 
     <!-- Preloader -->
     <script src="~/js/preloader.js"></script>
+
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     @await RenderSectionAsync("Scripts", required: false)

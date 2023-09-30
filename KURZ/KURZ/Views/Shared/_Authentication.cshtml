@@ -21,6 +21,9 @@
     <link href="~/css/preloader.css" rel="stylesheet" asp-append-version="true" />
     <!-- App CSS -->
     <link href="~/css/app.css" rel="stylesheet" asp-append-version="true" />
+    <!-- Sweet Alerts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body class="layout-default layout-login-centered-boxed">
@@ -73,6 +76,8 @@
 
     <!-- Preloader -->
     <script src="~/js/preloader.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     @await RenderSectionAsync("Scripts", required: false)

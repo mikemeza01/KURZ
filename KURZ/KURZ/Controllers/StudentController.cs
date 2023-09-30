@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KURZ.Controllers
 {
@@ -15,32 +16,32 @@ namespace KURZ.Controllers
         {
             return RedirectToAction("MyAccount");
         }
-
+        [Authorize(Roles = "Student")]
         public IActionResult MyAccount()
         {
             return View();
         }
-
+        [Authorize(Roles = "Student")]
         public IActionResult Edit()
         {
             return View();
         }
-
+        [Authorize(Roles = "Student")]
         public IActionResult EditAccount()
         {
             return View();
         }
-
+        [Authorize(Roles = "Student")]
         public IActionResult DeleteAccount()
         {
             return View();
         }
-
+        [Authorize(Roles = "Student")]
         public IActionResult Advice()
         {
             return View();
         }
-
+        [Authorize(Roles = "Student")]
         public IActionResult Calendar()
         {
             return View();

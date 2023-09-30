@@ -2,6 +2,7 @@
 
 namespace KURZ.Entities
 {
+    //State se refiera a los estados o provincias en los datos del usuario
     public class State
     {
         [Key]

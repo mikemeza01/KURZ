@@ -1,4 +1,5 @@
-﻿@{
+﻿@model KURZ.Entities.Users
+@{
     ViewData["Title"] = "Iniciar Sesión";
     Layout = "_Authentication";
 }
@@ -7,24 +8,15 @@
         <label class="text-label"
                for="email">Correo Electrónico:</label>
         <div class="input-group input-group-merge">
-            <input id="email"
-                   type="email"
-                   required=""
-                   name="email"
-                   class="form-control form-control-prepended"
-                   placeholder="ejemplo@kurz.com">
+            <input asp-for="EMAIL" type="email" id="emailLogin" class="form-control form-control-prepended" required placeholder="ejemplo@kurz.com">
+            <div class="text-danger">@Html.ValidationMessageFor(m => m.EMAIL)</div>
         </div>
     </div>
     <div class="form-group">
         <label class="text-label"
                for="password">Contraseña:</label>
         <div class="input-group input-group-merge">
-            <input id="password"
-                   type="password"
-                   required=""
-                   class="form-control form-control-prepended"
-                   placeholder="Ingrese su contraseña">
-
+            <input asp-for="PASSWORD" type="password" id="passwordLogin" class="form-control form-control-prepended" required placeholder="Ingrese su contraseña">
         </div>
     </div>
     <div class="form-group text-center">
@@ -32,8 +24,16 @@
                 type="submit">
             Iniciar Sesión
         </button>
+        @{
+            if (@ViewBag.mensaje == "ERRORCREDENTIALS")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaLogin();\r\n      });       </script>")
+                ;
+
+            }
+        }
     </div>
-    <div class="form-group text-center">
+    <!--<div class="form-group text-center">
         <div class="custom-control custom-checkbox">
             <input type="checkbox"
                    class="custom-control-input"
@@ -42,8 +42,26 @@
             <label class="custom-control-label"
                    for="remember">Recordarme</label>
         </div>
-    </div>
+    </div>-->
     <div class="form-group text-center">
         <a asp-controller="Authentication" asp-action="ForgotPassword">¿Olvidó su contraseña?</a>
     </div>
 </form>
+
+<script>
+
+    function alertaLogin() {
+        let email = $('#emailLogin').val();
+
+        if (email !== '') {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'error',
+                title: 'Correo o contraseña no validos.',
+                text: 'Por favor verifique que sus credenciales estén correctas.',
+                showConfirmButton: true
+            })
+        }
+    }
+
+</script>

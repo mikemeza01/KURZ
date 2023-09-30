@@ -1,68 +1,44 @@
-﻿@{
+﻿@model KURZ.Entities.Users
+@{
     ViewData["Title"] = "Agregar Usuario";
     Layout = "_Admin";
 }
 <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
     <div class="card-body d-flex flex-column">
-        <form asp-action="Edit" class="align-items-center">
+        <form asp-action="Create" class="align-items-center">
+            <div asp-validation-summary="ModelOnly"></div>
             <div class="flex"
                  style="max-width: 100%">
 
                 <div class="form-group">
-                    <label class="form-label"
-                           for="identificacion">Identificación:</label>
-                    <input type="text"
-                           class="form-control"
-                           id="identificacion"
-                           placeholder="Ingrese la identificacion">
+                    <label class="form-label"  asp-for="IDENTICATION"></label>
+                    <input asp-for="IDENTICATION" type="number" class="form-control" placeholder="Ingrese la identificacion" />
+                    <span asp-validation-for="IDENTICATION" style="color:red"></span>
                 </div>
                 <div class="form-group">
-                    <label class="form-label"
-                           for="usuario">Usuario:</label>
-                    <input type="text"
-                           class="form-control"
-                           id="usuario"
-                           placeholder="Ingrese un nombre de usuario">
+                    <label class="form-label" asp-for="USERNAME"></label>
+                    <input asp-for="USERNAME" type="text" class="form-control" placeholder="Ingrese un nombre de usuario" />
+                    <span asp-validation-for="IDENTICATION" style="color:red"></span>
                 </div>
                 <div class="form-group">
-                    <label class="form-label"
-                           for="nombre">Nombre:</label>
-                    <input type="text"
-                           class="form-control"
-                           id="nombre"
-                           placeholder="Ingrese un nombre de usuario">
+                    <label class="form-label" asp-for="PASSWORD"></label>
+                    <input asp-for="PASSWORD" required type="password" class="form-control" placeholder="Ingrese una contraseña" />
+                    <span asp-validation-for="PASSWORD" style="color:red"></span>
                 </div>
                 <div class="form-group">
-                    <label class="form-label"
-                           for="apellidos">Apellidos:</label>
-                    <input type="text"
-                           class="form-control"
-                           id="apellidos"
-                           placeholder="Ingrese los apellidos">
+                    <label class="form-label" asp-for="NAME"></label>
+                    <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese un nombre para el usuario" />
+                    <span asp-validation-for="NAME" style="color:red"></span>
                 </div>
                 <div class="form-group">
-                    <label class="form-label"
-                           for="email">Correo Electrónico:</label>
-                    <input type="email"
-                           class="form-control"
-                           id="email"
-                           placeholder="Ingrese un correo electrónico">
+                    <label class="form-label" asp-for="LASTNAME"></label>
+                    <input asp-for="LASTNAME" type="text" class="form-control" placeholder="Ingrese los apellidos" />
+                    <span asp-validation-for="LASTNAME" style="color:red"></span>
                 </div>
                 <div class="form-group">
-                    <label class="form-label"
-                           for="Password1">Contraseña:</label>
-                    <input type="password"
-                           class="form-control"
-                           id="Password1"
-                           placeholder="Ingrese una contraseña">
-                </div>
-                <div class="form-group">
-                    <label class="form-label"
-                           for="Password2">Repetir Contraseña:</label>
-                    <input type="password"
-                           class="form-control"
-                           id="Password2"
-                           placeholder="Repetir Contraseña">
+                    <label class="form-label" asp-for="EMAIL"></label>
+                    <input asp-for="EMAIL" type="email" class="form-control" placeholder="Ingrese un correo electrónico" />
+                    <span asp-validation-for="EMAIL" style="color:red"></span>
                 </div>
                 <button type="submit"
                         class="btn btn-primary">
@@ -71,7 +47,53 @@
                 <a asp-controller="Users" asp-action="Index" class="btn btn-accent">
                     Cancelar
                 </a>
+                @{
+                    if (@ViewBag.mensaje == "SUCCESS")
+                    {
+                        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+                        ;
+
+                    }
+                    if (@ViewBag.mensaje == "ERROR")
+                    {
+                        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+                        ;
+
+                    }
+                }
             </div>
         </form>
     </div>
 </div>
+
+<script>
+
+    function alertaSuccess() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Usuario creado.',
+            text: 'Usuario creado correctamente',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Users';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Users';
+        }, 3000);
+    }
+
+    function alertaError() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Usuario no creado.',
+            text: 'Hubo un error al crear el usuario',
+            showConfirmButton: true
+        })
+    }
+
+</script>
