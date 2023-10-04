@@ -1,13 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KURZ.Entities;
+using KURZ.Interfaces;
+//using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KURZ.Controllers
 {
     public class TopicsController : Controller
     {
+        //ACCESO A LA INTERFAZ.
+        private readonly ITopicsModel _topicsModel;
+
+        //CREACION DEL CONTROLADOR.
+        public TopicsController(ITopicsModel topicsModel)
+        {
+            _topicsModel = topicsModel;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            //LLamada a la lista de datos de los topics.
+            //var datos = _topicsModel.TopicsList();
+            return View(datos);
         }
+
         [HttpGet]
         public IActionResult CategoriesList()
         {
@@ -21,9 +36,36 @@ namespace KURZ.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCategorie(string name)
+        public IActionResult CreateCategorie(Topics topics)
         {
-            return RedirectToAction(nameof(CategoriesList));
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+
+                    var resultado = _topicsModel.TopicsCreate(topics);
+                    if (resultado > 0)
+                    {
+                        ViewBag.mensaje = "SUCCESS";
+                        return View(topics);
+                    }
+                    else
+                        ViewBag.mensaje = "ERROR";
+                    return View(topics);
+                }
+                else
+                {
+                    return View(topics);
+                }
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+
+            //return RedirectToAction(nameof(CategoriesList));
         }
 
         [HttpGet]
