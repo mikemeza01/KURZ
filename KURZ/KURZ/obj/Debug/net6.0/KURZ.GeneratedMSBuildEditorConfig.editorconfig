@@ -9,185 +9,189 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = KURZ
 build_property.RootNamespace = KURZ
-build_property.ProjectDir = D:\Universidad\7 Cuatrimestre\Diseño y Desarrollo de Sistemas\Proyecto\KURZ\KURZ\KURZ\
+build_property.ProjectDir = /Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Universidad\7 Cuatrimestre\Diseño y Desarrollo de Sistemas\Proyecto\KURZ\KURZ\KURZ
+build_property.MSBuildProjectDirectory = /Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Authentication/ForgotPassword.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cRm9yZ290UGFzc3dvcmQuY3NodG1s
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Authentication/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aGVudGljYXRpb24vRm9yZ290UGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Authentication/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cTG9naW4uY3NodG1s
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Authentication/ForgotPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aGVudGljYXRpb24vRm9yZ290UGFzc3dvcmRDb25maXJtYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Dashboard/DashboardAdmin.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXERhc2hib2FyZEFkbWluLmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Authentication/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aGVudGljYXRpb24vTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Dashboard/DashboardAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0Rhc2hib2FyZEFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_Admin.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbi5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_Authentication.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BdXRoZW50aWNhdGlvbi5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Shared/_Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19BZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_Public.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QdWJsaWMuY3NodG1s
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Shared/_Authentication.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19BdXRoZW50aWNhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_Student.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TdHVkZW50LmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Shared/_Public.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QdWJsaWMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_StudentH.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TdHVkZW50SC5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Shared/_Student.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19TdHVkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_Teacher.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZWFjaGVyLmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Shared/_StudentH.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19TdHVkZW50SC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_TeacherH.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UZWFjaGVySC5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Shared/_Teacher.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19UZWFjaGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Shared/_TeacherH.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19UZWFjaGVySC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/Advice.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxBZHZpY2UuY3NodG1s
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/Calendar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxDYWxlbmRhci5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Student/Advice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9BZHZpY2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/DeleteAccount.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxEZWxldGVBY2NvdW50LmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Student/Calendar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9DYWxlbmRhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxFZGl0LmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Student/DeleteAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9EZWxldGVBY2NvdW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/EditAccount.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxFZGl0QWNjb3VudC5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Student/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/MyAccount.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxNeUFjY291bnQuY3NodG1s
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Student/EditAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9FZGl0QWNjb3VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Student/RegisterStudents.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxSZWdpc3RlclN0dWRlbnRzLmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Student/MyAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9NeUFjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/Advice.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxBZHZpY2UuY3NodG1s
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Student/RegisterStudents.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3R1ZGVudC9SZWdpc3RlclN0dWRlbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/Calendar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxDYWxlbmRhci5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Teacher/Advice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9BZHZpY2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/DeleteAccount.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxEZWxldGVBY2NvdW50LmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Teacher/Calendar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9DYWxlbmRhci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxFZGl0LmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Teacher/DeleteAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9EZWxldGVBY2NvdW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/EditAccount.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxFZGl0QWNjb3VudC5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Teacher/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/MyAccount.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxNeUFjY291bnQuY3NodG1s
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Teacher/EditAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9FZGl0QWNjb3VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Teacher/RegisterTeachers.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxSZWdpc3RlclRlYWNoZXJzLmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Teacher/MyAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9NeUFjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/CategoriesList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXENhdGVnb3JpZXNMaXN0LmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Teacher/RegisterTeachers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhY2hlci9SZWdpc3RlclRlYWNoZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/CreateCategorie.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXENyZWF0ZUNhdGVnb3JpZS5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Topics/CategoriesList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG9waWNzL0NhdGVnb3JpZXNMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/CreateTopic.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXENyZWF0ZVRvcGljLmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Topics/CreateCategorie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG9waWNzL0NyZWF0ZUNhdGVnb3JpZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/DeleteCategorie.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXERlbGV0ZUNhdGVnb3JpZS5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Topics/CreateTopic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG9waWNzL0NyZWF0ZVRvcGljLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/DeleteTopic.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXERlbGV0ZVRvcGljLmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Topics/DeleteCategorie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG9waWNzL0RlbGV0ZUNhdGVnb3JpZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/EditCategorie.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXEVkaXRDYXRlZ29yaWUuY3NodG1s
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Topics/DeleteTopic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG9waWNzL0RlbGV0ZVRvcGljLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/EditTopic.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXEVkaXRUb3BpYy5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Topics/EditCategorie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG9waWNzL0VkaXRDYXRlZ29yaWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Topics/TopicsList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXFRvcGljc0xpc3QuY3NodG1s
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Topics/EditTopic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG9waWNzL0VkaXRUb3BpYy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Users/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlLmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Topics/TopicsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVG9waWNzL1RvcGljc0xpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Users/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGVsZXRlLmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Users/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlcnMvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Users/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGV0YWlscy5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Users/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlcnMvRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Users/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Users/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlcnMvRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Users/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Users/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlcnMvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Users/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlcnMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidad/7 Cuatrimestre/Diseño y Desarrollo de Sistemas/Proyecto/KURZ/KURZ/KURZ/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-gze9dyu8db
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-p8e7gikec5
