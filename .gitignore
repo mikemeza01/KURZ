@@ -42,3 +42,4 @@
 /KURZ/KURZ/msbuild.err
 /KURZ/KURZ/msbuild.wrn
 KURZ/KURZ/obj/Debug/net6.0/KURZ.GeneratedMSBuildEditorConfig.editorconfig
+KURZ/KURZ/bin/Debug/net6.0/appsettings.json
