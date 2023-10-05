@@ -20,7 +20,7 @@ namespace KURZ.Controllers
         {
             //LLamada a la lista de datos de los topics.
             //var datos = _topicsModel.TopicsList();
-            return View(datos);
+            return View();
         }
 
         [HttpGet]

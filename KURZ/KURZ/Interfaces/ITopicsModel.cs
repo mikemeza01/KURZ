@@ -1,7 +1,9 @@
-﻿namespace KURZ.Interfaces
+﻿using KURZ.Entities;
+
+namespace KURZ.Interfaces
 {
     public interface ITopicsModel
     {
-        public int get_num();
+        public int TopicsCreate(Topics topic);
     }
 }

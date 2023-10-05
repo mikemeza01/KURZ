@@ -1,5 +1,6 @@
 ﻿using KURZ.Interfaces;
 using KURZ.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace KURZ.Models
 {
@@ -14,8 +15,23 @@ namespace KURZ.Models
             _context = context;
         }
 
-        public int get_num() {
-            return 0;
+        public int TopicsCreate(Topics topic)
+        {
+            try
+            {
+                
+
+                _context.Topics.Add(topic);
+                _context.SaveChanges();
+
+                return 1;
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error al agregar el tema:");
+                Console.WriteLine(ex.ToString());
+                return 0;
+            }
         }
     }
 }
