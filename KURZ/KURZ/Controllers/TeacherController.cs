@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using KURZ.Entities;
+using KURZ.Interfaces;
+using KURZ.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KURZ.Controllers
@@ -6,6 +9,15 @@ namespace KURZ.Controllers
     
     public class TeacherController : Controller
     {
+
+        private readonly ITeacherModel _teacherModel;
+
+        public TeacherController(ITeacherModel teacherModel)
+        {
+            _teacherModel = teacherModel;
+        }
+
+
         [HttpGet]
         public IActionResult RegisterTeachers()
         {
@@ -13,10 +25,34 @@ namespace KURZ.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegisterTeachers(string email)
+        public IActionResult RegisterTeachers(Users teacher)
         {
-            return RedirectToAction("MyAccount");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var resultado = _teacherModel.UserCreate(teacher);
+                    if (resultado > 0)
+                    {
+                        ViewBag.mensaje = "SUCCESS";
+                        return View(teacher);
+                    }
+                    else
+                        ViewBag.mensaje = "ERROR";
+                    return View(teacher);
+                }
+                else
+                {
+                    return View(teacher);
+                }
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
+
         [Authorize(Roles = "Teacher")]
         public IActionResult MyAccount()
         {
