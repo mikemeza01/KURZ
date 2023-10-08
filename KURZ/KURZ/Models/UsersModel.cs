@@ -79,6 +79,90 @@ namespace KURZ.Models
             }
         }
 
+        public Users UserDetail(int? ID) {
+            try
+            {
+                var user = _context.Users.Find(ID);
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error interno en el modelo Users: " + ex.Message);
+            }
+        }
+
+        public int UserEdit(Users user_edit) {
+            try
+            {
+                if (user_edit.PASSWORD == null)
+                {
+                    var password = UserPassword(user_edit.ID_USER);
+                    user_edit.PASSWORD = password;
+
+                }
+                else {
+                    //se encripta la clave puesta para el usuario
+                    if (user_edit.PASSWORD != null)
+                    {
+                        var passwordEncrypt = base64Encode(user_edit.PASSWORD);
+                        //se pasa a la entidad la contraseña encriptada
+                        user_edit.PASSWORD = passwordEncrypt;
+                    }
+                }
+
+                user_edit.CELLPHONE = "";
+                user_edit.PHOTO = "";
+                user_edit.PROFILE = "";
+                user_edit.ADDRESS = "";
+                user_edit.STATE = "";
+                user_edit.CITY = "";
+                user_edit.ID_ROL = 1; //id de rol administrador
+                user_edit.ID_COUNTRY = 52; //ID de País Costa Rica, esto para ponerlo para usuarios admin
+
+                _context.ChangeTracker.Clear();
+                _context.Users.Update(user_edit);
+                _context.SaveChanges();
+
+
+                return 1;
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error al editar el usuario.");
+                Console.WriteLine(ex.ToString());
+                return 0;
+            }
+        }
+
+        public int UserDelete(Users user) {
+            try
+            {
+                _context.Users.Remove(user);
+                _context.SaveChanges();
+
+                return 1;
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error al eliminar el usuario.");
+                Console.WriteLine(ex.ToString());
+                return 0;
+            }
+        }
+
+        public string UserPassword(int? ID)
+        {
+            try
+            {
+                var user_find = _context.Users.Find(ID);
+                return user_find.PASSWORD;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error interno en el modelo Users: " + ex.Message);
+            }
+        }
+
         public string base64Encode(string sData) // Encode    
         {
             try

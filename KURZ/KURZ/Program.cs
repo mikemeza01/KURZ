@@ -19,6 +19,7 @@ builder.Services.AddSession();
 builder.Services.AddScoped<IRolesModel, RolesModel>();
 builder.Services.AddScoped<IUsersModel, UsersModel>();
 builder.Services.AddScoped<ITopicsModel, TopicsModel>();
+builder.Services.AddScoped<ITeacherModel, TeacherModel>();
 
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

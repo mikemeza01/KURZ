@@ -9,6 +9,14 @@ namespace KURZ.Interfaces
 
         public int UserCreate(Users user);
 
+        public Users UserDetail(int? ID);
+
+        public int UserEdit(Users user);
+
+        public int UserDelete(Users user);
+
+        public string UserPassword(int? ID);
+
         public string base64Encode(string sData);
 
         public string base64Decode(string sData);

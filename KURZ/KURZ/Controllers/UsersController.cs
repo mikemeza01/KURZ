@@ -54,34 +54,108 @@ namespace KURZ.Controllers
             }
         }
 
-
-        public IActionResult Details()
+        [HttpGet]
+        public IActionResult Details(int? ID)
         {
-            return View();
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var user = _usersModel.UserDetail(ID);
+            if (user == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+            return View(user);
         }
 
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int? ID)
         {
-            return View();
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var user = _usersModel.UserDetail(ID);
+            if (user == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+            return View(user);
         }
 
         [HttpPost]
-        public IActionResult Edit(string email)
+        public IActionResult Edit(Users user)
         {
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var resultado = _usersModel.UserEdit(user);
+                    if (resultado > 0)
+                    {
+                        ViewBag.mensaje = "SUCCESS";
+                        return View(user);
+                    }
+                    else
+                        ViewBag.mensaje = "ERROR";
+                    return View(user);
+                }
+                else
+                {
+                    return View(user);
+                }
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         [HttpGet]
-        public IActionResult Delete()
+        public IActionResult Delete(int? ID)
         {
-            return View();
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var user = _usersModel.UserDetail(ID);
+            if (user == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+            return View(user);
         }
 
         [HttpPost]
-        public IActionResult Delete(string delete)
+        public IActionResult Delete(Users user)
         {
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                
+                var resultado = _usersModel.UserDelete(user);
+                if (resultado > 0)
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(user);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(user);
+                
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         

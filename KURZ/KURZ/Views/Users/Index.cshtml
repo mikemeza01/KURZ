@@ -40,14 +40,14 @@
 
 
                                 <td>
-                                    <a class="btn btn-dark" asp-controller="Users" asp-action="Details">
+                                    <a class="btn btn-dark" asp-controller="Users" asp-route-ID="@item.ID_USER" asp-action="Details">
                                         <i class="material-icons">remove_red_eye</i>
                                     </a>
-                                    <a class="btn btn-primary" asp-controller="Users" asp-action="Edit">
+                                    <a class="btn btn-primary" asp-controller="Users" asp-route-ID="@item.ID_USER" asp-action="Edit">
                                         <i class="material-icons">create</i>
                                     </a>
 
-                                    <a class="btn btn-accent" asp-controller="Users" asp-action="Delete">
+                                    <a class="btn btn-accent" asp-controller="Users" asp-route-ID="@item.ID_USER" asp-action="Delete">
                                         <i class="material-icons">close</i>
                                     </a>
                                 </td>
