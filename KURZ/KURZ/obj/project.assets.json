@@ -2013,25 +2013,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/jocksancuberogarcia/.nuget/packages/": {}
+    "C:\\Users\\Michael Meza\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/KURZ.csproj",
+      "projectUniqueName": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\KURZ.csproj",
       "projectName": "KURZ",
-      "projectPath": "/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/KURZ.csproj",
-      "packagesPath": "/Users/jocksancuberogarcia/.nuget/packages/",
-      "outputPath": "/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/obj/",
+      "projectPath": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\KURZ.csproj",
+      "packagesPath": "C:\\Users\\Michael Meza\\.nuget\\packages\\",
+      "outputPath": "D:\\Universidad\\7 Cuatrimestre\\Diseño y Desarrollo de Sistemas\\Proyecto\\KURZ\\KURZ\\KURZ\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jocksancuberogarcia/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Michael Meza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/sdk/7.0.308/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2086,7 +2087,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.308/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

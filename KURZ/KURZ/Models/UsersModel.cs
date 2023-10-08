@@ -34,7 +34,10 @@ namespace KURZ.Models
                 return null;
             }
             else {
-                if (user_login.PASSWORD == user.PASSWORD)
+
+                var password_decrypted = base64Decode(user.PASSWORD);
+
+                if (user_login.PASSWORD == password_decrypted)
                 {
                     return user_login;
                 }
