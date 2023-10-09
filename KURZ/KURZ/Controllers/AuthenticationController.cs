@@ -15,15 +15,17 @@ namespace KURZ.Controllers
         private readonly IUsersModel _usersModel;
         private readonly IRolesModel _rolesModel;
         private readonly ITeacherModel _teacherModel;
+        private readonly IStudentModel _studentModel;
 
 
         //constructor del controlador
-        public AuthenticationController(ILogger<AuthenticationController> logger, IUsersModel usersModel, IRolesModel rolesModel, ITeacherModel teacherModel)
+        public AuthenticationController(ILogger<AuthenticationController> logger, IUsersModel usersModel, IRolesModel rolesModel, ITeacherModel teacherModel, IStudentModel studentModel)
         {
             _logger = logger;
             _usersModel = usersModel;
             _rolesModel = rolesModel;
             _teacherModel = teacherModel;
+            _studentModel = studentModel;
         }
 
         [HttpGet]
