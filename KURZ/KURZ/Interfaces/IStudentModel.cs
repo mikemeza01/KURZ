@@ -8,5 +8,6 @@ namespace KURZ.Interfaces
         public List<Users>? StudentList();
 
         public string StudentCreate(Users student);
+        public string StudentEdit(Users student);
     }
 }

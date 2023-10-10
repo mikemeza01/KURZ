@@ -44,6 +44,7 @@ namespace KURZ.Controllers
                 }
                 else
                 {
+                    ViewBag.mensaje = "ERROR";
                     return View(student);
                 }
 
@@ -65,7 +66,37 @@ namespace KURZ.Controllers
             return View();
         }
         [Authorize(Roles = "Student")]
-        public IActionResult EditAccount()
+        public IActionResult Edit(Users user)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var resultado = _studentModel.UserEdit(user);
+                    if (resultado == "ok")
+                    {
+                        ViewBag.mensaje = "SUCCESS";
+                        return View(user);
+                    }
+                    else if (resultado != "ok" && resultado != "error")
+                    {
+                        ViewBag.mensaje = resultado;
+                    }
+                    else
+                        ViewBag.mensaje = "ERROR";
+                    return View(user);
+                }
+                else
+                {
+                    return View(user);
+                }
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
         {
             return View();
         }
