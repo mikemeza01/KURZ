@@ -3,6 +3,7 @@ using KURZ.Interfaces;
 using KURZ.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace KURZ.Controllers
 {
@@ -58,6 +59,17 @@ namespace KURZ.Controllers
         [Authorize(Roles = "Student")]
         public IActionResult MyAccount()
         {
+            //DEOLVER EL NOMBRE DEL USUARIO REGISTRADO EN LA PANTALLA PRINCIPAL.
+            ClaimsPrincipal claimstudent = HttpContext.User;
+            string nombreusuario = "";
+
+            if (claimstudent.Identity.IsAuthenticated)
+            {
+                nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+            }
+
+            ViewData["nombreUsuario"] = nombreusuario;
+
             return View();
         }
         [Authorize(Roles = "Student")]
@@ -66,17 +78,17 @@ namespace KURZ.Controllers
             return View();
         }
         [Authorize(Roles = "Student")]
-        public IActionResult Edit(Users user)
+        public IActionResult Edit(Users student)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var resultado = _studentModel.UserEdit(user);
+                    var resultado = _studentModel.StudentEdit(student);
                     if (resultado == "ok")
                     {
                         ViewBag.mensaje = "SUCCESS";
-                        return View(user);
+                        return View(student);
                     }
                     else if (resultado != "ok" && resultado != "error")
                     {
@@ -84,11 +96,11 @@ namespace KURZ.Controllers
                     }
                     else
                         ViewBag.mensaje = "ERROR";
-                    return View(user);
+                    return View(student);
                 }
                 else
                 {
-                    return View(user);
+                    return View(student);
                 }
 
             }
@@ -97,9 +109,7 @@ namespace KURZ.Controllers
                 return View("Error");
             }
         }
-        {
-            return View();
-        }
+       
         [Authorize(Roles = "Student")]
         public IActionResult DeleteAccount()
         {

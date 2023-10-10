@@ -75,8 +75,6 @@ namespace KURZ.Models
         {
             try
             {
-
-
                 //validar si el correo cambio al editar el usuario
                 if (_usersModel.UserEmail(student_edit.ID_USER) != student_edit.EMAIL)
                 {
