@@ -19,7 +19,7 @@ namespace KURZ.Models
         {
             try
             {
-                return _context.Users.ToList();
+                return _context.Users.Where(x=> x.ID_ROL == 1).ToList();
             }
             catch (Exception ex)
             {
@@ -46,10 +46,16 @@ namespace KURZ.Models
             }
         }
 
-        public int UserCreate(Users user)
+        public string UserCreate(Users user)
         {
             try
             {
+                var user_exist = UserExist(user);
+
+                if (user_exist != null) {
+                    return user_exist;
+                }
+
                 //se encripta la clave puesta para el usuario
                 if (user.PASSWORD != null)
                 {
@@ -57,6 +63,7 @@ namespace KURZ.Models
                     //se pasa a la entidad la contraseña encriptada
                     user.PASSWORD = passwordEncrypt;
                 }
+                user.USERNAME = user.EMAIL;
                 user.CELLPHONE = "";
                 user.PHOTO = "";
                 user.PROFILE = "";
@@ -69,13 +76,13 @@ namespace KURZ.Models
                 _context.Users.Add(user);
                 _context.SaveChanges();
 
-                return 1;
+                return "ok";
             }
             catch (DbUpdateException ex)
             {
                 Console.WriteLine("Ocurrió un error al agregar el usuario:");
                 Console.WriteLine(ex.ToString());
-                return 0;
+                return "error";
             }
         }
 
@@ -91,9 +98,22 @@ namespace KURZ.Models
             }
         }
 
-        public int UserEdit(Users user_edit) {
+        public string UserEdit(Users user_edit) {
             try
             {
+                
+
+                //validar si el correo cambio al editar el usuario
+                if (UserEmail(user_edit.ID_USER) != user_edit.EMAIL) {
+                    //valida si ya existe otro usuario con el mismo correo
+                    var user_exist = UserExist(user_edit);
+
+                    if (user_exist != null)
+                    {
+                        return user_exist;
+                    }
+                }
+ 
                 if (user_edit.PASSWORD == null)
                 {
                     var password = UserPassword(user_edit.ID_USER);
@@ -124,13 +144,13 @@ namespace KURZ.Models
                 _context.SaveChanges();
 
 
-                return 1;
+                return "ok";
             }
             catch (DbUpdateException ex)
             {
                 Console.WriteLine("Ocurrió un error al editar el usuario.");
                 Console.WriteLine(ex.ToString());
-                return 0;
+                return "error";
             }
         }
 
@@ -160,6 +180,31 @@ namespace KURZ.Models
             catch (Exception ex)
             {
                 throw new Exception("Ocurrió un error interno en el modelo Users: " + ex.Message);
+            }
+        }
+
+        public string UserEmail(int? ID)
+        {
+            try
+            {
+                var user_find = _context.Users.Find(ID);
+                return user_find.EMAIL;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error interno en el modelo Users: " + ex.Message);
+            }
+        }
+
+        public string UserExist(Users user) {
+            var user_by_email = _context.Users.FirstOrDefault(e => e.EMAIL == user.EMAIL);
+            
+            if (user_by_email != null)
+            {
+                return "Existe un usuario ya registrado con el correo electrónico: " + user.EMAIL;
+            }
+            else {
+                return null;
             }
         }
 

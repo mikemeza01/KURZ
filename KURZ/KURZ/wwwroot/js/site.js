@@ -1,4 +1,29 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿
+(function ($) {
+	'use strict';
 
-// Write your JavaScript code.
+	$(document).ready(function () {
+		
+
+		$('#CreateUser').on('submit', function () {
+			var email = $('#EMAIL').val();
+			$('#USERNAME').val(email);
+		});
+
+		$('#EditUser').on('submit', function () {
+			var email = $('#EMAIL').val();
+			$('#USERNAME').val(email);
+		});
+		$('#RegisterStudents').on('submit', function () {
+			var email = $('#EMAIL').val();
+			$('#USERNAME').val(email);
+		});
+		
+		$('#RegisterTeachers').on('submit', function () {
+			var email = $('#EMAIL').val();
+			$('#USERNAME').val(email);
+		});
+
+	});
+
+})(jQuery);

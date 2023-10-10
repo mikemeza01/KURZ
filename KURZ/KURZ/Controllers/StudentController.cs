@@ -28,11 +28,15 @@ namespace KURZ.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var resultado = _studentModel.UserCreate(student);
-                    if (resultado > 0)
+                    var resultado = _studentModel.StudentCreate(student);
+                    if (resultado == "ok")
                     {
                         ViewBag.mensaje = "SUCCESS";
                         return View(student);
+                    }
+                    else if (resultado != "ok" && resultado != "error")
+                    {
+                        ViewBag.mensaje = resultado;
                     }
                     else
                         ViewBag.mensaje = "ERROR";
