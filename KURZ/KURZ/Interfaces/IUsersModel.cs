@@ -21,6 +21,8 @@ namespace KURZ.Interfaces
 
         public string UserExist(Users user);
 
+        public Users byUserName(string username);
+
         public string base64Encode(string sData);
 
         public string base64Decode(string sData);

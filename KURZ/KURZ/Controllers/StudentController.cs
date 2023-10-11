@@ -10,10 +10,12 @@ namespace KURZ.Controllers
     public class StudentController : Controller
     {
         private readonly IStudentModel _studentModel;
+        private readonly IUsersModel _usersModel;
 
-        public StudentController(IStudentModel studentModel)
+        public StudentController(IStudentModel studentModel, IUsersModel usersModel)
         {
             _studentModel = studentModel;
+            _usersModel = usersModel;
         }
 
         [HttpGet]
@@ -56,6 +58,7 @@ namespace KURZ.Controllers
             }
             
         }
+
         [Authorize(Roles = "Student")]
         public IActionResult MyAccount()
         {
@@ -67,8 +70,10 @@ namespace KURZ.Controllers
             {
                 nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
             }
+            var user = _usersModel.byUserName(nombreusuario);
 
-            ViewData["nombreUsuario"] = nombreusuario;
+
+            ViewData["nombreUsuario"] = user.NAME + " " + user.LASTNAME;
 
             return View();
         }
@@ -78,7 +83,8 @@ namespace KURZ.Controllers
             return View();
         }
         [Authorize(Roles = "Student")]
-        public IActionResult Edit(Users student)
+
+        public IActionResult StudentEdit(Users student)
         {
             try
             {
@@ -109,7 +115,7 @@ namespace KURZ.Controllers
                 return View("Error");
             }
         }
-       
+
         [Authorize(Roles = "Student")]
         public IActionResult DeleteAccount()
         {

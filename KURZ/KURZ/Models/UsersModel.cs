@@ -208,6 +208,12 @@ namespace KURZ.Models
             }
         }
 
+        public Users byUserName(string username)
+        {
+            var user = _context.Users.FirstOrDefault(e => e.USERNAME == username);
+            return user;
+        }
+
         public string base64Encode(string sData) // Encode    
         {
             try

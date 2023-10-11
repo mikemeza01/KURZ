@@ -1,5 +1,5 @@
 ﻿@model KURZ.Entities.Users
-{
+@{
     ViewData["Title"] = "Perfil";
     Layout = "_Student";
 }
@@ -8,7 +8,7 @@
         <img src="~/images/woman-6.jpg" class="mr-md-32pt mb-32pt mb-md-0 rounded-circle border-3"
              alt="instructor" />
         <div class="flex mb-32pt mb-md-0">
-            <h2 class="text-white mb-0">Estudiante @ViewData["nombreUsuario"]</h2>
+            <h2 class="text-white mb-0"> @ViewData["nombreUsuario"]</h2>
             <div class="rating mb-16pt d-inline-flex">
                 <div class="rating__item"><i class="material-icons">star</i></div>
                 <div class="rating__item"><i class="material-icons">star</i></div>
