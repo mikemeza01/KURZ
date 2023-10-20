@@ -3,7 +3,7 @@
     ViewData["Title"] = "Editar Perfil";
     Layout = "_StudentH";
 }
-<form asp-action="Edit" id="EditUser" class="align-items-center">
+<form asp-action="StudentEdit" id="Edit" class="align-items-center">
     <div asp-validation-summary="ModelOnly"></div>
     <!--Photo-->
     <div class="col-md-7 p-0">
@@ -29,10 +29,23 @@
             </div>
         </div>
 
+        <!--IDENTIFICACION-->
+        <div class="form-group">
+            <label class="form-label" asp-for="IDENTICATION"></label>
+            <input asp-for="IDENTICATION" type="text" class="form-control" readonly="readonly" />
+            <span asp-validation-for="IDENTICATION" style="color:red"></span>
+        </div>
+
+        <!--Email-->
+        <input asp-for="EMAIL" type="hidden" class="form-control" readonly />
+
+        <!--Username-->
+        <input asp-for="USERNAME" type="hidden" class="form-control" readonly />
+
         <!--Nombre-->
         <div class="form-group">
             <label class="form-label" asp-for="NAME"></label>
-            <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese " />
+            <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese su nombre " />
             <span asp-validation-for="NAME" style="color:red"></span>
         </div>
 
@@ -50,21 +63,7 @@
             <span asp-validation-for="PROFILE" style="color:red"></span>
         </div>
 
-        <!--Pais-->
-        <!--<div class="form-group">
-            <select class="form-label" asp-for="CITY"></select>
-            <option value=""/>
-            <span asp-validation-for="NAME" style="color:red"></span>
-        </div>-->
-        <!--Nombre-->
-        <!--<div class="form-group">
-            <label class="form-label">País</label>
-            <select class="form-control">
-                <option value="CR">Costa Rica</option>
-                <option value="PN">Panama</option>
-                <option value="CO">Colombia</option>
-            </select>
-        </div>-->
+
         <button type="submit"
                 class="btn btn-primary">
             Guardar Cambios
