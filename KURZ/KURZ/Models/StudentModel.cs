@@ -106,7 +106,7 @@ namespace KURZ.Models
 
                 student_edit.CELLPHONE = "";
                 student_edit.PHOTO = "";
-                student_edit.PROFILE = "";
+                
                 student_edit.ADDRESS = "";
                 student_edit.STATE = "";
                 student_edit.CITY = "";

@@ -5,6 +5,9 @@
 }
 <form asp-action="StudentEdit" id="Edit" class="align-items-center">
     <div asp-validation-summary="ModelOnly"></div>
+    <!--ID-->
+    <input asp-for="ID_USER" type="hidden" class="form-control" readonly />
+
     <!--Photo-->
     <div class="col-md-7 p-0">
         <div class="form-group">
@@ -59,7 +62,7 @@
         <!--Perfil-->
         <div class="form-group">
             <label class="form-label" asp-for="PROFILE"></label>
-            <input asp-for="PROFILE" type="text" class="form-control" placeholder="Ingrese " />
+            <input asp-for="PROFILE" type="text" class="form-control" placeholder="Ingrese descripcion de su perfil" />
             <span asp-validation-for="PROFILE" style="color:red"></span>
         </div>
 
@@ -100,7 +103,7 @@
             position: 'top-center',
             icon: 'success',
             title: 'Registro realizado.',
-            text: 'Se ha realizado tu registro correctamente.',
+            text: 'Se ha actualizado correctamente.',
             timer: 3000,
             showConfirmButton: true
         }).then((result) => {
