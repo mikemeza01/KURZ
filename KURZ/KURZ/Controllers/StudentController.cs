@@ -80,7 +80,17 @@ namespace KURZ.Controllers
         [Authorize(Roles = "Student")]
         public IActionResult Edit()
         {
-            return View();
+
+            ClaimsPrincipal claimstudent = HttpContext.User;
+            string nombreusuario = "";
+
+            if (claimstudent.Identity.IsAuthenticated)
+            {
+                nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+            }
+            var user = _usersModel.byUserName(nombreusuario);
+
+            return View(user);
         }
         [Authorize(Roles = "Student")]
 
