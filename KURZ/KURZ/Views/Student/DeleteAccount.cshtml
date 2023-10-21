@@ -1,17 +1,67 @@
-﻿@{
+﻿@model KURZ.Entities.Users
+@{
     ViewData["Title"] = "Eliminar Cuenta";
     Layout = "_StudentH";
 }
-<div class="col-md-12 p-0">
-    <p>Realmente desea eliminar su cuenta. Si procede con esto se eliminaran todos sus datos e historial.</p>
-    <div class="form-group">
-        <button type="submit"
-                class="btn btn-primary">
-            Confirmar
-        </button>
-        <button type="submit"
-                class="btn btn-accent">
-            Cancelar
-        </button>
+
+
+<form asp-action="DeleteAccount" class="align-items-center">
+
+    <input asp-for="ID_USER" type="hidden" class="form-control" readonly />
+
+    <div class="col-md-12 p-0">
+        <p>@Model.NAME @Model.LASTNAME, realmente desea eliminar su cuenta.
+        Si procede con esto se eliminaran todos sus datos e historial.</p>
+        <div class="form-group">
+            <a asp-controller="Student" asp-action="MyAccount" class="btn btn-accent">
+                Cancelar
+            </a>
+
+            <button type="submit"
+                    class="btn btn-primary">
+                Confirmar
+            </button>
+            @{
+                if (@ViewBag.mensaje == "SUCCESS")
+                {
+                    @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+                    ;
+
+                }
+                if (@ViewBag.mensaje == "ERROR")
+                {
+                    @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+                    ;
+
+                }
+            }
+        </div>
     </div>
-</div>
+</form>
+<script>function alertaSuccess() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Usuario eliminado.',
+            text: 'Usuario eliminado correctamente',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Users';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Users';
+        }, 3000);
+    }
+
+    function alertaError() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Usuario no editado.',
+            text: 'Hubo un error al eliminar el usuario',
+            showConfirmButton: true
+        })
+    }</script>
