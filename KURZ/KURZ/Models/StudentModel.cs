@@ -1,4 +1,5 @@
-﻿using KURZ.Entities;
+﻿using System.Text;
+using KURZ.Entities;
 using KURZ.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,7 +30,7 @@ namespace KURZ.Models
             }
         }
 
-        public string StudentCreate(Users student)
+        public string StudentCreate(Users student, string host)
         {
             try
             {
@@ -60,9 +61,34 @@ namespace KURZ.Models
                 student.STATUS = true;
                 student.PASSWORDTEMP = false;
 
+                var token = _usersModel.CreateToken(10);
+
+                student.TOKEN = token;
 
                 _context.Users.Add(student);
                 _context.SaveChanges();
+
+                StringBuilder cuerpo = new StringBuilder("");
+                cuerpo.Append(student.NAME + student.LASTNAME);
+                cuerpo.Append("<br>");
+                cuerpo.Append("<br>");
+                cuerpo.Append("Se ha creado tu cuenta en KURZ. Debes confirmar la cuenta para poder empezar a utilizar la plataforma");
+                cuerpo.Append("<br>");
+                cuerpo.Append("<a href='" + host + "/Authentication/ConfirmationAccount/?username=" + student.EMAIL + "&token=" + token + "'> Confirmar cuenta</a>");
+                cuerpo.Append("<br>");
+                cuerpo.Append("<br>");
+                cuerpo.Append("Saludos cordiales,");
+                cuerpo.Append("<br>");
+                cuerpo.Append("KURZ");
+
+                try
+                {
+                    _usersModel.SendEmail(student.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
+                }
+                catch (Exception ex)
+                {
+                    return "Usuario creado pero hubo un error al enviar el correo de confirmación de cuenta, pongase en contacto con el administrador.";
+                }
 
                 return "ok";
             }

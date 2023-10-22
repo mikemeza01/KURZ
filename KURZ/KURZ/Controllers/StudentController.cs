@@ -31,7 +31,11 @@ namespace KURZ.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var resultado = _studentModel.StudentCreate(student);
+                    var request = HttpContext.Request;
+                    var host = request.Host.ToUriComponent();
+                    var pathBase = request.PathBase.ToUriComponent();
+                    var domain = $"{request.Scheme}://{host}{pathBase}";
+                    var resultado = _studentModel.StudentCreate(student, domain);
                     if (resultado == "ok")
                     {
                         ViewBag.mensaje = "SUCCESS";
@@ -53,7 +57,7 @@ namespace KURZ.Controllers
 
             }
             catch(Exception)
-            {
+             {
                 return View("ERROR");
             }
             
@@ -104,7 +108,7 @@ namespace KURZ.Controllers
                     if (resultado == "ok")
                     {
                         ViewBag.mensaje = "SUCCESS";
-                        return View(student);
+                        return RedirectToAction("MyAccount", "Student");
                     }
                     else if (resultado != "ok" && resultado != "error")
                     {
@@ -116,7 +120,8 @@ namespace KURZ.Controllers
                 }
                 else
                 {
-                    return View(student);
+                    return RedirectToAction("MyAccount", "Student");
+                    //return View(student);
                 }
 
             }
