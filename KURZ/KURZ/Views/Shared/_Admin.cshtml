@@ -569,8 +569,6 @@
     <!-- Preloader -->
     <script src="~/js/preloader.js"></script>
 
-    <!-- Site JS -->
-    <script src="~/js/site.js"></script>
 
     <!-- Datatables -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -578,8 +576,15 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
 
+    <!-- Validations Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Site JS -->
+    <script src="~/js/site.js"></script>
 
 
     @await RenderSectionAsync("Scripts", required: false)

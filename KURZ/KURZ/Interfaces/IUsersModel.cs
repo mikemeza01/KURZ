@@ -7,7 +7,7 @@ namespace KURZ.Interfaces
         public List<Users>? UsersList();
         public Users ValidateUser(Users user);
 
-        public string UserCreate(Users user);
+        public string UserCreate(Users user, string host);
 
         public Users UserDetail(int? ID);
 
@@ -23,8 +23,16 @@ namespace KURZ.Interfaces
 
         public Users byUserName(string username);
 
+        public string confirmAccount(Users user);
+
         public string base64Encode(string sData);
 
         public string base64Decode(string sData);
+
+        public string CreateToken(int tamanno);
+
+        public string CreatePasswordTemporary(int tamanno);
+
+        public void SendEmail(string correoDestino, string asunto, string cuerpoCorreo);
     }
 }

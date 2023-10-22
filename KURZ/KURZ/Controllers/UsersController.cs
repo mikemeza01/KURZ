@@ -1,7 +1,9 @@
 ﻿using KURZ.Entities;
 using KURZ.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace KURZ.Controllers
 {
@@ -35,24 +37,28 @@ namespace KURZ.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var resultado = _usersModel.UserCreate(user);
+                    var request = HttpContext.Request;
+                    var host = request.Host.ToUriComponent();
+                    var pathBase = request.PathBase.ToUriComponent();
+                    var domain = $"{request.Scheme}://{host}{pathBase}";
+                    var resultado = _usersModel.UserCreate(user, domain);
                     if (resultado == "ok")
                     {
                         ViewBag.mensaje = "SUCCESS";
                         return View(user);
-                    } else if (resultado != "ok" && resultado != "error") {
+                    }
+                    else if (resultado != "ok" && resultado != "error")
+                    {
                         ViewBag.mensaje = resultado;
                     }
                     else
                         ViewBag.mensaje = "ERROR";
                     return View(user);
-
                 }
-                else {
-                    ViewBag.mensaje = "";
-                    return View(user);
+                else
+                {
+                    return View();
                 }
-                    
             }
             catch (Exception) {
                 return View("Error");

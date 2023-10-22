@@ -1,6 +1,13 @@
 ﻿using KURZ.Entities;
 using KURZ.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net.Mail;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace KURZ.Models
 {
@@ -9,10 +16,13 @@ namespace KURZ.Models
         //se llama el contexto de la base de datos
         private readonly KurzContext _context;
 
+        private readonly IConfiguration _configuration;
+
         //constructor de la clase y recibe como parametro el contexto de la base de datos
-        public UsersModel(KurzContext context)
+        public UsersModel(KurzContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         public List<Users>? UsersList()
@@ -32,7 +42,7 @@ namespace KURZ.Models
             if (user_login == null)
             {
                 return null;
-            }
+            } 
             else {
                 var password_decrypted = base64Decode(user_login.PASSWORD);
 
@@ -46,7 +56,7 @@ namespace KURZ.Models
             }
         }
 
-        public string UserCreate(Users user)
+        public string UserCreate(Users user, string host)
         {
             try
             {
@@ -63,6 +73,7 @@ namespace KURZ.Models
                     //se pasa a la entidad la contraseña encriptada
                     user.PASSWORD = passwordEncrypt;
                 }
+
                 user.USERNAME = user.EMAIL;
                 user.CELLPHONE = "";
                 user.PHOTO = "";
@@ -72,9 +83,36 @@ namespace KURZ.Models
                 user.CITY = "";
                 user.ID_ROL = 1; //id de rol administrador
                 user.ID_COUNTRY = 52; //ID de País Costa Rica, esto para ponerlo para usuarios admin
+                user.CONFIRMATION = false;
+                user.STATUS = true;
+                user.PASSWORDTEMP = false;
+
+                var token = CreateToken(10);
+
+                user.TOKEN = token;
 
                 _context.Users.Add(user);
                 _context.SaveChanges();
+
+                StringBuilder cuerpo = new StringBuilder("");
+                cuerpo.Append(user.NAME + user.LASTNAME);
+                cuerpo.Append("<br>");
+                cuerpo.Append("<br>");
+                cuerpo.Append("Se ha creado tu cuenta en KURZ. Debes confirmar la cuenta para poder empezar a utilizar la plataforma");
+                cuerpo.Append("<br>");
+                cuerpo.Append("<a href='"+host+ "/Authentication/ConfirmationAccount/?username=" + user.EMAIL + "&token="+ token + "'> Confirmar cuenta</a>");
+                cuerpo.Append("<br>");
+                cuerpo.Append("<br>");
+                cuerpo.Append("Saludos cordiales,");
+                cuerpo.Append("<br>");
+                cuerpo.Append("KURZ");
+
+                try {
+                    SendEmail(user.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
+                }
+                catch (Exception ex) {
+                    return "Usuario creado pero hubo un error al enviar el correo de confirmación de cuenta, pongase en contacto con el administrador.";
+                }
 
                 return "ok";
             }
@@ -214,6 +252,36 @@ namespace KURZ.Models
             return user;
         }
 
+        public string confirmAccount(Users user) {
+
+            try
+            {
+                var userValidate = _context.Users.FirstOrDefault(e => e.USERNAME == user.USERNAME);
+
+                if (userValidate.CONFIRMATION == true) {
+                    return "confirmed";
+                }
+
+                if (user.TOKEN == userValidate.TOKEN)
+                {
+                    userValidate.CONFIRMATION = true;
+                    _context.Users.Update(userValidate);
+                    _context.SaveChanges();
+                    return "ok";
+                }
+                else
+                {
+                    return "errorToken";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error interno en el modelo Usuarios al confirmar cuenta: " + ex.Message);
+            }
+
+            
+        }
+
         public string base64Encode(string sData) // Encode    
         {
             try
@@ -245,6 +313,54 @@ namespace KURZ.Models
             {
                 throw new Exception("Error in base64Decode" + ex.Message);
             }
+        }
+
+        //crea un string sin caracteres especiales
+        public string CreateToken(int tamanno)
+        {
+            const string valid = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < tamanno--)
+            {
+                res.Append(valid[rnd.Next(valid.Length)]);
+            }
+
+            return res.ToString();
+        }
+
+        public string CreatePasswordTemporary(int tamanno)
+        {
+            const string valid = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@$*%";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < tamanno--)
+            {
+                res.Append(valid[rnd.Next(valid.Length)]);
+            }
+            return res.ToString();
+        }
+
+        public void SendEmail(string correoDestino, string asunto, string cuerpoCorreo)
+        {
+            string correoSMTP = _configuration.GetSection("Variables:correoSMTP").Value;
+            string contrasennaSMTP = _configuration.GetSection("Variables:contrasennaSMTP").Value;
+
+            MailMessage msg = new MailMessage();
+            msg.To.Add(new MailAddress(correoDestino));
+            msg.From = new MailAddress(correoSMTP);
+            msg.Subject = asunto;
+            msg.Body = cuerpoCorreo;
+            msg.IsBodyHtml = true;
+
+            SmtpClient client = new SmtpClient();
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential(correoSMTP, contrasennaSMTP);
+            client.Port = 587;
+            client.Host = "smtp.office365.com";
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.EnableSsl = true;
+            client.Send(msg);
         }
     }
 }

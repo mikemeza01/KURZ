@@ -51,35 +51,47 @@ namespace KURZ.Controllers
 
                 if (result != null)
                 {
-
-                    HttpContext.Session.SetString("ROL", result.ID_ROL.ToString());
-                    HttpContext.Session.SetString("USER", result.ID_USER.ToString());
-
-                    var role_name = _rolesModel.get_role_name(result.ID_ROL);
-
-                    var claims = new List<Claim>
+                    if (result.CONFIRMATION != true)
                     {
-                        new Claim(ClaimTypes.Name, result.USERNAME),
-                        new Claim(ClaimTypes.Role, role_name)
-                    };
-                    var userIdentity = new ClaimsIdentity(claims, "login");
-                    ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-                    HttpContext.SignInAsync(principal);
-
-                    if (result.ID_ROL == 1)
-                    {
-                        return RedirectToAction("DashboardAdmin", "Dashboard");
+                        ViewBag.mensaje = "UNCONFIRMEDACCOUNT";
+                        return View();
                     }
-                    else if (result.ID_ROL == 2)
+                    else if (result.STATUS != true)
                     {
-                        return RedirectToAction("MyAccount", "Teacher");
-                    }
-                    else if (result.ID_ROL == 3)
-                    {
-                        return RedirectToAction("MyAccount", "Student");
+                        ViewBag.mensaje = "ERRORACCOUNT";
+                        return View();
                     }
                     else {
-                        return View();
+                        HttpContext.Session.SetString("ROL", result.ID_ROL.ToString());
+                        HttpContext.Session.SetString("USER", result.ID_USER.ToString());
+
+                        var role_name = _rolesModel.get_role_name(result.ID_ROL);
+
+                        var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, result.USERNAME),
+                            new Claim(ClaimTypes.Role, role_name)
+                        };
+                        var userIdentity = new ClaimsIdentity(claims, "login");
+                        ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+                        HttpContext.SignInAsync(principal);
+
+                        if (result.ID_ROL == 1)
+                        {
+                            return RedirectToAction("DashboardAdmin", "Dashboard");
+                        }
+                        else if (result.ID_ROL == 2)
+                        {
+                            return RedirectToAction("MyAccount", "Teacher");
+                        }
+                        else if (result.ID_ROL == 3)
+                        {
+                            return RedirectToAction("MyAccount", "Student");
+                        }
+                        else
+                        {
+                            return View();
+                        }
                     }
                 }
                 else
@@ -103,9 +115,47 @@ namespace KURZ.Controllers
         [HttpPost]
         public IActionResult ForgotPassword(Users user)
         {
-            
-
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult ConfirmationAccount(string username, string token) {
+            ViewBag.username = username;
+            ViewBag.token = token;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ConfirmationAccount(Users user)
+        {
+           
+            try
+            {
+                var result = _usersModel.confirmAccount(user);
+
+                if (result == "ok")
+                {
+
+                    ViewBag.mensaje = "SUCCESS";
+                    return View();
+                }
+                else if (result == "confirmed") {
+                    ViewBag.mensaje = "CONFIRMED";
+                    return View();
+                } else if (result == "errorToken") {
+                    ViewBag.mensaje = "ERROR";
+                    return View();
+                }
+                else
+                {
+                    ViewBag.mensaje = "ERRORACTIVATION";
+                    return View();
+                }
+            }
+            catch
+            {
+                return View("Error");
+            }
         }
 
         public IActionResult Logout() {
