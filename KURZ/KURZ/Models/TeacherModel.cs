@@ -65,7 +65,10 @@ namespace KURZ.Models
                 teacher.STATE = "";
                 teacher.CITY = "";
                 teacher.ID_ROL = 2; //id de rol administrador
-               
+                teacher.CONFIRMATION = false;
+                teacher.STATUS = true;
+                teacher.PASSWORDTEMP = false;
+
 
                 _context.Users.Add(teacher);
                 _context.SaveChanges();

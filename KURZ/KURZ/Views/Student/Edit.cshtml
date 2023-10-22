@@ -1,54 +1,142 @@
-﻿@{
+﻿@model KURZ.Entities.Users
+@{
     ViewData["Title"] = "Editar Perfil";
     Layout = "_StudentH";
 }
-<div class="col-md-7 p-0">
-    <div class="form-group">
-        <label class="form-label">Foto</label>
-        <div class="media align-items-center">
-            <a href=""
-               class="media-left mr-16pt">
-                <img src="~/images/woman-6.jpg"
-                     alt="people"
-                     width="56"
-                     class="rounded-circle" />
-            </a>
-            <div class="media-body">
-                <div class="custom-file">
-                    <input type="file"
-                           class="custom-file-input"
-                           id="inputGroupFile01">
-                    <label class="custom-file-label"
-                           for="inputGroupFile01">Elegir Foto</label>
+<form asp-action="StudentEdit" id="Edit" class="align-items-center">
+    <div asp-validation-summary="ModelOnly"></div>
+    <!--ID-->
+    <input asp-for="ID_USER" type="hidden" class="form-control" readonly />
+
+    <!--Photo-->
+    <div class="col-md-7 p-0">
+        <div class="form-group">
+            <label class="form-label">Foto</label>
+            <div class="media align-items-center">
+                <a href=""
+                   class="media-left mr-16pt">
+                    <img src="~/images/guy-3.jpg"
+                         alt="people"
+                         width="56"
+                         class="rounded-circle" />
+                </a>
+                <div class="media-body">
+                    <div class="custom-file">
+                        <input type="file"
+                               class="custom-file-input"
+                               id="inputGroupFile01">
+                        <label class="custom-file-label"
+                               for="inputGroupFile01">Elegir Foto</label>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label class="form-label">Nombre</label>
-        <input type="text"
-               class="form-control"
-               value="Estudiante">
+
+        <!--IDENTIFICACION-->
+        <div class="form-group">
+            <label class="form-label" asp-for="IDENTICATION"></label>
+            <input asp-for="IDENTICATION" type="text" class="form-control" readonly="readonly" />
+            <span asp-validation-for="IDENTICATION" style="color:red"></span>
+        </div>
+
+        <!--Email-->
+        <input asp-for="EMAIL" type="hidden" class="form-control" readonly />
+
+        <!--Username-->
+        <input asp-for="USERNAME" type="hidden" class="form-control" readonly />
+
+        <!--Nombre-->
+        <div class="form-group">
+            <label class="form-label" asp-for="NAME"></label>
+            <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese su nombre " />
+            <span asp-validation-for="NAME" style="color:red"></span>
+        </div>
+
+        <!--Apellido-->
+        <div class="form-group">
+            <label class="form-label" asp-for="LASTNAME"></label>
+            <input asp-for="LASTNAME" type="text" class="form-control" placeholder="Ingrese " />
+            <span asp-validation-for="LASTNAME" style="color:red"></span>
+        </div>
+
+        <!--Perfil-->
+        <div class="form-group">
+            <label class="form-label" asp-for="PROFILE"></label>
+            <input asp-for="PROFILE" type="text" class="form-control" placeholder="Ingrese descripcion de su perfil" />
+            <span asp-validation-for="PROFILE" style="color:red"></span>
+        </div>
+
+        <button type="submit" asp-controller="Student" asp-action="MyAccount"
+                class="btn btn-accent">
+            Cancelar
+        </button>
+
+        <button type="submit"
+                class="btn btn-primary">
+            Guardar Cambios
+        </button>
     </div>
 
-    <div class="form-group">
-        <label class="form-label">Apellidos</label>
-        <input type="text"
-               class="form-control"
-               value="Gonzalez Martínez">
-    </div>
+    @{
+        if (@ViewBag.mensaje == "SUCCESS")
+        {
+            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+            ;
 
-    <div class="form-group">
-        <label class="form-label">País</label>
-        <select class="form-control">
-            <option value="CR">Costa Rica</option>
-            <option value="PN">Panama</option>
-            <option value="CO">Colombia</option>
-        </select>
-    </div>
+        }
+        if (@ViewBag.mensaje == "ERROR")
+        {
+            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+            ;
 
-    <button type="submit"
-            class="btn btn-primary">
-        Guardar Cambios
-    </button>
-</div>
+        }
+
+        if (@ViewBag.mensaje != "ERROR" && @ViewBag.mensaje != "SUCCESS" && @ViewBag.mensaje != null && @ViewBag.mensaje != "")
+        {
+            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaUsuario();\r\n      });       </script>")
+            ;
+
+        }
+    }
+
+</form>
+
+<script>
+    function alertaSuccess() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Registro realizado.',
+            text: 'Se ha actualizado correctamente.',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Authentication/Login';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Authentication/Login';
+        }, 3000);
+    }
+
+    function alertaError() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Registro NO realizado',
+            text: 'Hubo un error al hacer el registro.',
+            showConfirmButton: true
+        })
+    }
+
+    function alertaUsuario() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Registro NO realizado',
+            text: '@ViewBag.mensaje',
+            showConfirmButton: true
+        })
+    }
+</script>

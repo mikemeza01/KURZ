@@ -18,7 +18,7 @@ namespace KURZ.Entities
 
         [Required(ErrorMessage = "El nombre de usuario es requerida")]
         [Display(Name = "Nombre de Usuario")]
-        [StringLength(20, ErrorMessage = "El nombre del usuario no puede exceder de 20 carácteres")]
+        [StringLength(100, ErrorMessage = "El nombre del usuario no puede exceder de 20 carácteres")]
         public string? USERNAME { get; set; }
 
         [Display(Name = "Contraseña")]
@@ -36,7 +36,7 @@ namespace KURZ.Entities
         public string? LASTNAME { get; set; }
 
         [Display(Name = "Celular")]
-        [StringLength(50, ErrorMessage = "El número de celular no pueden exceder de 15 carácteres")]
+        [StringLength(100, ErrorMessage = "El número de celular no pueden exceder de 15 carácteres")]
         public string? CELLPHONE { get; set; }
 
         [Display(Name = "Foto")]
@@ -68,6 +68,17 @@ namespace KURZ.Entities
 
         [Display(Name = "País")]
         public int ID_COUNTRY { get; set; }
+
+        [Display(Name = "Confirmación")]
+        public bool CONFIRMATION { get; set; } //1 confirmo la cuenta 0 no la a confirmado
+
+        [Display(Name = "Estado")]
+        public bool STATUS { get; set; } //1 activo 0 inactivo
+
+        [Display(Name = "Contraseña Temporal")]
+        public bool PASSWORDTEMP { get; set; } //1 la contraseña es temporal 0 la contraseña no es temporal
+
+        public string? TOKEN { get; set; } //token de seguridad
 
     }
 }

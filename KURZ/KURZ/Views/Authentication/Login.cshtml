@@ -25,9 +25,17 @@
             Iniciar Sesión
         </button>
         @{
-            if (@ViewBag.mensaje == "ERRORCREDENTIALS")
+            if (@ViewBag.mensaje == "UNCONFIRMEDACCOUNT")
             {
-                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaLogin();\r\n      });       </script>")
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaUnconfirmed();\r\n      });       </script>")
+                ;
+
+            }
+        }
+        @{
+            if (@ViewBag.mensaje == "ERRORACCOUNT")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaErrorAccount();\r\n      });       </script>")
                 ;
 
             }
@@ -49,6 +57,26 @@
 </form>
 
 <script>
+
+    function alertaUnconfirmed() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Cuenta no confirmada.',
+            text: 'Por favor confirme su cuenta con el correo enviado al registrarse.',
+            showConfirmButton: true
+        })
+    }
+
+    function alertaErrorAccount() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Error de cuenta',
+            text: 'Su cuenta no existe o esta desactivada.',
+            showConfirmButton: true
+        })
+    }
 
     function alertaLogin() {
         let email = $('#emailLogin').val();
