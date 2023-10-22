@@ -17,6 +17,8 @@ namespace KURZ.Interfaces
 
         public string UserPassword(int? ID);
 
+        public string ForgotPassword(Users user, string host);
+
         public string UserEmail(int? ID);
 
         public string UserExist(Users user);

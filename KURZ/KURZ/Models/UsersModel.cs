@@ -2,6 +2,7 @@
 using KURZ.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Mail;
@@ -218,6 +219,48 @@ namespace KURZ.Models
             catch (Exception ex)
             {
                 throw new Exception("Ocurrió un error interno en el modelo Users: " + ex.Message);
+            }
+        }
+
+        public string ForgotPassword(Users user, string host)
+        {
+            try
+            {
+                var user_by_email = _context.Users.FirstOrDefault(e => e.EMAIL == user.EMAIL);
+
+                if (user_by_email == null)
+                {
+                    return "ErrorUser";
+                } else {
+                    StringBuilder cuerpo = new StringBuilder("");
+                    cuerpo.Append(user_by_email.NAME +" "+ user_by_email.LASTNAME);
+                    cuerpo.Append("<br>");
+                    cuerpo.Append("<br>");
+                    cuerpo.Append("Se ha recibido su solicitud de cambiar su contraseña, dar clic en 'Cambiar contraseña' para proceder.");
+                    cuerpo.Append("<br>");
+                    cuerpo.Append("<br>");
+                    cuerpo.Append("<a href='" + host + "/Authentication/ForgotPasswordConfirmation/?username=" + user_by_email.EMAIL + "&token=" + user_by_email.TOKEN + "'>Cambiar contraseña</a>");
+                    cuerpo.Append("<br>");
+                    cuerpo.Append("<br>");
+                    cuerpo.Append("Saludos cordiales,");
+                    cuerpo.Append("<br>");
+                    cuerpo.Append("KURZ");
+
+                    try
+                    {
+                        SendEmail(user.EMAIL, "Reestabler contraseña", cuerpo.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        return "Error al enviar el correo de reestabler contraseña, pongase en contacto con el administrador.";
+                    }
+
+                    return "ok";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error interno en el modelo usuario en contraseña olvidada: " + ex.Message);
             }
         }
 

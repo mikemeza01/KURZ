@@ -115,6 +115,44 @@ namespace KURZ.Controllers
         [HttpPost]
         public IActionResult ForgotPassword(Users user)
         {
+            try
+            {
+                var request = HttpContext.Request;
+                var host = request.Host.ToUriComponent();
+                var pathBase = request.PathBase.ToUriComponent();
+                var domain = $"{request.Scheme}://{host}{pathBase}";
+
+                var result = _usersModel.ForgotPassword(user, domain);
+
+                if (result == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View();
+                }
+                else if (result == "ErrorUser")
+                {
+                    ViewBag.mensaje = "ERRORUSER";
+                    return View();
+                } else
+                {
+                    return View();
+                }
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ForgotPasswordConfirmation(string username, string token) {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ForgotPasswordConfirmation(Users user)
+        {
+           //todo: passwordchange 
             return View();
         }
 
