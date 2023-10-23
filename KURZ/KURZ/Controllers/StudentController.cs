@@ -11,17 +11,22 @@ namespace KURZ.Controllers
     {
         private readonly IStudentModel _studentModel;
         private readonly IUsersModel _usersModel;
+        private readonly ICountriesModel _countriesModel;
 
-        public StudentController(IStudentModel studentModel, IUsersModel usersModel)
+        public StudentController(IStudentModel studentModel, IUsersModel usersModel, ICountriesModel countriesModel)
         {
             _studentModel = studentModel;
             _usersModel = usersModel;
+            _countriesModel = countriesModel;
         }
 
         [HttpGet]
         public IActionResult RegisterStudents()
         {
-            return View();
+            var countries = _countriesModel.CountriesList();
+            ViewBag.countries = countries;
+
+            return View(new Users());
         }
 
         [HttpPost]
@@ -36,6 +41,8 @@ namespace KURZ.Controllers
                     var pathBase = request.PathBase.ToUriComponent();
                     var domain = $"{request.Scheme}://{host}{pathBase}";
                     var resultado = _studentModel.StudentCreate(student, domain);
+                    var countries = _countriesModel.CountriesList();
+                    ViewBag.countries = countries;
                     if (resultado == "ok")
                     {
                         ViewBag.mensaje = "SUCCESS";
@@ -96,8 +103,8 @@ namespace KURZ.Controllers
 
             return View(user);
         }
+        
         [Authorize(Roles = "Student")]
-
         public IActionResult StudentEdit(Users student)
         {
             try

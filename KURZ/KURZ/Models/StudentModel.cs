@@ -55,7 +55,6 @@ namespace KURZ.Models
                 student.ADDRESS = "";
                 student.STATE = "";
                 student.CITY = "";
-                student.ID_COUNTRY = 52; //ID de País Costa Rica, esto para ponerlo para usuarios admin
                 student.ID_ROL = 3; //id de rol estudiante
                 student.CONFIRMATION = false;
                 student.STATUS = true;

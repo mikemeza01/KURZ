@@ -3,7 +3,7 @@ using KURZ.Interfaces;
 using KURZ.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.DependencyResolver;
+//using NuGet.DependencyResolver;
 using System.Security.Claims;
 
 namespace KURZ.Controllers

@@ -7,7 +7,7 @@
 <form asp-action="RegisterStudents" id="RegisterStudents" class="align-items-center">
         <div asp-validation-summary="ModelOnly"></div>
         <div class="flex"
-                style="max-width: 100%">
+             style="max-width: 100%">
 
             <div class="form-group">
                 <label class="form-label" asp-for="IDENTICATION"></label>
@@ -20,9 +20,9 @@
                 <span asp-validation-for="EMAIL" style="color:red"></span>
             </div>
             <div class="form-group">
-                
+
                 <input asp-for="USERNAME" type="hidden" class="form-control" placeholder="Ingrese un usuario" />
-                
+
             </div>
             <div class="form-group">
                 <label class="form-label" asp-for="NAME"></label>
@@ -35,15 +35,32 @@
                 <span asp-validation-for="LASTNAME" style="color:red"></span>
             </div>
             <div class="form-group">
-                <label class="form-label" asp-for="PASSWORD"></label>
-                <input asp-for="PASSWORD" required type="password" class="form-control" placeholder="Ingrese una contraseña" />
-                <span asp-validation-for="PASSWORD" style="color:red"></span>
+                <label class="form-label" asp-for="ID_COUNTRY"></label>
+                <select class="form-control" asp-for="ID_COUNTRY">
+                    @foreach (var countries in ViewBag.countries)
+                    {
+                        <option value="@countries.ID_COUNTRY"> @countries.NAME</option>
+                    }
+                </select>
+                <span asp-validation-for="EMAIL" style="color:red"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PASSWORD" class="form-label">Contraseña:</label>
+                <input asp-for="PASSWORD" onchange="ValidatePassword()" type="password" class="form-control" placeholder="Ingrese su contraseña" />
+                <span asp-validation-for="PASSWORD" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Confirmar Contraseña:</label>
+                <input type="password" onchange="ValidatePassword()" id="txtPassword" class="form-control" placeholder="Confirme su contraseña" />
+                <p style="color:red">Las contraseñas deben coincidir para continuar</p>
             </div>
             <div class="form-group mb-5">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox"
+                           onclick="javascript:validar(this);"
+                           false=""
                            class="custom-control-input"
-                           id="terms" required/>
+                           id="terms" />
                     <label class="custom-control-label"
                            for="terms">Acepto los <a href="#">Términos y Condiciones</a></label>
                 </div>
@@ -80,6 +97,34 @@
 
 
 <script>
+    const btnCrearCuenta = document.getElementById('btnCrearCuenta');
+    const txtTerminos = document.getElementById('terms');
+    btnCrearCuenta.disabled = true;
+    txtTerminos.disabled = true;
+
+    //Función que compara ambas contraseñas
+    function ValidatePassword() {
+
+        const PASSWORD = document.getElementById('PASSWORD');
+        const txtPassword = document.getElementById('txtPassword');
+        console.log("Password", PASSWORD)
+        console.log("txtPassword", txtPassword)
+        if (PASSWORD.value == txtPassword.value) {
+            txtTerminos.disabled = false;
+        } else {
+            txtTerminos.disabled = true;
+        }
+
+    }
+    //Función que valida terminos y condiciones
+    function validar(obj) {
+        if (obj.checked == true) {
+            btnCrearCuenta.disabled = false;
+        } else {
+            btnCrearCuenta.disabled = true;
+        }
+    }
+
     function alertaSuccess() {
         Swal.fire({
             position: 'top-center',
