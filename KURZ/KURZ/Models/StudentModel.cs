@@ -1,7 +1,11 @@
 ﻿using System.Text;
 using KURZ.Entities;
 using KURZ.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
+using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace KURZ.Models
 {
@@ -133,8 +137,6 @@ namespace KURZ.Models
                 }
 
                 student_edit.CELLPHONE = "";
-                student_edit.PHOTO = "";
-                
                 student_edit.ADDRESS = "";
                 student_edit.STATE = "";
                 student_edit.CITY = "";
@@ -155,6 +157,27 @@ namespace KURZ.Models
                 return "error";
             }
         }
+
+        //public async Task<IActionResult> GetImagenPerfil(Users user)
+        //{
+        //    try
+        //    {
+        //        var perfil = await _context.Users.FirstOrDefaultAsync(p => p.ID_USER == user.ID_USER);
+        //        if (perfil != null && perfil.PHOTO != null)
+        //        {
+        //            return File(perfil.PHOTO, "image/jpeg/png"); // Ajusta el tipo de contenido según el formato de la imagen.
+        //        }
+                
+        //    }
+        //    catch
+        //    {
+        //        var defaultImagePath = "~/images/defaultImage.png";
+        //        var imageBytes = System.IO.File.ReadAllBytes(defaultImagePath);
+
+        //        return File(imageBytes, "image/jpeg/png")// En caso de que no se encuentre la imagen, puedes proporcionar una imagen predeterminada o devolver un error 404.
+        //    }
+
+        //}
 
     }
 }
