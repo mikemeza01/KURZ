@@ -3,15 +3,17 @@
     Layout = "_TeacherH";
 }
 <div class="col-md-12 p-0">
-    <p>Realmente desea eliminar su cuenta. Si procede con esto se eliminaran todos sus datos e historial.</p>
-    <div class="form-group">
-        <button type="submit"
-                class="btn btn-primary">
-            Confirmar
-        </button>
-        <button type="submit"
-                class="btn btn-accent">
-            Cancelar
-        </button>
-    </div>
+    <form asp-action="DeleteAccount">
+        <p>Realmente desea eliminar su cuenta. Si procede con esto se eliminaran todos sus datos e historial.</p>
+        <div class="form-group">
+            <button type="submit"
+                    class="btn btn-primary">
+                Confirmar
+            </button>
+            <button type="submit"
+                    class="btn btn-accent">
+                Cancelar
+            </button>
+        </div>
+    </form>
 </div>

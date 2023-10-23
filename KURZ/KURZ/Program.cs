@@ -22,7 +22,8 @@ builder.Services.AddScoped<IUsersModel, UsersModel>();
 builder.Services.AddScoped<ITopicsModel, TopicsModel>();
 builder.Services.AddScoped<ITeacherModel, TeacherModel>();
 builder.Services.AddScoped<IStudentModel, StudentModel>();
-
+builder.Services.AddScoped<ICountriesModel, CountriesModel>();
+builder.Services.AddScoped<IAdvicesModel, AdvicesModel>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => {

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<KURZ.Entities.GetAdvices_Result>
+
+@{
+    Layout = "_Admin";
+}
+
+<h1>Lista de Asesorías</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_ADVICE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE_ADVICE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE_CREATE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE_UPDATE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LINK)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TOPICNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TOPICDESCRIPTION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TEACHERNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.STATUSNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.STATUSNAME)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_ADVICE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATE_ADVICE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATE_CREATE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATE_UPDATE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LINK)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TOPICNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TOPICDESCRIPTION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TEACHERNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.STUDENTNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.STATUSNAME)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

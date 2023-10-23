@@ -13,5 +13,7 @@ namespace KURZ.Interfaces
         public string base64Encode(string sData);
 
         public string base64Decode(string sData);
+
+        public string TeacherEdit(Users teacher);
     }
 }

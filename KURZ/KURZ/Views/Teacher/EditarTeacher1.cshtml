@@ -1,0 +1,119 @@
+﻿@model KURZ.Entities.Users
+
+@{
+    ViewData["Title"] = "EditarTeacher1";
+}
+
+<h1>EditarTeacher1</h1>
+
+<h4>Users</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditarTeacher1">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID_USER" />
+            <div class="form-group">
+                <label asp-for="IDENTICATION" class="control-label"></label>
+                <input asp-for="IDENTICATION" class="form-control" />
+                <span asp-validation-for="IDENTICATION" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="USERNAME" class="control-label"></label>
+                <input asp-for="USERNAME" class="form-control" />
+                <span asp-validation-for="USERNAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PASSWORD" class="control-label"></label>
+                <input asp-for="PASSWORD" class="form-control" />
+                <span asp-validation-for="PASSWORD" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NAME" class="control-label"></label>
+                <input asp-for="NAME" class="form-control" />
+                <span asp-validation-for="NAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LASTNAME" class="control-label"></label>
+                <input asp-for="LASTNAME" class="form-control" />
+                <span asp-validation-for="LASTNAME" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CELLPHONE" class="control-label"></label>
+                <input asp-for="CELLPHONE" class="form-control" />
+                <span asp-validation-for="CELLPHONE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PHOTO" class="control-label"></label>
+                <input asp-for="PHOTO" class="form-control" />
+                <span asp-validation-for="PHOTO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMAIL" class="control-label"></label>
+                <input asp-for="EMAIL" class="form-control" />
+                <span asp-validation-for="EMAIL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PROFILE" class="control-label"></label>
+                <input asp-for="PROFILE" class="form-control" />
+                <span asp-validation-for="PROFILE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ADDRESS" class="control-label"></label>
+                <input asp-for="ADDRESS" class="form-control" />
+                <span asp-validation-for="ADDRESS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="STATE" class="control-label"></label>
+                <input asp-for="STATE" class="form-control" />
+                <span asp-validation-for="STATE" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CITY" class="control-label"></label>
+                <input asp-for="CITY" class="form-control" />
+                <span asp-validation-for="CITY" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ID_ROL" class="control-label"></label>
+                <input asp-for="ID_ROL" class="form-control" />
+                <span asp-validation-for="ID_ROL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ID_COUNTRY" class="control-label"></label>
+                <input asp-for="ID_COUNTRY" class="form-control" />
+                <span asp-validation-for="ID_COUNTRY" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="CONFIRMATION" /> @Html.DisplayNameFor(model => model.CONFIRMATION)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="STATUS" /> @Html.DisplayNameFor(model => model.STATUS)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="PASSWORDTEMP" /> @Html.DisplayNameFor(model => model.PASSWORDTEMP)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TOKEN" class="control-label"></label>
+                <input asp-for="TOKEN" class="form-control" />
+                <span asp-validation-for="TOKEN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
