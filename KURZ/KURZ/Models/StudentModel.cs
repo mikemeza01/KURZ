@@ -141,7 +141,7 @@ namespace KURZ.Models
                 student_edit.STATE = "";
                 student_edit.CITY = "";
                 student_edit.ID_ROL = 3; //id de rol estudiante
-                student_edit.ID_COUNTRY = 52; //ID de País Costa Rica, esto para ponerlo para usuarios admin
+                
 
                 _context.ChangeTracker.Clear();
                 _context.Users.Update(student_edit);

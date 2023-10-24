@@ -3,6 +3,7 @@ using KURZ.Interfaces;
 using KURZ.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace KURZ.Controllers
@@ -103,8 +104,53 @@ namespace KURZ.Controllers
 
             return View(user);
         }
-        
+
         [Authorize(Roles = "Student")]
+        //public IActionResult StudentEdit(Users student, IFormFile photoFile)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            if (photoFile != null)
+        //            {
+        //                using (var memoryStream = new MemoryStream())
+        //                {
+        //                    photoFile.CopyTo(memoryStream);
+        //                    student.PHOTO = memoryStream.ToArray();
+        //                }
+        //            }
+
+        //            var resultado = _studentModel.StudentEdit(student);
+
+        //            if (resultado == "ok")
+        //            {
+        //                ViewBag.mensaje = "SUCCESS";
+        //                return RedirectToAction("MyAccount", "Student");
+        //            }
+        //            else if (resultado != "ok" && resultado != "error")
+        //            {
+        //                ViewBag.mensaje = resultado;
+        //            }
+        //            else
+        //                ViewBag.mensaje = "ERROR";
+
+        //            return View(student);
+        //        }
+        //        else
+        //        {
+        //            ViewBag.mensaje = "ERROR: Validación de modelo fallida.";
+        //            return View(student);
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ViewBag.mensaje = "ERROR: " + ex.Message;
+        //        return View(student);
+        //    }
+        //}
+
         public IActionResult StudentEdit(Users student)
         {
             try
@@ -163,5 +209,30 @@ namespace KURZ.Controllers
         {
             return View();
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> CargarImagen(IFormFile photo)
+        //{
+        //    if (photo != null && photo.Length > 0)
+        //    {
+        //        using (var memoryStream = new MemoryStream())
+        //        {
+        //            await photo.CopyToAsync(memoryStream);
+        //            var image = new Image
+        //            {
+        //                FileName = image.FileName,
+        //                ContentType = image.ContentType,
+        //                Data = memoryStream.ToArray(),
+                        
+        //            };
+
+        //            // Guarda la imagen en la base de datos o el sistema de archivos, según tu configuración.
+        //            _con.Add(image);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //    }
+
+        //    return RedirectToAction("Index"); // Redirecciona a la página principal o a donde sea necesario.
+        //}
     }
 }

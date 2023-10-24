@@ -11,102 +11,110 @@
     <!--Photo-->
     <div class="col-md-7 p-0">
         <div class="form-group">
-            <label class="form-label" asp-for="PHOTO">Foto de perfil</label>
-            <div class="media align-items-center">
-                <input asp-for="PHOTO" type="file" id="photo"/>
+            <label class="form-label">Foto de perfil</label>
+            <div class="media align-items-center
                 <a href="" class="media-left mr-16pt">
-                   <img src="/GetImagenPerfil/ID_USER" alt="people" width="56 class="rounded-circle" />
+                    <img src="~/images/guy-3.jpg" alt="people" width="56 class="rounded-circle" />
                 </a>
                 <div class="media-body">
                     <div class="custom-file">
                         <input asp-for="PHOTO" type="file" class="custom-file-input" id="photo">
-                        <label class="custom-file-label" asp-for="PHOTO" for="photo">Elegir Foto</label>
+                        <label class="custom-file-label" for="photo">Elegir Foto</label>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!--IDENTIFICACION-->
-        <div class="form-group">
-            <label class="form-label" asp-for="IDENTICATION"></label>
-            <input asp-for="IDENTICATION" type="text" class="form-control" readonly="readonly" />
-            <span asp-validation-for="IDENTICATION" style="color:red"></span>
+        <!-- Photo -->
+        @*<div class="col-md-7 p-0">
+            <div class="form-group">
+                <label class="form-label">Foto de perfil</label>
+                <div class="media align-items-center">
+                    <a href="" class="media-left mr-16pt">
+                        <img src="data:image;base64,@Convert.ToBase64String(Model.PHOTO)" alt="people" width="56" class="rounded-circle" />
+                    </a>
+                    <div class="media-body">
+                        <div class="custom-file">
+                            <input asp-for="PHOTO" type="file" class="custom-file-input" id="photo"/>
+                            <label class="custom-file-label" for="photo">Elegir Foto</label>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+            <!--IDENTIFICACION-->
+            <div class="form-group">
+                <label class="form-label" asp-for="IDENTICATION"></label>
+                <input asp-for="IDENTICATION" type="text" class="form-control" readonly="readonly" />
+                <span asp-validation-for="IDENTICATION" style="color:red"></span>
+            </div>
+
+            <!--Email-->
+            <input asp-for="EMAIL" type="hidden" class="form-control" readonly />
+
+            <!--Username-->
+            <input asp-for="USERNAME" type="hidden" class="form-control" readonly />
+
+            <!--Country-->
+            <input asp-for="ID_COUNTRY" type="hidden" class="form-control" readonly />
+
+            <!--Nombre-->
+            <div class="form-group">
+                <label class="form-label" asp-for="NAME"></label>
+                <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese su nombre " />
+                <span asp-validation-for="NAME" style="color:red"></span>
+            </div>
+
+            <!--Apellido-->
+            <div class="form-group">
+                <label class="form-label" asp-for="LASTNAME"></label>
+                <input asp-for="LASTNAME" type="text" class="form-control" placeholder="Ingrese " />
+                <span asp-validation-for="LASTNAME" style="color:red"></span>
+            </div>
+
+            <!--Perfil-->
+            <div class="form-group">
+                <label class="form-label" asp-for="PROFILE"></label>
+                <input asp-for="PROFILE" type="text" class="form-control" placeholder="Ingrese descripcion de su perfil" />
+                <span asp-validation-for="PROFILE" style="color:red"></span>
+            </div>
+
+            <button type="submit" asp-controller="Student" asp-action="MyAccount"
+                    class="btn btn-accent">
+                Cancelar
+            </button>
+
+            <button type="submit"
+                    class="btn btn-primary">
+                Guardar Cambios
+            </button>
         </div>
 
-        <!--Email-->
-        <input asp-for="EMAIL" type="hidden" class="form-control" readonly />
+        @{
+            if (@ViewBag.mensaje == "SUCCESS")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+                ;
 
-        <!--Username-->
-        <input asp-for="USERNAME" type="hidden" class="form-control" readonly />
+            }
+            if (@ViewBag.mensaje == "ERROR")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+                ;
 
-        <!--Nombre-->
-        <div class="form-group">
-            <label class="form-label" asp-for="NAME"></label>
-            <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese su nombre " />
-            <span asp-validation-for="NAME" style="color:red"></span>
-        </div>
+            }
 
-        <!--Apellido-->
-        <div class="form-group">
-            <label class="form-label" asp-for="LASTNAME"></label>
-            <input asp-for="LASTNAME" type="text" class="form-control" placeholder="Ingrese " />
-            <span asp-validation-for="LASTNAME" style="color:red"></span>
-        </div>
+            if (@ViewBag.mensaje != "ERROR" && @ViewBag.mensaje != "SUCCESS" && @ViewBag.mensaje != null && @ViewBag.mensaje != "")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaUsuario();\r\n      });       </script>")
+                ;
 
-        <!--Perfil-->
-        <div class="form-group">
-            <label class="form-label" asp-for="PROFILE"></label>
-            <input asp-for="PROFILE" type="text" class="form-control" placeholder="Ingrese descripcion de su perfil" />
-            <span asp-validation-for="PROFILE" style="color:red"></span>
-        </div>
-
-        <button type="submit" asp-controller="Student" asp-action="MyAccount"
-                class="btn btn-accent">
-            Cancelar
-        </button>
-
-        <button type="submit"
-                class="btn btn-primary">
-            Guardar Cambios
-        </button>
-    </div>
-
-    @{
-        if (@ViewBag.mensaje == "SUCCESS")
-        {
-            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
-            ;
-
+            }
         }
-        if (@ViewBag.mensaje == "ERROR")
-        {
-            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
-            ;
-
-        }
-
-        if (@ViewBag.mensaje != "ERROR" && @ViewBag.mensaje != "SUCCESS" && @ViewBag.mensaje != null && @ViewBag.mensaje != "")
-        {
-            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaUsuario();\r\n      });       </script>")
-            ;
-
-        }
-    }
 
 </form>
 
 <script>
-
-    function mostrar() {
-        var archivo = document.getElementById("file").files[0];
-        var reader = new FileReader();
-        if (file) {
-            reader.readAsDataURL(archivo);
-            reader.onloadend = function () {
-                document.getElementById("img").src = reader.result;
-            }
-        }
-    }
 
     function alertaSuccess() {
         Swal.fire({
@@ -118,11 +126,11 @@
             showConfirmButton: true
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '/Authentication/Login';
+                window.location.href = '/Student/MyAccount';
             }
         });
         setTimeout(() => {
-            window.location.href = '/Authentication/Login';
+            window.location.href = '/Student/MyAccount';
         }, 3000);
     }
 
