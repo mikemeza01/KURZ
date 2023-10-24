@@ -10,34 +10,37 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ID_ADVICE)
+               Código de asesoría
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DATE_ADVICE)
+                Fecha de asesoría
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DATE_CREATE)
+                Fecha de creación
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DATE_UPDATE)
+                Fecha de actualización
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LINK)
+                Link
+            </th>
+             <th>
+                Precio
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TOPICNAME)
+                Tema
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TOPICDESCRIPTION)
+                Descripción
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TEACHERNAME)
+                Profesor(a)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.STATUSNAME)
+                Estudiante
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.STATUSNAME)
+                Estado
             </th>
         </tr>
     </thead>
@@ -49,16 +52,22 @@
                     @Html.DisplayFor(modelItem => item.ID_ADVICE)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DATE_ADVICE)
+                    @Html.DisplayFor(modelItem => item.DateAdviceFormat)
+
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DATE_CREATE)
+                    @Html.DisplayFor(modelItem => item.DateCreateFormat)
+
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DATE_UPDATE)
+                    @Html.DisplayFor(modelItem => item.DateUpdateFormat)
+
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.LINK)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRICE)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TOPICNAME)

@@ -2,27 +2,42 @@
 using KURZ.Interfaces;
 //using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-//Prueba Ailyn
 namespace KURZ.Controllers
 {
     public class TopicsController : Controller
     {
         //ACCESO A LA INTERFAZ.
         private readonly ITopicsModel _topicsModel;
-
+        private readonly ICategoriesModel _categoriesModel;
+        private readonly ISubCategoriesModel _SubcategoriesModel;
         //CREACION DEL CONTROLADOR.
-        public TopicsController(ITopicsModel topicsModel)
+        public TopicsController(ITopicsModel topicsModel, ICategoriesModel categoriesModel, ISubCategoriesModel subcategoriesModel)
         {
             _topicsModel = topicsModel;
+            _categoriesModel = categoriesModel;
+            _SubcategoriesModel = subcategoriesModel;   
         }
 
         public IActionResult Index()
         {
             //LLamada a la lista de datos de los topics.
-            //var datos = _topicsModel.TopicsList();
+            var datos = _topicsModel.TopicsList();
+            return View(datos);
+        }
+        public IActionResult Create()
+        {
+            var categories = _categoriesModel.CategoriesList();
+            ViewBag.Categories = categories;    
+            var subcategories = _SubcategoriesModel.SubCategoriesList();
+            ViewBag.Subcategories = subcategories;  
             return View();
         }
-
+        [HttpPost]
+        public IActionResult Create(Topics topics)
+        {
+            //LLamada a la lista de datos de los topics.
+            return View();
+        }
         [HttpGet]
         public IActionResult CategoriesList()
         {

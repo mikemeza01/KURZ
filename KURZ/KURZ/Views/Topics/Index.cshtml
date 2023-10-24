@@ -1,0 +1,53 @@
+﻿@model IEnumerable<KURZ.Entities.Topics>
+
+@{
+    ViewData["Title"] = "Lista de temas";
+    Layout = "_TeacherH";
+}
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DESCRIPTION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_CATEGORY)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ID_SUBCATEGORY)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DESCRIPTION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_CATEGORY)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_SUBCATEGORY)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID_TOPIC">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID_TOPIC">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID_TOPIC">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

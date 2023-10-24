@@ -33,5 +33,17 @@ namespace KURZ.Models
                 return 0;
             }
         }
+
+        public List<Topics> TopicsList()
+        {
+            try
+            {
+                return _context.Topics.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de categorías: " + ex.Message);
+            }
+        }
     }
 }

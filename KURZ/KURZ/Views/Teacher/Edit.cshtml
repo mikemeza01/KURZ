@@ -27,7 +27,11 @@
                 </div>
             </div>
         </div>
-
+        <div class="form-group">
+            <label asp-for="IDENTICATION" class="form-label">Identificación:</label>
+            <input asp-for="IDENTICATION" class="form-control" />
+            <span asp-validation-for="IDENTICATION" class="text-danger"></span>
+        </div>
         <div class="form-group">
             <label asp-for="NAME" class="form-label">Nombre:</label>
             <input asp-for="NAME" class="form-control" />
@@ -37,6 +41,11 @@
             <label asp-for="LASTNAME" class="control-label">Apellidos:</label>
             <input asp-for="LASTNAME" class="form-control" />
             <span asp-validation-for="LASTNAME" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EMAIL" class="form-label">Correo electrónico</label>
+            <input asp-for="EMAIL" class="form-control" />
+            <span asp-validation-for="EMAIL" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="PROFILE" class="control-label">Perfil</label>

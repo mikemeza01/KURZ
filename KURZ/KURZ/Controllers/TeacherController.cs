@@ -37,23 +37,32 @@ namespace KURZ.Controllers
         {
             try
             {
+                var countries = _countriesModel.CountriesList();
+                ViewBag.countries = countries;
                 //if (ModelState.IsValid)
                 //{
-                    var resultado = _teacherModel.UserCreate(teacher);
-                    var countries = _countriesModel.CountriesList();
-                    ViewBag.countries = countries;
-                    if (resultado > 0)
-                    {
-                        ViewBag.mensaje = "SUCCESS";
-                        return RedirectToAction("Login","Authentication");
-                    }
-                    else
-                        ViewBag.mensaje = "ERROR";
-                    return View(new Users());
+                var request = HttpContext.Request;
+                var host = request.Host.ToUriComponent();
+                var pathBase = request.PathBase.ToUriComponent();
+                var domain = $"{request.Scheme}://{host}{pathBase}";
+                var resultado = _teacherModel.UserCreate(teacher, domain);
+
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return RedirectToAction("Login" , "Authentication");
+                }
+                else if (resultado != "ok" && resultado != "error")
+                {
+                    ViewBag.mensaje = resultado;
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(teacher);
                 //}
                 //else
                 //{
-                    //return View(new Users());
+                //return View(new Users());
                 //}
 
             }
@@ -66,7 +75,16 @@ namespace KURZ.Controllers
         [Authorize(Roles = "Teacher")]
         public IActionResult MyAccount()
         {
-            return View();
+            ClaimsPrincipal claimstudent = HttpContext.User;
+            string nombreusuario = "";
+            var countries = _countriesModel.CountriesList();
+            ViewBag.countries = countries;
+            if (claimstudent.Identity.IsAuthenticated)
+            {
+                nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+            }
+            var user = _usersModel.byUserName(nombreusuario);
+            return View(user);
         }
         [Authorize(Roles = "Teacher")]
         public IActionResult Edit()
@@ -104,6 +122,9 @@ namespace KURZ.Controllers
                 user.PROFILE = teacher.PROFILE;
                 user.ID_COUNTRY = teacher.ID_COUNTRY;
                 user.STATUS = teacher.STATUS;
+                user.EMAIL= teacher.EMAIL;  
+                user.IDENTICATION = teacher.IDENTICATION;
+                user.USERNAME = teacher.EMAIL;
                 var countries = _countriesModel.CountriesList();
                 ViewBag.countries = countries;
 
@@ -123,10 +144,6 @@ namespace KURZ.Controllers
             {
                 return View("Error");
             }
-        }
-        public IActionResult EditarTeacher1()
-        {
-            return View();
         }
 
         [Authorize(Roles = "Teacher")]

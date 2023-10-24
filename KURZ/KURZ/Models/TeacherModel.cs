@@ -1,6 +1,8 @@
 ﻿using KURZ.Entities;
 using KURZ.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using System.Text;
 
 namespace KURZ.Models
 {
@@ -49,10 +51,16 @@ namespace KURZ.Models
             }
         }
 
-        public int UserCreate(Users teacher)
+        public string UserCreate(Users teacher, string host)
         {
             try
             {
+                var user_exist = _usersModel.UserExist(teacher);
+
+                if (user_exist != null)
+                {
+                    return user_exist;
+                }
                 //se encripta la clave puesta para el usuario
                 if (teacher.PASSWORD != null)
                 {
@@ -72,20 +80,43 @@ namespace KURZ.Models
                 teacher.STATUS = true;
                 teacher.PASSWORDTEMP = false;
 
+                var token = _usersModel.CreateToken(10);
 
+                teacher.TOKEN = token;
                 _context.Users.Add(teacher);
                 _context.SaveChanges();
 
-                return 1;
+                StringBuilder cuerpo = new StringBuilder("");
+                cuerpo.Append(teacher.NAME + teacher.LASTNAME);
+                cuerpo.Append("<br>");
+                cuerpo.Append("<br>");
+                cuerpo.Append("Se ha creado tu cuenta en KURZ. Debes confirmar la cuenta para poder empezar a utilizar la plataforma");
+                cuerpo.Append("<br>");
+                cuerpo.Append("<a href='" + host + "/Authentication/ConfirmationAccount/?username=" + teacher.EMAIL + "&token=" + token + "'> Confirmar cuenta</a>");
+                cuerpo.Append("<br>");
+                cuerpo.Append("<br>");
+                cuerpo.Append("Saludos cordiales,");
+                cuerpo.Append("<br>");
+                cuerpo.Append("KURZ");
+
+                try
+                {
+                    _usersModel.SendEmail(teacher.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
+                }
+                catch (Exception ex)
+                {
+                    return "Usuario creado pero hubo un error al enviar el correo de confirmación de cuenta, pongase en contacto con el administrador.";
+                }
+
+                return "ok";
             }
             catch (DbUpdateException ex)
             {
-                Console.WriteLine("Ocurrió un error al agregar el usuario:");
+                Console.WriteLine("Ocurrió un error al agregar el profesor:");
                 Console.WriteLine(ex.ToString());
-                return 0;
+                return "error";
             }
         }
-
         public string TeacherEdit(Users teacher)
         {
             try
