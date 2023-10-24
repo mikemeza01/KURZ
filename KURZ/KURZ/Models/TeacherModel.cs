@@ -60,6 +60,7 @@ namespace KURZ.Models
                     //se pasa a la entidad la contraseña encriptada
                     teacher.PASSWORD = passwordEncrypt;
                 }
+                teacher.USERNAME = teacher.EMAIL;
                 teacher.CELLPHONE = "";
                 teacher.PHOTO = "";
                 teacher.PROFILE = "";

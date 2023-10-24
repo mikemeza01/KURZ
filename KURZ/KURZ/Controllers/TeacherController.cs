@@ -37,8 +37,8 @@ namespace KURZ.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
+                //if (ModelState.IsValid)
+                //{
                     var resultado = _teacherModel.UserCreate(teacher);
                     var countries = _countriesModel.CountriesList();
                     ViewBag.countries = countries;
@@ -50,11 +50,11 @@ namespace KURZ.Controllers
                     else
                         ViewBag.mensaje = "ERROR";
                     return View(new Users());
-                }
-                else
-                {
-                    return View(new Users());
-                }
+                //}
+                //else
+                //{
+                    //return View(new Users());
+                //}
 
             }
             catch (Exception)

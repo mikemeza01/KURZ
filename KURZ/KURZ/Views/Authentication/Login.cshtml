@@ -40,6 +40,14 @@
 
             }
         }
+        @{
+            if (@ViewBag.mensaje == "ERRORCREDENTIALS")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaLogin();\r\n      });       </script>")
+                ;
+
+            }
+        }
     </div>
     <!--<div class="form-group text-center">
         <div class="custom-control custom-checkbox">

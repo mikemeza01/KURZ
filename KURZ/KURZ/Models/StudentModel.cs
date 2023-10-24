@@ -52,7 +52,7 @@ namespace KURZ.Models
                     //se pasa a la entidad la contraseña encriptada
                     student.PASSWORD = passwordEncrypt;
                 }
-                student.USERNAME = student.IDENTICATION.ToString();
+                student.USERNAME = student.EMAIL;
                 student.CELLPHONE = "";
                 student.PHOTO = "";
                 student.PROFILE = "";

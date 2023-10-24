@@ -34,15 +34,15 @@ namespace KURZ.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
+                var countries = _countriesModel.CountriesList();
+                ViewBag.countries = countries;
+                //if (ModelState.IsValid)
+                //{
                     var request = HttpContext.Request;
                     var host = request.Host.ToUriComponent();
                     var pathBase = request.PathBase.ToUriComponent();
                     var domain = $"{request.Scheme}://{host}{pathBase}";
                     var resultado = _studentModel.StudentCreate(student, domain);
-                    var countries = _countriesModel.CountriesList();
-                    ViewBag.countries = countries;
                     if (resultado == "ok")
                     {
                         ViewBag.mensaje = "SUCCESS";
@@ -55,12 +55,12 @@ namespace KURZ.Controllers
                     else
                         ViewBag.mensaje = "ERROR";
                         return View(student);
-                }
-                else
-                {
-                    ViewBag.mensaje = "ERROR";
-                    return View(student);
-                }
+                //}
+                //else
+                //{
+                    //ViewBag.mensaje = "ERROR";
+                    //return View(student);
+                //}
 
             }
             catch(Exception)
