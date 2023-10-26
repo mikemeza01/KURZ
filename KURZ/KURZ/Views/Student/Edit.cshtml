@@ -12,9 +12,12 @@
     <div class="col-md-7 p-0">
         <div class="form-group">
             <label class="form-label">Foto de perfil</label>
-            <div class="media align-items-center
+            <div class="media align-items-center">
                 <a href="" class="media-left mr-16pt">
-                    <img src="~/images/guy-3.jpg" alt="people" width="56 class="rounded-circle" />
+                   <img src="data:image/jpg;base64,@Model.PHOTO"
+                        alt="Imagen de perfil" 
+                         width="56"
+                         class="rounded-circle" />
                 </a>
                 <div class="media-body">
                     <div class="custom-file">
@@ -24,6 +27,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
         <!-- Photo -->
         @*<div class="col-md-7 p-0">

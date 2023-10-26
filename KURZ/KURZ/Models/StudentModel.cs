@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using Microsoft.AspNetCore.Hosting;
 
 namespace KURZ.Models
 {
@@ -14,15 +15,17 @@ namespace KURZ.Models
         //se llama el contexto de la base de datos
         private readonly KurzContext _context;
         private readonly IUsersModel _usersModel;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
         //constructor de la clase y recibe como parametro el contexto de la base de datos
-        public StudentModel(KurzContext context, IUsersModel userModel)
+        public StudentModel(KurzContext context, IUsersModel userModel, IWebHostEnvironment hostingEnvironment)
         {
             _context = context;
             _usersModel = userModel;
+            _hostingEnvironment = hostingEnvironment;
         }
 
-       public List<Users>? StudentList()
+        public List<Users>? StudentList()
         {
             try
             {
@@ -103,14 +106,14 @@ namespace KURZ.Models
             }
         }
 
-        public string StudentEdit(Users student_edit)
+        public string StudentEdit(Users student_edit, IFormFile photoFile)
         {
             try
             {
-                //validar si el correo cambio al editar el usuario
+                // Validar si el correo cambió al editar el usuario
                 if (_usersModel.UserEmail(student_edit.ID_USER) != student_edit.EMAIL)
                 {
-                    //valida si ya existe otro usuario con el mismo correo
+                    // Validar si ya existe otro usuario con el mismo correo
                     var user_exist = _usersModel.UserExist(student_edit);
 
                     if (user_exist != null)
@@ -136,17 +139,36 @@ namespace KURZ.Models
                     }
                 }
 
-                student_edit.CELLPHONE = "";
-                student_edit.ADDRESS = "";
-                student_edit.STATE = "";
-                student_edit.CITY = "";
-                student_edit.ID_ROL = 3; //id de rol estudiante
-                
+                // Restablecer campos predeterminados
+                student_edit.CELLPHONE = null;
+                student_edit.ADDRESS = null;
+                student_edit.STATE = null;
+                student_edit.CITY = null;
+                student_edit.ID_ROL = 3; // ID de rol para estudiante
 
-                _context.ChangeTracker.Clear();
-                _context.Users.Update(student_edit);
+                if (photoFile != null && photoFile.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        photoFile.CopyTo(memoryStream);
+                        student_edit.PHOTO = Convert.ToBase64String(memoryStream.ToArray());
+                    }
+                }
+                else
+                {
+                    // Si no se proporcionó una imagen, asigna la imagen predeterminada
+                    student_edit.PHOTO = Convert.ToBase64String(GetDefaultImageBytes());
+                }
+
+                // Restablecer otros campos predeterminados
+                student_edit.CELLPHONE = null;
+                student_edit.ADDRESS = null;
+                student_edit.STATE = null;
+                student_edit.CITY = null;
+                student_edit.ID_ROL = 3; // ID de rol para estudiante
+
+                _context.Update(student_edit);
                 _context.SaveChanges();
-
 
                 return "ok";
             }
@@ -158,26 +180,37 @@ namespace KURZ.Models
             }
         }
 
-        //public async Task<IActionResult> GetImagenPerfil(Users user)
-        //{
-        //    try
-        //    {
-        //        var perfil = await _context.Users.FirstOrDefaultAsync(p => p.ID_USER == user.ID_USER);
-        //        if (perfil != null && perfil.PHOTO != null)
-        //        {
-        //            return File(perfil.PHOTO, "image/jpeg/png"); // Ajusta el tipo de contenido según el formato de la imagen.
-        //        }
-                
-        //    }
-        //    catch
-        //    {
-        //        var defaultImagePath = "~/images/defaultImage.png";
-        //        var imageBytes = System.IO.File.ReadAllBytes(defaultImagePath);
+        private byte[] GetDefaultImageBytes()
+        {
+            // Carga la imagen predeterminada desde el sistema de archivos o recurso incorporado
+            // En este ejemplo, se carga una imagen desde el sistema de archivos
+            //DEBO AGREGAR UNA IMAGEN PREDETERMINADA.
+            string defaultImagePath = Path.Combine(_hostingEnvironment.WebRootPath, "images", "guy-3.jpg");
+            if (File.Exists(defaultImagePath))
+            {
+                return File.ReadAllBytes(defaultImagePath);
+            }
+            else
+            {
+                // Si no se puede cargar la imagen predeterminada, carga la imagen de marcador de posición
+                //DEBO AGREGAR UNA IMAGEN DE MARCADOR DE POSICION.
+                string placeholderImagePath = Path.Combine(_hostingEnvironment.WebRootPath, "images", "");
+                if (File.Exists(placeholderImagePath))
+                {
+                    return File.ReadAllBytes(placeholderImagePath);
+                }
+                else
+                {
+                    // Si no se puede cargar la imagen de marcador de posición, proporciona un mensaje de error
+                    // Puedes generar una imagen de texto con "Imagen no disponible" o un ícono de error.
+                    // Aquí, se proporciona un mensaje de error en forma de bytes.
+                    string errorMessage = "Imagen no disponible";
+                    return Encoding.UTF8.GetBytes(errorMessage);
+                }
+            }
 
-        //        return File(imageBytes, "image/jpeg/png")// En caso de que no se encuentre la imagen, puedes proporcionar una imagen predeterminada o devolver un error 404.
-        //    }
 
-        //}
 
+        }
     }
 }

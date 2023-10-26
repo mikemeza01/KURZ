@@ -92,37 +92,55 @@ namespace KURZ.Controllers
         [Authorize(Roles = "Student")]
         public IActionResult Edit()
         {
-
-            ClaimsPrincipal claimstudent = HttpContext.User;
-            string nombreusuario = "";
-
-            if (claimstudent.Identity.IsAuthenticated)
-            {
-                nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
-            }
+            string nombreusuario = User.Identity.Name;
             var user = _usersModel.byUserName(nombreusuario);
 
             return View(user);
         }
 
         [Authorize(Roles = "Student")]
-        //public IActionResult StudentEdit(Users student, IFormFile photoFile)
+        [HttpPost]
+        public IActionResult StudentEdit(Users student, IFormFile photoFile)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var resultado = _studentModel.StudentEdit(student, photoFile);
+
+                    if (resultado == "ok")
+                    {
+                        TempData["SuccessMessage"] = "Perfil actualizado con éxito.";
+                        return RedirectToAction("MyAccount", "Student");
+                    }
+                    else if (resultado != "ok" && resultado != "error")
+                    {
+                        ModelState.AddModelError("", resultado);
+                    }
+                    else
+                        ModelState.AddModelError("", "Error al actualizar el perfil.");
+
+                    return View(student);
+                }
+                else
+                {
+                    return View(student);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error: " + ex.Message);
+                return View(student);
+            }
+        }
+
+        //public IActionResult StudentEdit(Users student)
         //{
         //    try
         //    {
         //        if (ModelState.IsValid)
         //        {
-        //            if (photoFile != null)
-        //            {
-        //                using (var memoryStream = new MemoryStream())
-        //                {
-        //                    photoFile.CopyTo(memoryStream);
-        //                    student.PHOTO = memoryStream.ToArray();
-        //                }
-        //            }
-
         //            var resultado = _studentModel.StudentEdit(student);
-
         //            if (resultado == "ok")
         //            {
         //                ViewBag.mensaje = "SUCCESS";
@@ -134,55 +152,20 @@ namespace KURZ.Controllers
         //            }
         //            else
         //                ViewBag.mensaje = "ERROR";
-
         //            return View(student);
         //        }
         //        else
         //        {
-        //            ViewBag.mensaje = "ERROR: Validación de modelo fallida.";
-        //            return View(student);
+        //            return RedirectToAction("MyAccount", "Student");
+        //            //return View(student);
         //        }
 
         //    }
-        //    catch (Exception ex)
+        //    catch (Exception)
         //    {
-        //        ViewBag.mensaje = "ERROR: " + ex.Message;
-        //        return View(student);
+        //        return View("Error");
         //    }
         //}
-
-        public IActionResult StudentEdit(Users student)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var resultado = _studentModel.StudentEdit(student);
-                    if (resultado == "ok")
-                    {
-                        ViewBag.mensaje = "SUCCESS";
-                        return RedirectToAction("MyAccount", "Student");
-                    }
-                    else if (resultado != "ok" && resultado != "error")
-                    {
-                        ViewBag.mensaje = resultado;
-                    }
-                    else
-                        ViewBag.mensaje = "ERROR";
-                    return View(student);
-                }
-                else
-                {
-                    return RedirectToAction("MyAccount", "Student");
-                    //return View(student);
-                }
-
-            }
-            catch (Exception)
-            {
-                return View("Error");
-            }
-        }
 
         [Authorize(Roles = "Student")]
         public IActionResult DeleteAccount()
