@@ -168,7 +168,7 @@ namespace KURZ.Models
                         user_edit.PASSWORD = passwordEncrypt;
                     }
                 }
-
+                user_edit.USERNAME = user_edit.EMAIL;
                 user_edit.CELLPHONE = "";
                 user_edit.PHOTO = "";
                 user_edit.PROFILE = "";

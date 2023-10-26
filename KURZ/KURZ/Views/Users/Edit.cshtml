@@ -1,4 +1,4 @@
-﻿@model KURZ.Entities.Users
+﻿@model KURZ.Entities.UsersBinding
 @{
     ViewData["Title"] = "Editar Usuario";
     Layout = "_Admin";
@@ -36,16 +36,6 @@ else
                         <span asp-validation-for="IDENTICATION" style="color:red"></span>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" asp-for="USERNAME"></label>
-                        <input asp-for="USERNAME" type="text" class="form-control" placeholder="Ingrese un nombre de usuario" />
-                        <span asp-validation-for="IDENTICATION" style="color:red"></span>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" asp-for="PASSWORD"></label>
-                        <input asp-for="PASSWORD" type="password" class="form-control" placeholder="Ingrese una contraseña" />
-                        <span asp-validation-for="PASSWORD" style="color:red"></span>
-                    </div>
-                    <div class="form-group">
                         <label class="form-label" asp-for="NAME"></label>
                         <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese un nombre para el usuario" />
                         <span asp-validation-for="NAME" style="color:red"></span>
@@ -59,6 +49,16 @@ else
                         <label class="form-label" asp-for="EMAIL"></label>
                         <input asp-for="EMAIL" type="email" class="form-control" placeholder="Ingrese un correo electrónico" />
                         <span asp-validation-for="EMAIL" style="color:red"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" asp-for="PASSWORD"></label>
+                        <input asp-for="PASSWORD" type="password" class="form-control" placeholder="Ingrese una contraseña" />
+                        <span asp-validation-for="PASSWORD" style="color:red"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" asp-for="PASSWORD_REPEAT"></label>
+                        <input asp-for="PASSWORD_REPEAT" type="password" class="form-control" placeholder="Repetir contraseña" />
+                        <span asp-validation-for="PASSWORD_REPEAT" style="color:red"></span>
                     </div>
                     <button type="submit"
                             class="btn btn-primary">

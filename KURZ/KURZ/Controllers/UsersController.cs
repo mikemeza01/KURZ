@@ -31,7 +31,7 @@ namespace KURZ.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Users user)
+        public IActionResult Create(UsersBinding user)
         {
             try
             {
@@ -41,7 +41,17 @@ namespace KURZ.Controllers
                     var host = request.Host.ToUriComponent();
                     var pathBase = request.PathBase.ToUriComponent();
                     var domain = $"{request.Scheme}://{host}{pathBase}";
-                    var resultado = _usersModel.UserCreate(user, domain);
+
+                    var user_create = new Users()
+                    {
+                        IDENTICATION = user.IDENTICATION,
+                        NAME = user.NAME,
+                        LASTNAME = user.LASTNAME,
+                        EMAIL = user.EMAIL,
+                        PASSWORD = user.PASSWORD
+                    };
+
+                    var resultado = _usersModel.UserCreate(user_create, domain);
                     if (resultado == "ok")
                     {
                         ViewBag.mensaje = "SUCCESS";
@@ -96,17 +106,40 @@ namespace KURZ.Controllers
                 ViewData["Error"] = 2;
                 return View();
             }
-            return View(user);
+
+            var user_editBindign = new UsersBinding()
+            {
+                ID_USER = user.ID_USER,
+                IDENTICATION = user.IDENTICATION,
+                NAME = user.NAME,
+                LASTNAME = user.LASTNAME,
+                EMAIL = user.EMAIL,
+                PASSWORD = user.PASSWORD,
+                PASSWORD_REPEAT = user.PASSWORD,
+            };
+
+            return View(user_editBindign);
         }
 
         [HttpPost]
-        public IActionResult Edit(Users user)
+        public IActionResult Edit(UsersBinding user)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var resultado = _usersModel.UserEdit(user);
+
+                    var user_edit = new Users()
+                    {
+                        ID_USER = user.ID_USER,
+                        IDENTICATION = user.IDENTICATION,
+                        NAME = user.NAME,
+                        LASTNAME = user.LASTNAME,
+                        EMAIL = user.EMAIL,
+                        PASSWORD = user.PASSWORD
+                    };
+
+                    var resultado = _usersModel.UserEdit(user_edit);
                     if (resultado == "ok")
                     {
                         ViewBag.mensaje = "SUCCESS";
