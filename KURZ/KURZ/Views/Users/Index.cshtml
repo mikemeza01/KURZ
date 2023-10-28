@@ -12,7 +12,7 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title text-center">Empleados</h4>
+                <h4 class="card-title text-center">Usuarios</h4>
                 <br />
                 <table class="table table-responsive" id="TableUsers">
                     <thead>
@@ -40,14 +40,14 @@
 
 
                                 <td>
-                                    <a class="btn btn-dark" asp-controller="Users" asp-route-ID="@item.ID_USER" asp-action="Details">
+                                    <a class="btn btn-dark detailsUser" data-id="@item.ID_USER">
                                         <i class="material-icons">remove_red_eye</i>
                                     </a>
                                     <a class="btn btn-primary" asp-controller="Users" asp-route-ID="@item.ID_USER" asp-action="Edit">
                                         <i class="material-icons">create</i>
                                     </a>
 
-                                    <a class="btn btn-accent" asp-controller="Users" asp-route-ID="@item.ID_USER" asp-action="Delete">
+                                    <a class="btn btn-accent deleteUser" data-id="@item.ID_USER" asp-controller="Users" asp-route-ID="@item.ID_USER" asp-action="Delete">
                                         <i class="material-icons">close</i>
                                     </a>
                                 </td>
@@ -65,3 +65,49 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal" tabindex="1" role="dialog" id="detailsUser" aria-labelledby="detailsUserbody" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Detalles Usuario</h4>
+            </div>
+            <div id="detailsUserbody" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '.detailsUser', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            debugger;
+
+            var id_user = $(this).data('id');
+
+            $.ajax({
+                url: '/Users/Details/' + id_user,
+                type: 'GET',
+                success: function (data) {
+                    $('#detailsUserbody').html(data);
+                    $('#detailsUser').modal('show');
+                    $("#detailsUser").appendTo("body");
+                },
+                error: function () {
+                    alert("Hubo un problema para obtener los datos")
+                }
+            });
+        });
+    });
+</script>            

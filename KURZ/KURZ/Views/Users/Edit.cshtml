@@ -60,13 +60,15 @@ else
                         <input asp-for="PASSWORD_REPEAT" type="password" class="form-control" placeholder="Repetir contraseña" />
                         <span asp-validation-for="PASSWORD_REPEAT" style="color:red"></span>
                     </div>
-                    <button type="submit"
-                            class="btn btn-primary">
-                        Editar
-                    </button>
-                    <a asp-controller="Users" asp-action="Index" class="btn btn-accent">
-                        Cancelar
-                    </a>
+                    <div class="form-group buttons">
+                        <a asp-controller="Users" asp-action="Index" class="btn btn-accent">
+                            Cancelar
+                        </a>
+                        <button type="submit"
+                                class="btn btn-primary">
+                            Editar
+                        </button>
+                    </div>
                     @{
                         if (@ViewBag.mensaje == "SUCCESS")
                         {

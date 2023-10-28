@@ -37420,3 +37420,12 @@ label {
 .authentication input[type="password"] {
     width: 100%;
 }
+
+.form-group.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.form-group.buttons a {
+    margin-right: 10px;
+}

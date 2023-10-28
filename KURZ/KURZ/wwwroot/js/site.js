@@ -1,4 +1,14 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿(function ($) {
+    $(function () {
 
-// Write your JavaScript code.
+        var languageDatatable = {
+            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+        };
+
+        $(document).ready(function () {
+            new DataTable('#TableUsers', {
+                language: languageDatatable
+            });
+        });
+    });
+})(jQuery);
