@@ -43,11 +43,11 @@ namespace KURZ.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(Users user)
+        public IActionResult Login(Login login)
         {
             try
             {
-                var result = _usersModel.ValidateUser(user);
+                var result = _usersModel.ValidateUser(login);
 
                 if (result != null)
                 {

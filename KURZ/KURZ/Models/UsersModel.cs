@@ -37,8 +37,8 @@ namespace KURZ.Models
                 throw new Exception("Error al obtener la lista de usuarios: " + ex.Message);
             }
         }
-        public Users ValidateUser(Users user) {
-            var email_login = user.EMAIL;
+        public Users ValidateUser(Login login) {
+            var email_login = login.EMAIL;
             var user_login = _context.Users.FirstOrDefault(e => e.EMAIL == email_login);
             if (user_login == null)
             {
@@ -47,7 +47,7 @@ namespace KURZ.Models
             else {
                 var password_decrypted = base64Decode(user_login.PASSWORD);
 
-                if (password_decrypted == user.PASSWORD)
+                if (password_decrypted == login.PASSWORD)
                 {
                     return user_login;
                 }

@@ -166,4 +166,19 @@ namespace KURZ.Entities
 
         public string? TOKEN { get; set; } //token de seguridad
     }
+
+    public class Login
+    {
+
+        [Required(ErrorMessage = "El correo electrónico es requerido")]
+        [Display(Name = "Correo Electrónico")]
+        [EmailAddress(ErrorMessage = "Debe ingresar un correo electrónico válido")]
+        public string? EMAIL { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar una contraseña")]
+        [Display(Name = "Contraseña")]
+        public string? PASSWORD { get; set; }
+
+    
+    }
 }

@@ -37414,3 +37414,9 @@ label {
     vertical-align: middle;
     margin-right: 5px;
 }
+
+.authentication input[type="text"],
+.authentication input[type="email"],
+.authentication input[type="password"] {
+    width: 100%;
+}

@@ -5,7 +5,7 @@ namespace KURZ.Interfaces
     public interface IUsersModel
     {
         public List<Users>? UsersList();
-        public Users ValidateUser(Users user);
+        public Users ValidateUser(Login login);
 
         public string UserCreate(Users user, string host);
 

@@ -25,7 +25,7 @@ builder.Services.AddScoped<IStudentModel, StudentModel>();
 builder.Services.AddScoped<ICountriesModel, CountriesModel>();
 builder.Services.AddScoped<IAdvicesModel, AdvicesModel>();
 
-builder.Services.AddSingleton<IWebHostEnvironment>();
+//builder.Services.AddSingleton<IWebHostEnvironment>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => {

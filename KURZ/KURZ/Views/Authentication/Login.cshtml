@@ -1,4 +1,4 @@
-﻿@model KURZ.Entities.Users
+﻿@model KURZ.Entities.Login
 @{
     ViewData["Title"] = "Iniciar Sesión";
     Layout = "_Authentication";
@@ -8,15 +8,16 @@
         <label class="text-label"
                for="email">Correo Electrónico:</label>
         <div class="input-group input-group-merge">
-            <input asp-for="EMAIL" type="email" id="emailLogin" class="form-control form-control-prepended" required placeholder="ejemplo@kurz.com">
-            <div class="text-danger">@Html.ValidationMessageFor(m => m.EMAIL)</div>
+            <input asp-for="EMAIL" type="email" id="emailLogin" class="form-control form-control-prepended" placeholder="ejemplo@kurz.com">
+            <span asp-validation-for="EMAIL" style="color:red"></span>
         </div>
     </div>
     <div class="form-group">
         <label class="text-label"
                for="password">Contraseña:</label>
         <div class="input-group input-group-merge">
-            <input asp-for="PASSWORD" type="password" id="passwordLogin" class="form-control form-control-prepended" required placeholder="Ingrese su contraseña">
+            <input asp-for="PASSWORD" type="password" id="passwordLogin" class="form-control form-control-prepended" placeholder="Ingrese su contraseña">
+            <span asp-validation-for="PASSWORD" style="color:red"></span>
         </div>
     </div>
     <div class="form-group text-center">
