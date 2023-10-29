@@ -1,7 +1,7 @@
 ﻿@model KURZ.Entities.Users
 @{
     ViewData["Title"] = "Eliminar Usuario";
-    Layout = "_Admin";
+    Layout = null;
 }
 @if (Model == null)
 {
@@ -32,61 +32,8 @@ else
                     <div class="d-flex align-items-center">
                         <p>Desea realmente eliminar al usuario: <strong>@Model.NAME @Model.LASTNAME</strong></p>
                     </div>
-                    
-                    <button type="submit"
-                            class="btn btn-primary">
-                        Confirmar
-                    </button>
-                    <a asp-controller="Users" asp-action="Index" class="btn btn-accent">
-                        Cancelar
-                    </a>
-                    @{
-                        if (@ViewBag.mensaje == "SUCCESS")
-                        {
-                            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
-                            ;
-
-                        }
-                        if (@ViewBag.mensaje == "ERROR")
-                        {
-                            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
-                            ;
-
-                        }
-                    }
                 </div>
             </form>
         </div>
     </div>
-    <script>
-
-        function alertaSuccess() {
-            Swal.fire({
-                position: 'top-center',
-                icon: 'success',
-                title: 'Usuario eliminado.',
-                text: 'Usuario eliminado correctamente',
-                timer: 3000,
-                showConfirmButton: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '/Users';
-                }
-            });
-            setTimeout(() => {
-                window.location.href = '/Users';
-            }, 3000);
-        }
-
-        function alertaError() {
-            Swal.fire({
-                position: 'top-center',
-                icon: 'error',
-                title: 'Usuario no editado.',
-                text: 'Hubo un error al eliminar el usuario',
-                showConfirmButton: true
-            })
-        }
-
-    </script>
 }

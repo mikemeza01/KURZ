@@ -96,7 +96,7 @@ namespace KURZ.Models
                 _context.SaveChanges();
 
                 StringBuilder cuerpo = new StringBuilder("");
-                cuerpo.Append(user.NAME + user.LASTNAME);
+                cuerpo.Append(user.NAME +" "+ user.LASTNAME);
                 cuerpo.Append("<br>");
                 cuerpo.Append("<br>");
                 cuerpo.Append("Se ha creado tu cuenta en KURZ. Debes confirmar la cuenta para poder empezar a utilizar la plataforma");
@@ -168,6 +168,12 @@ namespace KURZ.Models
                         user_edit.PASSWORD = passwordEncrypt;
                     }
                 }
+
+                var user_to_edit = byEmail(user_edit.EMAIL);
+                if (user_to_edit != null) {
+                    user_edit.CONFIRMATION = user_to_edit.CONFIRMATION;
+                }
+
                 user_edit.USERNAME = user_edit.EMAIL;
                 user_edit.CELLPHONE = "";
                 user_edit.PHOTO = "";
@@ -289,25 +295,70 @@ namespace KURZ.Models
             }
         }
 
+        public Users byEmail(string email)
+        {
+            var user_by_email = _context.Users.FirstOrDefault(e => e.EMAIL == email);
+
+            if (user_by_email != null)
+            {
+                return user_by_email;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public Users byUserName(string username)
         {
             var user = _context.Users.FirstOrDefault(e => e.USERNAME == username);
             return user;
         }
 
-        public string confirmAccount(Users user) {
+        public string confirmAccount(Users user)
+        {
 
             try
             {
                 var userValidate = _context.Users.FirstOrDefault(e => e.USERNAME == user.USERNAME);
 
-                if (userValidate.CONFIRMATION == true) {
+                if (userValidate.CONFIRMATION == true)
+                {
                     return "confirmed";
                 }
 
                 if (user.TOKEN == userValidate.TOKEN)
                 {
                     userValidate.CONFIRMATION = true;
+                    _context.Users.Update(userValidate);
+                    _context.SaveChanges();
+                    return "ok";
+                }
+                else
+                {
+                    return "errorToken";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error interno en el modelo Usuarios al confirmar cuenta: " + ex.Message);
+            }
+
+
+        }
+
+        public string forgotPasswordConfirmation(Users user) {
+
+            try
+            {
+                var userValidate = _context.Users.FirstOrDefault(e => e.USERNAME == user.USERNAME);
+
+                if (user.TOKEN == userValidate.TOKEN)
+                {
+
+                    var passwordEncrypt = base64Encode(user.PASSWORD);
+                    //se pasa a la entidad la contraseña encriptada
+                    userValidate.PASSWORD = passwordEncrypt;
                     _context.Users.Update(userValidate);
                     _context.SaveChanges();
                     return "ok";

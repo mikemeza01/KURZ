@@ -22,6 +22,7 @@
                             <th class="text-center">@Html.DisplayNameFor(model => model.NAME)</th>
                             <th class="text-center">@Html.DisplayNameFor(model => model.LASTNAME)</th>
                             <th class="text-center">@Html.DisplayNameFor(model => model.EMAIL)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.STATUS)</th>
                             <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
@@ -36,10 +37,23 @@
                                 <td class="text-center">@item.NAME</td>
                                 <td class="text-center">@item.LASTNAME</td>
                                 <td class="text-center">@item.EMAIL</td>
+                                <td class="text-center">
+                                    @{
+                                        if (@item.STATUS == true)
+                                        {
+                                            @Html.Raw("Activo");
+
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw("Inactivo");
+                                        }
+                                    }
+                                </td>
 
 
 
-                                <td>
+                                <td class="acciones">
                                     <a class="btn btn-dark detailsUser" data-id="@item.ID_USER">
                                         <i class="material-icons">remove_red_eye</i>
                                     </a>
@@ -47,9 +61,9 @@
                                         <i class="material-icons">create</i>
                                     </a>
 
-                                    <a class="btn btn-accent deleteUser" data-id="@item.ID_USER" asp-controller="Users" asp-route-ID="@item.ID_USER" asp-action="Delete">
+                                    <!--<a class="btn btn-accent deleteUser" data-id="@item.ID_USER">
                                         <i class="material-icons">close</i>
-                                    </a>
+                                    </a>-->
                                 </td>
 
 
@@ -67,32 +81,56 @@
 </div>
 
 
-<div class="modal" tabindex="1" role="dialog" id="detailsUser" aria-labelledby="detailsUserbody" aria-hidden="true">
+<div class="modal" tabindex="1" role="dialog" id="detailsUser" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title">Detalles Usuario</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Detalles Usuario</h4>
             </div>
             <div id="detailsUserbody" class="modal-body">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-accent pull-left" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
         <!-- /.modal-content -->
     </div>
 </div>
 
+
+<div class="modal" tabindex="1" role="dialog" id="deleteUser" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalles Usuario</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="deteleteUserbody" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-accent pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button"
+                        class="btn btn-primary" id="deleteUserConfirm">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
+
 <script>
     $(document).ready(function () {
+        //details
         $(document).on('click', '.detailsUser', function (event) {
             event.preventDefault();
             event.stopImmediatePropagation();
-
-            debugger;
 
             var id_user = $(this).data('id');
 
@@ -109,5 +147,80 @@
                 }
             });
         });
+
+        //delete
+        $(document).on('click', '.deleteUser', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var id_user = $(this).data('id');
+
+            $.ajax({
+                url: '/Users/Delete/' + id_user,
+                type: 'GET',
+                success: function (data) {
+                    $('#deteleteUserbody').html(data);
+                    $('#deleteUser').modal('show');
+                    $("#deleteUser").appendTo("body");
+                },
+                error: function () {
+                    alert("Hubo un problema para obtener los datos")
+                }
+            });
+        });
+
+        //delete user confirm
+        $(document).on('click', '#deleteUserConfirm', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var id_user = $('#ID_USER').val();
+
+            $.ajax({
+                url: '/Users/Delete/' + id_user,
+                type: 'POST',
+                data: {
+                    ID_USER : id_user
+                },
+                success: function (data) {
+
+                    $('#deleteUser').modal('hide');
+                    alertaSuccess();
+
+                },
+                error: function () {
+                    alertaError();
+                }
+            });
+        });
+
+
+        function alertaSuccess() {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Usuario eliminado.',
+                text: 'Usuario eliminado correctamente',
+                timer: 5000,
+                showConfirmButton: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/Users';
+                }
+            });
+            setTimeout(() => {
+                window.location.href = '/Users';
+            }, 5000);
+        }
+
+        function alertaError() {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'error',
+                title: 'Usuario no eliminado.',
+                text: 'Hubo un error al eliminar el usuario',
+                showConfirmButton: true
+            })
+        }
     });
-</script>            
+</script>    

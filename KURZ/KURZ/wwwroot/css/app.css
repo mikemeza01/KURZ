@@ -10015,8 +10015,18 @@ a.close.disabled {
 
 .modal-header {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between
+    align-items: center;
+    justify-content: space-between;
+    background: var(--primary);
+}
+
+.modal-header h4 {
+    color: #fff;
+}
+
+.modal-header .close {
+    color: #fff;
+    text-shadow: none;
 }
 
 [dir] .modal-header {
@@ -37428,4 +37438,8 @@ label {
 
 .form-group.buttons a {
     margin-right: 10px;
+}
+
+.acciones a {
+    margin-bottom: 5px;
 }

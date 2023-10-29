@@ -1,4 +1,4 @@
-﻿@model KURZ.Entities.UsersBinding
+﻿@model KURZ.Entities.UsersBindingEdit
 @{
     ViewData["Title"] = "Editar Usuario";
     Layout = "_Admin";
@@ -51,15 +51,26 @@ else
                         <span asp-validation-for="EMAIL" style="color:red"></span>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" asp-for="PASSWORD"></label>
+                        <label class="form-label" asp-for="PASSWORD"></label><span>(Dejar en blanco para no cambiar la contraseña)</span>
                         <input asp-for="PASSWORD" type="password" class="form-control" placeholder="Ingrese una contraseña" />
                         <span asp-validation-for="PASSWORD" style="color:red"></span>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" asp-for="PASSWORD_REPEAT"></label>
+                        <label class="form-label" asp-for="PASSWORD_REPEAT"></label><span>(Dejar en blanco para no cambiar la contraseña)</span>
                         <input asp-for="PASSWORD_REPEAT" type="password" class="form-control" placeholder="Repetir contraseña" />
                         <span asp-validation-for="PASSWORD_REPEAT" style="color:red"></span>
                     </div>
+
+                    <div class="form-group">
+                        <label class="form-label" asp-for="STATUS"></label>
+                        @{
+                            <select class="form-control" id="STATUS" name="STATUS">
+                                <option value="true" selected="@(Model.STATUS == true)">Activo</option>
+                                <option value="false" selected="@(Model.STATUS == false)">Inactivo</option>
+                            </select>
+                        }
+                    </div>
+
                     <div class="form-group buttons">
                         <a asp-controller="Users" asp-action="Index" class="btn btn-accent">
                             Cancelar

@@ -23,9 +23,13 @@ namespace KURZ.Interfaces
 
         public string UserExist(Users user);
 
+        public Users byEmail(string email);
+
         public Users byUserName(string username);
 
         public string confirmAccount(Users user);
+
+        public string forgotPasswordConfirmation(Users user);
 
         public string base64Encode(string sData);
 

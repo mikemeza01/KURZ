@@ -29,11 +29,39 @@ else
                     <p><strong>Nombre: </strong>@Model.NAME</p>
                     <p><strong>Apellidos: </strong>@Model.LASTNAME</p>
                     <p><strong>Correo electrónico: </strong>@Model.EMAIL</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-auto">
-                    <a class="btn btn-outline-secondary" asp-controller="Users" asp-action="Index">Volver</a>
+                    <p><strong>Confirmación:</strong>
+                        @{
+                            if (@Model.CONFIRMATION == true)
+                            {
+                                @Html.Raw("El usuario ya confirmo la cuenta")
+                                ;
+
+                            }
+                            else
+                            {
+                                @Html.Raw("El usuario no a confirmado la cuenta")
+                                ;
+                            }
+                        }
+
+                    </p>
+                    <p>
+                        <strong>Estado:</strong>
+                        @{
+                            if (@Model.STATUS == true)
+                            {
+                                @Html.Raw("Activo")
+                                ;
+
+                            }
+                            else
+                            {
+                                @Html.Raw("Inactivo")
+                                ;
+                            }
+                        }
+
+                    </p>
                 </div>
             </div>
         </div>

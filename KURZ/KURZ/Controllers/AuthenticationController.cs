@@ -146,14 +146,39 @@ namespace KURZ.Controllers
 
         [HttpGet]
         public IActionResult ForgotPasswordConfirmation(string username, string token) {
+            ViewBag.username = username;
+            ViewBag.token = token;
             return View();
         }
 
         [HttpPost]
         public IActionResult ForgotPasswordConfirmation(Users user)
         {
-           //todo: passwordchange 
-            return View();
+            try
+            {
+                var result = _usersModel.forgotPasswordConfirmation(user);
+
+                if (result == "ok")
+                {
+
+                    ViewBag.mensaje = "SUCCESS";
+                    return View();
+                }
+                else if (result == "errorToken")
+                {
+                    ViewBag.mensaje = "ERROR";
+                    return View();
+                }
+                else
+                {
+                    ViewBag.mensaje = "ERRORPASSWORD";
+                    return View();
+                }
+            }
+            catch
+            {
+                return View("Error");
+            }
         }
 
         [HttpGet]

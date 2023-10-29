@@ -107,7 +107,7 @@ namespace KURZ.Controllers
                 return View();
             }
 
-            var user_editBindign = new UsersBinding()
+            var user_editBindign = new UsersBindingEdit()
             {
                 ID_USER = user.ID_USER,
                 IDENTICATION = user.IDENTICATION,
@@ -116,47 +116,44 @@ namespace KURZ.Controllers
                 EMAIL = user.EMAIL,
                 PASSWORD = user.PASSWORD,
                 PASSWORD_REPEAT = user.PASSWORD,
+                STATUS = user.STATUS
             };
 
             return View(user_editBindign);
         }
 
         [HttpPost]
-        public IActionResult Edit(UsersBinding user)
+        public IActionResult Edit(UsersBindingEdit user)
         {
             try
             {
-                if (ModelState.IsValid)
+               
+                var user_edit = new Users()
                 {
+                    ID_USER = user.ID_USER,
+                    IDENTICATION = user.IDENTICATION,
+                    NAME = user.NAME,
+                    LASTNAME = user.LASTNAME,
+                    EMAIL = user.EMAIL,
+                    PASSWORD = user.PASSWORD,
+                    CONFIRMATION = user.CONFIRMATION,
+                    STATUS = user.STATUS
+                };
 
-                    var user_edit = new Users()
-                    {
-                        ID_USER = user.ID_USER,
-                        IDENTICATION = user.IDENTICATION,
-                        NAME = user.NAME,
-                        LASTNAME = user.LASTNAME,
-                        EMAIL = user.EMAIL,
-                        PASSWORD = user.PASSWORD
-                    };
-
-                    var resultado = _usersModel.UserEdit(user_edit);
-                    if (resultado == "ok")
-                    {
-                        ViewBag.mensaje = "SUCCESS";
-                        return View(user);
-                    }
-                    else if (resultado != "ok" && resultado != "error")
-                    {
-                        ViewBag.mensaje = resultado;
-                    }
-                    else
-                        ViewBag.mensaje = "ERROR";
+                var resultado = _usersModel.UserEdit(user_edit);
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
                     return View(user);
+                }
+                else if (resultado != "ok" && resultado != "error")
+                {
+                    ViewBag.mensaje = resultado;
                 }
                 else
-                {
-                    return View(user);
-                }
+                    ViewBag.mensaje = "ERROR";
+                return View(user);
+                
 
             }
             catch (Exception)
