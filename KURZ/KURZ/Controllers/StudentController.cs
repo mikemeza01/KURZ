@@ -100,72 +100,38 @@ namespace KURZ.Controllers
 
         [Authorize(Roles = "Student")]
         [HttpPost]
-        public IActionResult StudentEdit(Users student, IFormFile photoFile)
+        public IActionResult StudentEdit(Users student)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var resultado = _studentModel.StudentEdit(student, photoFile);
-
+                    var resultado = _studentModel.StudentEdit(student);
                     if (resultado == "ok")
                     {
-                        TempData["SuccessMessage"] = "Perfil actualizado con éxito.";
+                        ViewBag.mensaje = "SUCCESS";
                         return RedirectToAction("MyAccount", "Student");
                     }
                     else if (resultado != "ok" && resultado != "error")
                     {
-                        ModelState.AddModelError("", resultado);
+                        ViewBag.mensaje = resultado;
                     }
                     else
-                        ModelState.AddModelError("", "Error al actualizar el perfil.");
-
+                        ViewBag.mensaje = "ERROR";
                     return View(student);
                 }
                 else
                 {
-                    return View(student);
+                    return RedirectToAction("MyAccount", "Student");
+                    //return View(student);
                 }
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ModelState.AddModelError("", "Error: " + ex.Message);
-                return View(student);
+                return View("Error");
             }
         }
-
-        //public IActionResult StudentEdit(Users student)
-        //{
-        //    try
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            var resultado = _studentModel.StudentEdit(student);
-        //            if (resultado == "ok")
-        //            {
-        //                ViewBag.mensaje = "SUCCESS";
-        //                return RedirectToAction("MyAccount", "Student");
-        //            }
-        //            else if (resultado != "ok" && resultado != "error")
-        //            {
-        //                ViewBag.mensaje = resultado;
-        //            }
-        //            else
-        //                ViewBag.mensaje = "ERROR";
-        //            return View(student);
-        //        }
-        //        else
-        //        {
-        //            return RedirectToAction("MyAccount", "Student");
-        //            //return View(student);
-        //        }
-
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return View("Error");
-        //    }
-        //}
 
         [Authorize(Roles = "Student")]
         public IActionResult DeleteAccount()

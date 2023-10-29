@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
-using Microsoft.AspNetCore.Hosting;
+
 
 namespace KURZ.Models
 {
@@ -15,14 +15,13 @@ namespace KURZ.Models
         //se llama el contexto de la base de datos
         private readonly KurzContext _context;
         private readonly IUsersModel _usersModel;
-        private readonly IWebHostEnvironment _hostingEnvironment;
+        
 
         //constructor de la clase y recibe como parametro el contexto de la base de datos
-        public StudentModel(KurzContext context, IUsersModel userModel, IWebHostEnvironment hostingEnvironment)
+        public StudentModel(KurzContext context, IUsersModel userModel)
         {
             _context = context;
             _usersModel = userModel;
-            _hostingEnvironment = hostingEnvironment;
         }
 
         public List<Users>? StudentList()
@@ -106,7 +105,7 @@ namespace KURZ.Models
             }
         }
 
-        public string StudentEdit(Users student_edit, IFormFile photoFile)
+        public string StudentEdit(Users student_edit)
         {
             try
             {
@@ -146,19 +145,19 @@ namespace KURZ.Models
                 student_edit.CITY = null;
                 student_edit.ID_ROL = 3; // ID de rol para estudiante
 
-                if (photoFile != null && photoFile.Length > 0)
-                {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        photoFile.CopyTo(memoryStream);
-                        student_edit.PHOTO = Convert.ToBase64String(memoryStream.ToArray());
-                    }
-                }
-                else
-                {
-                    // Si no se proporcionó una imagen, asigna la imagen predeterminada
-                    student_edit.PHOTO = Convert.ToBase64String(GetDefaultImageBytes());
-                }
+                //if (photoFile != null && photoFile.Length > 0)
+                //{
+                //    using (var memoryStream = new MemoryStream())
+                //    {
+                //        photoFile.CopyTo(memoryStream);
+                //        student_edit.PHOTO = Convert.ToBase64String(memoryStream.ToArray());
+                //    }
+                //}
+                //else
+                //{
+                //    // Si no se proporcionó una imagen, asigna la imagen predeterminada
+                //   // student_edit.PHOTO = 
+                //}
 
                 // Restablecer otros campos predeterminados
                 student_edit.CELLPHONE = null;
@@ -180,37 +179,6 @@ namespace KURZ.Models
             }
         }
 
-        private byte[] GetDefaultImageBytes()
-        {
-            // Carga la imagen predeterminada desde el sistema de archivos o recurso incorporado
-            // En este ejemplo, se carga una imagen desde el sistema de archivos
-            //DEBO AGREGAR UNA IMAGEN PREDETERMINADA.
-            string defaultImagePath = Path.Combine(_hostingEnvironment.WebRootPath, "images", "guy-3.jpg");
-            if (File.Exists(defaultImagePath))
-            {
-                return File.ReadAllBytes(defaultImagePath);
-            }
-            else
-            {
-                // Si no se puede cargar la imagen predeterminada, carga la imagen de marcador de posición
-                //DEBO AGREGAR UNA IMAGEN DE MARCADOR DE POSICION.
-                string placeholderImagePath = Path.Combine(_hostingEnvironment.WebRootPath, "images", "");
-                if (File.Exists(placeholderImagePath))
-                {
-                    return File.ReadAllBytes(placeholderImagePath);
-                }
-                else
-                {
-                    // Si no se puede cargar la imagen de marcador de posición, proporciona un mensaje de error
-                    // Puedes generar una imagen de texto con "Imagen no disponible" o un ícono de error.
-                    // Aquí, se proporciona un mensaje de error en forma de bytes.
-                    string errorMessage = "Imagen no disponible";
-                    return Encoding.UTF8.GetBytes(errorMessage);
-                }
-            }
-
-
-
-        }
+    
     }
 }
