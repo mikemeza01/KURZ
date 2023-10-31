@@ -266,4 +266,9 @@ namespace KURZ.Entities
 
     
     }
+
+    public class UserDetails : Users
+    {
+        public byte[]? ProfilePicture { get; set; }
+    }
 }

@@ -1,8 +1,10 @@
 ﻿using KURZ.Entities;
+using KURZ.Helpers;
 using KURZ.Interfaces;
 using KURZ.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Configuration;
 using System.Net;
 using System.Security.Claims;
 
@@ -14,18 +16,21 @@ namespace KURZ.Controllers
         //llamado a el modelo de users
         private readonly IUsersModel _usersModel;
         private readonly IRolesModel _rolesModel;
+        private readonly IConfiguration _configuration;
         private readonly ITeacherModel _teacherModel;
         private readonly IStudentModel _studentModel;
+        private FilesHelper filesHelper = new FilesHelper();
 
 
         //constructor del controlador
-        public AuthenticationController(ILogger<AuthenticationController> logger, IUsersModel usersModel, IRolesModel rolesModel, ITeacherModel teacherModel, IStudentModel studentModel)
+        public AuthenticationController(ILogger<AuthenticationController> logger, IUsersModel usersModel, IRolesModel rolesModel, ITeacherModel teacherModel, IStudentModel studentModel, IConfiguration configuration)
         {
             _logger = logger;
             _usersModel = usersModel;
             _rolesModel = rolesModel;
             _teacherModel = teacherModel;
             _studentModel = studentModel;
+            _configuration = configuration;
         }
 
         [HttpGet]
@@ -65,6 +70,8 @@ namespace KURZ.Controllers
                         HttpContext.Session.SetString("ROL", result.ID_ROL.ToString());
                         HttpContext.Session.SetString("USER", result.ID_USER.ToString());
 
+                        var user_photo = filesHelper.ReadFiles(result.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + result.IDENTICATION);
+                        HttpContext.Session.Set("USER_PHOTO", user_photo);
                         var role_name = _rolesModel.get_role_name(result.ID_ROL);
 
                         var claims = new List<Claim>
