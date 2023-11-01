@@ -1,33 +1,52 @@
-﻿@model KURZ.Entities.Users
+﻿@model KURZ.Entities.UserDetails
 @{
     ViewData["Title"] = "Editar Perfil";
     Layout = "_TeacherH";
 }
 <div class="col-md-7 p-0">
-    <form asp-action="Edit">
+    @if (Model.ProfilePicture != null)
+    {
+        @*<img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)" alt="Imagen del Usuario" />*@
+    }
+    else
+    {
+        <p>La imagen no pudo ser encontrada.</p>
+    }
+    <form asp-action="Edit" enctype="multipart/form-data">
 
         <div class="form-group">
             <label class="form-label">Foto</label>
             <div class="media align-items-center">
                 <a href=""
                    class="media-left mr-16pt">
-                    <img src="~/images/guy-3.jpg"
+                    @if (Model.ProfilePicture != null)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)"
                          alt="people"
-                         width="56"
+                         id="profilePicturePreview"
+                         width="70"
+                         height="70"
                          class="rounded-circle" />
+                    }
                 </a>
+
                 <div class="media-body">
                     <div class="custom-file">
                         <input type="file"
+                               title="Seleccionar archivo"
+                               asp-for="ProfilePicture"
                                class="custom-file-input"
-                               id="inputGroupFile01">
+                               name="newProfilePicture"
+                               id="newProfilePicture"
+                               onchange="previewImage(event)">
                         <label class="custom-file-label"
-                               for="inputGroupFile01">Elegir Foto</label>
+                               asp-for="ProfilePicture">Elegir Foto</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="form-group">
+            <input asp-for="PHOTO" class="form-control" hidden />
             <label asp-for="IDENTICATION" class="form-label">Identificación:</label>
             <input asp-for="IDENTICATION" class="form-control" />
             <span asp-validation-for="IDENTICATION" class="text-danger"></span>
@@ -67,3 +86,18 @@
         </button>
     </form>
 </div>
+
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+
+        reader.onload = function () {
+            var img = document.getElementById('profilePicturePreview');
+            img.src = reader.result;
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+
+</script>

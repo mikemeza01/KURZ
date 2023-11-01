@@ -141,7 +141,6 @@ namespace KURZ.Models
                 }
 
                 teacher.CELLPHONE = "";
-                teacher.PHOTO = "";
 
                 teacher.ADDRESS = "";
                 teacher.STATE = "";

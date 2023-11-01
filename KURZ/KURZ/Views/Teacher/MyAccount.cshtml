@@ -1,12 +1,20 @@
-﻿@model KURZ.Entities.Users
+﻿@using Microsoft.AspNetCore.Http
+@model KURZ.Entities.Users
 @{
     ViewData["Title"] = "Perfil";
     Layout = "_Teacher";
+    var photo = Context.Session.Get("USER_PHOTO");
 }
 <div class="page-section bg-secondary">
     <div class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
-        <img src="~/images/guy-3.jpg" class="mr-md-32pt mb-32pt mb-md-0 rounded-circle border-3"
+       
+        @if (photo != null)
+        {
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(photo)" class="mr-md-32pt mb-32pt mb-md-0 rounded-circle border-3"
+             width="90"
+             height="90"
              alt="instructor" />
+        }
         <div class="flex mb-32pt mb-md-0">
             <h2 class="text-white mb-0">Profesor @Model.NAME @Model.LASTNAME</h2>
             <div class="rating mb-16pt d-inline-flex">
