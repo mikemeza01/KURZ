@@ -74,11 +74,11 @@ namespace KURZ.Controllers
             var countries = _countriesModel.CountriesList();
             ViewBag.countries = countries;
 
-            return View(new Users());
+            return View(new UsersBinding());
         }
 
         [HttpPost]
-        public IActionResult RegisterTeachers(Users teacher)
+        public IActionResult RegisterTeachers(UsersBinding teacher)
         {
             try
             {
@@ -90,12 +90,24 @@ namespace KURZ.Controllers
                 var host = request.Host.ToUriComponent();
                 var pathBase = request.PathBase.ToUriComponent();
                 var domain = $"{request.Scheme}://{host}{pathBase}";
-                var resultado = _teacherModel.UserCreate(teacher, domain);
+
+                var teacher_create = new Users()
+                {
+                    IDENTICATION = teacher.IDENTICATION,
+                    NAME = teacher.NAME,
+                    LASTNAME = teacher.LASTNAME,
+                    EMAIL = teacher.EMAIL,
+                    PASSWORD = teacher.PASSWORD,
+                    ID_COUNTRY = teacher.ID_COUNTRY
+                };
+
+
+                var resultado = _teacherModel.UserCreate(teacher_create, domain);
 
                 if (resultado == "ok")
                 {
                     ViewBag.mensaje = "SUCCESS";
-                    return RedirectToAction("Login", "Authentication");
+                    return View(teacher);
                 }
                 else if (resultado != "ok" && resultado != "error")
                 {

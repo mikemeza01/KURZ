@@ -1,4 +1,4 @@
-﻿@model KURZ.Entities.Users
+﻿@model KURZ.Entities.UsersBinding
 @{
     ViewData["Title"] = "Registro de Estudiantes";
     Layout = "_Authentication";
@@ -15,16 +15,6 @@
                 <span asp-validation-for="IDENTICATION" style="color:red"></span>
             </div>
             <div class="form-group">
-                <label class="form-label" asp-for="EMAIL"></label>
-                <input asp-for="EMAIL" type="email" class="form-control" placeholder="Ingrese un correo electrónico" />
-                <span asp-validation-for="EMAIL" style="color:red"></span>
-            </div>
-            <div class="form-group">
-
-                <input asp-for="USERNAME" type="hidden" class="form-control" placeholder="Ingrese un usuario" />
-
-            </div>
-            <div class="form-group">
                 <label class="form-label" asp-for="NAME"></label>
                 <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese un nombre para el usuario" />
                 <span asp-validation-for="NAME" style="color:red"></span>
@@ -37,22 +27,28 @@
             <div class="form-group">
                 <label class="form-label" asp-for="ID_COUNTRY"></label>
                 <select class="form-control" asp-for="ID_COUNTRY">
+                    <option value="">Seleccione un país</option>
                     @foreach (var countries in ViewBag.countries)
                     {
                         <option value="@countries.ID_COUNTRY"> @countries.NAME</option>
                     }
                 </select>
+                <span asp-validation-for="ID_COUNTRY" style="color:red"></span>
+            </div>
+            <div class="form-group">
+                <label class="form-label" asp-for="EMAIL"></label>
+                <input asp-for="EMAIL" type="email" class="form-control" placeholder="Ingrese un correo electrónico" />
                 <span asp-validation-for="EMAIL" style="color:red"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PASSWORD" class="form-label">Contraseña:</label>
+                <div class="form-group">
+                    <label asp-for="PASSWORD" class="form-label"></label>
                 <input asp-for="PASSWORD" onchange="ValidatePassword()" type="password" class="form-control" placeholder="Ingrese su contraseña" />
-                <span asp-validation-for="PASSWORD" class="text-danger"></span>
-            </div>
+                    <span asp-validation-for="PASSWORD" class="text-danger"></span>
+                </div>
             <div class="form-group">
-                <label class="form-label">Confirmar Contraseña:</label>
-                <input type="password" onchange="ValidatePassword()" id="txtPassword" class="form-control" placeholder="Confirme su contraseña" />
-                <p style="color:red">Las contraseñas deben coincidir para continuar</p>
+                <label asp-for="PASSWORD_REPEAT" class="form-label"></label>
+                <input asp-for="PASSWORD_REPEAT" onchange="ValidatePassword()" type="password" class="form-control" placeholder="Ingrese su contraseña" />
+                <span asp-validation-for="PASSWORD_REPEAT" class="text-danger"></span>
             </div>
             <div class="form-group mb-5">
                 <div class="custom-control custom-checkbox">
@@ -66,7 +62,7 @@
                 </div>
             </div>
             <div class="form-group text-center">
-                <button class="btn btn-primary mb-2" type="submit"> Crear cuenta de estudiante</button>
+            <button class="btn btn-primary mb-2" type="submit" id="btnCrearCuenta"> Crear cuenta de estudiante</button>
                 <br>
                 <a class="text-body text-underline"
                    asp-controller="Authentication" asp-action="Login">¿Ya tiene una cuenta? Iniciar Sesión</a>
@@ -106,9 +102,8 @@
     function ValidatePassword() {
 
         const PASSWORD = document.getElementById('PASSWORD');
-        const txtPassword = document.getElementById('txtPassword');
-        console.log("Password", PASSWORD)
-        console.log("txtPassword", txtPassword)
+        const txtPassword = document.getElementById('PASSWORD_REPEAT');
+
         if (PASSWORD.value == txtPassword.value) {
             txtTerminos.disabled = false;
         } else {
