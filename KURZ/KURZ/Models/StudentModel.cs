@@ -157,7 +157,7 @@ namespace KURZ.Models
                 student_edit.ID_ROL = 3; // ID de rol para estudiante
 
 
-                
+                _context.ChangeTracker.Clear();
                 _context.Users.Update(student_edit);
                 _context.SaveChanges();
 
@@ -171,6 +171,50 @@ namespace KURZ.Models
             }
         }
 
-    
+        public string StudentEditAccount(Users student_edit)
+        {
+            try
+            {
+                // Validar si el correo cambió al editar el usuario
+                if (_usersModel.UserEmail(student_edit.ID_USER) != student_edit.EMAIL)
+                {
+                    // Validar si ya existe otro usuario con el mismo correo
+                    var user_exist = _usersModel.UserExist(student_edit);
+
+                    if (user_exist != null)
+                    {
+                        return user_exist;
+                    }
+                }
+
+                if (student_edit.PASSWORD == null)
+                {
+                    var password = _usersModel.UserPassword(student_edit.ID_USER);
+                    student_edit.PASSWORD = password;
+
+                }
+                // Restablecer campos predeterminados
+                student_edit.USERNAME = student_edit.EMAIL;
+                student_edit.CELLPHONE = null;
+                student_edit.ADDRESS = null;
+                student_edit.STATE = null;
+                student_edit.CITY = null;
+                student_edit.ID_ROL = 3; // ID de rol para estudiante
+
+
+                _context.ChangeTracker.Clear();
+                _context.Users.Update(student_edit);
+                _context.SaveChanges();
+
+                return "ok";
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error al editar su usuario.");
+                Console.WriteLine(ex.ToString());
+                return "error";
+            }
+        }
+
     }
 }
