@@ -1,5 +1,6 @@
 ﻿using KURZ.Entities;
 using KURZ.Interfaces;
+using KURZ.Models;
 //using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace KURZ.Controllers
@@ -41,17 +42,19 @@ namespace KURZ.Controllers
         [HttpGet]
         public IActionResult CategoriesList()
         {
-            return View();
+            var categories = _categoriesModel.CategoriesList();
+            return View(categories);
         }
 
         [HttpGet]
         public IActionResult CreateCategorie()
         {
+            ViewBag.mensaje = "";
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateCategorie(Topics topics)
+        public IActionResult CreateCategorie(Categories category)
         {
             try
             {
@@ -59,19 +62,19 @@ namespace KURZ.Controllers
                 {
 
 
-                    var resultado = _topicsModel.TopicsCreate(topics);
-                    if (resultado > 0)
+                    var resultado = _categoriesModel.CreateCategory(category);
+                    if (resultado == "ok")
                     {
                         ViewBag.mensaje = "SUCCESS";
-                        return View(topics);
+                        return View(category);
                     }
                     else
                         ViewBag.mensaje = "ERROR";
-                    return View(topics);
+                    return View(category);
                 }
                 else
                 {
-                    return View(topics);
+                    return View(category);
                 }
 
             }
@@ -84,27 +87,84 @@ namespace KURZ.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditCategorie()
+        public IActionResult EditCategorie(int? ID)
         {
-            return View();
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var user = _categoriesModel.CategoryDetail(ID);
+            if (user == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+
+            return View(user);
         }
 
         [HttpPost]
-        public IActionResult EditCategorie(string name)
+        public IActionResult EditCategorie(Categories category)
         {
-            return RedirectToAction(nameof(CategoriesList));
+            try
+            {
+
+                var resultado = _categoriesModel.CategoryEdit(category);
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(category);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(category);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         [HttpGet]
-        public IActionResult DeleteCategorie()
+        public IActionResult DeleteCategorie(int? ID)
         {
-            return View();
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var category = _categoriesModel.CategoryDetail(ID);
+            if (category == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+            return View(category);
         }
 
         [HttpPost]
-        public IActionResult DeleteCategorie(string delete)
+        public IActionResult DeleteCategorie(Categories category)
         {
-            return RedirectToAction(nameof(CategoriesList));
+            try
+            {
+
+                var resultado = _categoriesModel.CategoryDelete(category);
+                if (resultado > 0)
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(category);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(category);
+
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
 
