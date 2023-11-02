@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    var photo = Context.Session.Get("USER_PHOTO");
+
+}
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
@@ -83,7 +89,10 @@
                                data-caret="false">
 
                                 <span class="avatar mr-8pt2">
-                                    <img src="~/images/woman-6.jpg" class="avatar-img rounded-circle" />
+                                    @if (photo != null)
+                                    {
+                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(photo)" class="avatar-img rounded-circle" />
+                                    }
                                 </span>
                                 <span class="ml-1"><i class="fa fa-angle-down"></i></span>
 

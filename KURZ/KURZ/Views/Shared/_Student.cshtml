@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    var photo = Context.Session.Get("USER_PHOTO");
+
+}
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
@@ -86,11 +92,15 @@
                                class="nav-link d-flex align-items-center dropdown-toggle"
                                data-toggle="dropdown"
                                data-caret="false">
-                                <span class="avatar mr-8pt2">
 
-                                    <img src="~/images/woman-6.jpg" class="avatar-img rounded-circle" />
+                                <span class="avatar mr-8pt2">
+                                    @if (photo != null)
+                                    {
+                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(photo)" class="avatar-img rounded-circle" />
+                                    }
                                 </span>
                                 <span class="ml-1"><i class="fa fa-angle-down"></i></span>
+
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-header"><strong>Cuenta</strong></div>

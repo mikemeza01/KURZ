@@ -1,9 +1,10 @@
 ﻿using KURZ.Entities;
+using KURZ.Helpers;
 using KURZ.Interfaces;
 using KURZ.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+//using NuGet.DependencyResolver;
 using System.Security.Claims;
 
 namespace KURZ.Controllers
@@ -13,12 +14,55 @@ namespace KURZ.Controllers
         private readonly IStudentModel _studentModel;
         private readonly IUsersModel _usersModel;
         private readonly ICountriesModel _countriesModel;
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly IConfiguration _configuration;
+        private FilesHelper filesHelper = new FilesHelper();
 
-        public StudentController(IStudentModel studentModel, IUsersModel usersModel, ICountriesModel countriesModel)
+        protected UserDetails ConvertUsers(Users user)
+        {
+            try
+            {
+                if (user != null)
+                {
+                    return new UserDetails
+                    {
+                        ADDRESS = user.ADDRESS,
+                        CELLPHONE = user.CELLPHONE,
+                        CITY = user.CITY,
+                        CONFIRMATION = user.CONFIRMATION,
+                        EMAIL = user.EMAIL,
+                        IDENTICATION = user.IDENTICATION,
+                        ID_COUNTRY = user.ID_COUNTRY,
+                        ID_ROL = user.ID_ROL,
+                        ID_USER = user.ID_USER,
+                        LASTNAME = user.LASTNAME,
+                        NAME = user.NAME,
+                        PASSWORD = user.PASSWORD,
+                        PASSWORDTEMP = user.PASSWORDTEMP,
+                        PHOTO = user.PHOTO,
+                        PROFILE = user.PROFILE,
+                        STATE = user.STATE,
+                        STATUS = user.STATUS,
+                        TOKEN = user.TOKEN,
+                        USERNAME = user.USERNAME,
+                    };
+                }
+
+                return new UserDetails();
+            }
+            catch (Exception)
+            {
+                return new UserDetails();
+            }
+        }
+
+        public StudentController(IStudentModel studentModel, IUsersModel usersModel, ICountriesModel countriesModel, IWebHostEnvironment hostingEnvironment, IConfiguration configuration)
         {
             _studentModel = studentModel;
             _usersModel = usersModel;
             _countriesModel = countriesModel;
+            _hostingEnvironment = hostingEnvironment;
+            _configuration = configuration;
         }
 
         [HttpGet]
@@ -89,64 +133,19 @@ namespace KURZ.Controllers
             //DEOLVER EL NOMBRE DEL USUARIO REGISTRADO EN LA PANTALLA PRINCIPAL.
             ClaimsPrincipal claimstudent = HttpContext.User;
             string nombreusuario = "";
-
+            //Verificar con Michael la vista de Index de los Estudiantes.
+            //var countries = _countriesModel.CountriesList();
+            //ViewBag.countries = countries;
             if (claimstudent.Identity.IsAuthenticated)
             {
                 nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
             }
             var user = _usersModel.byUserName(nombreusuario);
-
-
-            ViewData["nombreUsuario"] = user.NAME + " " + user.LASTNAME;
-
-            return View();
-        }
-        [Authorize(Roles = "Student")]
-        public IActionResult Edit()
-        {
-            string nombreusuario = User.Identity.Name;
-            var user = _usersModel.byUserName(nombreusuario);
-
             return View(user);
         }
 
         [Authorize(Roles = "Student")]
-        [HttpPost]
-        public IActionResult StudentEdit(Users student)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var resultado = _studentModel.StudentEdit(student);
-                    if (resultado == "ok")
-                    {
-                        ViewBag.mensaje = "SUCCESS";
-                        return RedirectToAction("MyAccount", "Student");
-                    }
-                    else if (resultado != "ok" && resultado != "error")
-                    {
-                        ViewBag.mensaje = resultado;
-                    }
-                    else
-                        ViewBag.mensaje = "ERROR";
-                    return View(student);
-                }
-                else
-                {
-                    return RedirectToAction("MyAccount", "Student");
-                    //return View(student);
-                }
-
-            }
-            catch (Exception)
-            {
-                return View("Error");
-            }
-        }
-
-        [Authorize(Roles = "Student")]
-        public IActionResult DeleteAccount()
+        public IActionResult Edit()
         {
             ClaimsPrincipal claimstudent = HttpContext.User;
             string nombreusuario = "";
@@ -155,10 +154,104 @@ namespace KURZ.Controllers
             {
                 nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
             }
+
             var user = _usersModel.byUserName(nombreusuario);
 
-            return View(user);
+            //Convierte el Entitie de Users a uno tipo UserDetails que maneja una variable tipo byte para guardar la imagen
+            var userDetail = ConvertUsers(user);
+
+            userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO, _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
+
+            var countries = _countriesModel.CountriesList();
+            ViewBag.countries = countries;
+            return View(userDetail);
         }
+
+        
+        [HttpPost]
+        public IActionResult Edit(Users student, IFormFile newProfilePicture)
+        {
+            try
+            {
+                if (newProfilePicture != null && newProfilePicture.Length > 0)
+                {
+                    bool deleted = filesHelper.DeleteFile(student.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + student.IDENTICATION + "\\");
+
+                    student.PHOTO = newProfilePicture.FileName;
+                    filesHelper.UploadFile(student.PHOTO, _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + student.IDENTICATION + "\\", newProfilePicture);
+                    var user_photo = filesHelper.ReadFiles(student.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + student.IDENTICATION);
+                    HttpContext.Session.Set("USER_PHOTO", user_photo);
+                }
+
+                ClaimsPrincipal claimstudent = HttpContext.User;
+                string nombreusuario = "";
+
+                if (claimstudent.Identity.IsAuthenticated)
+                {
+                    nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                }
+                var user = _usersModel.byUserName(nombreusuario);
+
+                user.NAME = student.NAME;
+                user.LASTNAME = student.LASTNAME;
+                user.PROFILE = student.PROFILE;
+                user.ID_COUNTRY = student.ID_COUNTRY;
+                user.EMAIL = student.EMAIL;
+                user.IDENTICATION = student.IDENTICATION;
+                user.USERNAME = student.EMAIL;
+                user.PHOTO = student.PHOTO;
+
+                var countries = _countriesModel.CountriesList();
+                ViewBag.countries = countries;
+
+                var resultado = _studentModel.StudentEdit(student);
+
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    var userDetail = ConvertUsers(user);
+                    userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO, _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
+
+                    return View(userDetail);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(student);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
+        [Authorize(Roles = "Student")]
+        public IActionResult EditAccount()
+        {
+            return View();
+        }
+
+        //CONFIGURAR EL DESACTIVAR CUENTA.
+        //[Authorize(Roles = "Student")]
+        //public IActionResult DeleteAccount()
+        //{
+        //    return View();
+        //}
+        ////
+        //[Authorize(Roles = "Student")]
+        //[HttpPost]
+        //public IActionResult DeleteAccount()
+        //{
+        //    ClaimsPrincipal claimstudent = HttpContext.User;
+        //    string nombreusuario = "";
+
+        //    if (claimstudent.Identity.IsAuthenticated)
+        //    {
+        //        nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+        //    }
+        //    var user = _usersModel.byUserName(nombreusuario);
+
+        //    return View(user);
+        //}
 
         [Authorize(Roles = "Student")]
         public IActionResult Advice()
@@ -170,30 +263,5 @@ namespace KURZ.Controllers
         {
             return View();
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> CargarImagen(IFormFile photo)
-        //{
-        //    if (photo != null && photo.Length > 0)
-        //    {
-        //        using (var memoryStream = new MemoryStream())
-        //        {
-        //            await photo.CopyToAsync(memoryStream);
-        //            var image = new Image
-        //            {
-        //                FileName = image.FileName,
-        //                ContentType = image.ContentType,
-        //                Data = memoryStream.ToArray(),
-                        
-        //            };
-
-        //            // Guarda la imagen en la base de datos o el sistema de archivos, según tu configuración.
-        //            _con.Add(image);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //    }
-
-        //    return RedirectToAction("Index"); // Redirecciona a la página principal o a donde sea necesario.
-        //}
     }
 }

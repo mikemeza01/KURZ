@@ -1,11 +1,9 @@
-﻿using System.Text;
-using KURZ.Entities;
+﻿using KURZ.Entities;
 using KURZ.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.IO;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using Microsoft.Extensions.Hosting;
+using System.Text;
+
 
 
 namespace KURZ.Models
@@ -24,15 +22,38 @@ namespace KURZ.Models
             _usersModel = userModel;
         }
 
-        public List<Users>? StudentList()
+        //public List<Users>? StudentList()
+        //{
+        //    try
+        //    {
+        //        return _context.Users.ToList(); //where id = 3
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Error al obtener la lista de estudiantes: " + ex.Message);
+        //    }
+        //}
+
+        public Users ValidateUser(Users student)
         {
-            try
+            var email_login = student.EMAIL;
+            var user_login = _context.Users.FirstOrDefault(e => e.EMAIL == email_login);
+            if (user_login == null)
             {
-                return _context.Users.ToList(); //where id = 3
+                return null;
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception("Error al obtener la lista de estudiantes: " + ex.Message);
+                var password_decrypted = _usersModel.base64Decode(user_login.PASSWORD);
+
+                if (password_decrypted == student.PASSWORD)
+                {
+                    return user_login;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -127,46 +148,17 @@ namespace KURZ.Models
                     student_edit.PASSWORD = password;
 
                 }
-                else
-                {
-                    //se encripta la clave puesta para el usuario
-                    if (student_edit.PASSWORD != null)
-                    {
-                        var passwordEncrypt = _usersModel.base64Encode(student_edit.PASSWORD);
-                        //se pasa a la entidad la contraseña encriptada
-                        student_edit.PASSWORD = passwordEncrypt;
-                    }
-                }
-
                 // Restablecer campos predeterminados
+                student_edit.USERNAME = student_edit.EMAIL;
                 student_edit.CELLPHONE = null;
                 student_edit.ADDRESS = null;
                 student_edit.STATE = null;
                 student_edit.CITY = null;
                 student_edit.ID_ROL = 3; // ID de rol para estudiante
 
-                //if (photoFile != null && photoFile.Length > 0)
-                //{
-                //    using (var memoryStream = new MemoryStream())
-                //    {
-                //        photoFile.CopyTo(memoryStream);
-                //        student_edit.PHOTO = Convert.ToBase64String(memoryStream.ToArray());
-                //    }
-                //}
-                //else
-                //{
-                //    // Si no se proporcionó una imagen, asigna la imagen predeterminada
-                //   // student_edit.PHOTO = 
-                //}
 
-                // Restablecer otros campos predeterminados
-                student_edit.CELLPHONE = null;
-                student_edit.ADDRESS = null;
-                student_edit.STATE = null;
-                student_edit.CITY = null;
-                student_edit.ID_ROL = 3; // ID de rol para estudiante
-
-                _context.Update(student_edit);
+                
+                _context.Users.Update(student_edit);
                 _context.SaveChanges();
 
                 return "ok";
