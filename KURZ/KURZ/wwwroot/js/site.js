@@ -6,9 +6,29 @@
         };
 
         $(document).ready(function () {
-            new DataTable('#TableUsers', {
-                language: languageDatatable
-            });
+
+            var tableUsers = $('#TableUsers');
+            var tableCategories = $('#TableCategories');
+
+            if (tableUsers.length > 0) {
+                new DataTable('#TableUsers', {
+                    language: languageDatatable
+                });
+            }
+            
+            if (tableCategories.length > 0) {
+                new DataTable('#TableCategories', {
+                    language: languageDatatable,
+                    "autoWidth": false,
+                    "columns": [
+                        { "width": "33.3%" },
+                        { "width": "33,3%" },
+                        { "width": "33,3%" },
+                    ]
+                });
+            }
+
+            
         });
     });
 })(jQuery);

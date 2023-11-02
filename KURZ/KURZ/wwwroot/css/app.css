@@ -37443,3 +37443,12 @@ label {
 .acciones a {
     margin-bottom: 5px;
 }
+
+
+@media (max-width: 990px) {
+    .tableSmall {
+        display: block;
+        overflow: hidden;
+        overflow-x: scroll;
+    }
+}
