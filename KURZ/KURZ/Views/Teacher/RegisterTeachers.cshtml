@@ -1,4 +1,4 @@
-﻿@model KURZ.Entities.Users
+﻿@model KURZ.Entities.UsersBinding
 @{
     ViewData["Title"] = "Registro de Profesores";
     Layout = "_Authentication";
@@ -10,171 +10,110 @@
     }
 </style>
 <form asp-action="RegisterTeachers" novalidate>
-    <div class="form-group">
-        <label asp-for="EMAIL" class="form-label">Correo Electrónico:</label>
-        <input asp-for="EMAIL" required class="form-control" />
-        <span asp-validation-for="EMAIL" class="text-danger"></span>
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="flex"
+         style="max-width: 100%">
 
-    </div>
-    <div class="form-group">
-        <label asp-for="IDENTICATION" class="form-label">Número de identificación:</label>
-        <input asp-for="IDENTICATION" required minlength="9" maxlength="50" title="Por favor, ingresa entre 9 y 50 caracteres" class="form-control" />
-        <span asp-validation-for="IDENTICATION" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="NAME" class="form-label">Nombre:</label>
-        <input asp-for="NAME" required class="form-control" />
-        <span asp-validation-for="NAME" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="LASTNAME" class="form-label">Apellidos:</label>
-        <input asp-for="LASTNAME" required class="form-control" />
-        <span asp-validation-for="LASTNAME" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label class="form-label" asp-for="ID_COUNTRY"></label>
-
-        <select class="form-control" required asp-for="ID_COUNTRY" data-val-required="Por favor, selecciona un país">
-            <option value="">Selecciona un país</option>
-            @foreach (var countries in ViewBag.countries)
-            {
-                <option value="@countries.ID_COUNTRY"> @countries.NAME</option>
-            }
-        </select>
-        <span asp-validation-for="ID_COUNTRY" style="color:#d9534f"></span>
-    </div>
-    <div class="form-group">
-        <p id="pMensajeContrasenna" style="color:#d9534f; display:none">La contraseña debe de ser igual para poder habilitar los terminos y condiciones</p>
-    </div>
-    <div class="form-group">
-        <p>La contraseña debe de tener un mínimo de 6 caracteres</p>
-        <p>La contraseña debe de tener un máximo de 50 caracteres</p>
-        <p>La contraseña debe de tener una mayúscula</p>
-        <p>La contraseña debe de tener una minúscula</p>
-        <p>La contraseña debe de tener un número</p>
-        <p>La contraseña debe de tener un caracter especial</p>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="PASSWORD" class="form-label">Contraseña:</label>
-        <input asp-for="PASSWORD" required onchange="ValidatePassword()" minlength="6" maxlength="50" title="Por favor, ingresa entre 6 y 50 caracteres" type="password" class="form-control" />
-        <span asp-validation-for="PASSWORD" class="text-danger"></span>
-
-    </div>
-    <div class="form-group">
-        <div id="error-message" class="error-message"></div>
-    </div>
-    <div class="form-group">
-        <label class="form-label">Confirmar Contraseña:</label>
-        <input type="password" required onchange="ValidatePassword()" id="txtPassword" class="form-control" />
-    </div>
-    <div class="form-group mb-5">
-        <div class="custom-control custom-checkbox">
-            <input required type="checkbox"
-                   onchange="javascript:validar(this);"
-                   title="Por favor, marca el checkbox para continuar."
-                   false=""
-                   class="custom-control-input"
-                   id="terms" />
-            <label class="custom-control-label"
-                   for="terms">Acepto los <a href="#">Términos y Condiciones. </a></label>
-            <span id="spanConfirmarContrasenna" style="display:none; color:#d9534f;">Por favor, aceptar terminos y condiciones para continuar</span>
+        <div class="form-group">
+            <label class="form-label" asp-for="IDENTICATION"></label>
+            <input asp-for="IDENTICATION" type="number" class="form-control" placeholder="Ingrese la identificacion" />
+            <span asp-validation-for="IDENTICATION" style="color:red"></span>
         </div>
+        <div class="form-group">
+            <label class="form-label" asp-for="NAME"></label>
+            <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese un nombre para el usuario" />
+            <span asp-validation-for="NAME" style="color:red"></span>
+        </div>
+        <div class="form-group">
+            <label class="form-label" asp-for="LASTNAME"></label>
+            <input asp-for="LASTNAME" type="text" class="form-control" placeholder="Ingrese los apellidos" />
+            <span asp-validation-for="LASTNAME" style="color:red"></span>
+        </div>
+        <div class="form-group">
+            <label class="form-label" asp-for="ID_COUNTRY"></label>
+            <select class="form-control" asp-for="ID_COUNTRY">
+                <option value="">Seleccione un país</option>
+                @foreach (var countries in ViewBag.countries)
+                {
+                    <option value="@countries.ID_COUNTRY"> @countries.NAME</option>
+                }
+            </select>
+            <span asp-validation-for="ID_COUNTRY" style="color:red"></span>
+        </div>
+        <div class="form-group">
+            <label class="form-label" asp-for="EMAIL"></label>
+            <input asp-for="EMAIL" type="email" class="form-control" placeholder="Ingrese un correo electrónico" />
+            <span asp-validation-for="EMAIL" style="color:red"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PASSWORD" class="form-label"></label>
+            <input asp-for="PASSWORD" onchange="ValidatePassword()" type="password" class="form-control" placeholder="Ingrese su contraseña" />
+            <span asp-validation-for="PASSWORD" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PASSWORD_REPEAT" class="form-label"></label>
+            <input asp-for="PASSWORD_REPEAT" onchange="ValidatePassword()" type="password" class="form-control" placeholder="Ingrese su contraseña" />
+            <span asp-validation-for="PASSWORD_REPEAT" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-5">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox"
+                       onclick="javascript:validar(this);"
+                       false=""
+                       class="custom-control-input"
+                       id="terms" />
+                <label class="custom-control-label"
+                       for="terms">Acepto los <a href="#">Términos y Condiciones</a></label>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button class="btn btn-primary mb-2" type="submit" id="btnCrearCuenta"> Crear cuenta de estudiante</button>
+            <br>
+            <a class="text-body text-underline"
+               asp-controller="Authentication" asp-action="Login">¿Ya tiene una cuenta? Iniciar Sesión</a>
+        </div>
+        @{
+            if (@ViewBag.mensaje == "SUCCESS")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+                ;
 
+            }
+            if (@ViewBag.mensaje == "ERROR")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+                ;
+
+            }
+
+            if (@ViewBag.mensaje != "ERROR" && @ViewBag.mensaje != "SUCCESS" && @ViewBag.mensaje != null && @ViewBag.mensaje != "")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaUsuario();\r\n      });       </script>")
+                ;
+
+            }
+        }
     </div>
-    <div class="form-group text-center">
-        <button class="btn btn-primary mb-2"
-                id="btnCrearCuenta"
-                type="submit">
-            Crear cuenta de Profesor(a)
-        </button><br>
-        <a class="text-body text-underline"
-           asp-controller="Authentication" asp-action="Login">¿Ya tiene una cuenta? Iniciar Sesión</a>
-    </div>
-    @{
-        if (@ViewBag.mensaje == "SUCCESS")
-        {
-            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
-            ;
-
-        }
-        if (@ViewBag.mensaje == "ERROR")
-        {
-            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
-            ;
-
-        }
-
-        if (@ViewBag.mensaje != "ERROR" && @ViewBag.mensaje != "SUCCESS" && @ViewBag.mensaje != null && @ViewBag.mensaje != "")
-        {
-            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaUsuario();\r\n      });       </script>")
-            ;
-
-        }
-    }
 </form>
 
 
 
 <script>
-
     const btnCrearCuenta = document.getElementById('btnCrearCuenta');
     const txtTerminos = document.getElementById('terms');
-    const pMensajeContrasenna = document.getElementById('pMensajeContrasenna');
-    const spanConfirmarContrasenna = document.getElementById('spanConfirmarContrasenna');
     btnCrearCuenta.disabled = true;
     txtTerminos.disabled = true;
 
+    //Función que compara ambas contraseñas
     function ValidatePassword() {
+
         const PASSWORD = document.getElementById('PASSWORD');
-        const txtPassword = document.getElementById('txtPassword');
-        let uppercaseRegex = /[A-Z]/;  // Expresión regular para verificar si hay al menos una letra mayúscula
-        let lowercaseRegex = /[a-z]/;  // Expresión regular para verificar si hay al menos una letra minúscula
-        let numberRegex = /[0-9]/;     // Expresión regular para verificar al menos un número
-        var specialCharRegex = /[!@@#$%^&*(),.?":{}|<>]/; // Expresión regular para verificar al menos un carácter especial
-        let errorMessageElement = document.getElementById("error-message");
-
-        var hasUppercase = uppercaseRegex.test(PASSWORD.value);
-        var hasLowercase = lowercaseRegex.test(PASSWORD.value);
-        var hasNumber = numberRegex.test(PASSWORD.value);
-        var hasSpecialChar = specialCharRegex.test(PASSWORD.value);
-
-        var errorMessage = "Información faltante en la contraseña: ";
-        var errorMessages = [];
-
-        if (!hasUppercase) {
-            errorMessages.push("al menos una letra mayúscula");
-        }
-
-        if (!hasLowercase) {
-            errorMessages.push("al menos una letra minúscula");
-        }
-
-        if (!hasNumber) {
-            errorMessages.push("al menos un número");
-        }
-
-        if (!hasSpecialChar) {
-            errorMessages.push("al menos un carácter especial");
-        }
-
-        if (errorMessages.length === 0) {
-            errorMessageElement.textContent = ""; // Limpiar el mensaje de error si la contraseña es válida
-        } else {
-            errorMessageElement.textContent = errorMessage + errorMessages.join(", ");
-            document.getElementById("PASSWORD").value = "";  // Limpiar el campo de contraseña
-        }
+        const txtPassword = document.getElementById('PASSWORD_REPEAT');
 
         if (PASSWORD.value == txtPassword.value) {
             txtTerminos.disabled = false;
-            pMensajeContrasenna.style.display = "none";
-            spanConfirmarContrasenna.style.display = "none";
         } else {
             txtTerminos.disabled = true;
-            txtTerminos.checked = false;
-            btnCrearCuenta.disabled = true;
-            pMensajeContrasenna.style.display = "";
-            spanConfirmarContrasenna.style.display = "";
         }
 
     }
@@ -182,12 +121,46 @@
     function validar(obj) {
         if (obj.checked == true) {
             btnCrearCuenta.disabled = false;
-            spanConfirmarContrasenna.style.display = "none";
-
         } else {
             btnCrearCuenta.disabled = true;
-            spanConfirmarContrasenna.style.display = "";
-
         }
+    }
+
+    function alertaSuccess() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Registro realizado.',
+            text: 'Se ha realizado tu registro correctamente.',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Authentication/Login';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Authentication/Login';
+        }, 3000);
+    }
+
+    function alertaError() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Registro NO realizado',
+            text: 'Hubo un error al hacer el registro.',
+            showConfirmButton: true
+        })
+    }
+
+    function alertaUsuario() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Registro NO realizado',
+            text: '@ViewBag.mensaje',
+            showConfirmButton: true
+        })
     }
 </script>
