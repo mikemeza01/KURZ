@@ -148,6 +148,13 @@ namespace KURZ.Models
                     student_edit.PASSWORD = password;
 
                 }
+
+                var student_to_edit = _usersModel.byEmail(student_edit.EMAIL);
+                if (student_to_edit != null)
+                {
+                    student_edit.CONFIRMATION = student_to_edit.CONFIRMATION;
+                    student_edit.STATUS = student_to_edit.STATUS;
+                }
                 // Restablecer campos predeterminados
                 student_edit.USERNAME = student_edit.EMAIL;
                 student_edit.CELLPHONE = null;
@@ -193,6 +200,14 @@ namespace KURZ.Models
                     student_edit.PASSWORD = password;
 
                 }
+
+                //Mantener correo confirmado al editar perfil.
+                var student_to_edit = _usersModel.byEmail(student_edit.EMAIL);
+                if (student_to_edit != null)
+                {
+                    student_edit.CONFIRMATION = student_to_edit.CONFIRMATION;
+                }
+
                 // Restablecer campos predeterminados
                 student_edit.USERNAME = student_edit.EMAIL;
                 student_edit.CELLPHONE = null;

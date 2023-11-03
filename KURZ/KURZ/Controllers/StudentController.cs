@@ -237,61 +237,58 @@ namespace KURZ.Controllers
 
             var user = _usersModel.byUserName(nombreusuario);
 
-            //Convierte el Entitie de Users a uno tipo UserDetails que maneja una variable tipo byte para guardar la imagen
-            var userDetail = ConvertUsers(user);
-
-            userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO, _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
-
+            
             var countries = _countriesModel.CountriesList();
             ViewBag.countries = countries;
-            return View(userDetail);
+            return View(user);
         }
 
-        [Authorize(Roles = "Student")]
-        public IActionResult EditAccount(Users student)
-        {
-            try
-            {
-                ClaimsPrincipal claimstudent = HttpContext.User;
-                string nombreusuario = "";
+        //[Authorize(Roles = "Student")]
+        //[HttpPost]
+        //public IActionResult EditAccount(Users student)
+        //{
+        //    try
+        //    {
+        //        ClaimsPrincipal claimstudent = HttpContext.User;
+        //        string nombreusuario = "";
 
-                if (claimstudent.Identity.IsAuthenticated)
-                {
-                    nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
-                }
-                var user = _usersModel.byUserName(nombreusuario);
+        //        if (claimstudent.Identity.IsAuthenticated)
+        //        {
+        //            nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+        //        }
+        //        var user = _usersModel.byUserName(nombreusuario);
 
-                user.NAME = student.NAME;
-                user.LASTNAME = student.LASTNAME;
-                user.PROFILE = student.PROFILE;
-                user.ID_COUNTRY = student.ID_COUNTRY;
-                user.EMAIL = student.EMAIL;
-                user.IDENTICATION = student.IDENTICATION;
-                user.USERNAME = student.EMAIL;
-                user.PHOTO = student.PHOTO;
+        //        user.NAME = student.NAME;
+        //        user.LASTNAME = student.LASTNAME;
+        //        user.PROFILE = student.PROFILE;
+        //        user.ID_COUNTRY = student.ID_COUNTRY;
+        //        user.EMAIL = student.EMAIL;
+        //        user.IDENTICATION = student.IDENTICATION;
+        //        user.USERNAME = student.EMAIL;
+        //        user.PHOTO = student.PHOTO;
 
-                var countries = _countriesModel.CountriesList();
-                ViewBag.countries = countries;
+        //        var countries = _countriesModel.CountriesList();
+        //        ViewBag.countries = countries;
 
-                var resultado = _studentModel.StudentEditAccount(student);
+        //        var resultado = _studentModel.StudentEditAccount(student);
 
-                if (resultado == "ok")
-                {
-                    ViewBag.mensaje = "SUCCESS";
-                    var userDetail = ConvertUsers(user);
-                    userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO, _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
+        //        if (resultado == "ok")
+        //        {
+        //            ViewBag.mensaje = "SUCCESS";
+        //            var userDetail = ConvertUsers(user);
+        //            userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO, _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
 
-                    return View(userDetail);
-                }
-                else
-                    ViewBag.mensaje = "ERROR";
-                return View(student);
-            }
-            catch (Exception)
-            {
-                return View("Error");
-            }
-        }
+        //            return View(userDetail);
+        //        }
+        //        else
+        //            ViewBag.mensaje = "ERROR";
+        //        return View(student);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return View("Error");
+        //    }
+        //}
 
         //CONFIGURAR EL DESACTIVAR CUENTA.
         //[Authorize(Roles = "Student")]

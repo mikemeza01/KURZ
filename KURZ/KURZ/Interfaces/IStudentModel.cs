@@ -10,5 +10,7 @@ namespace KURZ.Interfaces
         public string StudentCreate(Users student, string host);
 
         public string StudentEdit(Users student);
+
+        public string StudentEditAccount(Users student_edit);
     }
 }
