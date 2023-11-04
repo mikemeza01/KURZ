@@ -14,63 +14,63 @@
     }
     <form asp-action="Edit" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly"></div>
-        <div class="form-group">
-            <label class="form-label">Foto</label>
-            <div class="media align-items-center">
-                <a href=""
-                   class="media-left mr-16pt">
-                    @if (Model.ProfilePicture != null)
-                    {
-                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)"
-                         alt="people"
-                         id="profilePicturePreview"
-                         width="70"
-                         height="70"
-                         class="rounded-circle" />
-                    }
-                </a>
+        <!--ID-->
+        <input asp-for="ID_USER" type="hidden" class="form-control" readonly />
+        <!--Photo-->
+        <div class="col-md-7 p-0">
+            <div class="form-group">
+                <label class="form-label">Foto de perfil</label>
+                <div class="media align-items-center">
+                    <a href=""
+                       class="media-left mr-16pt">
+                        @if (Model.ProfilePicture != null)
+                        {
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)"
+                             alt="people"
+                             id="profilePicturePreview"
+                             width="70"
+                             height="70"
+                             class="rounded-circle" />
+                        }
+                    </a>
 
-                <div class="media-body">
-                    <div class="custom-file">
-                        <input type="file"
-                               title="Seleccionar archivo"
-                               asp-for="ProfilePicture"
-                               class="custom-file-input"
-                               name="newProfilePicture"
-                               id="newProfilePicture"
-                               onchange="previewImage(event)">
-                        <label class="custom-file-label"
-                               asp-for="ProfilePicture">Elegir Foto</label>
+                    <div class="media-body">
+                        <div class="custom-file">
+                            <input type="file"
+                                   title="Seleccionar archivo"
+                                   asp-for="ProfilePicture"
+                                   class="custom-file-input"
+                                   name="newProfilePicture"
+                                   id="newProfilePicture"
+                                   onchange="previewImage(event)">
+                            <label class="custom-file-label"
+                                   asp-for="ProfilePicture">Elegir Foto</label>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!--IDENTIFICACION-->
         <div class="form-group">
-            <input asp-for="PHOTO" class="form-control" hidden />
-            <label asp-for="IDENTICATION" class="form-label">Identificación:</label>
-            <input asp-for="IDENTICATION" class="form-control" />
-            <span asp-validation-for="IDENTICATION" class="text-danger"></span>
+            <label class="form-label" asp-for="IDENTICATION"></label>
+            <input asp-for="IDENTICATION" type="text" class="form-control" readonly="readonly" />
+            <span asp-validation-for="IDENTICATION" style="color:red"></span>
         </div>
+        <!--Nombre-->
         <div class="form-group">
-            <label asp-for="NAME" class="form-label">Nombre:</label>
-            <input asp-for="NAME" class="form-control" />
-            <span asp-validation-for="NAME" class="text-danger"></span>
+            <label class="form-label" asp-for="NAME"></label>
+            <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese su nombre " />
+            <span asp-validation-for="NAME" style="color:red"></span>
         </div>
+        <!--Apellido-->
         <div class="form-group">
-            <label asp-for="LASTNAME" class="control-label">Apellidos:</label>
-            <input asp-for="LASTNAME" class="form-control" />
-            <span asp-validation-for="LASTNAME" class="text-danger"></span>
+            <label class="form-label" asp-for="LASTNAME"></label>
+            <input asp-for="LASTNAME" type="text" class="form-control" placeholder="Ingrese " />
+            <span asp-validation-for="LASTNAME" style="color:red"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="EMAIL" class="form-label">Correo electrónico</label>
-            <input asp-for="EMAIL" class="form-control" />
-            <span asp-validation-for="EMAIL" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="PROFILE" class="control-label">Perfil</label>
-            <input rows="5" asp-for="PROFILE" class="form-control" />
-            <span asp-validation-for="PROFILE" class="text-danger"></span>
-        </div>
+        <!--Email-->
+        <input asp-for="EMAIL" type="hidden" class="form-control" readonly />
+        <!--Pais-->
         <div class="form-group">
             <label class="form-label" asp-for="ID_COUNTRY"></label>
             <select class="form-control" asp-for="ID_COUNTRY">
@@ -80,6 +80,18 @@
                 }
             </select>
         </div>
+        <!--Perfil-->
+        <div class="form-group">
+            <label class="form-label" asp-for="PROFILE"></label>
+            <input asp-for="PROFILE" type="text" class="form-control" placeholder="Ingrese descripcion de su perfil" />
+            <span asp-validation-for="PROFILE" style="color:red"></span>
+        </div>
+
+        <button type="submit" asp-controller="Student" asp-action="MyAccount"
+                class="btn btn-accent">
+            Cancelar
+        </button>
+
         <button type="submit"
                 class="btn btn-primary">
             Guardar Cambios
