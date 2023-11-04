@@ -37440,6 +37440,10 @@ label {
     margin-right: 10px;
 }
 
+.acciones {
+    text-align: center;
+}
+
 .acciones a {
     margin-bottom: 5px;
 }

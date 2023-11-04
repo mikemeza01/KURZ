@@ -28,17 +28,50 @@ namespace KURZ.Controllers
         public IActionResult Create()
         {
             var categories = _categoriesModel.CategoriesList();
-            ViewBag.Categories = categories;    
-            var subcategories = _SubcategoriesModel.SubCategoriesList();
-            ViewBag.Subcategories = subcategories;  
+            ViewBag.Categories = categories;
+            ViewBag.mensaje = "";
             return View();
         }
+
         [HttpPost]
-        public IActionResult Create(Topics topics)
+        public IActionResult Create(Topics topic)
         {
-            //LLamada a la lista de datos de los topics.
-            return View();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var categories = _categoriesModel.CategoriesList();
+                    ViewBag.categories = categories;
+
+                    var resultado = _topicsModel.TopicsCreate(topic);
+                    if (resultado == "ok")
+                    {
+                        ViewBag.mensaje = "SUCCESS";
+                        return View(topic);
+                    }
+                    else
+                        ViewBag.mensaje = "ERROR";
+                    return View(topic);
+                }
+                else
+                {
+                    return View(topic);
+                }
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
+
+        [HttpPost]
+        public List<SubCategories> SubcategoriesByCategory(SubCategories subcategory)
+        {
+            var subcategories = _SubcategoriesModel.SubcategoriesByCategory(subcategory.ID_CATEGORY);
+            return subcategories;
+        }
+
         [HttpGet]
         public IActionResult CategoriesList()
         {
@@ -166,6 +199,150 @@ namespace KURZ.Controllers
                 return View("Error");
             }
         }
+
+
+        [HttpGet]
+        public IActionResult SubCategoriesList()
+        {
+            var subcategories = _SubcategoriesModel.SubCategoriesList();
+            return View(subcategories);
+        }
+
+        [HttpGet]
+        public IActionResult CreateSubcategorie()
+        {
+            var categories = _categoriesModel.CategoriesList();
+            ViewBag.categories = categories;
+            ViewBag.mensaje = "";
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateSubcategorie(SubCategories subcategory)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var categories = _categoriesModel.CategoriesList();
+                    ViewBag.categories = categories;
+
+                    var resultado = _SubcategoriesModel.CreateSubcategory(subcategory);
+                    if (resultado == "ok")
+                    {
+                        ViewBag.mensaje = "SUCCESS";
+                        return View(subcategory);
+                    }
+                    else
+                        ViewBag.mensaje = "ERROR";
+                    return View(subcategory);
+                }
+                else
+                {
+                    return View(subcategory);
+                }
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+
+            //return RedirectToAction(nameof(CategoriesList));
+        }
+
+        [HttpGet]
+        public IActionResult EditSubcategorie(int? ID)
+        {
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var subcategory = _SubcategoriesModel.SubcategoryDetail(ID);
+            if (subcategory == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+
+            var categories = _categoriesModel.CategoriesList();
+            ViewBag.categories = categories;
+
+            return View(subcategory);
+        }
+
+        [HttpPost]
+        public IActionResult EditSubcategorie(SubCategories subcategory)
+        {
+            try
+            {
+                var categories = _categoriesModel.CategoriesList();
+                ViewBag.categories = categories;
+
+                if (subcategory.ID_SUBCATEGORY == 1) {
+                    subcategory.ID_CATEGORY = 1;
+                }
+
+                var resultado = _SubcategoriesModel.SubcategoryEdit(subcategory);
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(subcategory);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(subcategory);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult DeleteSubcategorie(int? ID)
+        {
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var subcategory = _SubcategoriesModel.SubcategoryDetail(ID);
+            if (subcategory == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+            return View(subcategory);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteSubcategorie(SubCategories subcategory)
+        {
+            try
+            {
+
+                var resultado = _SubcategoriesModel.SubcategoryDelete(subcategory);
+                if (resultado > 0)
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(subcategory);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(subcategory);
+
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
+
+
 
 
         [HttpGet]

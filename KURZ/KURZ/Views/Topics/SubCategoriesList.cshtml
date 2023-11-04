@@ -1,26 +1,25 @@
-﻿@model IEnumerable<KURZ.Entities.TopicsView>
+﻿@model IEnumerable<KURZ.Entities.SubCategoriesView>
 @{
     ViewData["Title"] = "Temas";
     Layout = "_Admin";
 }
 <div class="row mb-2">
     <div class="col-auto">
-        <a class="btn btn-outline-primary" asp-controller="Topics" asp-action="Create">Crear Tema</a>
+        <a class="btn btn-outline-primary" asp-controller="Topics" asp-action="CreateSubcategorie">Crear Subcategoría</a>
     </div>
 </div>
 <div class="card mb-lg-32pt">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title text-center">Temas</h4>
+                <h4 class="card-title text-center">Subcategorías</h4>
                 <br />
-                <table id="TableList" class="table tableSmall">
+                <table id="TableSubcategories" class="table tableSmall">
                     <thead>
                         <tr>
                             <th class="text-center">@Html.DisplayNameFor(model => model.NAME)</th>
                             <th class="text-center">@Html.DisplayNameFor(model => model.DESCRIPTION)</th>
                             <th class="text-center">@Html.DisplayNameFor(model => model.CATEGORY)</th>
-                            <th class="text-center">@Html.DisplayNameFor(model => model.SUBCATEGORY)</th>
                             <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
@@ -33,18 +32,17 @@
                                 <td class="text-center">@item.NAME</td>
                                 <td class="text-center">@item.DESCRIPTION</td>
                                 <td class="text-center">@item.CATEGORY</td>
-                                <td class="text-center">@item.SUBCATEGORY</td>
 
                                 <td class="acciones">
 
-                                    <a class="btn btn-primary" asp-controller="Topics" asp-route-ID="@item.ID_TOPIC" asp-action="EditTopic">
+                                    <a class="btn btn-primary" asp-controller="Topics" asp-route-ID="@item.ID_SUBCATEGORY" asp-action="EditSubcategorie">
                                         <i class="material-icons">create</i>
                                     </a>
 
 
-                                    @if (@item.ID_TOPIC != 1)
+                                    @if (@item.ID_SUBCATEGORY != 1)
                                     {
-                                        <a class="btn btn-accent deleteTopic" data-id="@item.ID_TOPIC">
+                                        <a class="btn btn-accent deleteCategory" data-id="@item.ID_SUBCATEGORY">
                                             <i class="material-icons">close</i>
                                         </a>
                                     }
@@ -60,21 +58,21 @@
 
 </div>
 
-<div class="modal" tabindex="1" role="dialog" id="deleteTopic" aria-hidden="true">
+<div class="modal" tabindex="1" role="dialog" id="deleteCategory" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Eliminar Tema</h4>
+                <h4 class="modal-title">Eliminar Subcategoría</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div id="deleteTopicbody" class="modal-body">
+            <div id="deteleteCategorybody" class="modal-body">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-accent pull-left" data-dismiss="modal">Cancelar</button>
                 <button type="button"
-                        class="btn btn-primary" id="deleteTopicConfirm">
+                        class="btn btn-primary" id="deleteCategoryConfirm">
                     Confirmar
                 </button>
             </div>
@@ -87,43 +85,43 @@
     $(document).ready(function () {
 
         //delete
-        $(document).on('click', '.deleteTopic', function (event) {
+        $(document).on('click', '.deleteCategory', function (event) {
             event.preventDefault();
             event.stopImmediatePropagation();
 
 
-            var id_topic = $(this).data('id');
+            var id_subcategory = $(this).data('id');
 
             $.ajax({
-                url: '/Topics/DeleteTopic/' + id_topic,
+                url: '/Topics/DeleteSubcategorie/' + id_subcategory,
                 type: 'GET',
                 success: function (data) {
-                    $('#deleteTopicbody').html(data);
-                    $('#deleteTopic').modal('show');
-                    $("#deleteTopic").appendTo("body");
+                    $('#deteleteCategorybody').html(data);
+                    $('#deleteCategory').modal('show');
+                    $("#deleteCategory").appendTo("body");
                 },
                 error: function () {
-                    alert("Hubo un problema para eliminar el tema")
+                    alert("Hubo un problema para eliminar la categoría")
                 }
             });
         });
 
         //delete user confirm
-        $(document).on('click', '#deleteTopicConfirm', function (event) {
+        $(document).on('click', '#deleteCategoryConfirm', function (event) {
             event.preventDefault();
             event.stopImmediatePropagation();
 
-            var id_topic = $('#ID_TOPIC').val();
+            var id_subcategory = $('#ID_SUBCATEGORY').val();
 
             $.ajax({
-                url: '/Topics/DeleteTopic/' + id_topic,
+                url: '/Topics/DeleteSubcategorie/' + id_subcategory,
                 type: 'POST',
                 data: {
-                    ID_TOPIC: id_topic
+                    ID_SUBCATEGORY: id_subcategory
                 },
                 success: function (data) {
 
-                    $('#deleteTopic').modal('hide');
+                    $('#deleteCategory').modal('hide');
                     alertaSuccess();
 
                 },
@@ -138,17 +136,17 @@
             Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: 'Tema eliminado.',
-                text: 'Tema eliminado correctamente',
+                title: 'Subcategoría eliminada.',
+                text: 'Subcategoría eliminada correctamente',
                 timer: 5000,
                 showConfirmButton: true,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '/Topics';
+                    window.location.href = '/Topics/SubCategoriesList';
                 }
             });
             setTimeout(() => {
-                window.location.href = '/Topics';
+                window.location.href = '/Topics/SubCategoriesList';
             }, 5000);
         }
 
@@ -156,8 +154,8 @@
             Swal.fire({
                 position: 'top-center',
                 icon: 'error',
-                title: 'Tema no eliminado.',
-                text: 'Hubo un error al eliminar el tema',
+                title: 'Subcategoría no eliminada.',
+                text: 'Hubo un error al eliminar la subcategoría',
                 showConfirmButton: true
             })
         }

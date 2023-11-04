@@ -4,8 +4,14 @@ namespace KURZ.Interfaces
 {
     public interface ITopicsModel
     {
-        public int TopicsCreate(Topics topic);
-        public List<Topics> TopicsList();
+        public string TopicsCreate(Topics topic);
+        public List<TopicsView> TopicsList();
+
+        public string TopicsEdit(Topics topic);
+
+        public Topics TopicsDetail(int? ID);
+
+        public int TopicDelete(Topics topic);
 
     }
 }

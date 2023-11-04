@@ -22,4 +22,18 @@ namespace KURZ.Entities
         [Display(Name = "Categoría")]
         public int ID_CATEGORY { get; set; }
     }
+
+    public class SubCategoriesView
+    {
+        public int ID_SUBCATEGORY { get; set; }
+
+        [Display(Name = "Nombre de la Subcategoría")]
+        public string? NAME { get; set; }
+
+        [Display(Name = "Descripción")]
+        public string? DESCRIPTION { get; set; }
+
+        [Display(Name = "Categoría")]
+        public string? CATEGORY { get; set; }
+    }
 }
