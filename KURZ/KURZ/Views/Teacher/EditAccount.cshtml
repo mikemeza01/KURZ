@@ -1,43 +1,83 @@
-﻿@{
+﻿@model KURZ.Entities.UsersBindingEdit
+
+@{
     ViewData["Title"] = "Editar Cuenta";
     Layout = "_TeacherH";
 }
-<div class="col-md-7 p-0">
+<form asp-action="EditAccount" class="align-items-center" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <!--ID-->
+    <input asp-for="ID_USER" type="hidden" class="form-control" readonly />
+    <!--IDENTIFICACION-->
     <div class="form-group">
-        <label class="form-label">Usuario</label>
-        <input type="text"
-               class="form-control"
-               value="profesor_juan_perez" readonly>
+        <label class="form-label" asp-for="IDENTICATION"></label>
+        <input asp-for="IDENTICATION" type="text" class="form-control" />
+        <span asp-validation-for="IDENTICATION" style="color:red"></span>
     </div>
+    <!--CELLPHONE-->
     <div class="form-group">
-        <label class="form-label">Identificación</label>
-        <input type="text"
-               class="form-control"
-               value="302220444">
+        <label class="form-label" asp-for="CELLPHONE"></label>
+        <input asp-for="CELLPHONE" type="text" class="form-control" placeholder="Ingrese su número de celular" />
+        <span asp-validation-for="CELLPHONE" style="color:red"></span>
     </div>
+    <!--ADRESS-->
     <div class="form-group">
-        <label class="form-label">Correo electrónico</label>
-        <input type="email"
-               class="form-control"
-               value="profesorjuanperez@gmail.com">
-    </div>
-    <div class="form-group">
-        <label class="form-label">Cuenta Bancaria</label>
-        <input type="text"
-               class="form-control"
-               value="10020030012345">
-    </div>
-    <div class="form-group">
-        <label class="form-label">Contraseña</label>
-        <input type="password"
-               class="form-control"
-               placeholder="*****">
-        <small class="form-text text-muted">Dejar en blanco para no cambiarla</small>
-    </div>
-    
+        <label class="form-label" asp-for="ADDRESS"></label>
+        <input asp-for="ADDRESS" type="text" class="form-control" placeholder="Ingrese su dirección " />
+        <span asp-validation-for="ADDRESS" style="color:red"></span>
+    </div><div class="col-md-7 p-0">
+        <!--STATE-->
+        <div class="form-group">
+            <label class="form-label" asp-for="STATE"></label>
+            <input asp-for="STATE" type="text" class="form-control" placeholder="Ingrese el estado " />
+            <span asp-validation-for="STATE" style="color:red"></span>
+        </div>
+        <!--CITY-->
+        <div class="form-group">
+            <label class="form-label" asp-for="CITY"></label>
+            <input asp-for="CITY" type="text" class="form-control" placeholder="Ingrese la cuidad " />
+            <span asp-validation-for="CITY" style="color:red"></span>
+        </div>
+        <!--PASSWORD-->
+        <div class="form-group">
+            <label class="form-label" asp-for="PASSWORD"></label><span>(Dejar en blanco para no cambiar la contraseña)</span>
+            <input asp-for="PASSWORD" type="password" class="form-control" placeholder="Ingrese una contraseña" />
+            <span asp-validation-for="PASSWORD" style="color:red"></span>
+        </div>
+        <!--PASSWORD_REPEAT-->
+        <div class="form-group">
+            <label class="form-label" asp-for="PASSWORD_REPEAT"></label><span>(Dejar en blanco para no cambiar la contraseña)</span>
+            <input asp-for="PASSWORD_REPEAT" type="password" class="form-control" placeholder="Repetir contraseña" />
+            <span asp-validation-for="PASSWORD_REPEAT" style="color:red"></span>
+        </div>
 
-    <button type="submit"
-            class="btn btn-primary">
-        Guardar Cambios
-    </button>
+        <button type="submit" asp-controller="Student" asp-action="MyAccount"
+                class="btn btn-accent">
+            Cancelar
+        </button>
+        <button type="submit"
+                class="btn btn-primary">
+            Guardar Cambios
+        </button>
+</form>
 </div>
+@{
+    if (@ViewBag.mensaje == "SUCCESS")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+        ;
+
+    }
+    if (@ViewBag.mensaje == "ERROR")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+        ;
+
+    }
+
+    if (@ViewBag.mensaje != "ERROR" && @ViewBag.mensaje != "SUCCESS" && @ViewBag.mensaje != null && @ViewBag.mensaje != "")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaUsuario();\r\n      });       </script>")
+        ;
+    }
+    }
