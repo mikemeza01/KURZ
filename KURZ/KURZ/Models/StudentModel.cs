@@ -200,20 +200,18 @@ namespace KURZ.Models
                     student_edit.PASSWORD = password;
 
                 }
-
+                //Crear Boton de desactivar cuenta
                 //Mantener correo confirmado al editar perfil.
                 var student_to_edit = _usersModel.byEmail(student_edit.EMAIL);
                 if (student_to_edit != null)
                 {
                     student_edit.CONFIRMATION = student_to_edit.CONFIRMATION;
+                    student_edit.STATUS = student_to_edit.STATUS;
+                    student_edit.PHOTO = student_to_edit.PHOTO;
                 }
 
                 // Restablecer campos predeterminados
                 student_edit.USERNAME = student_edit.EMAIL;
-                student_edit.CELLPHONE = null;
-                student_edit.ADDRESS = null;
-                student_edit.STATE = null;
-                student_edit.CITY = null;
                 student_edit.ID_ROL = 3; // ID de rol para estudiante
 
 

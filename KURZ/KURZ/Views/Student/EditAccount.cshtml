@@ -25,39 +25,60 @@
         <input asp-for="ADDRESS" type="text" class="form-control" placeholder="Ingrese su dirección " />
         <span asp-validation-for="ADDRESS" style="color:red"></span>
     </div><div class="col-md-7 p-0">
-        <!--STATE-->
-        <div class="form-group">
-            <label class="form-label" asp-for="STATE"></label>
-            <input asp-for="STATE" type="text" class="form-control" placeholder="Ingrese el estado " />
-            <span asp-validation-for="STATE" style="color:red"></span>
-        </div>
-        <!--CITY-->
-        <div class="form-group">
-            <label class="form-label" asp-for="CITY"></label>
-            <input asp-for="CITY" type="text" class="form-control" placeholder="Ingrese la cuidad " />
-            <span asp-validation-for="CITY" style="color:red"></span>
-        </div>
-        <!--PASSWORD-->
-        <div class="form-group">
-            <label class="form-label" asp-for="PASSWORD"></label><span>(Dejar en blanco para no cambiar la contraseña)</span>
-            <input asp-for="PASSWORD" type="password" class="form-control" placeholder="Ingrese una contraseña" />
-            <span asp-validation-for="PASSWORD" style="color:red"></span>
-        </div>
-        <!--PASSWORD_REPEAT-->
-        <div class="form-group">
-            <label class="form-label" asp-for="PASSWORD_REPEAT"></label><span>(Dejar en blanco para no cambiar la contraseña)</span>
-            <input asp-for="PASSWORD_REPEAT" type="password" class="form-control" placeholder="Repetir contraseña" />
-            <span asp-validation-for="PASSWORD_REPEAT" style="color:red"></span>
-        </div>
+    <!--STATE-->
+    <div class="form-group">
+        <label class="form-label" asp-for="STATE"></label>
+        <input asp-for="STATE" type="text" class="form-control" placeholder="Ingrese el estado " />
+        <span asp-validation-for="STATE" style="color:red"></span>
+    </div>
+    <!--CITY-->
+    <div class="form-group">
+        <label class="form-label" asp-for="CITY"></label>
+        <input asp-for="CITY" type="text" class="form-control" placeholder="Ingrese la cuidad " />
+        <span asp-validation-for="CITY" style="color:red"></span>
+    </div>
+    <!--Email-->
+    <div class="form-group">
+        <label class="form-label" asp-for="EMAIL"></label>
+        <input asp-for="EMAIL" type="text" class="form-control" placeholder="Ingrese su correo" />
+        <span asp-validation-for="EMAIL" style="color:red"></span>
+    </div>
+    <!--PASSWORD-->
+    <div class="form-group">
+        <label class="form-label" asp-for="PASSWORD"></label>
+        <br />
+        <span>(Dejar en blanco para no cambiar la contraseña)</span>
+        <input asp-for="PASSWORD" type="password" class="form-control" placeholder="Ingrese una contraseña" />
+        <span asp-validation-for="PASSWORD" style="color:red"></span>
+    </div>
+    <!--PASSWORD_REPEAT-->
+    <div class="form-group">
+        <label class="form-label" asp-for="PASSWORD_REPEAT"></label>
+        <br />
+        <span>(Dejar en blanco para no cambiar la contraseña)</span>
+        <input asp-for="PASSWORD_REPEAT" type="password" class="form-control" placeholder="Repetir contraseña" />
+        <span asp-validation-for="PASSWORD_REPEAT" style="color:red"></span>
+    </div>
+    <!--Campos Escondidos-->
+    <!--Nombre-->
+    <input asp-for="NAME" type="hidden" class="form-control" readonly />
+    <!--Apellido-->
+    <input asp-for="LASTNAME" type="hidden" class="form-control" readonly />
+    <!--Pais-->
+    <input asp-for="ID_COUNTRY" type="hidden" class="form-control" readonly />
+    <!--Perfil-->
+    <input asp-for="PROFILE" type="hidden" class="form-control" readonly />
+    <!--Photo-->
+    <input asp-for="PHOTO" type="hidden" class="form-control" readonly />
 
-        <button type="submit" asp-controller="Student" asp-action="MyAccount"
-                class="btn btn-accent">
-            Cancelar
-        </button>
-        <button type="submit"
-                class="btn btn-primary">
-            Guardar Cambios
-        </button>
+    <button type="submit" asp-controller="Student" asp-action="MyAccount"
+            class="btn btn-accent">
+        Cancelar
+    </button>
+    <button type="submit"
+            class="btn btn-primary">
+        Guardar Cambios
+    </button>
 </form>
 </div>
 @{

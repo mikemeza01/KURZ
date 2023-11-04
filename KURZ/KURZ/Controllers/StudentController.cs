@@ -237,58 +237,69 @@ namespace KURZ.Controllers
 
             var user = _usersModel.byUserName(nombreusuario);
 
-            
-            var countries = _countriesModel.CountriesList();
-            ViewBag.countries = countries;
-            return View(user);
+            var student_editBindign = new UsersBindingEdit()
+            {
+                ID_USER = user.ID_USER,
+                IDENTICATION = user.IDENTICATION,
+                NAME = user.NAME,
+                LASTNAME = user.LASTNAME,
+                EMAIL = user.EMAIL,
+                PASSWORD = user.PASSWORD,
+                PASSWORD_REPEAT = user.PASSWORD,
+                STATUS = user.STATUS
+            };
+
+            //var countries = _countriesModel.CountriesList();
+            //ViewBag.countries = countries;
+            return View(student_editBindign);
         }
 
-        //[Authorize(Roles = "Student")]
-        //[HttpPost]
-        //public IActionResult EditAccount(Users student)
-        //{
-        //    try
-        //    {
-        //        ClaimsPrincipal claimstudent = HttpContext.User;
-        //        string nombreusuario = "";
+        [Authorize(Roles = "Student")]
+        [HttpPost]
+        public IActionResult EditAccount(UsersBindingEdit student)
+        {
+            try
+            {
+                ClaimsPrincipal claimstudent = HttpContext.User;
+                string nombreusuario = "";
 
-        //        if (claimstudent.Identity.IsAuthenticated)
-        //        {
-        //            nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
-        //        }
-        //        var user = _usersModel.byUserName(nombreusuario);
+                if (claimstudent.Identity.IsAuthenticated)
+                {
+                    nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                }
+                var user = _usersModel.byUserName(nombreusuario);
 
-        //        user.NAME = student.NAME;
-        //        user.LASTNAME = student.LASTNAME;
-        //        user.PROFILE = student.PROFILE;
-        //        user.ID_COUNTRY = student.ID_COUNTRY;
-        //        user.EMAIL = student.EMAIL;
-        //        user.IDENTICATION = student.IDENTICATION;
-        //        user.USERNAME = student.EMAIL;
-        //        user.PHOTO = student.PHOTO;
+                user.NAME = student.NAME;
+                user.LASTNAME = student.LASTNAME;
+                user.PROFILE = student.PROFILE;
+                user.ID_COUNTRY = student.ID_COUNTRY;
+                user.EMAIL = student.EMAIL;
+                user.IDENTICATION = student.IDENTICATION;
+                user.USERNAME = student.EMAIL;
+                user.PHOTO = student.PHOTO;
 
-        //        var countries = _countriesModel.CountriesList();
-        //        ViewBag.countries = countries;
+                //var countries = _countriesModel.CountriesList();
+                //ViewBag.countries = countries;
 
-        //        var resultado = _studentModel.StudentEditAccount(student);
+                var resultado = _studentModel.StudentEditAccount(student);
 
-        //        if (resultado == "ok")
-        //        {
-        //            ViewBag.mensaje = "SUCCESS";
-        //            var userDetail = ConvertUsers(user);
-        //            userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO, _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    var userDetail = ConvertUsers(student);
+                    userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO, _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
 
-        //            return View(userDetail);
-        //        }
-        //        else
-        //            ViewBag.mensaje = "ERROR";
-        //        return View(student);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return View("Error");
-        //    }
-        //}
+                    return View(userDetail);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(student);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
 
         //CONFIGURAR EL DESACTIVAR CUENTA.
         //[Authorize(Roles = "Student")]

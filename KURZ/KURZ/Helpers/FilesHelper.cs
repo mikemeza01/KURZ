@@ -1,5 +1,5 @@
 ﻿using KURZ.Entities;
-using NuGet.DependencyResolver;
+//using NuGet.DependencyResolver;
 
 namespace KURZ.Helpers
 {
