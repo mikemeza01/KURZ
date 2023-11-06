@@ -293,7 +293,7 @@ namespace KURZ.Controllers
                 }
                 else
                     ViewBag.mensaje = "ERROR";
-                return View(student);
+                return View();
             }
             catch (Exception)
             {
@@ -301,28 +301,46 @@ namespace KURZ.Controllers
             }
         }
 
-        //CONFIGURAR EL DESACTIVAR CUENTA.
-        //[Authorize(Roles = "Student")]
-        //public IActionResult DeleteAccount()
-        //{
-        //    return View();
-        //}
-        ////
-        //[Authorize(Roles = "Student")]
-        //[HttpPost]
-        //public IActionResult DeleteAccount()
-        //{
-        //    ClaimsPrincipal claimstudent = HttpContext.User;
-        //    string nombreusuario = "";
+        
+        [Authorize(Roles = "Student")]
+        public IActionResult DeleteAccount()
+        {
+            return View();
+        }
+        
+        [Authorize(Roles = "Student")]
+        [HttpPost]
+        public IActionResult DeleteAccount(bool deleteAccount)
+        {
+           try
+           { 
+                ClaimsPrincipal claimstudent = HttpContext.User;
+                string nombreusuario = "";
 
-        //    if (claimstudent.Identity.IsAuthenticated)
-        //    {
-        //        nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
-        //    }
-        //    var user = _usersModel.byUserName(nombreusuario);
+                if (claimstudent.Identity.IsAuthenticated)
+                {
+                    nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                }
+                var user = _usersModel.byUserName(nombreusuario);
+                var countries = _countriesModel.CountriesList();
+                ViewBag.countries = countries;
+                var resultado = _studentModel.StudentEditAccount(user);
 
-        //    return View(user);
-        //}
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View();
+            }
+
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
 
         [Authorize(Roles = "Student")]
         public IActionResult Advice()

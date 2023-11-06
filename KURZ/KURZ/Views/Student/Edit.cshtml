@@ -86,6 +86,15 @@
         <input asp-for="PROFILE" type="text" class="form-control" placeholder="Ingrese descripcion de su perfil" />
         <span asp-validation-for="PROFILE" style="color:red"></span>
     </div>
+    <!--Campos Escondidos-->
+    <!--CELLPHONE-->
+    <input asp-for="CELLPHONE" type="hidden" class="form-control" readonly />
+    <!--ADRESS-->
+    <input asp-for="ADDRESS" type="hidden" class="form-control" readonly />
+    <!--STATE-->
+    <input asp-for="STATE" type="hidden" class="form-control" readonly />
+    <!--CITY-->
+    <input asp-for="CITY" type="hidden" class="form-control" readonly />
 
     <button type="submit" asp-controller="Student" asp-action="MyAccount"
             class="btn btn-accent">
