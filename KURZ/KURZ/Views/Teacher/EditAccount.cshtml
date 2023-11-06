@@ -38,20 +38,26 @@
             <input asp-for="CITY" type="text" class="form-control" placeholder="Ingrese la cuidad " />
             <span asp-validation-for="CITY" style="color:red"></span>
         </div>
+        <!--EMAIL-->
+        <div class="form-group">
+            <label class="form-label" asp-for="EMAIL"></label>
+            <input asp-for="EMAIL" type="email" class="form-control" placeholder="Ingrese un correo electrónico" />
+            <span asp-validation-for="EMAIL" style="color:red"></span>
+        </div>
         <!--PASSWORD-->
         <div class="form-group">
-            <label class="form-label" asp-for="PASSWORD"></label><span>(Dejar en blanco para no cambiar la contraseña)</span>
+            <label class="form-label" asp-for="PASSWORD"></label><br /><span>(Dejar en blanco para no cambiar la contraseña)</span>
             <input asp-for="PASSWORD" type="password" class="form-control" placeholder="Ingrese una contraseña" />
             <span asp-validation-for="PASSWORD" style="color:red"></span>
         </div>
         <!--PASSWORD_REPEAT-->
         <div class="form-group">
-            <label class="form-label" asp-for="PASSWORD_REPEAT"></label><span>(Dejar en blanco para no cambiar la contraseña)</span>
+            <label class="form-label" asp-for="PASSWORD_REPEAT"></label><br /><span>(Dejar en blanco para no cambiar la contraseña)</span>
             <input asp-for="PASSWORD_REPEAT" type="password" class="form-control" placeholder="Repetir contraseña" />
             <span asp-validation-for="PASSWORD_REPEAT" style="color:red"></span>
         </div>
 
-        <button type="submit" asp-controller="Student" asp-action="MyAccount"
+        <button type="submit" asp-controller="Teacher" asp-action="MyAccount"
                 class="btn btn-accent">
             Cancelar
         </button>

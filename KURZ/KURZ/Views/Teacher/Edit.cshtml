@@ -3,6 +3,7 @@
     ViewData["Title"] = "Editar Perfil";
     Layout = "_TeacherH";
 }
+
 <div class="col-md-7 p-0">
     @if (Model.ProfilePicture != null)
     {
@@ -87,7 +88,7 @@
             <span asp-validation-for="PROFILE" style="color:red"></span>
         </div>
 
-        <button type="submit" asp-controller="Student" asp-action="MyAccount"
+        <button type="submit" asp-controller="Teacher" asp-action="MyAccount"
                 class="btn btn-accent">
             Cancelar
         </button>
@@ -96,10 +97,21 @@
                 class="btn btn-primary">
             Guardar Cambios
         </button>
+        @*
+        <a data-id="@Model.ID_USER"
+        class="btn btn-primary deleteUser">
+        Eliminar Cuenta
+        </a>*@
+        <!-- Botón para abrir el modal -->
+        
+
+
     </form>
 </div>
 
+
 <script>
+
     function previewImage(event) {
         var input = event.target;
         var reader = new FileReader();

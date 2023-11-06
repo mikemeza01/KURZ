@@ -1,5 +1,6 @@
 ﻿using KURZ.Entities;
 using KURZ.Interfaces;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace KURZ.Models
@@ -30,6 +31,37 @@ namespace KURZ.Models
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener la lista de advices: " + ex.Message);
+            }
+        }
+
+        public GetAdvicesById_Result GetAdvicesById(int id)
+        {
+            try
+            {
+                string sql = "[dbo].[GetAdvicesById] @ID_ADVICE";
+
+                var param = new SqlParameter[]
+                {
+                    new SqlParameter()
+                    {
+                        ParameterName= "@ID_ADVICE",
+                        SqlDbType = System.Data.SqlDbType.Int,
+                        Value = id
+                    }
+                };
+
+                var result = _context.GetAdvicesById_Result.FromSqlRaw(sql, param).ToList();
+
+                if (result.Count > 0)
+                {
+                    return result.FirstOrDefault();
+                }
+
+                return new GetAdvicesById_Result();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el advice seleccionado: " + ex.Message);
             }
         }
     }

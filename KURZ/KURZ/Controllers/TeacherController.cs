@@ -195,9 +195,8 @@ namespace KURZ.Controllers
                 user.LASTNAME = teacher.LASTNAME;
                 user.PROFILE = teacher.PROFILE;
                 user.ID_COUNTRY = teacher.ID_COUNTRY;
-                user.EMAIL = teacher.EMAIL;
+               
                 user.IDENTICATION = teacher.IDENTICATION;
-                user.USERNAME = teacher.EMAIL;
                 user.PHOTO = teacher.PHOTO;
 
                 var countries = _countriesModel.CountriesList();
@@ -227,8 +226,76 @@ namespace KURZ.Controllers
         [Authorize(Roles = "Teacher")]
         public IActionResult EditAccount()
         {
-            return View();
+            ClaimsPrincipal claimteacher = HttpContext.User;
+            string nombreusuario = "";
+
+            if (claimteacher.Identity.IsAuthenticated)
+            {
+                nombreusuario = claimteacher.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+            }
+
+            var user = _usersModel.byUserName(nombreusuario);
+
+            var teacher_editBindign = new UsersBindingEdit()
+            {
+                ID_USER = user.ID_USER,
+                IDENTICATION = user.IDENTICATION,
+                NAME = user.NAME,
+                LASTNAME = user.LASTNAME,
+                EMAIL = user.EMAIL,
+                PASSWORD = user.PASSWORD,
+                PASSWORD_REPEAT = user.PASSWORD,
+                STATE= user.STATE,
+                CITY= user.CITY,
+                CELLPHONE = user.CELLPHONE,
+                ADDRESS= user.ADDRESS,
+                STATUS = user.STATUS
+            };
+
+            return View(teacher_editBindign);
         }
+
+        [Authorize(Roles = "Teacher")]
+        [HttpPost]
+        public IActionResult EditAccount(UsersBindingEdit teacher)
+        {
+            try
+            {
+                ClaimsPrincipal claimteacher = HttpContext.User;
+                string nombreusuario = "";
+
+                if (claimteacher.Identity.IsAuthenticated)
+                {
+                    nombreusuario = claimteacher.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                }
+                var user = _usersModel.byUserName(nombreusuario);
+
+                user.IDENTICATION = teacher.IDENTICATION;
+                user.CELLPHONE = teacher.CELLPHONE;
+                user.ADDRESS = teacher.ADDRESS;
+                user.STATE = teacher.STATE;
+                user.CITY = teacher.CITY;
+                user.PASSWORD= teacher.PASSWORD;
+                user.EMAIL = teacher.EMAIL;
+
+                var resultado = _teacherModel.TeacherEdit(user);
+
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+
+                    return View(teacher);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(teacher);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
         [Authorize(Roles = "Teacher")]
         public IActionResult DeleteAccount()
         {

@@ -139,12 +139,18 @@ namespace KURZ.Models
                     teacher.PASSWORD = password;
 
                 }
+                else
+                {
+                    var passwordEncrypt = base64Encode(teacher.PASSWORD);
+                    //se pasa a la entidad la contraseña encriptada
+                    teacher.PASSWORD = passwordEncrypt;
+                }
+                teacher.CELLPHONE = teacher.CELLPHONE ?? "";
 
-                teacher.CELLPHONE = "";
-
-                teacher.ADDRESS = "";
-                teacher.STATE = "";
-                teacher.CITY = "";
+                teacher.ADDRESS = teacher.ADDRESS ?? "";
+                teacher.STATE = teacher.STATE ?? "";
+                teacher.CITY = teacher.CITY ?? "";
+                teacher.USERNAME = teacher.EMAIL;
                 teacher.ID_ROL = 2; //id de rol profesor
 
                 _context.ChangeTracker.Clear();

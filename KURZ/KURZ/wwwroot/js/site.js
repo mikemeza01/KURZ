@@ -8,6 +8,7 @@
         $(document).ready(function () {
 
             var tableUsers = $('#TableUsers');
+            var tableAdvices = $('#TableAdvices');
             var tableCategories = $('#TableCategories');
             var tableSubcategories = $('#TableSubcategories');
             var tableList = $('#TableList');
@@ -17,7 +18,11 @@
                     language: languageDatatable
                 });
             }
-            
+            if (tableAdvices.length > 0) {
+                new DataTable('#TableAdvices', {
+                    language: languageDatatable
+                });
+            }
             if (tableCategories.length > 0) {
                 new DataTable('#TableCategories', {
                     language: languageDatatable,

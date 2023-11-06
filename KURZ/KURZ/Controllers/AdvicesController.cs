@@ -26,5 +26,20 @@ namespace KURZ.Controllers
                 throw;
             }
         }
+
+        [HttpGet]
+        public IActionResult DetailsAdvice(int id)
+        {
+            try
+            {
+                var advices = _advicesModel.GetAdvicesById(id);
+
+                return Json(advices);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
