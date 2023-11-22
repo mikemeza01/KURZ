@@ -97,7 +97,7 @@ namespace KURZ.Models
                 _context.SaveChanges();
 
                 //StringBuilder cuerpo = new StringBuilder("");
-                string cuerpo = ArmarHTML(student);
+                string cuerpo = ArmarHTML(student, host);
                 //cuerpo.Append(student.NAME + student.LASTNAME);
                 //cuerpo.Append("<br>");
                 //cuerpo.Append("<br>");
@@ -229,14 +229,13 @@ namespace KURZ.Models
             }
         }
 
-        public string ArmarHTML(Users datos)
+        public string ArmarHTML(Users datos, String host)
         {
             string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//Correo.html");
             string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
             htmlArchivo = htmlArchivo.Replace("@@Nombre", datos.NAME);
 
-            htmlArchivo = htmlArchivo.Replace("@@Link", "/Authentication/ConfirmationAccount/?username=" + datos.EMAIL + "&token=" + datos.TOKEN
-                + _usersModel.base64Encode(datos.ID_USER.ToString()));
+            htmlArchivo = htmlArchivo.Replace("@@Link", host + "/Authentication/ConfirmationAccount/?username=" + datos.EMAIL + "&token=" + datos.TOKEN);
 
             return htmlArchivo;
         }
