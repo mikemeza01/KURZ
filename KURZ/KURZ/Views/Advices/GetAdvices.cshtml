@@ -10,12 +10,12 @@
             <div class="card-body">
                 <h4 class="card-title text-center">Asesorías</h4>
                 <br />
-                <table class="table table-responsive" id="TableAdvices">
+                <table class="table table-responsive mx-auto" id="TableAdvices">
                     <thead>
                         <tr>
                             <th>
                                 Fecha de asesoría
-                            </th>                       
+                            </th>
                             <th>
                                 Tema
                             </th>
@@ -60,12 +60,6 @@
                                     </a>
 
 
-
-                                    <!--
-                                        Este boton es para ejemplo para usar en otras vistas si se ocupará
-                                        <a class="btn btn-accent deleteUser" data-id="@item.ID_ADVICE">
-                                        <i class="material-icons">close</i>
-                                    </a>-->
                                 </td>
 
 
@@ -116,13 +110,13 @@
                 url: '/Advices/DetailsAdvice/' + idAdvice,
                 type: 'GET',
                 success: function (data) {
-                    let dataHTML = "<br />" + data.id_advice +
-                                   "<br />" + data.date_create +
-                                   "<br />" + data.date_update +
-                                   "<br />" + data.link +
-                                   "<br />" + data.price +
-                                   "<br />" + data.topicdescription 
-                        $('#detailsAdvicesBody').html(dataHTML);
+                    let dataHTML = "<br /> Código Asesoría: " + data.iD_ADVICE +
+                        "<br /> Fecha de Creación: " + data.dateCreateFormat +
+                        "<br /> Fecha de Actualización: " + data.dateUpdateFormat +
+                        "<br /> URL: " + data.link +
+                        "<br /> Precio: " + data.price +
+                        "<br /> Descripción: " + data.topicdescription
+                    $('#detailsAdvicesBody').html(dataHTML);
                     $('#detailsAdvices').modal('show');
                     $("#detailsAdvices").appendTo("body");
                 },
