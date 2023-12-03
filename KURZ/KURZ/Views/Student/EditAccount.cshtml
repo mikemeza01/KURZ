@@ -3,112 +3,119 @@
     ViewData["Title"] = "Editar Cuenta";
     Layout = "_StudentH";
 }
-      <form asp-action="EditAccount" class="align-items-center" enctype="multipart/form-data">
-          
-                <div asp-validation-summary="ModelOnly"></div>
-                <!--ID-->
-                <input asp-for="ID_USER" type="hidden" class="form-control" readonly />
-                <!--IDENTIFICACION-->
-                <div class="form-group">
-                    <label class="form-label" asp-for="IDENTICATION"></label>
-                    <input asp-for="IDENTICATION" type="text" class="form-control" />
-                    <span asp-validation-for="IDENTICATION" style="color:red"></span>
-                </div>
-                <!--CELLPHONE-->
-                <div class="form-group">
-                    <label class="form-label" asp-for="CELLPHONE"></label>
-                    <input asp-for="CELLPHONE" type="text" class="form-control" placeholder="Ingrese su número de celular" />
-                    <span asp-validation-for="CELLPHONE" style="color:red"></span>
-                </div>
-                <!--ADRESS-->
-                <div class="form-group">
-                    <label class="form-label" asp-for="ADDRESS"></label>
-                    <input asp-for="ADDRESS" type="text" class="form-control" placeholder="Ingrese su dirección " />
-                    <span asp-validation-for="ADDRESS" style="color:red"></span>
-                </div><div class="col-md-7 p-0">
-                <!--STATE-->
-                <div class="form-group">
-                    <label class="form-label" asp-for="STATE"></label>
-                    <input asp-for="STATE" type="text" class="form-control" placeholder="Ingrese el estado " />
-                    <span asp-validation-for="STATE" style="color:red"></span>
-                </div>
-                <!--CITY-->
-                <div class="form-group">
-                    <label class="form-label" asp-for="CITY"></label>
-                    <input asp-for="CITY" type="text" class="form-control" placeholder="Ingrese la cuidad " />
-                    <span asp-validation-for="CITY" style="color:red"></span>
-                </div>
-                <!--Email-->
-                <div class="form-group">
-                    <label class="form-label" asp-for="EMAIL"></label>
-                    <input asp-for="EMAIL" type="text" class="form-control" placeholder="Ingrese su correo" />
-                    <span asp-validation-for="EMAIL" style="color:red"></span>
-                </div>
-                <!--PASSWORD-->
-                <div class="form-group">
-                    <label class="form-label" asp-for="PASSWORD"></label>
-                    <br />
-                    <span>(Dejar en blanco para no cambiar la contraseña)</span>
-                    <input asp-for="PASSWORD" type="password" class="form-control" placeholder="Ingrese una contraseña" />
-                    <span asp-validation-for="PASSWORD" style="color:red"></span>
-                </div>
-                <!--PASSWORD_REPEAT-->
-                <div class="form-group">
-                    <label class="form-label" asp-for="PASSWORD_REPEAT"></label>
-                    <br />
-                    <span>(Dejar en blanco para no cambiar la contraseña)</span>
-                    <input asp-for="PASSWORD_REPEAT" type="password" class="form-control" placeholder="Repetir contraseña" />
-                    <span asp-validation-for="PASSWORD_REPEAT" style="color:red"></span>
-                </div>
-                <!--Campos Escondidos-->
-                <!--Nombre-->
-                <input asp-for="NAME" type="hidden" class="form-control" readonly />
-                <!--Apellido-->
-                <input asp-for="LASTNAME" type="hidden" class="form-control" readonly />
-                <!--Pais-->
-                <input asp-for="ID_COUNTRY" type="hidden" class="form-control" readonly />
-                <!--Perfil-->
-                <input asp-for="PROFILE" type="hidden" class="form-control" readonly />
-                <!--Photo-->
+<!--ELIMINAR CUENTA-->
+<div class="col-md-4 offset-md-8">
+    <h3>Eliminar cuenta de estudiante</h3>
+    <a class="btn btn-accent deleteUser" data-id="@Model.ID_USER">
+        <i class="material-icons">close</i> Eliminar Cuenta
+    </a>
+</div>
+
+<form asp-action="EditAccount" class="align-items-center" enctype="multipart/form-data">
+    <div class="col-md-7 p-0">
+        <div asp-validation-summary="ModelOnly"></div>
+        <!--ID-->
+        <input asp-for="ID_USER" type="hidden" class="form-control" readonly />
+        <!--IDENTIFICACION-->
+        <div class="form-group">
+            <label class="form-label" asp-for="IDENTICATION"></label>
+            <input asp-for="IDENTICATION" type="text" class="form-control" />
+            <span asp-validation-for="IDENTICATION" style="color:red"></span>
+        </div>
+        <!--CELLPHONE-->
+        <div class="form-group">
+            <label class="form-label" asp-for="CELLPHONE"></label>
+            <input asp-for="CELLPHONE" type="text" class="form-control" placeholder="Ingrese su número de celular" />
+            <span asp-validation-for="CELLPHONE" style="color:red"></span>
+        </div>
+        <!--ADRESS-->
+        <div class="form-group">
+            <label class="form-label" asp-for="ADDRESS"></label>
+            <input asp-for="ADDRESS" type="text" class="form-control" placeholder="Ingrese su dirección " />
+            <span asp-validation-for="ADDRESS" style="color:red"></span>
+        </div>
+        <!--STATE-->
+        <div class="form-group">
+            <label class="form-label" asp-for="STATE"></label>
+            <input asp-for="STATE" type="text" class="form-control" placeholder="Ingrese el estado " />
+            <span asp-validation-for="STATE" style="color:red"></span>
+        </div>
+        <!--CITY-->
+        <div class="form-group">
+            <label class="form-label" asp-for="CITY"></label>
+            <input asp-for="CITY" type="text" class="form-control" placeholder="Ingrese la cuidad " />
+            <span asp-validation-for="CITY" style="color:red"></span>
+        </div>
+        <!--Email-->
+        <div class="form-group">
+            <label class="form-label" asp-for="EMAIL"></label>
+            <input asp-for="EMAIL" type="text" class="form-control" placeholder="Ingrese su correo" />
+            <span asp-validation-for="EMAIL" style="color:red"></span>
+        </div>
+        <!--PASSWORD-->
+        <div class="form-group">
+            <label class="form-label" asp-for="PASSWORD"></label>
+            <br />
+            <span>(Dejar en blanco para no cambiar la contraseña)</span>
+            <input asp-for="PASSWORD" type="password" class="form-control" placeholder="Ingrese una contraseña" />
+            <span asp-validation-for="PASSWORD" style="color:red"></span>
+        </div>
+        <!--PASSWORD_REPEAT-->
+        <div class="form-group">
+            <label class="form-label" asp-for="PASSWORD_REPEAT"></label>
+            <br />
+            <span>(Dejar en blanco para no cambiar la contraseña)</span>
+            <input asp-for="PASSWORD_REPEAT" type="password" class="form-control" placeholder="Repetir contraseña" />
+            <span asp-validation-for="PASSWORD_REPEAT" style="color:red"></span>
+        </div>
+        <!--Campos Escondidos-->
+        <!--Nombre-->
+        <input asp-for="NAME" type="hidden" class="form-control" readonly />
+        <!--Apellido-->
+        <input asp-for="LASTNAME" type="hidden" class="form-control" readonly />
+        <!--Pais-->
+        <input asp-for="ID_COUNTRY" type="hidden" class="form-control" readonly />
+        <!--Perfil-->
+        <input asp-for="PROFILE" type="hidden" class="form-control" readonly />
+        <!--Photo-->
 
 
-                <button type="submit" asp-controller="Student" asp-action="MyAccount"
-                        class="btn btn-accent">
+        <button type="submit" asp-controller="Student" asp-action="MyAccount" class="btn btn-accent">
+            Cancelar
+        </button>
+
+        <button type="submit" asp-controller="Student" asp-action="MyAccount" class="btn btn-primary">
+            Guardar Cambios
+        </button>
+
+    </div>
+
+</form>
+
+<div class="modal" tabindex="1" role="dialog" id="deleteUser" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalles Usuario</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="deteleteUserbody" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-accent pull-left" data-dismiss="modal">
                     Cancelar
                 </button>
-                <button type="submit"
-                        class="btn btn-primary">
-                    Guardar Cambios
+                <button type="button"
+                        class="btn btn-primary" id="deleteUserConfirm">
+                    Confirmar
                 </button>
-                <a class="btn btn-accent deleteUser" data-id="@Model.ID_USER">
-                    <i class="material-icons">Eliminar Cuenta</i>
-                </a>
-      </form>
-
-      <div class="modal" tabindex="1" role="dialog" id="deleteUser" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title">Detalles de Estudiante</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div id="deteleteUserbody" class="modal-body">
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-accent pull-left" data-dismiss="modal">
-                          Cancelar
-                      </button>
-                      <button type="button"
-                              class="btn btn-primary" id="deleteUserConfirm">
-                          Confirmar
-                      </button>
-                  </div>
-              </div>
-              <!-- /.modal-content -->
-          </div>
-      </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
 
 
 @{
@@ -155,7 +162,7 @@
             }
         });
     });
-function alertaSuccess() {
+    function alertaSuccess() {
         Swal.fire({
             position: 'top-center',
             icon: 'success',
@@ -190,6 +197,6 @@ function alertaSuccess() {
             title: 'Registro NO realizado',
             text: '@ViewBag.mensaje',
             showConfirmButton: true
-            })
-            }
+        })
+    }
 </script>
