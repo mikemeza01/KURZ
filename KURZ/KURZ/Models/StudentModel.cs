@@ -13,13 +13,15 @@ namespace KURZ.Models
         //se llama el contexto de la base de datos
         private readonly KurzContext _context;
         private readonly IUsersModel _usersModel;
-        
+        private IHostEnvironment _hostingEnvironment;
+
 
         //constructor de la clase y recibe como parametro el contexto de la base de datos
-        public StudentModel(KurzContext context, IUsersModel userModel)
+        public StudentModel(KurzContext context, IUsersModel userModel, IHostEnvironment hostingEnvironment)
         {
             _context = context;
             _usersModel = userModel;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         //public List<Users>? StudentList()
@@ -94,21 +96,23 @@ namespace KURZ.Models
                 _context.Users.Add(student);
                 _context.SaveChanges();
 
-                StringBuilder cuerpo = new StringBuilder("");
-                cuerpo.Append(student.NAME + student.LASTNAME);
-                cuerpo.Append("<br>");
-                cuerpo.Append("<br>");
-                cuerpo.Append("Se ha creado tu cuenta en KURZ. Debes confirmar la cuenta para poder empezar a utilizar la plataforma");
-                cuerpo.Append("<br>");
-                cuerpo.Append("<a href='" + host + "/Authentication/ConfirmationAccount/?username=" + student.EMAIL + "&token=" + token + "'> Confirmar cuenta</a>");
-                cuerpo.Append("<br>");
-                cuerpo.Append("<br>");
-                cuerpo.Append("Saludos cordiales,");
-                cuerpo.Append("<br>");
-                cuerpo.Append("KURZ");
+                //StringBuilder cuerpo = new StringBuilder("");
+                string cuerpo = ArmarHTML(student);
+                //cuerpo.Append(student.NAME + student.LASTNAME);
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("Se ha creado tu cuenta en KURZ. Debes confirmar la cuenta para poder empezar a utilizar la plataforma");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("<a href='" + host + "/Authentication/ConfirmationAccount/?username=" + student.EMAIL + "&token=" + token + "'> Confirmar cuenta</a>");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("Saludos cordiales,");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("KURZ");
 
                 try
                 {
+                    //_usersModel.SendEmail(student.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
                     _usersModel.SendEmail(student.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
                 }
                 catch (Exception ex)
@@ -157,10 +161,6 @@ namespace KURZ.Models
                 }
                 // Restablecer campos predeterminados
                 student_edit.USERNAME = student_edit.EMAIL;
-                student_edit.CELLPHONE = null;
-                student_edit.ADDRESS = null;
-                student_edit.STATE = null;
-                student_edit.CITY = null;
                 student_edit.ID_ROL = 3; // ID de rol para estudiante
 
 
@@ -206,14 +206,14 @@ namespace KURZ.Models
                 if (student_to_edit != null)
                 {
                     student_edit.CONFIRMATION = student_to_edit.CONFIRMATION;
-                    student_edit.STATUS = student_to_edit.STATUS;
-                    student_edit.PHOTO = student_to_edit.PHOTO;
+                    student_edit.STATUS = false;
+                    
                 }
 
                 // Restablecer campos predeterminados
                 student_edit.USERNAME = student_edit.EMAIL;
                 student_edit.ID_ROL = 3; // ID de rol para estudiante
-
+               
 
                 _context.ChangeTracker.Clear();
                 _context.Users.Update(student_edit);
@@ -227,6 +227,18 @@ namespace KURZ.Models
                 Console.WriteLine(ex.ToString());
                 return "error";
             }
+        }
+
+        public string ArmarHTML(Users datos)
+        {
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//Correo.html");
+            string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
+            htmlArchivo = htmlArchivo.Replace("@@Nombre", datos.NAME);
+
+            htmlArchivo = htmlArchivo.Replace("@@Link", "/Authentication/ConfirmationAccount/?username=" + datos.EMAIL + "&token=" + datos.TOKEN
+                + _usersModel.base64Encode(datos.ID_USER.ToString()));
+
+            return htmlArchivo;
         }
 
     }

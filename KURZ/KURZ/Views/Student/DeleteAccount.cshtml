@@ -3,65 +3,37 @@
     ViewData["Title"] = "Eliminar Cuenta";
     Layout = "_StudentH";
 }
+@if (Model == null)
+{
+    @switch (Convert.ToInt32(ViewData["Error"]))
+    {
+        case 1:
+            <h3>Identicador no es valido o no se encontro</h3>
+            break;
+        case 2:
+            <h3>El usuario que busca no fue encontrado</h3>
+            break;
+    }
+}
+else
+{
+    <div class="page-separator">
+        <div class="page-separator__text">@Model.NAME @Model.LASTNAME</div>
+    </div>
+    <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+        <div class="card-body d-flex flex-column">
+            <form asp-action="DeleteAccount" class="align-items-center">
+                <div asp-validation-summary="ModelOnly"></div>
 
+                <input asp-for="ID_USER" type="hidden" class="form-control" readonly />
 
-<form asp-action="DeleteAccount" class="align-items-center">
-
-    <input asp-for="ID_USER" type="hidden" class="form-control" readonly />
-
-    <div class="col-md-12 p-0">
-        <p>@Model.NAME @Model.LASTNAME, realmente desea eliminar su cuenta.
-        Si procede con esto se eliminaran todos sus datos e historial.</p>
-        <div class="form-group">
-            <a asp-controller="Student" asp-action="MyAccount" class="btn btn-accent">
-                Cancelar
-            </a>
-
-            <button type="submit"
-                    class="btn btn-primary">
-                Confirmar
-            </button>
-            @{
-                if (@ViewBag.mensaje == "SUCCESS")
-                {
-                    @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
-                    ;
-
-                }
-                if (@ViewBag.mensaje == "ERROR")
-                {
-                    @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
-                    ;
-
-                }
-            }
+                <div class="flex"
+                     style="max-width: 100%">
+                    <div class="d-flex align-items-center">
+                        <p>Desea realmente eliminar la cuenta de: <strong>@Model.NAME @Model.LASTNAME</strong></p>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-</form>
-<script>function alertaSuccess() {
-        Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: 'Usuario eliminado.',
-            text: 'Usuario eliminado correctamente',
-            timer: 3000,
-            showConfirmButton: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '/Users';
-            }
-        });
-        setTimeout(() => {
-            window.location.href = '/Users';
-        }, 3000);
-    }
-
-    function alertaError() {
-        Swal.fire({
-            position: 'top-center',
-            icon: 'error',
-            title: 'Usuario no editado.',
-            text: 'Hubo un error al eliminar el usuario',
-            showConfirmButton: true
-        })
-    }</script>
+}
