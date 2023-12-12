@@ -16,6 +16,7 @@ namespace KURZ.Controllers
         private readonly ITeacherModel _teacherModel;
         private readonly ICountriesModel _countriesModel;
         private readonly IUsersModel _usersModel;
+        private readonly IAdvicesModel _advicesModel;
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private FilesHelper filesHelper = new FilesHelper();
@@ -58,13 +59,14 @@ namespace KURZ.Controllers
             }
         }
 
-        public TeacherController(IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel)
+        public TeacherController(IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel, IAdvicesModel advicesModel)
         {
             _configuration = configuration;
             _hostingEnvironment = hostingEnvironment;
             _teacherModel = teacherModel;
             _countriesModel = countriesModel;
             _usersModel = usersModel;
+            _advicesModel = advicesModel;
         }
 
 
@@ -341,7 +343,17 @@ namespace KURZ.Controllers
         [Authorize(Roles = "Teacher")]
         public IActionResult Advice()
         {
-            return View();
+            ClaimsPrincipal claimstudent = HttpContext.User;
+            string nombreusuario = "";
+
+            if (claimstudent.Identity.IsAuthenticated)
+            {
+                nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+            }
+            var user = _usersModel.byUserName(nombreusuario);
+
+            var advices = _advicesModel.GetAdvicesByTeacherId(user.ID_USER);
+            return View(advices);
         }
         [Authorize(Roles = "Teacher")]
         public IActionResult Calendar()
