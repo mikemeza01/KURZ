@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<KURZ.Entities.GetAdvicesByTeacherId_Result>
+
+@{
     ViewData["Title"] = "Asesorías";
     Layout = "_TeacherH";
 }
@@ -53,114 +55,45 @@
             <tbody class="list"
                    id="advices">
 
-                <tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
 
-                    <td>
+                        <td>
 
-                        <small class="js-lists-values-type text-50">Funciones Cuádraticas</small>
+                            <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem => item.TOPICNAME)</small>
 
-                    </td>
+                        </td>
 
-                    <td>
+                        <td>
 
-                        <small class="js-lists-values-type text-50">Estudiante Gonzalez Martínez</small>
+                            <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem => item.STUDENTNAME)</small>
 
-                    </td>
+                        </td>
 
-                    <td>
-                        <small class="js-lists-values-type text-50">En Espera</small>
-                    </td>
+                        <td>
+                            <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem => item.STATUSNAME)</small>
+                        </td>
 
-                    <td>
-                        <small class="js-lists-values-type text-50">02/08/2023 11:00 a.m.</small>
-                    </td>
+                        <td>
+                            <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem => item.DateAdviceFormat)</small>
+                        </td>
 
-                    <td>
-                        <small class="js-lists-values-type text-50">$7.00</small>
-                    </td>
+                        <td>
+                            <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem => item.PRICE)</small>
+                        </td>
 
-                    <td>
-                        <a class="btn btn-primary" asp-controller="Teacher" asp-action="EditAdvice">
-                            <i class="material-icons">create</i>
-                        </a>
+                        <td>
+                            <a class="btn btn-primary" asp-controller="Teacher" asp-action="EditAdvice">
+                                <i class="material-icons">create</i>
+                            </a>
 
-                    </td>
-                    <td class="text-right">
-                    </td>
-                </tr>
-
-                <tr>
-
-                    <td>
-
-                        <small class="js-lists-values-type text-50">Funciones Lineales</small>
-
-                    </td>
-
-                    <td>
-
-                        <small class="js-lists-values-type text-50">Estudiante2 Estudiante2 Estudiante2</small>
-
-                    </td>
-
-                    <td>
-                        <small class="js-lists-values-type text-50">Aceptada </small>
-                    </td>
-
-                    <td>
-                        <small class="js-lists-values-type text-50">02/08/2023 10:00 a.m.</small>
-                    </td>
-
-                    <td>
-                        <small class="js-lists-values-type text-50">$7.00</small>
-                    </td>
-
-                    <td>
-                        <a class="btn btn-primary" asp-controller="Teacher" asp-action="EditAdvice">
-                            <i class="material-icons">create</i>
-                        </a>
-
-                    </td>
-                    <td class="text-right">
-                    </td>
-                </tr>
-
-                <tr>
-
-                    <td>
-
-                        <small class="js-lists-values-type text-50">Funciones Trigonometricas</small>
-
-                    </td>
-
-                    <td>
-
-                        <small class="js-lists-values-type text-50">Estudiante2 Estudiante2 Estudiante2</small>
-
-                    </td>
-
-                    <td>
-                        <small class="js-lists-values-type text-50">Pendiente de Pago </small>
-                    </td>
-
-                    <td>
-                        <small class="js-lists-values-type text-50">05/08/2023 10:00 a.m.</small>
-                    </td>
-
-                    <td>
-                        <small class="js-lists-values-type text-50">$7.00</small>
-                    </td>
-
-                    <td>
-                        <a class="btn btn-primary" asp-controller="Teacher" asp-action="EditAdvice">
-                            <i class="material-icons">create</i>
-                        </a>
-
-                    </td>
-                    <td class="text-right">
-                    </td>
-                </tr>
-            </tbody>
+                        </td>
+                        <td class="text-right">
+                        </td>
+                    </tr>
+                }
+               </tbody>
         </table>
     </div>
 

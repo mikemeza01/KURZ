@@ -13,13 +13,21 @@ namespace KURZ.Entities
         public DateTime DATE_UPDATE { get; set; }
         public string DateUpdateFormat => DATE_UPDATE.ToString("dd/MM/yyyy");
         public string LINK { get; set; }
-
         public double PRICE { get; set; }
         public string TOPICNAME { get; set; }
         public string TOPICDESCRIPTION { get; set; }
         public string TEACHERNAME { get; set; }
         public string STUDENTNAME { get; set; }
         public string STATUSNAME { get; set; }
+    }
 
+    [Keyless]
+    public class GetAdvicesById_Result : GetAdvices_Result
+    {
+    }
+
+    [Keyless]
+    public class GetAdvicesByTeacherId_Result : GetAdvices_Result
+    {
     }
 }
