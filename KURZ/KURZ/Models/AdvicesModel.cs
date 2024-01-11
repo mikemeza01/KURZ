@@ -95,5 +95,36 @@ namespace KURZ.Models
                 throw new Exception("Error al obtener la lista de advices: " + ex.Message);
             }
         }
+
+        public List<GetAdvicesByTeacherId_Result> GetAdvicesByStudentId(int id)
+        {
+            try
+            {
+                string sql = "[dbo].[GetAdvicesByStudentId] @IdStudent";
+
+                var param = new SqlParameter[]
+                {
+                    new SqlParameter()
+                    {
+                        ParameterName= "@IdStudent",
+                        SqlDbType = System.Data.SqlDbType.Int,
+                        Value = id
+                    }
+                };
+
+                var result = _context.GetAdvicesByTeacherId_Result.FromSqlRaw(sql, param).ToList();
+
+                if (result.Count > 0)
+                {
+                    return result;
+                }
+
+                return new List<GetAdvicesByTeacherId_Result>();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de advices: " + ex.Message);
+            }
+        }
     }
 }
