@@ -1,16 +1,20 @@
-﻿@model KURZ.Entities.UsersBindingEdit
+﻿@model IEnumerable<KURZ.Entities.Users>
 @{
     ViewData["Title"] = "Editar Cuenta";
     Layout = "_StudentH";
 }
+
 <!--ELIMINAR CUENTA-->
-<div class="col-md-4 offset-md-8">
+@foreach (var item in Model)
+{
+  <div class="col-md-4 offset-md-8">
     <h3>Eliminar cuenta de estudiante</h3>
-    <a class="btn btn-accent deleteUser" data-id="@Model.ID_USER">
+    <a class="btn btn-accent deleteUser" data-id="@item.ID_USER">
         <i class="material-icons">close</i> Eliminar Cuenta
     </a>
-</div>
+</div>  
 
+}
 <form asp-action="EditAccount" class="align-items-center" enctype="multipart/form-data">
     <div class="col-md-7 p-0">
         <div asp-validation-summary="ModelOnly"></div>
@@ -40,12 +44,6 @@
             <input asp-for="STATE" type="text" class="form-control" placeholder="Ingrese el estado " />
             <span asp-validation-for="STATE" style="color:red"></span>
         </div>
-        <!--CITY-->
-        <div class="form-group">
-            <label class="form-label" asp-for="CITY"></label>
-            <input asp-for="CITY" type="text" class="form-control" placeholder="Ingrese la cuidad " />
-            <span asp-validation-for="CITY" style="color:red"></span>
-        </div>
         <!--Email-->
         <div class="form-group">
             <label class="form-label" asp-for="EMAIL"></label>
@@ -68,16 +66,6 @@
             <input asp-for="PASSWORD_REPEAT" type="password" class="form-control" placeholder="Repetir contraseña" />
             <span asp-validation-for="PASSWORD_REPEAT" style="color:red"></span>
         </div>
-        <!--Campos Escondidos-->
-        <!--Nombre-->
-        <input asp-for="NAME" type="hidden" class="form-control" readonly />
-        <!--Apellido-->
-        <input asp-for="LASTNAME" type="hidden" class="form-control" readonly />
-        <!--Pais-->
-        <input asp-for="ID_COUNTRY" type="hidden" class="form-control" readonly />
-        <!--Perfil-->
-        <input asp-for="PROFILE" type="hidden" class="form-control" readonly />
-        <!--Photo-->
 
 
         <button type="submit" asp-controller="Student" asp-action="MyAccount" class="btn btn-accent">
@@ -89,8 +77,8 @@
         </button>
 
     </div>
-
 </form>
+
 
 <div class="modal" tabindex="1" role="dialog" id="deleteUser" aria-hidden="true">
     <div class="modal-dialog">
@@ -151,7 +139,7 @@
 
         $.ajax({
             url: '/Student/DeleteAccount/' + id_user,
-            type: 'GET',
+            type: 'POST',
             success: function (data) {
                 $('#deteleteUserbody').html(data);
                 $('#deleteUser').modal('show');

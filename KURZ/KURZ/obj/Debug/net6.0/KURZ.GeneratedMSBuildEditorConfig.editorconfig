@@ -132,10 +132,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxFZGl0QWNjb3VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/KURZ/KURZ/KURZ/KURZ/Views/Teacher/EditarTeacher1.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxFZGl0YXJUZWFjaGVyMS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/KURZ/KURZ/KURZ/KURZ/Views/Teacher/MyAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxNeUFjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -148,8 +144,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXENhdGVnb3JpZXNMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/KURZ/KURZ/KURZ/KURZ/Views/Topics/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/KURZ/KURZ/KURZ/KURZ/Views/Topics/CreateCategorie.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXENyZWF0ZUNhdGVnb3JpZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/KURZ/KURZ/KURZ/KURZ/Views/Topics/CreateSubcategorie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXENyZWF0ZVN1YmNhdGVnb3JpZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/KURZ/KURZ/KURZ/KURZ/Views/Topics/CreateTopic.cshtml]
@@ -160,6 +164,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXERlbGV0ZUNhdGVnb3JpZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/KURZ/KURZ/KURZ/KURZ/Views/Topics/DeleteSubcategorie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXERlbGV0ZVN1YmNhdGVnb3JpZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/KURZ/KURZ/KURZ/KURZ/Views/Topics/DeleteTopic.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXERlbGV0ZVRvcGljLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -168,8 +176,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXEVkaXRDYXRlZ29yaWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/KURZ/KURZ/KURZ/KURZ/Views/Topics/EditSubcategorie.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXEVkaXRTdWJjYXRlZ29yaWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/KURZ/KURZ/KURZ/KURZ/Views/Topics/EditTopic.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXEVkaXRUb3BpYy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/KURZ/KURZ/KURZ/KURZ/Views/Topics/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/KURZ/KURZ/KURZ/KURZ/Views/Topics/SubCategoriesList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9waWNzXFN1YkNhdGVnb3JpZXNMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/KURZ/KURZ/KURZ/KURZ/Views/Topics/TopicsList.cshtml]

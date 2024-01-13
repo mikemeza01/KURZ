@@ -136,7 +136,6 @@ namespace KURZ.Controllers
             //DEOLVER EL NOMBRE DEL USUARIO REGISTRADO EN LA PANTALLA PRINCIPAL.
             ClaimsPrincipal claimstudent = HttpContext.User;
             string nombreusuario = "";
-            //Verificar con Michael la vista de Index de los Estudiantes.
             //var countries = _countriesModel.CountriesList();
             //ViewBag.countries = countries;
             if (claimstudent.Identity.IsAuthenticated)
@@ -259,7 +258,7 @@ namespace KURZ.Controllers
 
         [Authorize(Roles = "Student")]
         [HttpPost]
-        public IActionResult EditAccount(UsersBindingEdit student)
+        public IActionResult EditAccount(UsersBinding student)
         {
             try
             {
@@ -272,17 +271,17 @@ namespace KURZ.Controllers
                 }
                 var user = _usersModel.byUserName(nombreusuario);
 
-                user.NAME = student.NAME;
-                user.LASTNAME = student.LASTNAME;
-                user.PROFILE = student.PROFILE;
-                user.ID_COUNTRY = student.ID_COUNTRY;
-                user.EMAIL = student.EMAIL;
-                user.IDENTICATION = student.IDENTICATION;
-                user.USERNAME = student.EMAIL;
-                user.PHOTO = student.PHOTO;
-
-                //var countries = _countriesModel.CountriesList();
-                //ViewBag.countries = countries;
+                var student_Binding = new UsersBinding()
+                {
+                    // Actualizar solo los campos permitidos según los atributos de enlace
+                    IDENTICATION = student.IDENTICATION,
+                    CELLPHONE = student.CELLPHONE,
+                    ADDRESS = student.ADDRESS,
+                    STATE = student.STATE,
+                    EMAIL = student.EMAIL,
+                    PASSWORD = student.PASSWORD,
+                    PASSWORD_REPEAT = student.PASSWORD_REPEAT
+                };
 
                 var resultado = _studentModel.StudentEditAccount(student);
 
