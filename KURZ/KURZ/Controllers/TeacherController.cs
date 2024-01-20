@@ -17,6 +17,8 @@ namespace KURZ.Controllers
         private readonly ICountriesModel _countriesModel;
         private readonly IUsersModel _usersModel;
         private readonly IAdvicesModel _advicesModel;
+        private readonly IStatusModel _statusModel;
+
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private FilesHelper filesHelper = new FilesHelper();
@@ -355,6 +357,24 @@ namespace KURZ.Controllers
             var advices = _advicesModel.GetAdvicesByTeacherId(user.ID_USER);
             return View(advices);
         }
+
+        [Authorize(Roles = "Teacher")]
+        public IActionResult AdviceById(int id)
+        {
+            try
+            {
+                var status = _statusModel.StatusList();
+                ViewBag.status = status;
+                var advices = _advicesModel.GetAdvicesById(id);
+
+                return View(advices);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [Authorize(Roles = "Teacher")]
         public IActionResult Calendar()
         {

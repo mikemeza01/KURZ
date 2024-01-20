@@ -26,6 +26,7 @@ builder.Services.AddScoped<ITeacherModel, TeacherModel>();
 builder.Services.AddScoped<IStudentModel, StudentModel>();
 builder.Services.AddScoped<ICountriesModel, CountriesModel>();
 builder.Services.AddScoped<IAdvicesModel, AdvicesModel>();
+builder.Services.AddScoped<IStatusModel, StatusModel>();
 
 //builder.Services.AddSingleton<IWebHostEnvironment>();
 
