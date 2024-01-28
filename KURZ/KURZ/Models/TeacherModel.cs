@@ -121,8 +121,9 @@ namespace KURZ.Models
         {
             try
             {
+                var user_email = _usersModel.UserEmail(teacher.ID_USER);
                 //validar si el correo cambio al editar el usuario
-                if (_usersModel.UserEmail(teacher.ID_USER) != teacher.EMAIL)
+                if (user_email != teacher.EMAIL)
                 {
                     //valida si ya existe otro usuario con el mismo correo
                     var user_exist = _usersModel.UserExist(teacher);
@@ -137,7 +138,6 @@ namespace KURZ.Models
                 {
                     var password = _usersModel.UserPassword(teacher.ID_USER);
                     teacher.PASSWORD = password;
-
                 }
                 else
                 {
@@ -162,11 +162,32 @@ namespace KURZ.Models
             }
             catch (DbUpdateException ex)
             {
-                Console.WriteLine("Ocurrió un error al editar su usuario.");
+                Console.WriteLine("Ocurrió un error al editar su cuenta.");
                 Console.WriteLine(ex.ToString());
                 return "error";
             }
         }
+
+        public string TeacherDelete(Users teacher)
+        {
+            try
+            {
+                //just update status 
+                _context.ChangeTracker.Clear();
+                _context.Users.Update(teacher);
+                _context.SaveChanges();
+
+
+                return "ok";
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error al eliminar la cuenta.");
+                Console.WriteLine(ex.ToString());
+                return "error";
+            }
+        }
+
         public string base64Encode(string sData) // Encode    
         {
             try

@@ -11,6 +11,6 @@ namespace KURZ.Interfaces
 
         public string StudentEdit(Users student);
 
-        public string StudentEditAccount(Users student_edit);
+        public string StudentDelete(Users student);
     }
 }

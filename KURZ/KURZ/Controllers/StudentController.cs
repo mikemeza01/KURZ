@@ -202,11 +202,12 @@ namespace KURZ.Controllers
                 user.IDENTICATION = student.IDENTICATION;
                 user.USERNAME = student.EMAIL;
                 user.PHOTO = student.PHOTO;
+                user.PASSWORD = null;
 
                 var countries = _countriesModel.CountriesList();
                 ViewBag.countries = countries;
 
-                var resultado = _studentModel.StudentEdit(student);
+                var resultado = _studentModel.StudentEdit(user);
 
                 if (resultado == "ok")
                 {
@@ -248,17 +249,19 @@ namespace KURZ.Controllers
                 EMAIL = user.EMAIL,
                 PASSWORD = user.PASSWORD,
                 PASSWORD_REPEAT = user.PASSWORD,
+                STATE = user.STATE,
+                CITY = user.CITY,
+                CELLPHONE = user.CELLPHONE,
+                ADDRESS = user.ADDRESS,
                 STATUS = user.STATUS
             };
-
-            //var countries = _countriesModel.CountriesList();
-            //ViewBag.countries = countries;
+            ViewBag.USER_ID = user.ID_USER;
             return View(student_editBindign);
         }
 
         [Authorize(Roles = "Student")]
         [HttpPost]
-        public IActionResult EditAccount(UsersBinding student)
+        public IActionResult EditAccount(UsersBindingEdit student)
         {
             try
             {
@@ -271,31 +274,30 @@ namespace KURZ.Controllers
                 }
                 var user = _usersModel.byUserName(nombreusuario);
 
-                var student_Binding = new UsersBinding()
-                {
-                    // Actualizar solo los campos permitidos según los atributos de enlace
-                    IDENTICATION = student.IDENTICATION,
-                    CELLPHONE = student.CELLPHONE,
-                    ADDRESS = student.ADDRESS,
-                    STATE = student.STATE,
-                    EMAIL = student.EMAIL,
-                    PASSWORD = student.PASSWORD,
-                    PASSWORD_REPEAT = student.PASSWORD_REPEAT
-                };
+                user.IDENTICATION = student.IDENTICATION;
+                user.CELLPHONE = student.CELLPHONE;
+                user.ADDRESS = student.ADDRESS;
+                user.STATE = student.STATE;
+                user.CITY = student.CITY;
+                user.PASSWORD = student.PASSWORD;
+                user.EMAIL = student.EMAIL;
 
-                var resultado = _studentModel.StudentEditAccount(student);
+                var resultado = _studentModel.StudentEdit(user);
 
                 if (resultado == "ok")
                 {
                     ViewBag.mensaje = "SUCCESS";
-                    var userDetail = ConvertUsers(student);
-                    userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO, _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
 
-                    return View(userDetail);
+                    return View(student);
+                }
+                else if (resultado != "ok" && resultado != "error")
+                {
+                    ViewBag.mensaje = resultado;
+                    ViewBag.error = "ERROR";
                 }
                 else
                     ViewBag.mensaje = "ERROR";
-                return View();
+                return View(student);
             }
             catch (Exception)
             {
@@ -303,35 +305,41 @@ namespace KURZ.Controllers
             }
         }
 
-        
+
         [Authorize(Roles = "Student")]
-        public IActionResult DeleteAccount()
+        [HttpGet]
+        public IActionResult DeleteAccount(int? ID)
         {
-            return View();
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var user = _usersModel.UserDetail(ID);
+            if (user == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+            return View(user);
         }
-        
+
         [Authorize(Roles = "Student")]
         [HttpPost]
-        public IActionResult DeleteAccount(bool deleteAccount)
+        public IActionResult DeleteAccount(Users user)
         {
-           try
-           { 
-                ClaimsPrincipal claimstudent = HttpContext.User;
-                string nombreusuario = "";
 
-                if (claimstudent.Identity.IsAuthenticated)
-                {
-                    nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
-                }
-                var user = _usersModel.byUserName(nombreusuario);
-                var countries = _countriesModel.CountriesList();
-                ViewBag.countries = countries;
-                var resultado = _studentModel.StudentEditAccount(user);
+            try
+            {
+                var user_edit = _usersModel.UserDetail(user.ID_USER);
+                user_edit.STATUS = false;
+
+                var resultado = _studentModel.StudentDelete(user_edit);
 
                 if (resultado == "ok")
                 {
                     ViewBag.mensaje = "SUCCESS";
-                    return RedirectToAction("Index", "Home");
+                    return View();
                 }
                 else
                     ViewBag.mensaje = "ERROR";

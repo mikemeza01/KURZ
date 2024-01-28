@@ -10,11 +10,12 @@ namespace KURZ.Interfaces
 
         public string UserCreate(Users teacher, string host);
 
+        public string TeacherEdit(Users teacher);
+
+        public string TeacherDelete(Users teacher);
+
         public string base64Encode(string sData);
 
         public string base64Decode(string sData);
-
-        public string TeacherEdit(Users teacher);
-
     }
 }

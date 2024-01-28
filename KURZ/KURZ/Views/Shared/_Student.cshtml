@@ -5,7 +5,7 @@
 
 }
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="es" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible"
@@ -27,6 +27,8 @@
     <link href="~/css/preloader.css" rel="stylesheet" asp-append-version="true" />
     <!-- App CSS -->
     <link href="~/css/app.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Validations Plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
@@ -93,10 +95,13 @@
                                data-toggle="dropdown"
                                data-caret="false">
 
-                                <span class="avatar mr-8pt2">
-                                    @if (photo != null)
+                                <span class="avatar avatar-sm mr-8pt2">
+                                    @if (photo.Length > 0 && photo != null)
                                     {
                                         <img src="data:image/jpeg;base64,@Convert.ToBase64String(photo)" class="avatar-img rounded-circle" />
+                                    } else
+                                    {
+                                        <span class="avatar-title rounded-circle bg-primary"><i class="material-icons">account_box</i></span>
                                     }
                                 </span>
                                 <span class="ml-1"><i class="fa fa-angle-down"></i></span>
@@ -189,13 +194,6 @@
                                                asp-controller="Student" asp-action="Edit">
 
                                                 <span class="sidebar-menu-text">Editar</span>
-                                            </a>
-                                        </li>
-                                        <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button"
-                                               asp-controller="Student" asp-action="DeleteAccount">
-
-                                                <span class="sidebar-menu-text">Eliminar</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -544,6 +542,7 @@
     <!-- Preloader -->
     <script src="~/js/preloader.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

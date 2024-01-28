@@ -5,14 +5,20 @@
     Layout = "_Student";
     var photo = Context.Session.Get("USER_PHOTO");
 }
-<div class="page-section bg-secondary">
+<div class="page-section bg-secondary account">
     <div class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
-        @if (photo != null)
+        @if (photo.Length > 0 && photo != null)
         {
             <img src="data:image/jpeg;base64,@Convert.ToBase64String(photo)" class="mr-md-32pt mb-32pt mb-md-0 rounded-circle border-3"
                  width="90"
                  height="90"
                  alt="instructor" />
+        }
+        else
+        {
+            <span class="avatar avatar-xl mr-8pt2">
+                <span class="avatar-title rounded-circle bg-primary"><i class="material-icons">account_box</i></span>
+            </span>
         }
         <div class="flex mb-32pt mb-md-0">
             <h2 class="text-white mb-0">Estudiante @Model.NAME @Model.LASTNAME</h2>

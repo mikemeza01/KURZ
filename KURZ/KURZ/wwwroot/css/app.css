@@ -6484,7 +6484,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     height: calc(1.5em + 1rem);
     line-height: 1.5;
     color: #fff;
-    content: "Browse"
+    content: "Seleccionar"
 }
 
 [dir] .custom-file-label:after {
@@ -37431,12 +37431,16 @@ label {
     width: 100%;
 }
 
+.modal-footer.form-group.buttons {
+    margin-bottom: 0;
+}
+
 .form-group.buttons {
     display: flex;
     justify-content: center;
 }
 
-.form-group.buttons a {
+.form-group.buttons a, .form-group.buttons .pull-left {
     margin-right: 10px;
 }
 
@@ -37448,6 +37452,13 @@ label {
     margin-bottom: 5px;
 }
 
+.account .avatar.avatar-xl .material-icons {
+    font-size: 3rem;
+}
+
+.account .avatar.avatar-xl {
+    margin-right: 10px;
+}
 
 @media (max-width: 990px) {
     .tableSmall {

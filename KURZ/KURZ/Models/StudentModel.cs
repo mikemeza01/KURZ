@@ -2,6 +2,7 @@
 using KURZ.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using NuGet.DependencyResolver;
 using System.Text;
 
 
@@ -130,15 +131,16 @@ namespace KURZ.Models
             }
         }
 
-        public string StudentEdit(Users student_edit)
+        public string StudentEdit(Users student)
         {
             try
             {
-                // Validar si el correo cambió al editar el usuario
-                if (_usersModel.UserEmail(student_edit.ID_USER) != student_edit.EMAIL)
+                var user_email = _usersModel.UserEmail(student.ID_USER);
+                //validar si el correo cambio al editar el usuario
+                if (user_email != student.EMAIL)
                 {
-                    // Validar si ya existe otro usuario con el mismo correo
-                    var user_exist = _usersModel.UserExist(student_edit);
+                    //valida si ya existe otro usuario con el mismo correo
+                    var user_exist = _usersModel.UserExist(student);
 
                     if (user_exist != null)
                     {
@@ -146,84 +148,55 @@ namespace KURZ.Models
                     }
                 }
 
-                if (student_edit.PASSWORD == null)
+                if (student.PASSWORD == null)
                 {
-                    var password = _usersModel.UserPassword(student_edit.ID_USER);
-                    student_edit.PASSWORD = password;
-
+                    var password = _usersModel.UserPassword(student.ID_USER);
+                    student.PASSWORD = password;
                 }
-
-                var student_to_edit = _usersModel.byEmail(student_edit.EMAIL);
-                if (student_to_edit != null)
+                else
                 {
-                    student_edit.CONFIRMATION = student_to_edit.CONFIRMATION;
-                    student_edit.STATUS = student_to_edit.STATUS;
+                    var passwordEncrypt = base64Encode(student.PASSWORD);
+                    //se pasa a la entidad la contraseña encriptada
+                    student.PASSWORD = passwordEncrypt;
                 }
-                // Restablecer campos predeterminados
-                student_edit.USERNAME = student_edit.EMAIL;
-                student_edit.ID_ROL = 3; // ID de rol para estudiante
+                student.CELLPHONE = student.CELLPHONE ?? "";
 
+                student.ADDRESS = student.ADDRESS ?? "";
+                student.STATE = student.STATE ?? "";
+                student.CITY = student.CITY ?? "";
+                student.USERNAME = student.EMAIL;
+                student.ID_ROL = 3; //id de rol estudiante
 
                 _context.ChangeTracker.Clear();
-                _context.Users.Update(student_edit);
+                _context.Users.Update(student);
                 _context.SaveChanges();
+
 
                 return "ok";
             }
             catch (DbUpdateException ex)
             {
-                Console.WriteLine("Ocurrió un error al editar su usuario.");
+                Console.WriteLine("Ocurrió un error al editar su cuenta.");
                 Console.WriteLine(ex.ToString());
                 return "error";
             }
         }
 
-        public string StudentEditAccount(Users student_edit)
+        public string StudentDelete(Users student)
         {
             try
             {
-                // Validar si el correo cambió al editar el usuario
-                if (_usersModel.UserEmail(student_edit.ID_USER) != student_edit.EMAIL)
-                {
-                    // Validar si ya existe otro usuario con el mismo correo
-                    var user_exist = _usersModel.UserExist(student_edit);
-
-                    if (user_exist != null)
-                    {
-                        return user_exist;
-                    }
-                }
-
-                if (student_edit.PASSWORD == null)
-                {
-                    var password = _usersModel.UserPassword(student_edit.ID_USER);
-                    student_edit.PASSWORD = password;
-
-                }
-                //Crear Boton de desactivar cuenta
-                //Mantener correo confirmado al editar perfil.
-                var student_to_edit = _usersModel.byEmail(student_edit.EMAIL);
-                if (student_to_edit != null)
-                {
-                    student_edit.CONFIRMATION = student_to_edit.CONFIRMATION;
-                    student_edit.STATUS = false;
-                    
-                }
-
-                // Restablecer campos predeterminados
-                student_edit.USERNAME = student_edit.EMAIL;
-                student_edit.ID_ROL = 3; // ID de rol para estudiante
-               
-
+                //just update status 
                 _context.ChangeTracker.Clear();
-                _context.Users.Update(student_edit);
+                _context.Users.Update(student);
                 _context.SaveChanges();
+
 
                 return "ok";
             }
             catch (DbUpdateException ex)
             {
-                Console.WriteLine("Ocurrió un error al editar su usuario.");
+                Console.WriteLine("Ocurrió un error al eliminar la cuenta.");
                 Console.WriteLine(ex.ToString());
                 return "error";
             }
@@ -238,6 +211,39 @@ namespace KURZ.Models
             htmlArchivo = htmlArchivo.Replace("@@Link", host + "/Authentication/ConfirmationAccount/?username=" + datos.EMAIL + "&token=" + datos.TOKEN);
 
             return htmlArchivo;
+        }
+
+        public string base64Encode(string sData) // Encode    
+        {
+            try
+            {
+                byte[] encData_byte = new byte[sData.Length];
+                encData_byte = System.Text.Encoding.UTF8.GetBytes(sData);
+                string encodedData = Convert.ToBase64String(encData_byte);
+                return encodedData;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in base64Encode" + ex.Message);
+            }
+        }
+        public string base64Decode(string sData) //Decode    
+        {
+            try
+            {
+                var encoder = new System.Text.UTF8Encoding();
+                System.Text.Decoder utf8Decode = encoder.GetDecoder();
+                byte[] todecodeByte = Convert.FromBase64String(sData);
+                int charCount = utf8Decode.GetCharCount(todecodeByte, 0, todecodeByte.Length);
+                char[] decodedChar = new char[charCount];
+                utf8Decode.GetChars(todecodeByte, 0, todecodeByte.Length, decodedChar, 0);
+                string result = new String(decodedChar);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in base64Decode" + ex.Message);
+            }
         }
 
     }

@@ -140,10 +140,10 @@ namespace KURZ.Models
         public string UserEdit(Users user_edit) {
             try
             {
-                
 
+                var user_email = UserEmail(user_edit.ID_USER);
                 //validar si el correo cambio al editar el usuario
-                if (UserEmail(user_edit.ID_USER) != user_edit.EMAIL) {
+                if (user_email != user_edit.EMAIL) {
                     //valida si ya existe otro usuario con el mismo correo
                     var user_exist = UserExist(user_edit);
 
@@ -167,11 +167,6 @@ namespace KURZ.Models
                         //se pasa a la entidad la contraseña encriptada
                         user_edit.PASSWORD = passwordEncrypt;
                     }
-                }
-
-                var user_to_edit = byEmail(user_edit.EMAIL);
-                if (user_to_edit != null) {
-                    user_edit.CONFIRMATION = user_to_edit.CONFIRMATION;
                 }
 
                 user_edit.USERNAME = user_edit.EMAIL;
@@ -219,8 +214,11 @@ namespace KURZ.Models
         {
             try
             {
-                var user_find = _context.Users.Find(ID);
-                return user_find.PASSWORD;
+                //var user_find = _context.Users.Find(ID);
+                //return user_find.PASSWORD;
+
+                var user_password = _context.Users.Where(d => d.ID_USER == ID).Select(u => u.PASSWORD).FirstOrDefault();
+                return user_password;
             }
             catch (Exception ex)
             {
@@ -274,8 +272,11 @@ namespace KURZ.Models
         {
             try
             {
-                var user_find = _context.Users.Find(ID);
-                return user_find.EMAIL;
+                //var user_find = _context.Users.Find(ID);
+                //return user_find.EMAIL;
+
+                var user_email = _context.Users.Where(d => d.ID_USER == ID).Select(u => u.EMAIL).FirstOrDefault();
+                return user_email;
             }
             catch (Exception ex)
             {
@@ -322,12 +323,12 @@ namespace KURZ.Models
             {
                 var userValidate = _context.Users.FirstOrDefault(e => e.USERNAME == user.USERNAME);
 
-                if (userValidate.CONFIRMATION == true)
+                if (userValidate != null && userValidate.CONFIRMATION == true)
                 {
                     return "confirmed";
                 }
 
-                if (user.TOKEN == userValidate.TOKEN)
+                if (userValidate != null && user.TOKEN == userValidate.TOKEN)
                 {
                     userValidate.CONFIRMATION = true;
                     _context.Users.Update(userValidate);

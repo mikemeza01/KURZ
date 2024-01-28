@@ -127,18 +127,18 @@ namespace KURZ.Controllers
         {
             try
             {
-               
-                var user_edit = new Users()
-                {
-                    ID_USER = user.ID_USER,
-                    IDENTICATION = user.IDENTICATION,
-                    NAME = user.NAME,
-                    LASTNAME = user.LASTNAME,
-                    EMAIL = user.EMAIL,
-                    PASSWORD = user.PASSWORD,
-                    CONFIRMATION = user.CONFIRMATION,
-                    STATUS = user.STATUS
-                };
+
+                var user_edit = _usersModel.UserDetail(user.ID_USER);
+
+
+                user_edit.ID_USER = user.ID_USER;
+                user_edit.IDENTICATION = user.IDENTICATION;
+                user_edit.NAME = user.NAME;
+                user_edit.LASTNAME = user.LASTNAME;
+                user_edit.EMAIL = user.EMAIL;
+                user_edit.PASSWORD = user.PASSWORD;
+                user_edit.STATUS = user.STATUS;
+                
 
                 var resultado = _usersModel.UserEdit(user_edit);
                 if (resultado == "ok")
@@ -149,6 +149,7 @@ namespace KURZ.Controllers
                 else if (resultado != "ok" && resultado != "error")
                 {
                     ViewBag.mensaje = resultado;
+                    ViewBag.error = "ERROR";
                 }
                 else
                     ViewBag.mensaje = "ERROR";

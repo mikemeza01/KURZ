@@ -213,7 +213,7 @@ namespace KURZ.Controllers
                     ViewBag.mensaje = "CONFIRMED";
                     return View();
                 } else if (result == "errorToken") {
-                    ViewBag.mensaje = "ERROR";
+                    ViewBag.mensaje = "ERRORTOKEN";
                     return View();
                 }
                 else

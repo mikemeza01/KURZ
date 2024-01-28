@@ -2,8 +2,10 @@
 using KURZ.Helpers;
 using KURZ.Interfaces;
 using KURZ.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 //using NuGet.DependencyResolver;
 using System.Security.Claims;
 
@@ -202,6 +204,7 @@ namespace KURZ.Controllers
                
                 user.IDENTICATION = teacher.IDENTICATION;
                 user.PHOTO = teacher.PHOTO;
+                user.PASSWORD = null;
 
                 var countries = _countriesModel.CountriesList();
                 ViewBag.countries = countries;
@@ -255,7 +258,7 @@ namespace KURZ.Controllers
                 ADDRESS= user.ADDRESS,
                 STATUS = user.STATUS
             };
-
+            ViewBag.USER_ID = user.ID_USER;
             return View(teacher_editBindign);
         }
 
@@ -280,7 +283,7 @@ namespace KURZ.Controllers
                 user.STATE = teacher.STATE;
                 user.CITY = teacher.CITY;
                 user.PASSWORD= teacher.PASSWORD;
-                user.EMAIL = teacher.EMAIL;
+                user.EMAIL = teacher.EMAIL; 
 
                 var resultado = _teacherModel.TeacherEdit(user);
 
@@ -289,6 +292,11 @@ namespace KURZ.Controllers
                     ViewBag.mensaje = "SUCCESS";
 
                     return View(teacher);
+                }
+                else if (resultado != "ok" && resultado != "error")
+                {
+                    ViewBag.mensaje = resultado;
+                    ViewBag.error = "ERROR";
                 }
                 else
                     ViewBag.mensaje = "ERROR";
@@ -301,39 +309,42 @@ namespace KURZ.Controllers
         }
 
         [Authorize(Roles = "Teacher")]
-        public IActionResult DeleteAccount()
+        [HttpGet]
+        public IActionResult DeleteAccount(int? ID)
         {
-            return View();
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var user = _usersModel.UserDetail(ID);
+            if (user == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+            return View(user);
         }
 
         [HttpPost]
-        public IActionResult DeleteAccount(bool deleteAccount)
+        public IActionResult DeleteAccount(Users user)
         {
 
             try
             {
-                ClaimsPrincipal claimstudent = HttpContext.User;
-                string nombreusuario = "";
+                var user_edit = _usersModel.UserDetail(user.ID_USER);
+                user_edit.STATUS = false;
 
-                if (claimstudent.Identity.IsAuthenticated)
-                {
-                    nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
-                }
-                var user = _usersModel.byUserName(nombreusuario);
-                user.STATUS = false;
-                var countries = _countriesModel.CountriesList();
-                ViewBag.countries = countries;
-
-                var resultado = _teacherModel.TeacherEdit(user);
+                var resultado = _teacherModel.TeacherDelete(user_edit);
 
                 if (resultado == "ok")
                 {
                     ViewBag.mensaje = "SUCCESS";
-                    return RedirectToAction("Index", "Home");
+                    return View();
                 }
                 else
                     ViewBag.mensaje = "ERROR";
-                return View();
+                    return View();
             }
 
             catch (Exception)

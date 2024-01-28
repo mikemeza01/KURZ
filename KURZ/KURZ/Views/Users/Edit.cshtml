@@ -77,7 +77,7 @@ else
                         </a>
                         <button type="submit"
                                 class="btn btn-primary">
-                            Editar
+                            Guardar Cambios
                         </button>
                     </div>
                     @{
@@ -90,6 +90,13 @@ else
                         if (@ViewBag.mensaje == "ERROR")
                         {
                             @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+                            ;
+
+                        }
+
+                        if (@ViewBag.mensaje != "ERROR" && @ViewBag.mensaje != "SUCCESS" && @ViewBag.mensaje != null && @ViewBag.error != null)
+                        {
+                            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaErrorMensaje();\r\n      });       </script>")
                             ;
 
                         }
@@ -124,6 +131,18 @@ else
                 icon: 'error',
                 title: 'Usuario no editado.',
                 text: 'Hubo un error al editar el usuario',
+                showConfirmButton: true
+            })
+        }
+
+        function alertaErrorMensaje() {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'error',
+                title: 'Usuario no editado.',
+                html: '@{
+            @ViewBag.mensaje
+        }',
                 showConfirmButton: true
             })
         }
