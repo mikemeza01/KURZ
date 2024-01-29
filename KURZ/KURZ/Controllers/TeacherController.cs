@@ -391,5 +391,49 @@ namespace KURZ.Controllers
         {
             return View();
         }
+
+        // Acción para mostrar la página de calificación
+        [HttpGet]
+        public IActionResult RateUser()
+        {
+            ClaimsPrincipal claimTeacher = HttpContext.User;
+            string nombreUsuario = "";
+
+            if (claimTeacher.Identity.IsAuthenticated)
+            {
+                nombreUsuario = claimTeacher.Claims
+                    .Where(c => c.Type == ClaimTypes.Name)
+                    .Select(c => c.Value)
+                    .SingleOrDefault();
+            }
+            var user = _usersModel.byUserName(nombreUsuario);
+
+            return View(user);
+        }
+
+        // Acción para procesar la calificación del usuario
+        [HttpPost]
+        public IActionResult RateUser(UserDetails teacher)
+        {
+            if (ModelState.IsValid)
+            {
+                // Aquí  guardar la calificación del usuario en tu base de datos
+                // usar servicio de base de datos aquí.
+                GuardarCalificacionUsuario(teacher.ID_USER, teacher.Rating);
+
+                // Redirigir a la página de detalles del usuario.
+                return RedirectToAction("UserDetails", new { userId = teacher.ID_USER });
+            }
+
+            // Si la calificación no es válida, vuelve a mostrar la vista con errores.
+            return View(teacher);
+        }
+
+        // Método de ejemplo para guardar la calificación del usuario en la base de datos.
+        private void GuardarCalificacionUsuario(int userId, int rating)
+        {
+            // La lógica para guardar la calificación en base de datos.
+
+        }
     }
 }
