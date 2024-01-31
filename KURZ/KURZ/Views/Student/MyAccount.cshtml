@@ -37,6 +37,30 @@
     </div>
 </div>
 
+<div class="page-section bg-white border-bottom-2">
+    <div class="container page__container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Perfil</h4>
+                <p>@Model.PROFILE</p>
+                <h4>Identificación</h4>
+                <p>@Model.IDENTICATION</p>
+                <h4>Correo Electrónico</h4>
+                <p>@Model.EMAIL</p>
+                <h4>País</h4>
+                <p>
+                    <select class="form-control" asp-for="ID_COUNTRY" disabled="true">
+                        @foreach (var countries in ViewBag.countries)
+                        {
+                            <option value="@countries.ID_COUNTRY"> @countries.NAME</option>
+                        }
+                    </select>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container page__container page-section">
 
     <div class="page-headline text-center">
