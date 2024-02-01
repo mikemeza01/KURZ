@@ -49,13 +49,17 @@
                 <p>@Model.EMAIL</p>
                 <h4>País</h4>
                 <p>
-                    <select class="form-control" asp-for="ID_COUNTRY" disabled="true">
-                        @foreach (var countries in ViewBag.countries)
+                    <div class="form-control" asp-for="ID_COUNTRY" disabled="true">
+                        @foreach (var country in ViewBag.countries)
                         {
-                            <option value="@countries.ID_COUNTRY"> @countries.NAME</option>
+                            if (Model.ID_COUNTRY == country.ID_COUNTRY)
+                            {
+                                <span>@country.NAME</span>
+                            }
                         }
-                    </select>
+                    </div>
                 </p>
+
             </div>
         </div>
     </div>

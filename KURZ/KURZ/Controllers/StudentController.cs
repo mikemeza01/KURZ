@@ -136,8 +136,8 @@ namespace KURZ.Controllers
             //DEOLVER EL NOMBRE DEL USUARIO REGISTRADO EN LA PANTALLA PRINCIPAL.
             ClaimsPrincipal claimstudent = HttpContext.User;
             string nombreusuario = "";
-            //var countries = _countriesModel.CountriesList();
-            //ViewBag.countries = countries;
+            var countries = _countriesModel.CountriesList();
+            ViewBag.countries = countries;
             if (claimstudent.Identity.IsAuthenticated)
             {
                 nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
