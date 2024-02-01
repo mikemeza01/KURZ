@@ -1,26 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/KURZ.csproj": {}
+    "C:\\KURZ\\KURZ\\KURZ\\KURZ\\KURZ.csproj": {}
   },
   "projects": {
-    "/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/KURZ.csproj": {
+    "C:\\KURZ\\KURZ\\KURZ\\KURZ\\KURZ.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/KURZ.csproj",
+        "projectUniqueName": "C:\\KURZ\\KURZ\\KURZ\\KURZ\\KURZ.csproj",
         "projectName": "KURZ",
-        "projectPath": "/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/KURZ.csproj",
-        "packagesPath": "/Users/jocksancuberogarcia/.nuget/packages/",
-        "outputPath": "/Users/jocksancuberogarcia/Documents/GitHub/KURZ/KURZ/KURZ/obj/",
+        "projectPath": "C:\\KURZ\\KURZ\\KURZ\\KURZ\\KURZ.csproj",
+        "packagesPath": "C:\\Users\\cuber\\.nuget\\packages\\",
+        "outputPath": "C:\\KURZ\\KURZ\\KURZ\\KURZ\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/jocksancuberogarcia/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\cuber\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/sdk/7.0.308/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -54,6 +55,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.22, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.16, )"
             }
           },
           "imports": [
@@ -75,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.308/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
