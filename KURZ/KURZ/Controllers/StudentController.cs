@@ -16,8 +16,6 @@ namespace KURZ.Controllers
         private readonly IAdvicesModel _advicesModel;
         private readonly ICountriesModel _countriesModel;
         private readonly IStatusModel _statusModel;
-
-
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IConfiguration _configuration;
         private FilesHelper filesHelper = new FilesHelper();
@@ -60,7 +58,7 @@ namespace KURZ.Controllers
             }
         }
 
-        public StudentController(IStudentModel studentModel, IUsersModel usersModel, ICountriesModel countriesModel, IWebHostEnvironment hostingEnvironment, IConfiguration configuration, IAdvicesModel advicesModel)
+        public StudentController(IStudentModel studentModel, IUsersModel usersModel, ICountriesModel countriesModel, IWebHostEnvironment hostingEnvironment, IConfiguration configuration, IAdvicesModel advicesModel, IStatusModel statusModel)
         {
             _studentModel = studentModel;
             _usersModel = usersModel;
@@ -69,6 +67,7 @@ namespace KURZ.Controllers
             _configuration = configuration;
             _advicesModel = advicesModel;
             _advicesModel = advicesModel;
+            _statusModel = statusModel;
         }
 
         [HttpGet]
@@ -118,13 +117,6 @@ namespace KURZ.Controllers
                     else
                         ViewBag.mensaje = "ERROR";
                         return View(student);
-                //}
-                //else
-                //{
-                    //ViewBag.mensaje = "ERROR";
-                    //return View(student);
-                //}
-
             }
             catch(Exception)
              {

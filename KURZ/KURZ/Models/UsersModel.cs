@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System.Drawing;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net.Mail;
 using System.Security.Claims;
@@ -18,12 +19,14 @@ namespace KURZ.Models
         private readonly KurzContext _context;
 
         private readonly IConfiguration _configuration;
+        private IHostEnvironment _hostingEnvironment;
 
         //constructor de la clase y recibe como parametro el contexto de la base de datos
-        public UsersModel(KurzContext context, IConfiguration configuration)
+        public UsersModel(KurzContext context, IConfiguration configuration, IHostEnvironment hostingEnvironment)
         {
             _context = context;
             _configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public List<Users>? UsersList()
@@ -95,21 +98,23 @@ namespace KURZ.Models
                 _context.Users.Add(user);
                 _context.SaveChanges();
 
-                StringBuilder cuerpo = new StringBuilder("");
-                cuerpo.Append(user.NAME +" "+ user.LASTNAME);
-                cuerpo.Append("<br>");
-                cuerpo.Append("<br>");
-                cuerpo.Append("Se ha creado tu cuenta en KURZ. Debes confirmar la cuenta para poder empezar a utilizar la plataforma");
-                cuerpo.Append("<br>");
-                cuerpo.Append("<a href='"+host+ "/Authentication/ConfirmationAccount/?username=" + user.EMAIL + "&token="+ token + "'> Confirmar cuenta</a>");
-                cuerpo.Append("<br>");
-                cuerpo.Append("<br>");
-                cuerpo.Append("Saludos cordiales,");
-                cuerpo.Append("<br>");
-                cuerpo.Append("KURZ");
+                string cuerpo = ArmarHTMLCC(user, host);
+                //StringBuilder cuerpo = new StringBuilder("");
+                //cuerpo.Append(user.NAME +" "+ user.LASTNAME);
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("Se ha creado tu cuenta en KURZ. Debes confirmar la cuenta para poder empezar a utilizar la plataforma");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("<a href='"+host+ "/Authentication/ConfirmationAccount/?username=" + user.EMAIL + "&token="+ token + "'> Confirmar cuenta</a>");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("Saludos cordiales,");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("KURZ");
 
                 try {
-                    SendEmail(user.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
+                    //SendEmail(user.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
+                    SendEmail(user.EMAIL, "Confirmar Cuenta", cuerpo);
                 }
                 catch (Exception ex) {
                     return "Usuario creado pero hubo un error al enviar el correo de confirmación de cuenta, pongase en contacto con el administrador.";
@@ -236,19 +241,20 @@ namespace KURZ.Models
                 {
                     return "ErrorUser";
                 } else {
-                    StringBuilder cuerpo = new StringBuilder("");
-                    cuerpo.Append(user_by_email.NAME +" "+ user_by_email.LASTNAME);
-                    cuerpo.Append("<br>");
-                    cuerpo.Append("<br>");
-                    cuerpo.Append("Se ha recibido su solicitud de cambiar su contraseña, dar clic en 'Cambiar contraseña' para proceder.");
-                    cuerpo.Append("<br>");
-                    cuerpo.Append("<br>");
-                    cuerpo.Append("<a href='" + host + "/Authentication/ForgotPasswordConfirmation/?username=" + user_by_email.EMAIL + "&token=" + user_by_email.TOKEN + "'>Cambiar contraseña</a>");
-                    cuerpo.Append("<br>");
-                    cuerpo.Append("<br>");
-                    cuerpo.Append("Saludos cordiales,");
-                    cuerpo.Append("<br>");
-                    cuerpo.Append("KURZ");
+                    string cuerpo = ArmarHTMLFP(user, host);
+                    //StringBuilder cuerpo = new StringBuilder("");
+                    //cuerpo.Append(user_by_email.NAME +" "+ user_by_email.LASTNAME);
+                    //cuerpo.Append("<br>");
+                    //cuerpo.Append("<br>");
+                    //cuerpo.Append("Se ha recibido su solicitud de cambiar su contraseña, dar clic en 'Cambiar contraseña' para proceder.");
+                    //cuerpo.Append("<br>");
+                    //cuerpo.Append("<br>");
+                    //cuerpo.Append("<a href='" + host + "/Authentication/ForgotPasswordConfirmation/?username=" + user_by_email.EMAIL + "&token=" + user_by_email.TOKEN + "'>Cambiar contraseña</a>");
+                    //cuerpo.Append("<br>");
+                    //cuerpo.Append("<br>");
+                    //cuerpo.Append("Saludos cordiales,");
+                    //cuerpo.Append("<br>");
+                    //cuerpo.Append("KURZ");
 
                     try
                     {
@@ -434,6 +440,33 @@ namespace KURZ.Models
                 res.Append(valid[rnd.Next(valid.Length)]);
             }
             return res.ToString();
+        }
+
+        public string ArmarHTMLCC(Users datos, String host)
+        {
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//CConfirmarCuenta.html");
+            string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
+            htmlArchivo = htmlArchivo.Replace("@@Nombre", datos.NAME);
+            htmlArchivo = htmlArchivo.Replace("@@NombreC", $"{datos.NAME} {datos.LASTNAME}");
+            htmlArchivo = htmlArchivo.Replace("@@Correo", datos.EMAIL);
+
+
+            htmlArchivo = htmlArchivo.Replace("@@Link", host + "/Authentication/ConfirmationAccount/?username=" + datos.EMAIL + "&token=" + datos.TOKEN);
+
+            return htmlArchivo;
+        }
+
+        public string ArmarHTMLFP(Users datos, String host)
+        {
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//CForgotPass.html");
+            string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
+            htmlArchivo = htmlArchivo.Replace("@@Nombre", datos.NAME);
+            
+
+
+            htmlArchivo = htmlArchivo.Replace("@@Link", host + "/Authentication/ForgotPasswordConfirmation/?username=" + datos.EMAIL + "&token=" + datos.TOKEN);
+            
+            return htmlArchivo;
         }
 
         public void SendEmail(string correoDestino, string asunto, string cuerpoCorreo)

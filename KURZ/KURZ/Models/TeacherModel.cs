@@ -11,6 +11,7 @@ namespace KURZ.Models
         //se llama el contexto de la base de datos
         private readonly KurzContext _context;
         private readonly IUsersModel _usersModel;
+        
 
         //constructor de la clase y recibe como parametro el contexto de la base de datos
         public TeacherModel(KurzContext context, IUsersModel usersModel)
@@ -86,22 +87,24 @@ namespace KURZ.Models
                 _context.Users.Add(teacher);
                 _context.SaveChanges();
 
-                StringBuilder cuerpo = new StringBuilder("");
-                cuerpo.Append(teacher.NAME + teacher.LASTNAME);
-                cuerpo.Append("<br>");
-                cuerpo.Append("<br>");
-                cuerpo.Append("Se ha creado tu cuenta en KURZ. Debes confirmar la cuenta para poder empezar a utilizar la plataforma");
-                cuerpo.Append("<br>");
-                cuerpo.Append("<a href='" + host + "/Authentication/ConfirmationAccount/?username=" + teacher.EMAIL + "&token=" + token + "'> Confirmar cuenta</a>");
-                cuerpo.Append("<br>");
-                cuerpo.Append("<br>");
-                cuerpo.Append("Saludos cordiales,");
-                cuerpo.Append("<br>");
-                cuerpo.Append("KURZ");
+                string cuerpo = _usersModel.ArmarHTMLCC(teacher, host);
+                //StringBuilder cuerpo = new StringBuilder("");
+                //cuerpo.Append(teacher.NAME + teacher.LASTNAME);
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("Se ha creado tu cuenta en KURZ. Debes confirmar la cuenta para poder empezar a utilizar la plataforma");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("<a href='" + host + "/Authentication/ConfirmationAccount/?username=" + teacher.EMAIL + "&token=" + token + "'> Confirmar cuenta</a>");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("Saludos cordiales,");
+                //cuerpo.Append("<br>");
+                //cuerpo.Append("KURZ");
 
                 try
                 {
-                    _usersModel.SendEmail(teacher.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
+                    //_usersModel.SendEmail(teacher.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
+                    _usersModel.SendEmail(teacher.EMAIL, "Confirmar Cuenta", cuerpo);
                 }
                 catch (Exception ex)
                 {

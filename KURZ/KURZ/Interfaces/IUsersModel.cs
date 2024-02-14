@@ -39,6 +39,8 @@ namespace KURZ.Interfaces
 
         public string CreatePasswordTemporary(int tamanno);
 
+        public string ArmarHTMLCC(Users datos, String host);
+
         public void SendEmail(string correoDestino, string asunto, string cuerpoCorreo);
     }
 }
