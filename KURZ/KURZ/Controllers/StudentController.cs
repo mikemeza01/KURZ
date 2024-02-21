@@ -381,6 +381,22 @@ namespace KURZ.Controllers
         }
 
         [Authorize(Roles = "Student")]
+        public IActionResult History()
+        {
+            ClaimsPrincipal claimstudent = HttpContext.User;
+            string nombreusuario = "";
+
+            if (claimstudent.Identity.IsAuthenticated)
+            {
+                nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+            }
+            var user = _usersModel.byUserName(nombreusuario);
+
+            var advices = _advicesModel.GetAdvicesByStudentId(user.ID_USER);
+            return View(advices);
+        }
+
+        [Authorize(Roles = "Student")]
         public IActionResult Calendar()
         {
             return View();

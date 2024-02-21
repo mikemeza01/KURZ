@@ -33,28 +33,31 @@ namespace KURZ.Models
         {
             try
             {
-                return _context.Users.Where(x=> x.ID_ROL == 1).ToList();
+                return _context.Users.Where(x => x.ID_ROL == 1).ToList();
             }
             catch (Exception ex)
             {
                 throw new Exception("Error al obtener la lista de usuarios: " + ex.Message);
             }
         }
-        public Users ValidateUser(Login login) {
+        public Users ValidateUser(Login login)
+        {
             var email_login = login.EMAIL;
             var user_login = _context.Users.FirstOrDefault(e => e.EMAIL == email_login);
             if (user_login == null)
             {
                 return null;
-            } 
-            else {
+            }
+            else
+            {
                 var password_decrypted = base64Decode(user_login.PASSWORD);
 
                 if (password_decrypted == login.PASSWORD)
                 {
                     return user_login;
                 }
-                else {
+                else
+                {
                     return null;
                 }
             }
@@ -66,7 +69,8 @@ namespace KURZ.Models
             {
                 var user_exist = UserExist(user);
 
-                if (user_exist != null) {
+                if (user_exist != null)
+                {
                     return user_exist;
                 }
 
@@ -112,11 +116,13 @@ namespace KURZ.Models
                 //cuerpo.Append("<br>");
                 //cuerpo.Append("KURZ");
 
-                try {
+                try
+                {
                     //SendEmail(user.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
                     SendEmail(user.EMAIL, "Confirmar Cuenta", cuerpo);
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     return "Usuario creado pero hubo un error al enviar el correo de confirmación de cuenta, pongase en contacto con el administrador.";
                 }
 
@@ -130,7 +136,8 @@ namespace KURZ.Models
             }
         }
 
-        public Users UserDetail(int? ID) {
+        public Users UserDetail(int? ID)
+        {
             try
             {
                 var user = _context.Users.Find(ID);
@@ -142,13 +149,15 @@ namespace KURZ.Models
             }
         }
 
-        public string UserEdit(Users user_edit) {
+        public string UserEdit(Users user_edit)
+        {
             try
             {
 
                 var user_email = UserEmail(user_edit.ID_USER);
                 //validar si el correo cambio al editar el usuario
-                if (user_email != user_edit.EMAIL) {
+                if (user_email != user_edit.EMAIL)
+                {
                     //valida si ya existe otro usuario con el mismo correo
                     var user_exist = UserExist(user_edit);
 
@@ -157,14 +166,15 @@ namespace KURZ.Models
                         return user_exist;
                     }
                 }
- 
+
                 if (user_edit.PASSWORD == null)
                 {
                     var password = UserPassword(user_edit.ID_USER);
                     user_edit.PASSWORD = password;
 
                 }
-                else {
+                else
+                {
                     //se encripta la clave puesta para el usuario
                     if (user_edit.PASSWORD != null)
                     {
@@ -199,7 +209,8 @@ namespace KURZ.Models
             }
         }
 
-        public int UserDelete(Users user) {
+        public int UserDelete(Users user)
+        {
             try
             {
                 _context.Users.Remove(user);
@@ -240,7 +251,9 @@ namespace KURZ.Models
                 if (user_by_email == null)
                 {
                     return "ErrorUser";
-                } else {
+                }
+                else
+                {
                     string cuerpo = ArmarHTMLFP(user, host);
                     //StringBuilder cuerpo = new StringBuilder("");
                     //cuerpo.Append(user_by_email.NAME +" "+ user_by_email.LASTNAME);
@@ -290,14 +303,16 @@ namespace KURZ.Models
             }
         }
 
-        public string UserExist(Users user) {
+        public string UserExist(Users user)
+        {
             var user_by_email = _context.Users.FirstOrDefault(e => e.EMAIL == user.EMAIL);
-            
+
             if (user_by_email != null)
             {
                 return "Existe un usuario ya registrado con el correo electrónico: " + user.EMAIL;
             }
-            else {
+            else
+            {
                 return null;
             }
         }
@@ -354,7 +369,8 @@ namespace KURZ.Models
 
         }
 
-        public string forgotPasswordConfirmation(Users user) {
+        public string forgotPasswordConfirmation(Users user)
+        {
 
             try
             {
@@ -380,7 +396,7 @@ namespace KURZ.Models
                 throw new Exception("Ocurrió un error interno en el modelo Usuarios al confirmar cuenta: " + ex.Message);
             }
 
-            
+
         }
 
         public string base64Encode(string sData) // Encode    
@@ -461,11 +477,11 @@ namespace KURZ.Models
             string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//CForgotPass.html");
             string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
             htmlArchivo = htmlArchivo.Replace("@@Nombre", datos.NAME);
-            
+
 
 
             htmlArchivo = htmlArchivo.Replace("@@Link", host + "/Authentication/ForgotPasswordConfirmation/?username=" + datos.EMAIL + "&token=" + datos.TOKEN);
-            
+
             return htmlArchivo;
         }
 

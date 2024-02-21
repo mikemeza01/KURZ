@@ -14,7 +14,7 @@ namespace KURZ.Models
         //se llama el contexto de la base de datos
         private readonly KurzContext _context;
         private readonly IUsersModel _usersModel;
-        
+
 
 
         //constructor de la clase y recibe como parametro el contexto de la base de datos
@@ -112,7 +112,7 @@ namespace KURZ.Models
 
                 try
                 {
-                   //_usersModel.SendEmail(student.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
+                    //_usersModel.SendEmail(student.EMAIL, "Confirmar Cuenta", cuerpo.ToString());
                     _usersModel.SendEmail(student.EMAIL, "Confirmar Cuenta", cuerpo);
                 }
                 catch (Exception ex)
