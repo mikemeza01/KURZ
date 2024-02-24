@@ -36,4 +36,15 @@ namespace KURZ.Entities
         [Display(Name = "Id del status")]
         public int ID_STATUS { get; set; }
     }
+
+    public class MeetingsZoom
+    { 
+        public long ID { get; set; }
+
+        public int DURATION { get; set; }
+
+        public string? JOIN_URL { get; set; }
+
+        public DateTime START_TIME { get; set; }
+    }
 }
