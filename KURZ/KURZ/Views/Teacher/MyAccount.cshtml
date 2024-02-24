@@ -1,13 +1,27 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http
+@model KURZ.Entities.Users
+@{
     ViewData["Title"] = "Perfil";
     Layout = "_Teacher";
+    var photo = Context.Session.Get("USER_PHOTO");
 }
-<div class="page-section bg-secondary">
+<div class="page-section bg-secondary account">
     <div class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
-        <img src="~/images/guy-3.jpg" class="mr-md-32pt mb-32pt mb-md-0 rounded-circle border-3"
-             alt="instructor" />
+       
+        @if (photo.Length > 0 && photo != null)
+        {
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(photo)" class="mr-md-32pt mb-32pt mb-md-0 rounded-circle border-3"
+             width="90"
+             height="90"
+            alt="instructor" />
+        } else
+        {
+            <span class="avatar avatar-xl mr-8pt2">
+                <span class="avatar-title rounded-circle bg-primary"><i class="material-icons">account_box</i></span>
+            </span>
+        }
         <div class="flex mb-32pt mb-md-0">
-            <h2 class="text-white mb-0">Profesor Perez Vargas</h2>
+            <h2 class="text-white mb-0">Profesor @Model.NAME @Model.LASTNAME</h2>
             <div class="rating mb-16pt d-inline-flex">
                 <div class="rating__item"><i class="material-icons">star</i></div>
                 <div class="rating__item"><i class="material-icons">star</i></div>
@@ -28,7 +42,18 @@
         <div class="row">
             <div class="col-md-12">
                 <h4>Perfil</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce cursus dui justo, ut pulvinar ante malesuada ut. Proin tortor lectus, tempor eget urna in, malesuada molestie metus. Cras nisl tellus, scelerisque eget neque a, finibus luctus eros. Donec vitae auctor ex. Maecenas arcu lectus, feugiat eget metus nec, posuere porta nunc. Aliquam vel auctor ante. Nullam tincidunt sit amet metus quis fringilla. Phasellus placerat, tellus ac ultricies volutpat, nulla purus aliquet sapien, in bibendum nisl justo in libero. Maecenas bibendum dolor ut fringilla fermentum.</p>
+                <p>@Model.PROFILE</p>
+                <h4>Identificación</h4>
+                <p>@Model.IDENTICATION</p>
+                <h4>Correo Electrónico</h4>
+                <p>@Model.EMAIL</p>
+                <h4>País</h4>
+                <p><select class="form-control" asp-for="ID_COUNTRY" disabled ="true">
+                    @foreach (var countries in ViewBag.countries)
+                    {
+                        <option value="@countries.ID_COUNTRY"> @countries.NAME</option>
+                    }
+                </select></p>
             </div>
         </div>
     </div>

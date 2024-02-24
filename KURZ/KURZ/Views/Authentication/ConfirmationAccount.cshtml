@@ -1,0 +1,122 @@
+﻿@model KURZ.Entities.Users
+@{
+    ViewData["Title"] = "Confirmar Cuenta";
+    Layout = "_Authentication";
+}
+<form asp-action="ConfirmationAccount" novalidate>
+    <input type="hidden" id="username" name="USERNAME" value="@ViewBag.username">
+    <input type="hidden" id="token" name="TOKEN" value="@ViewBag.token">
+    <div class="form-group text-center">
+        <button class="btn btn-block btn-primary mb-2"
+                type="submit">
+            Confirmar Cuenta
+        </button>
+        @{
+            if (@ViewBag.mensaje == "SUCCESS")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+                ;
+
+            }
+        }
+
+
+        @{
+            if (@ViewBag.mensaje == "CONFIRMED")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaConfirmed();\r\n      });       </script>")
+                ;
+
+            }
+        }
+
+        @{
+            if (@ViewBag.mensaje == "ERRORTOKEN")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaErrorToken();\r\n      });       </script>")
+                ;
+
+            }
+        }
+
+        @{
+            if (@ViewBag.mensaje == "ERRORACTIVATION")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+                ;
+
+            }
+        }
+    </div>
+    <!--<div class="form-group text-center">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox"
+                   class="custom-control-input"
+                   checked=""
+                   id="remember">
+            <label class="custom-control-label"
+                   for="remember">Recordarme</label>
+        </div>
+    </div>-->
+</form>
+
+<script>
+
+    function alertaSuccess() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Cuenta Confirmada.',
+            text: 'Cuenta confirmada correctamente',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Authentication/Login';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Authentication/Login';
+        }, 3000);
+    }
+
+    function alertaConfirmed() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Su cuenta ya a sido confirmada.',
+            text: 'Puede iniciar sesión',
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Authentication/Login';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Authentication/Login';
+        }, 3000);
+    }
+
+    function alertaErrorToken() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Error de Token',
+            text: 'No corresponde el token con el usuario, intentelo nuevamente desde el correo que recibio para activar la cuenta.',
+            showConfirmButton: true
+        })
+    }
+
+    function alertaError() {
+        if (email !== '') {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'error',
+                title: 'Error al Activar',
+                text: 'Hubo un error al activar la cuenta.',
+                showConfirmButton: true
+            })
+        }
+    }
+
+</script>

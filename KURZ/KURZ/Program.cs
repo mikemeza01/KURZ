@@ -1,3 +1,4 @@
+using Microsoft.IdentityModel.Tokens;
 using KURZ.Models;
 using KURZ.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -18,8 +19,16 @@ builder.Services.AddSession();
 
 builder.Services.AddScoped<IRolesModel, RolesModel>();
 builder.Services.AddScoped<IUsersModel, UsersModel>();
+builder.Services.AddScoped<ICategoriesModel, CategoriesModel>();
+builder.Services.AddScoped<ISubCategoriesModel, SubCategoriesModel>();
 builder.Services.AddScoped<ITopicsModel, TopicsModel>();
+builder.Services.AddScoped<ITeacherModel, TeacherModel>();
+builder.Services.AddScoped<IStudentModel, StudentModel>();
+builder.Services.AddScoped<ICountriesModel, CountriesModel>();
+builder.Services.AddScoped<IAdvicesModel, AdvicesModel>();
+builder.Services.AddScoped<IStatusModel, StatusModel>();
 
+//builder.Services.AddSingleton<IWebHostEnvironment>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => {

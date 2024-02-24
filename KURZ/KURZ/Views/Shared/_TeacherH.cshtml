@@ -1,5 +1,11 @@
-﻿<!DOCTYPE html>
-<html lang="en" dir="ltr">
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    var photo = Context.Session.Get("USER_PHOTO");
+
+}
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible"
@@ -23,6 +29,8 @@
     <link href="~/css/app.css" rel="stylesheet" asp-append-version="true" />
     <!-- Calendar -->
     <link href="~/css/fullcalendar.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body class="layout-sticky-subnav layout-learnly">
@@ -82,8 +90,15 @@
                                data-toggle="dropdown"
                                data-caret="false">
 
-                                <span class="avatar mr-8pt2">
-                                    <img src="~/images/guy-3.jpg" class="avatar-img rounded-circle" />
+                                <span class="avatar avatar-sm mr-8pt2">
+                                    @if (photo.Length > 0 && photo != null)
+                                    {
+                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(photo)" class="avatar-img rounded-circle" />
+                                    }
+                                    else
+                                    {
+                                        <span class="avatar-title rounded-circle bg-primary"><i class="material-icons">account_box</i></span>
+                                    }
                                 </span>
                                 <span class="ml-1"><i class="fa fa-angle-down"></i></span>
 
@@ -130,7 +145,7 @@
 
                     <div class="bg-white border-top-2 mt-auto">
                         <div class="container page__container page-section d-flex flex-column">
-                            <p class="text-50 small mt-n1 mb-0">Copyright 2023 &copy; All rights reserved.</p>
+                            <p class="text-50 small mt-n1 mb-0">Copyright @DateTime.Now.Year &copy; All rights reserved.</p>
                         </div>
                     </div>
 
@@ -179,13 +194,6 @@
                                                asp-controller="Teacher" asp-action="Edit">
 
                                                 <span class="sidebar-menu-text">Editar</span>
-                                            </a>
-                                        </li>
-                                        <li class="sidebar-menu-item">
-                                            <a class="sidebar-menu-button"
-                                               asp-controller="Teacher" asp-action="DeleteAccount">
-
-                                                <span class="sidebar-menu-text">Eliminar</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -541,6 +549,16 @@
 
     <!-- Init Calendar -->
     <script src="~/js/fullcalendar.js"></script>
+
+    <!-- Site JS -->
+    <script src="~/js/site.js"></script>
+
+    <!-- Validations Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

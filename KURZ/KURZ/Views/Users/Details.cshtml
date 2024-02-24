@@ -1,25 +1,69 @@
-﻿@{
+﻿@model KURZ.Entities.Users
+@{
     ViewData["Title"] = "Detalles";
-    Layout = "_Admin";
+    Layout = null;
 }
-<div class="page-separator">
-    <div class="page-separator__text">user2</div>
-</div>
-<div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
-    <div class="card-body d-flex flex-column">
-        <div class="d-flex align-items-center">
-            <div class="flex">
-                <p><strong>Identificación: </strong>306640235</p>
-                <p><strong>Usuario: </strong>user2</p>
-                <p><strong>Nombre: </strong>Usuario2</p>
-                <p><strong>Apellidos: </strong>Usuario2 Usuario2</p>
-                <p><strong>Correo electrónico: </strong>usuario@usuario.com</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-auto">
-                <a class="btn btn-outline-secondary" asp-controller="Users" asp-action="Index">Volver</a>
+@if (Model == null)
+{
+    @switch (Convert.ToInt32(ViewData["Error"]))
+    {
+        case 1:
+            <h3>Identicador no es valido o no se encontro</h3>
+            break;
+        case 2:
+            <h3>El usuario que busca no fue encontrado</h3>
+            break;
+    }
+}
+else
+{
+    <div class="page-separator">
+        <div class="page-separator__text">@Model.NAME @Model.LASTNAME</div>
+    </div>
+    <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+        <div class="card-body d-flex flex-column">
+            <div class="d-flex align-items-center">
+                <div class="flex">
+                    <p><strong>Identificación: </strong>@Model.IDENTICATION</p>
+                    <p><strong>Usuario: </strong>@Model.USERNAME</p>
+                    <p><strong>Nombre: </strong>@Model.NAME</p>
+                    <p><strong>Apellidos: </strong>@Model.LASTNAME</p>
+                    <p><strong>Correo electrónico: </strong>@Model.EMAIL</p>
+                    <p><strong>Confirmación:</strong>
+                        @{
+                            if (@Model.CONFIRMATION == true)
+                            {
+                                @Html.Raw("El usuario ya confirmo la cuenta")
+                                ;
+
+                            }
+                            else
+                            {
+                                @Html.Raw("El usuario no a confirmado la cuenta")
+                                ;
+                            }
+                        }
+
+                    </p>
+                    <p>
+                        <strong>Estado:</strong>
+                        @{
+                            if (@Model.STATUS == true)
+                            {
+                                @Html.Raw("Activo")
+                                ;
+
+                            }
+                            else
+                            {
+                                @Html.Raw("Inactivo")
+                                ;
+                            }
+                        }
+
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}

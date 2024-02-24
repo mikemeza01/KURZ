@@ -1,54 +1,195 @@
-﻿@{
+﻿@model KURZ.Entities.UserDetails
+@{
     ViewData["Title"] = "Editar Perfil";
     Layout = "_StudentH";
 }
-<div class="col-md-7 p-0">
-    <div class="form-group">
-        <label class="form-label">Foto</label>
-        <div class="media align-items-center">
-            <a href=""
-               class="media-left mr-16pt">
-                <img src="~/images/woman-6.jpg"
-                     alt="people"
-                     width="56"
-                     class="rounded-circle" />
-            </a>
-            <div class="media-body">
-                <div class="custom-file">
-                    <input type="file"
-                           class="custom-file-input"
-                           id="inputGroupFile01">
-                    <label class="custom-file-label"
-                           for="inputGroupFile01">Elegir Foto</label>
+<div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+    <div class="card-body d-flex flex-column">
+        <div class="col-md-12 p-0">
+            @if (Model.ProfilePicture != null)
+            {
+                @*<img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)" alt="Imagen del Usuario" />*@
+            }
+            else
+            {
+                <p>La imagen no pudo ser encontrada.</p>
+            }
+            <form asp-action="Edit" class="align-items-center" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly"></div>
+                <!--ID-->
+                <input asp-for="ID_USER" type="hidden" class="form-control" readonly />
+                <!--Photo-->
+                <div class="col-md-12 p-0">
+                    <div class="form-group">
+                        <label class="form-label">Foto de perfil</label>
+                        <div class="media align-items-center">
+                            <a href=""
+                               class="media-left mr-16pt">
+                                @if (Model.ProfilePicture.Length > 0 && Model.ProfilePicture != null)
+                                {
+                                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ProfilePicture)"
+                                            alt="people"
+                                            id="profilePicturePreview"
+                                            width="70"
+                                            height="70"
+                                            class="rounded-circle" />
+                                }
+                                else
+                                {
+                                    <span class="avatar avatar-sm mr-8pt2">
+                                        <span class="avatar-title rounded-circle bg-primary"><i class="material-icons">account_box</i></span>
+                                    </span>
+                                }
+                            </a>
+
+                            <div class="media-body">
+                                <div class="custom-file">
+                                    <input type="file"
+                                           title="Seleccionar archivo"
+                                           asp-for="ProfilePicture"
+                                           class="custom-file-input"
+                                           name="newProfilePicture"
+                                           id="newProfilePicture"
+                                           onchange="previewImage(event)">
+                                    <label class="custom-file-label"
+                                           asp-for="ProfilePicture">Elegir Foto</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <!--IDENTIFICACION-->
+                <div class="form-group">
+                    <label class="form-label" asp-for="IDENTICATION"></label>
+                    <input asp-for="IDENTICATION" type="text" class="form-control" readonly="readonly" />
+                    <span asp-validation-for="IDENTICATION" style="color:red"></span>
+                </div>
+                <!--Nombre-->
+                <div class="form-group">
+                    <label class="form-label" asp-for="NAME"></label>
+                    <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese su nombre " />
+                    <span asp-validation-for="NAME" style="color:red"></span>
+                </div>
+                <!--Apellido-->
+                <div class="form-group">
+                    <label class="form-label" asp-for="LASTNAME"></label>
+                    <input asp-for="LASTNAME" type="text" class="form-control" placeholder="Ingrese " />
+                    <span asp-validation-for="LASTNAME" style="color:red"></span>
+                </div>
+                <!--Email-->
+                <input asp-for="EMAIL" type="hidden" class="form-control" readonly />
+                <!--Pais-->
+                <div class="form-group">
+                    <label class="form-label" asp-for="ID_COUNTRY"></label>
+                    <select class="form-control" asp-for="ID_COUNTRY">
+                        @foreach (var countries in ViewBag.countries)
+                        {
+                            <option value="@countries.ID_COUNTRY"> @countries.NAME</option>
+                        }
+                    </select>
+                </div>
+                <!--Perfil-->
+                <div class="form-group">
+                    <label class="form-label" asp-for="PROFILE"></label>
+                    <textarea asp-for="PROFILE" type="text" class="form-control" placeholder="Ingrese descripcion de su perfil" ></textarea>
+                    <span asp-validation-for="PROFILE" style="color:red"></span>
+                </div>
+                <!--Campos Escondidos-->
+                <!--CELLPHONE-->
+                <input asp-for="CELLPHONE" type="hidden" class="form-control" readonly />
+                <!--ADRESS-->
+                <input asp-for="ADDRESS" type="hidden" class="form-control" readonly />
+                <!--STATE-->
+                <input asp-for="STATE" type="hidden" class="form-control" readonly />
+                <!--CITY-->
+                <input asp-for="CITY" type="hidden" class="form-control" readonly />
+
+                <div class="form-group buttons">
+                    <a asp-controller="Student" asp-action="MyAccount"
+                            class="btn btn-accent">
+                        Cancelar
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Guardar Cambios
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-    <div class="form-group">
-        <label class="form-label">Nombre</label>
-        <input type="text"
-               class="form-control"
-               value="Estudiante">
-    </div>
-
-    <div class="form-group">
-        <label class="form-label">Apellidos</label>
-        <input type="text"
-               class="form-control"
-               value="Gonzalez Martínez">
-    </div>
-
-    <div class="form-group">
-        <label class="form-label">País</label>
-        <select class="form-control">
-            <option value="CR">Costa Rica</option>
-            <option value="PN">Panama</option>
-            <option value="CO">Colombia</option>
-        </select>
-    </div>
-
-    <button type="submit"
-            class="btn btn-primary">
-        Guardar Cambios
-    </button>
 </div>
+
+        @{
+            if (@ViewBag.mensaje == "SUCCESS")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+                ;
+
+            }
+            if (@ViewBag.mensaje == "ERROR")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+                ;
+
+            }
+
+            if (@ViewBag.mensaje != "ERROR" && @ViewBag.mensaje != "SUCCESS" && @ViewBag.mensaje != null && @ViewBag.mensaje != "")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaUsuario();\r\n      });       </script>")
+                ;
+
+            }
+        }
+
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+
+        reader.onload = function () {
+            var img = document.getElementById('profilePicturePreview');
+            img.src = reader.result;
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+
+    function alertaSuccess() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Registro realizado.',
+            text: 'Se ha actualizado correctamente.',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Student/MyAccount';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Student/MyAccount';
+        }, 3000);
+    }
+
+    function alertaError() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Registro NO realizado',
+            text: 'Hubo un error al hacer el registro.',
+            showConfirmButton: true
+        })
+    }
+
+    function alertaUsuario() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Registro NO realizado',
+            text: '@ViewBag.mensaje',
+            showConfirmButton: true
+        })
+    }
+</script>

@@ -1,0 +1,21 @@
+﻿@model KURZ.Entities.SubCategories
+@{
+    ViewData["Title"] = "Eliminar Subcategoría";
+    Layout = null;
+}
+<div class="page-separator">
+    <div class="page-separator__text">@Model.NAME</div>
+</div>
+<div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+    <div class="card-body d-flex flex-column">
+        <form asp-action="DeleteSubCategorie" class="align-items-center">
+            <div class="flex"
+                 style="max-width: 100%">
+                <input asp-for="ID_SUBCATEGORY" type="hidden" class="form-control" readonly />
+                <div class="d-flex align-items-center">
+                    <p>Desea realmente eliminar la categoría: <strong>@Model.NAME</strong></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

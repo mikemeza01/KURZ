@@ -1,13 +1,27 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http
+@model KURZ.Entities.Users
+@{
     ViewData["Title"] = "Perfil";
     Layout = "_Student";
+    var photo = Context.Session.Get("USER_PHOTO");
 }
-<div class="page-section bg-secondary">
+<div class="page-section bg-secondary account">
     <div class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
-        <img src="~/images/woman-6.jpg" class="mr-md-32pt mb-32pt mb-md-0 rounded-circle border-3"
-             alt="instructor" />
+        @if (photo.Length > 0 && photo != null)
+        {
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(photo)" class="mr-md-32pt mb-32pt mb-md-0 rounded-circle border-3"
+                 width="90"
+                 height="90"
+                 alt="instructor" />
+        }
+        else
+        {
+            <span class="avatar avatar-xl mr-8pt2">
+                <span class="avatar-title rounded-circle bg-primary"><i class="material-icons">account_box</i></span>
+            </span>
+        }
         <div class="flex mb-32pt mb-md-0">
-            <h2 class="text-white mb-0">Estudiante Gonzalez Martínez</h2>
+            <h2 class="text-white mb-0">Estudiante @Model.NAME @Model.LASTNAME</h2>
             <div class="rating mb-16pt d-inline-flex">
                 <div class="rating__item"><i class="material-icons">star</i></div>
                 <div class="rating__item"><i class="material-icons">star</i></div>
@@ -20,6 +34,34 @@
         </div>
         <a asp-controller="Student" asp-action="Edit"
            class="btn btn-outline-white">Editar</a>
+    </div>
+</div>
+
+<div class="page-section bg-white border-bottom-2">
+    <div class="container page__container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Perfil</h4>
+                <p>@Model.PROFILE</p>
+                <h4>Identificación</h4>
+                <p>@Model.IDENTICATION</p>
+                <h4>Correo Electrónico</h4>
+                <p>@Model.EMAIL</p>
+                <h4>País</h4>
+                <p>
+                    <div class="form-control" asp-for="ID_COUNTRY" disabled="true">
+                        @foreach (var country in ViewBag.countries)
+                        {
+                            if (Model.ID_COUNTRY == country.ID_COUNTRY)
+                            {
+                                <span>@country.NAME</span>
+                            }
+                        }
+                    </div>
+                </p>
+
+            </div>
+        </div>
     </div>
 </div>
 

@@ -7,67 +7,50 @@ namespace KURZ.Entities
 {
     public class Topics
     {
-
         [Key]
-        [Display(Name = "ID de Usuario")]
-        public int ID_USER { get; set; }
+        [Display(Name = "Id del Tema")]
+        public int ID_TOPIC { get; set; }
 
-        [Required(ErrorMessage = "La identificación es requerida")]
-        [Display(Name = "Identificación")]
-        public int? IDENTICATION { get; set; }
-
-        [Required(ErrorMessage = "El nombre de usuario es requerida")]
-        [Display(Name = "Nombre de Usuario")]
-        [StringLength(20, ErrorMessage = "El nombre del usuario no puede exceder de 20 carácteres")]
-        public string? USERNAME { get; set; }
-
-        [Display(Name = "Contraseña")]
-        [StringLength(30, ErrorMessage = "La contraseña no puede exceder de 30 carácteres")]
-        public string? PASSWORD { get; set; }
-
-        [Display(Name = "Nombre")]
-        [Required(ErrorMessage = "El nombre es requerido")]
-        [StringLength(20, ErrorMessage = "El nombre no puede exceder de 20 carácteres")]
+        [Required(ErrorMessage = "El nombre del tema es requerido")]
+        [StringLength(100, ErrorMessage = "El nombre del tema debe tener mínimo {2} y máximo {1} carácteres ", MinimumLength = 3)]
+        [Display(Name = "Nombre del Tema")]
         public string? NAME { get; set; }
 
-        [Required(ErrorMessage = "Los apellidos son requeridos")]
-        [Display(Name = "Apellidos")]
-        [StringLength(50, ErrorMessage = "Los apellidos no pueden exceder de 50 carácteres")]
-        public string? LASTNAME { get; set; }
+        [Display(Name = "Descripción")]
+        [StringLength(1000, ErrorMessage = "La descripción no puede exceder de 1000 carácteres")]
+        public string? DESCRIPTION { get; set; }
 
-        [Display(Name = "Celular")]
-        [StringLength(50, ErrorMessage = "El número de celular no pueden exceder de 15 carácteres")]
-        public string? CELLPHONE { get; set; }
+        [Required(ErrorMessage = "Seleccionar una categoría es requerido")]
+        [Display(Name = "Categoría")]
+        public int ID_CATEGORY { get; set; }
 
-        [Display(Name = "Foto")]
-        public string? PHOTO { get; set; }
+        [Required(ErrorMessage = "Seleccionar una subcategoría es requerido")]
+        [Display(Name = "Subcategoría")]
+        public int ID_SUBCATEGORY { get; set; }
 
-        [Required(ErrorMessage = "El correo electrónico es requerido")]
-        [Display(Name = "Correo Electrónico")]
-        [StringLength(50, ErrorMessage = "El correo electrónico no pueden exceder de 50 carácteres")]
-        public string? EMAIL { get; set; }
+        [Required(ErrorMessage = "Seleccionar un estado es requerido")]
+        [Display(Name = "Estado")]
+        public bool STATUS { get; set; }
+    }
 
-        [Display(Name = "Perfil")]
-        [StringLength(2000, ErrorMessage = "El perfil no pueden exceder de 2000 carácteres")]
-        public string? PROFILE { get; set; }
+    public class TopicsView
+    {
+        public int ID_TOPIC { get; set; }
 
-        [Display(Name = "Dirección")]
-        [StringLength(200, ErrorMessage = "La dirección no pueden exceder de 200 carácteres")]
-        public string? ADDRESS { get; set; }
+        [Display(Name = "Nombre del Tema")]
+        public string? NAME { get; set; }
 
-        [Display(Name = "Estado / Provincia")]
-        [StringLength(30, ErrorMessage = "El Estado / Provincia dirección no pueden exceder de 30 carácteres")]
-        public string? STATE { get; set; }
+        [Display(Name = "Descripción")]
+        public string? DESCRIPTION { get; set; }
 
-        [Display(Name = "Ciudad")]
-        [StringLength(30, ErrorMessage = "La ciudad no pueden exceder de 30 carácteres")]
-        public string? CITY { get; set; }
+        [Display(Name = "Categoría")]
+        public string? CATEGORY { get; set; }
 
-        [Display(Name = "Rol")]
-        public int ID_ROL { get; set; }
+        [Display(Name = "Subcategoría")]
+        public string? SUBCATEGORY { get; set; }
 
-        [Display(Name = "País")]
-        public int ID_COUNTRY { get; set; }
 
+        [Display(Name = "Estado")]
+        public string? STATUS { get; set; }
     }
 }

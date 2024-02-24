@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<KURZ.Entities.Categories>
+@{
     ViewData["Title"] = "Categorías";
     Layout = "_Admin";
 }
@@ -8,190 +9,152 @@
     </div>
 </div>
 <div class="card mb-lg-32pt">
-    <div class="table-responsive"
-         data-toggle="lists"
-         data-lists-sort-by="js-lists-values-date"
-         data-lists-sort-desc="true"
-         data-lists-values='["js-lists-values-name", "js-lists-values-department", "js-lists-values-status", "js-lists-values-type", "js-lists-values-phone", "js-lists-values-date"]'>
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center">Categorías</h4>
+                <br />
+                <table id="TableCategories" class="table tableSmall">
+                    <thead>
+                        <tr>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.NAME)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.DESCRIPTION)</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-        <table class="table mb-0 thead-border-top-0 table-nowrap">
-            <thead>
-                <tr>
+                        @foreach (var item in Model)
+                        {
 
-                    <th>
-                        <a href="javascript:void(0)"
-                           class="sort"
-                           data-sort="js-lists-values-name">Categoría</a>
-                    </th>
+                            <tr>
+                                <td class="text-center">@item.NAME</td>
+                                <td class="text-center">@item.DESCRIPTION</td>
 
-                    <th style="width: 150px;">
-                        <a href="javascript:void(0)"
-                           class="sort"
-                           data-sort="js-lists-values-department">Subcategorías</a>
-                    </th>
+                                <td class="acciones">
 
-                    <th style="width: 48px;">
-                        <a href="javascript:void(0)"
-                           class="sort"
-                           data-sort="js-lists-values-status">Descripción</a>
-                    </th>
+                                    <a class="btn btn-primary" asp-controller="Topics" asp-route-ID="@item.ID_CATEGORY" asp-action="EditCategorie">
+                                        <i class="material-icons">create</i>
+                                    </a>
 
-                    <th style="width: 48px;">
-                        <a href="javascript:void(0)"
-                           class="sort"
-                           data-sort="js-lists-values-date">Acciones</a>
-                    </th>
-                    <th style="width: 24px;"></th>
-                </tr>
-            </thead>
-            <tbody class="list"
-                   id="users">
 
-                <tr>
+                                    @if (@item.ID_CATEGORY != 1)
+                                    {
+                                        <a class="btn btn-accent deleteCategory" data-id="@item.ID_CATEGORY">
+                                            <i class="material-icons">close</i>
+                                        </a>
+                                    }
 
-                    <td>
-
-                        <small class="js-lists-values-type text-50">Matématica</small>
-
-                    </td>
-
-                    <td>
-                        <ul class="js-lists-values-type text-50">
-                            <li>Trigonometría</li>
-                            <li>Algebra</li>
-                        </ul>
-                    </td>
-
-                    <td>
-                        <small class="js-lists-values-type text-50">Esta es la categoría de matematicas</small>
-                    </td>
-
-                    <td>
-                        <a class="btn btn-primary" asp-controller="Topics" asp-action="EditCategorie">
-                            <i class="material-icons">create</i>
-                        </a>
-
-                        <a class="btn btn-accent" asp-controller="Topics" asp-action="DeleteCategorie">
-                            <i class="material-icons">close</i>
-                        </a>
-                    </td>
-                    <td class="text-right">
-                    </td>
-                </tr>
-
-                <tr>
-
-                    <td>
-
-                        <small class="js-lists-values-type text-50">Ciencias</small>
-
-                    </td>
-
-                    <td>
-
-                        <ul class="js-lists-values-type text-50">
-                            <li>Física</li>
-                            <li>Biología</li>
-                            <li>Química</li>
-                        </ul>
-
-                    </td>
-
-                    <td>
-                        <small class="js-lists-values-type text-50">Esta la categoría de ciencias</small>
-                    </td>
-
-                    <td>
-                        <a class="btn btn-primary" asp-controller="Topics" asp-action="EditCategorie">
-                            <i class="material-icons">create</i>
-                        </a>
-
-                        <a class="btn btn-accent" asp-controller="Topics" asp-action="DeleteCategorie">
-                            <i class="material-icons">close</i>
-                        </a>
-                    </td>
-                    <td class="text-right">
-                    </td>
-                </tr>
-
-                <tr>
-
-                    <td>
-
-                        <small class="js-lists-values-type text-50">Ciencias Sociales</small>
-
-                    </td>
-
-                    <td>
-
-                        <ul class="js-lists-values-type text-50">
-                            <li>Geografía</li>
-                            <li>Historia</li>
-                        </ul>
-
-                    </td>
-
-                    <td>
-                        <small class="js-lists-values-type text-50">Esta es la categoría de ciencias sociales</small>
-                    </td>
-
-                    <td>
-                        <a class="btn btn-primary" asp-controller="Users" asp-action="EditCategorie">
-                            <i class="material-icons">create</i>
-                        </a>
-
-                        <a class="btn btn-accent" asp-controller="Users" asp-action="DeleteCategorie">
-                            <i class="material-icons">close</i>
-                        </a>
-                    </td>
-                    <td class="text-right">
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
-    <div class="card-footer p-8pt">
-
-        <ul class="pagination justify-content-start pagination-xsm m-0">
-            <li class="page-item disabled">
-                <a class="page-link"
-                   href="#"
-                   aria-label="Previous">
-                    <span aria-hidden="true"
-                          class="material-icons">chevron_left</span>
-                    <span>Anterior</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link"
-                   href="#"
-                   aria-label="Page 1">
-                    <span>1</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link"
-                   href="#"
-                   aria-label="Page 2">
-                    <span>2</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link"
-                   href="#"
-                   aria-label="Next">
-                    <span>Siguiente</span>
-                    <span aria-hidden="true"
-                          class="material-icons">chevron_right</span>
-                </a>
-            </li>
-        </ul>
-
-    </div>
-    <!-- <div class="card-body bordet-top text-right">
-      15 <span class="text-50">of 1,430</span> <a href="#" class="text-50"><i class="material-icons ml-1">arrow_forward</i></a>
-    </div> -->
 
 </div>
+
+<div class="modal" tabindex="1" role="dialog" id="deleteCategory" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Eliminar Categoría</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="deteleteCategorybody" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-accent pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button"
+                        class="btn btn-primary" id="deleteCategoryConfirm">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        //delete
+        $(document).on('click', '.deleteCategory', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var id_category = $(this).data('id');
+
+            $.ajax({
+                url: '/Topics/DeleteCategorie/' + id_category,
+                type: 'GET',
+                success: function (data) {
+                    $('#deteleteCategorybody').html(data);
+                    $('#deleteCategory').modal('show');
+                    $("#deleteCategory").appendTo("body");
+                },
+                error: function () {
+                    alert("Hubo un problema para eliminar la categoría")
+                }
+            });
+        });
+
+        //delete user confirm
+        $(document).on('click', '#deleteCategoryConfirm', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var id_category = $('#ID_CATEGORY').val();
+
+            $.ajax({
+                url: '/Topics/DeleteCategorie/' + id_category,
+                type: 'POST',
+                data: {
+                    ID_CATEGORY: id_category
+                },
+                success: function (data) {
+
+                    $('#deleteCategory').modal('hide');
+                    alertaSuccess();
+
+                },
+                error: function () {
+                    alertaError();
+                }
+            });
+        });
+
+
+        function alertaSuccess() {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Categoría eliminada.',
+                text: 'Categoría eliminada correctamente',
+                timer: 5000,
+                showConfirmButton: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/Topics/CategoriesList';
+                }
+            });
+            setTimeout(() => {
+                window.location.href = '/Topics/CategoriesList';
+            }, 5000);
+        }
+
+        function alertaError() {
+            Swal.fire({
+                position: 'top-center',
+                icon: 'error',
+                title: 'Categoría no eliminada.',
+                text: 'Hubo un error al eliminar la categoría',
+                showConfirmButton: true
+            })
+        }
+    });
+</script>    

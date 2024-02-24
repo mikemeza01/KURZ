@@ -1,0 +1,123 @@
+﻿@model IEnumerable<KURZ.Entities.GetAdvices_Result>
+@{
+    ViewData["Title"] = "Asesorías";
+    Layout = "_Admin";
+}
+
+<div class="card mb-lg-32pt">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center">Asesorías</h4>
+                <br />
+                <table class="table table-responsive mx-auto" id="TableAdvices">
+                    <thead>
+                        <tr>
+                            <th>
+                                Fecha de asesoría
+                            </th>
+                            <th>
+                                Tema
+                            </th>
+                            <th>
+                                Profesor(a)
+                            </th>
+                            <th>
+                                Estudiante
+                            </th>
+                            <th>
+                                Estado
+                            </th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.DateAdviceFormat)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.TOPICNAME)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.TEACHERNAME)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.STUDENTNAME)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => item.STATUSNAME)
+                                </td>
+
+
+                                <td class="acciones">
+                                    <a class="btn btn-dark detailsAdvices" data-id="@item.ID_ADVICE">
+                                        <i class="material-icons">remove_red_eye</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" tabindex="1" role="dialog" id="detailsAdvices" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalles Usuario</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="detailsAdvicesBody" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-accent pull-left" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        //details
+        $(document).on('click', '.detailsAdvices', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var idAdvice = $(this).data('id');
+
+            $.ajax({
+                url: '/Advices/DetailsAdvice/' + idAdvice,
+                type: 'GET',
+                success: function (data) {
+                    let dataHTML = "<br /> Código Asesoría: " + data.iD_ADVICE +
+                        "<br /> Fecha de Creación: " + data.dateCreateFormat +
+                        "<br /> Fecha de Actualización: " + data.dateUpdateFormat +
+                        "<br /> URL: " + data.link +
+                        "<br /> Precio: " + data.price +
+                        "<br /> Descripción: " + data.topicdescription
+                    $('#detailsAdvicesBody').html(dataHTML);
+                    $('#detailsAdvices').modal('show');
+                    $("#detailsAdvices").appendTo("body");
+                },
+                error: function (data) {
+                    console.log("Data error", data);
+                    alert("Hubo un problema para obtener los datos");
+                }
+            });
+
+        });
+    });
+</script>

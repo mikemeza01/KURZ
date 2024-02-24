@@ -1,42 +1,93 @@
 ﻿using KURZ.Entities;
 using KURZ.Interfaces;
+using KURZ.Models;
 //using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-//Prueba Ailyn
 namespace KURZ.Controllers
 {
     public class TopicsController : Controller
     {
         //ACCESO A LA INTERFAZ.
         private readonly ITopicsModel _topicsModel;
-
+        private readonly ICategoriesModel _categoriesModel;
+        private readonly ISubCategoriesModel _SubcategoriesModel;
         //CREACION DEL CONTROLADOR.
-        public TopicsController(ITopicsModel topicsModel)
+        public TopicsController(ITopicsModel topicsModel, ICategoriesModel categoriesModel, ISubCategoriesModel subcategoriesModel)
         {
             _topicsModel = topicsModel;
+            _categoriesModel = categoriesModel;
+            _SubcategoriesModel = subcategoriesModel;   
         }
 
         public IActionResult Index()
         {
             //LLamada a la lista de datos de los topics.
-            //var datos = _topicsModel.TopicsList();
+            var datos = _topicsModel.TopicsList();
+            return View(datos);
+        }
+        public IActionResult Create()
+        {
+            var categories = _categoriesModel.CategoriesList();
+            ViewBag.Categories = categories;
+            ViewBag.mensaje = "";
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Topics topic)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var categories = _categoriesModel.CategoriesList();
+                    ViewBag.categories = categories;
+
+                    var resultado = _topicsModel.TopicsCreate(topic);
+                    if (resultado == "ok")
+                    {
+                        ViewBag.mensaje = "SUCCESS";
+                        return View(topic);
+                    }
+                    else
+                        ViewBag.mensaje = "ERROR";
+                    return View(topic);
+                }
+                else
+                {
+                    return View(topic);
+                }
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpPost]
+        public List<SubCategories> SubcategoriesByCategory(SubCategories subcategory)
+        {
+            var subcategories = _SubcategoriesModel.SubcategoriesByCategory(subcategory.ID_CATEGORY);
+            return subcategories;
         }
 
         [HttpGet]
         public IActionResult CategoriesList()
         {
-            return View();
+            var categories = _categoriesModel.CategoriesList();
+            return View(categories);
         }
 
         [HttpGet]
         public IActionResult CreateCategorie()
         {
+            ViewBag.mensaje = "";
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateCategorie(Topics topics)
+        public IActionResult CreateCategorie(Categories category)
         {
             try
             {
@@ -44,19 +95,19 @@ namespace KURZ.Controllers
                 {
 
 
-                    var resultado = _topicsModel.TopicsCreate(topics);
-                    if (resultado > 0)
+                    var resultado = _categoriesModel.CreateCategory(category);
+                    if (resultado == "ok")
                     {
                         ViewBag.mensaje = "SUCCESS";
-                        return View(topics);
+                        return View(category);
                     }
                     else
                         ViewBag.mensaje = "ERROR";
-                    return View(topics);
+                    return View(category);
                 }
                 else
                 {
-                    return View(topics);
+                    return View(category);
                 }
 
             }
@@ -69,28 +120,229 @@ namespace KURZ.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditCategorie()
+        public IActionResult EditCategorie(int? ID)
         {
-            return View();
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var user = _categoriesModel.CategoryDetail(ID);
+            if (user == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+
+            return View(user);
         }
 
         [HttpPost]
-        public IActionResult EditCategorie(string name)
+        public IActionResult EditCategorie(Categories category)
         {
-            return RedirectToAction(nameof(CategoriesList));
+            try
+            {
+
+                var resultado = _categoriesModel.CategoryEdit(category);
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(category);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(category);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         [HttpGet]
-        public IActionResult DeleteCategorie()
+        public IActionResult DeleteCategorie(int? ID)
         {
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var category = _categoriesModel.CategoryDetail(ID);
+            if (category == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteCategorie(Categories category)
+        {
+            try
+            {
+
+                var resultado = _categoriesModel.CategoryDelete(category);
+                if (resultado > 0)
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(category);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(category);
+
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
+
+        [HttpGet]
+        public IActionResult SubCategoriesList()
+        {
+            var subcategories = _SubcategoriesModel.SubCategoriesList();
+            return View(subcategories);
+        }
+
+        [HttpGet]
+        public IActionResult CreateSubcategorie()
+        {
+            var categories = _categoriesModel.CategoriesList();
+            ViewBag.categories = categories;
+            ViewBag.mensaje = "";
             return View();
         }
 
         [HttpPost]
-        public IActionResult DeleteCategorie(string delete)
+        public IActionResult CreateSubcategorie(SubCategories subcategory)
         {
-            return RedirectToAction(nameof(CategoriesList));
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var categories = _categoriesModel.CategoriesList();
+                    ViewBag.categories = categories;
+
+                    var resultado = _SubcategoriesModel.CreateSubcategory(subcategory);
+                    if (resultado == "ok")
+                    {
+                        ViewBag.mensaje = "SUCCESS";
+                        return View(subcategory);
+                    }
+                    else
+                        ViewBag.mensaje = "ERROR";
+                    return View(subcategory);
+                }
+                else
+                {
+                    return View(subcategory);
+                }
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+
+            //return RedirectToAction(nameof(CategoriesList));
         }
+
+        [HttpGet]
+        public IActionResult EditSubcategorie(int? ID)
+        {
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var subcategory = _SubcategoriesModel.SubcategoryDetail(ID);
+            if (subcategory == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+
+            var categories = _categoriesModel.CategoriesList();
+            ViewBag.categories = categories;
+
+            return View(subcategory);
+        }
+
+        [HttpPost]
+        public IActionResult EditSubcategorie(SubCategories subcategory)
+        {
+            try
+            {
+                var categories = _categoriesModel.CategoriesList();
+                ViewBag.categories = categories;
+
+                if (subcategory.ID_SUBCATEGORY == 1) {
+                    subcategory.ID_CATEGORY = 1;
+                }
+
+                var resultado = _SubcategoriesModel.SubcategoryEdit(subcategory);
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(subcategory);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(subcategory);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult DeleteSubcategorie(int? ID)
+        {
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var subcategory = _SubcategoriesModel.SubcategoryDetail(ID);
+            if (subcategory == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+            return View(subcategory);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteSubcategorie(SubCategories subcategory)
+        {
+            try
+            {
+
+                var resultado = _SubcategoriesModel.SubcategoryDelete(subcategory);
+                if (resultado > 0)
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(subcategory);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(subcategory);
+
+
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
+
+
 
 
         [HttpGet]

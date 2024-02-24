@@ -1,0 +1,117 @@
+@model IEnumerable<KURZ.Entities.GetAdvicesByTeacherId_Result>
+@{
+    ViewData["Title"] = "Historial de asesorías";
+    Layout = "_StudentH";
+}
+
+<div class="card mb-lg-32pt">
+    <div class="table-responsive" data-toggle="lists" data-lists-sort-by="js-lists-values-date"
+        data-lists-sort-desc="true"
+        data-lists-values='["js-lists-values-name", "js-lists-values-department", "js-lists-values-status", "js-lists-values-type", "js-lists-values-phone", "js-lists-values-date"]'>
+
+        <table class="table mb-0 thead-border-top-0 table-nowrap">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-name">Asesoría</a>
+                    </th>
+                    <th style="width: 150px;">
+                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-department">Profesor</a>
+                    </th>
+                    <th style="width: 48px;">
+                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-status">Estado</a>
+                    </th>
+                    <th style="width: 48px;">
+                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-type">Fecha</a>
+                    </th>
+                    <th style="width: 48px;">
+                        <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-type">Costo</a>
+                    </th>
+                    <th style="width: 48px;">
+                        <a href="javascript:void(0)" data-sort="js-lists-values-type">Calificar profesor</a>
+                    </th>
+                    <th style="width: 24px;"></th>
+                </tr>
+            </thead>
+            <tbody class="list" id="advices">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem =>
+                            item.TOPICNAME)</small>
+                        </td>
+                        <td>
+                            <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem =>
+                            item.TEACHERNAME)</small>
+                        </td>
+                        <td>
+                            <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem =>
+                            item.STATUSNAME)</small>
+                        </td>
+                        <td>
+                            <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem =>
+                            item.DateAdviceFormat)</small>
+                        </td>
+                        <td>
+                            <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem => item.PRICE)</small>
+                        </td>
+                        <td>
+                            <div class="rating">
+                                <span class="star" data-rating="1"></span>
+                                <span class="star" data-rating="2"></span>
+                                <span class="star" data-rating="3"></span>
+                                <span class="star" data-rating="4"></span>
+                                <span class="star" data-rating="5"></span>
+                                <input type="hidden" name="rating" class="rating-value" value="0">
+                            </div>
+                        </td>
+                        <td class="text-right"></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card-footer p-8pt">
+        <ul class="pagination justify-content-start pagination-xsm m-0">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true" class="material-icons">chevron_left</span>
+                    <span>Anterior</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Page 1">
+                    <span>1</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Page 2">
+                    <span>2</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span>Siguiente</span>
+                    <span aria-hidden="true" class="material-icons">chevron_right</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.star').click(function () {
+                var rating = $(this).data('rating');
+                $(this).siblings('.star').removeClass('rated');
+                $(this).prevAll('.star').addBack().addClass('rated');
+                $(this).nextAll('.star').removeClass('rated');
+                $(this).closest('td').find('.rating-value').val(rating); // Almacena la calificación en un campo oculto
+                // Aquí puedes enviar la calificación al servidor utilizando AJAX
+            });
+        });
+    </script>
+}

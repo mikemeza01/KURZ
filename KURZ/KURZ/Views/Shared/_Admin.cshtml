@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="es" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible"
@@ -67,19 +67,18 @@
                     <!-- // END Navbar Toggler -->
                     <!-- Navbar Brand -->
 
-                    <a 
-                       class="navbar-brand mr-16pt">
+                    <a class="navbar-brand mr-16pt">
                         <img class="pt-2 pb-2" src="~/images/kurz-v2-2.jpg" />
                     </a>
 
                     <!-- // END Navbar Brand -->
-  
+
 
                     <div class="flex"></div>
 
                     <!-- Navbar Menu -->
 
-                    <div class="nav navbar-nav flex-nowrap d-flex mr-16pt">                  
+                    <div class="nav navbar-nav flex-nowrap d-flex mr-16pt">
                         <div class="nav-item dropdown">
                             <a href="#"
                                class="nav-link d-flex align-items-center dropdown-toggle"
@@ -87,9 +86,7 @@
                                data-caret="false">
 
                                 <span class="avatar avatar-sm mr-8pt2">
-
                                     <span class="avatar-title rounded-circle bg-primary"><i class="material-icons">account_box</i></span>
-
                                 </span>
 
                             </a>
@@ -132,7 +129,7 @@
 
                     <div class="bg-white border-top-2 mt-auto">
                         <div class="container page__container page-section d-flex flex-column">
-                            <p class="text-50 small mt-n1 mb-0">Copyright 2023 &copy; All rights reserved.</p>
+                            <p class="text-50 small mt-n1 mb-0">Copyright @DateTime.Now.Year &copy; All rights reserved.</p>
                         </div>
                     </div>
 
@@ -201,7 +198,13 @@
                                         </li>
                                         <li class="sidebar-menu-item">
                                             <a class="sidebar-menu-button"
-                                               asp-controller="Topics" asp-action="TopicsList">
+                                               asp-controller="Topics" asp-action="SubCategoriesList">
+                                                <span class="sidebar-menu-text">Subcategorías</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-menu-item">
+                                            <a class="sidebar-menu-button"
+                                               asp-controller="Topics" asp-action="Index">
 
                                                 <span class="sidebar-menu-text">Temas</span>
                                             </a>
@@ -210,9 +213,8 @@
                                 </li>
                                 <li class="sidebar-menu-item">
                                     <a class="sidebar-menu-button"
-                                       data-toggle="collapse"
-                                       href="##">
-                                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">live_tv</span>
+                                       asp-controller="Advices" asp-action="GetAdvices">
+                                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">people_outline</span>
                                         Asesorías
                                     </a>
                                 </li>
@@ -242,7 +244,7 @@
                                 </li>
                             </ul>
 
-                            
+
 
                             <!-- // END Sidebar Content -->
 
@@ -569,15 +571,22 @@
     <!-- Preloader -->
     <script src="~/js/preloader.js"></script>
 
+
     <!-- Datatables -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
 
+    <!-- Validations Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.js"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- Site JS -->
+    <script src="~/js/site.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
