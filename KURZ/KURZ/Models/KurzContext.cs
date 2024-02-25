@@ -22,6 +22,7 @@ namespace KURZ.Models
         public DbSet<Topicss> Topicss { get; set; }
         public DbSet<Advices> Advices { get; set; }
         public DbSet<Status> Status { get; set; }
+        public DbSet<Grades> Grades{ get; set; }
         public DbSet<GetAdvices_Result> GetAdvices_Result { get; set; }
         public DbSet<GetAdvicesById_Result> GetAdvicesById_Result { get; set; }
         public DbSet<GetAdvicesByTeacherId_Result> GetAdvicesByTeacherId_Result { get; set; }

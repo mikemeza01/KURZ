@@ -10,6 +10,7 @@
             var tableUsers = $('#TableUsers');
             var tableAdvices = $('#TableAdvices');
             var tableCategories = $('#TableCategories');
+            var tableTeacherGrades = $('#TableTeacherGrades');
             var tableSubcategories = $('#TableSubcategories');
             var tableList = $('#TableList');
 
@@ -48,6 +49,12 @@
                 });
             }
 
+            if (tableTeacherRates.length > 0) {
+                new DataTable('#TableTeacherRates', {
+                    language: languageDatatable,
+          
+                });
+            }
             if (tableList.length > 0) {
                 new DataTable('#TableList', {
                     language: languageDatatable
