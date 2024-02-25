@@ -1,0 +1,44 @@
+﻿@model KURZ.Entities.MeetingsZoom
+@{
+    ViewData["Title"] = "Crear Meeting test";
+    Layout = "_Admin";
+}
+<div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+    <div class="card-body d-flex flex-column">
+        <form asp-action="CreateMeeting" class="align-items-center">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="flex"
+                 style="max-width: 100%">
+                <div class="form-group buttons">
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Crear
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <p><strong>ID: </strong>@Model.ID</p>
+            <p><strong>Duración: </strong>@Model.DURATION</p>
+            <p><strong>Fecha: </strong>@Model.START_TIME</p>
+            <p><strong>Enlace: </strong><a href="@Model.JOIN_URL" target="_blank">@Model.JOIN_URL</a></p>
+        </div>
+
+
+        @{
+            if (@ViewBag.mensaje == "SUCCESS")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+                ;
+
+            }
+            if (@ViewBag.mensaje == "ERROR")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+                ;
+
+            }
+        }
+    </div>
+</div>
