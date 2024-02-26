@@ -28,7 +28,7 @@
                         <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-type">Costo</a>
                     </th>
                     <th style="width: 48px;">
-                        <a href="javascript:void(0)" data-sort="js-lists-values-type">Calificar profesor</a>
+                        <a href="javascript:void(0)" data-sort="js-lists-values-type">Acciones</a>
                     </th>
                     <th style="width: 24px;"></th>
                 </tr>
@@ -57,14 +57,8 @@
                             <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem => item.PRICE)</small>
                         </td>
                         <td>
-                            <div class="rating">
-                                <span class="star" data-rating="1"></span>
-                                <span class="star" data-rating="2"></span>
-                                <span class="star" data-rating="3"></span>
-                                <span class="star" data-rating="4"></span>
-                                <span class="star" data-rating="5"></span>
-                                <input type="hidden" name="rating" class="rating-value" value="0">
-                            </div>
+                            <a class="btn btn-accent viewDetails" data-id="@item.TEACHERNAME" data-toggle="modal"
+                                data-target="#detailsModal">Mas detalles</a>
                         </td>
                         <td class="text-right"></td>
                     </tr>
@@ -101,16 +95,52 @@
     </div>
 </div>
 
+
+<div class="modal fade" tabindex="1" role="dialog" id="viewDetails" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalles del Profesor</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Aquí puedes mostrar la información del profesor -->
+                <h5>Información del Profesor:</h5>
+                <p>Nombre: <span id="teacherName"></span></p>
+
+                <!-- Opciones de calificación -->
+                <h5>Calificar al Profesor:</h5>
+                <div class="rating">
+                    <span class="star" data-rating="1"></span>
+                    <span class="star" data-rating="2"></span>
+                    <span class="star" data-rating="3"></span>
+                    <span class="star" data-rating="4"></span>
+                    <span class="star" data-rating="5"></span>
+                    <input type="hidden" name="rating" class="rating-value" value="0">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Cerrar
+                </button>
+                <!-- Puedes agregar un botón para enviar la calificación al servidor si lo deseas -->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $('.star').click(function () {
-                var rating = $(this).data('rating');
-                $(this).siblings('.star').removeClass('rated');
-                $(this).prevAll('.star').addBack().addClass('rated');
-                $(this).nextAll('.star').removeClass('rated');
-                $(this).closest('td').find('.rating-value').val(rating); // Almacena la calificación en un campo oculto
-                // Aquí puedes enviar la calificación al servidor utilizando AJAX
+            $('.more-details').click(function () {
+                var teacherId = $(this).closest('tr').find('.teacher-id').val();
+                // Redirigir a la página de detalles del profesor pasando el ID como parámetro
+                window.location.href = '@Url.Action("TeacherDetails", "Teacher")?teacherId=' + teacherId;
             });
         });
     </script>

@@ -201,7 +201,7 @@ namespace KURZ.Controllers
                 user.LASTNAME = teacher.LASTNAME;
                 user.PROFILE = teacher.PROFILE;
                 user.ID_COUNTRY = teacher.ID_COUNTRY;
-               
+
                 user.IDENTICATION = teacher.IDENTICATION;
                 user.PHOTO = teacher.PHOTO;
                 user.PASSWORD = null;
@@ -252,10 +252,10 @@ namespace KURZ.Controllers
                 EMAIL = user.EMAIL,
                 PASSWORD = user.PASSWORD,
                 PASSWORD_REPEAT = user.PASSWORD,
-                STATE= user.STATE,
-                CITY= user.CITY,
+                STATE = user.STATE,
+                CITY = user.CITY,
                 CELLPHONE = user.CELLPHONE,
-                ADDRESS= user.ADDRESS,
+                ADDRESS = user.ADDRESS,
                 STATUS = user.STATUS
             };
             ViewBag.USER_ID = user.ID_USER;
@@ -282,8 +282,8 @@ namespace KURZ.Controllers
                 user.ADDRESS = teacher.ADDRESS;
                 user.STATE = teacher.STATE;
                 user.CITY = teacher.CITY;
-                user.PASSWORD= teacher.PASSWORD;
-                user.EMAIL = teacher.EMAIL; 
+                user.PASSWORD = teacher.PASSWORD;
+                user.EMAIL = teacher.EMAIL;
 
                 var resultado = _teacherModel.TeacherEdit(user);
 
@@ -344,7 +344,7 @@ namespace KURZ.Controllers
                 }
                 else
                     ViewBag.mensaje = "ERROR";
-                    return View();
+                return View();
             }
 
             catch (Exception)
@@ -394,7 +394,7 @@ namespace KURZ.Controllers
 
         // Acción para mostrar la página de calificación
         [HttpGet]
-        public IActionResult RateUser()
+        public IActionResult RateTeacher()
         {
             ClaimsPrincipal claimTeacher = HttpContext.User;
             string nombreUsuario = "";
@@ -411,29 +411,45 @@ namespace KURZ.Controllers
             return View(user);
         }
 
-        // Acción para procesar la calificación del usuario
+
+        // Acción para enviar la calificación del profesor
         [HttpPost]
-        public IActionResult RateUser(UserDetails teacher)
+        public IActionResult RateTeacher(Users teacher, int rating)
         {
-            if (ModelState.IsValid)
+            try
             {
-                // Aquí  guardar la calificación del usuario en tu base de datos
-                // usar servicio de base de datos aquí.
-                GuardarCalificacionUsuario(teacher.ID_USER, teacher.Rating);
+                ClaimsPrincipal claimteacher = HttpContext.User;
+                string nombreusuario = "";
 
-                // Redirigir a la página de detalles del usuario.
-                return RedirectToAction("UserDetails", new { userId = teacher.ID_USER });
+                if (claimteacher.Identity.IsAuthenticated)
+                {
+                    nombreusuario = claimteacher.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                }
+                var user = _usersModel.byUserName(nombreusuario);
+
+                var resultado = _teacherModel.RateTeacher(teacher, rating);
+
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+
+                    return View(teacher);
+                }
+                else if (resultado != "ok" && resultado != "error")
+                {
+                    ViewBag.mensaje = resultado;
+                    ViewBag.error = "ERROR";
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(teacher);
+
             }
-
-            // Si la calificación no es válida, vuelve a mostrar la vista con errores.
-            return View(teacher);
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
-        // Método de ejemplo para guardar la calificación del usuario en la base de datos.
-        private void GuardarCalificacionUsuario(int userId, int rating)
-        {
-            // La lógica para guardar la calificación en base de datos.
-
-        }
     }
 }

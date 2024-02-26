@@ -1,6 +1,7 @@
 ﻿using KURZ.Entities;
 using KURZ.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Hosting;
 using System.Text;
 
@@ -11,7 +12,7 @@ namespace KURZ.Models
         //se llama el contexto de la base de datos
         private readonly KurzContext _context;
         private readonly IUsersModel _usersModel;
-        
+
 
         //constructor de la clase y recibe como parametro el contexto de la base de datos
         public TeacherModel(KurzContext context, IUsersModel usersModel)
@@ -32,21 +33,24 @@ namespace KURZ.Models
              }
          }*/
 
-        public Users ValidateUser(Users teacher) {
+        public Users ValidateUser(Users teacher)
+        {
             var email_login = teacher.EMAIL;
             var user_login = _context.Users.FirstOrDefault(e => e.EMAIL == email_login);
             if (user_login == null)
             {
                 return null;
             }
-            else {
+            else
+            {
                 var password_decrypted = base64Decode(user_login.PASSWORD);
 
                 if (password_decrypted == teacher.PASSWORD)
                 {
                     return user_login;
                 }
-                else {
+                else
+                {
                     return null;
                 }
             }
@@ -222,6 +226,35 @@ namespace KURZ.Models
             {
                 throw new Exception("Error in base64Decode" + ex.Message);
             }
+        }
+
+        public string RateTeacher(Users teacher, int rating)
+        {
+            try
+            {
+                if (teacher != null)
+                {
+                    // Actualizar la calificación del profesor
+                    teacher.Rating = teacher.rating;
+
+                    // Guardar los cambios en la base de datos
+                    _context.ChangeTracker.Clear();
+                    _context.Users.Update(teacher);
+                    _context.SaveChanges();
+
+                    return "ok";
+                }
+                else
+                {
+                    // El profesor no fue encontrado en la base de datos
+                    return "Profesor no encontrado.";
+                }
+            }
+            catch (Exception)
+            {
+                return "error";
+            }
+
         }
     }
 }
