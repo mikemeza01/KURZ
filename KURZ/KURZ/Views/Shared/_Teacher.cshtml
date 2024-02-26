@@ -15,6 +15,9 @@
     <title>@ViewData["Title"] - KURZ</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
           rel="stylesheet">
+    <!-- Datatables -->
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css" rel="stylesheet">
     <!-- Preloader -->
     <link href="~/vendor/spinkit.css" rel="stylesheet" asp-append-version="true" />
     <!-- Perfect Scrollbar -->
@@ -210,6 +213,14 @@
                                        asp-controller="Teacher" asp-action="Calendar">
                                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">calendar_today</span>
                                         Calendario
+                                    </a>
+                                </li>
+
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button"
+                                       asp-controller="Teacher" asp-action="TeacherRate">
+                                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">star</span>
+                                        Evaluación Docente
                                     </a>
                                 </li>
                             </ul>

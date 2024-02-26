@@ -20,6 +20,7 @@ namespace KURZ.Controllers
         private readonly IUsersModel _usersModel;
         private readonly IAdvicesModel _advicesModel;
         private readonly IStatusModel _statusModel;
+        private readonly IGradesModel _gradesModel;
 
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _hostingEnvironment;
@@ -63,7 +64,7 @@ namespace KURZ.Controllers
             }
         }
 
-        public TeacherController(IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel, IAdvicesModel advicesModel)
+        public TeacherController(IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel, IAdvicesModel advicesModel, IGradesModel gradesModel)
         {
             _configuration = configuration;
             _hostingEnvironment = hostingEnvironment;
@@ -71,6 +72,7 @@ namespace KURZ.Controllers
             _countriesModel = countriesModel;
             _usersModel = usersModel;
             _advicesModel = advicesModel;
+            _gradesModel= gradesModel;
         }
 
 
@@ -391,6 +393,31 @@ namespace KURZ.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult TeacherRate()
+        {
+            try
+            {
+                ClaimsPrincipal claimstudent = HttpContext.User;
+                string nombreusuario = "";
+
+                if (claimstudent.Identity.IsAuthenticated)
+                {
+                    nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                }
+                var user = _usersModel.byUserName(nombreusuario);
+                var data = _gradesModel.TeacherGradesByUser(user.ID_USER);
+                return View(data);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }//TeacherRate
+
 
         // Acción para mostrar la página de calificación
         [HttpGet]
