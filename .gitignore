@@ -59,3 +59,8 @@ KURZ/KURZ/obj/Debug/net6.0/staticwebassets.build.json
 KURZ/KURZ/obj/Debug/net6.0/staticwebassets.development.json
 KURZ/KURZ/obj/Debug/net6.0/staticwebassets.pack.json
 KURZ/KURZ/bin/Debug/net6.0/appsettings.json
+KURZ/KURZ/obj/KURZ.csproj.nuget.dgspec.json
+KURZ/KURZ/obj/KURZ.csproj.nuget.g.props
+KURZ/KURZ/obj/KURZ.csproj.nuget.g.targets
+KURZ/KURZ/obj/project.assets.json
+KURZ/KURZ/obj/project.nuget.cache
