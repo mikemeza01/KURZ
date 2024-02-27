@@ -30,7 +30,7 @@ namespace KURZ.Entities
         public int ID_STUDENT { get; set; }
     }
 
-    public class TeacherGradesView
+    public class TeacherGradesView : Grades
     {
         
         public int? ID_GRADE { get; set; }

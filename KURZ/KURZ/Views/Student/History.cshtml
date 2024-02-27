@@ -28,7 +28,7 @@
                         <a href="javascript:void(0)" class="sort" data-sort="js-lists-values-type">Costo</a>
                     </th>
                     <th style="width: 48px;">
-                        <a href="javascript:void(0)" data-sort="js-lists-values-type">Acciones</a>
+                        <a href="javascript:void(0)" data-sort="js-lists-values-type">Calificar profesor</a>
                     </th>
                     <th style="width: 24px;"></th>
                 </tr>
@@ -57,8 +57,9 @@
                             <small class="js-lists-values-type text-50">@Html.DisplayFor(modelItem => item.PRICE)</small>
                         </td>
                         <td>
-                            <a class="btn btn-accent viewDetails" data-id="@item.TEACHERNAME" data-toggle="modal"
-                                data-target="#detailsModal">Mas detalles</a>
+                            <a asp-controller="Teacher" asp-action="RateTeacher" data-id="@item.ID_ADVICE" class="btn btn-primary"> 
+                                Más detalles
+                            </a>
                         </td>
                         <td class="text-right"></td>
                     </tr>
@@ -67,81 +68,9 @@
         </table>
     </div>
 
-    <div class="card-footer p-8pt">
-        <ul class="pagination justify-content-start pagination-xsm m-0">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true" class="material-icons">chevron_left</span>
-                    <span>Anterior</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Page 1">
-                    <span>1</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Page 2">
-                    <span>2</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span>Siguiente</span>
-                    <span aria-hidden="true" class="material-icons">chevron_right</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
-
-
-<div class="modal fade" tabindex="1" role="dialog" id="viewDetails" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Detalles del Profesor</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Aquí puedes mostrar la información del profesor -->
-                <h5>Información del Profesor:</h5>
-                <p>Nombre: <span id="teacherName"></span></p>
-
-                <!-- Opciones de calificación -->
-                <h5>Calificar al Profesor:</h5>
-                <div class="rating">
-                    <span class="star" data-rating="1"></span>
-                    <span class="star" data-rating="2"></span>
-                    <span class="star" data-rating="3"></span>
-                    <span class="star" data-rating="4"></span>
-                    <span class="star" data-rating="5"></span>
-                    <input type="hidden" name="rating" class="rating-value" value="0">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                    Cerrar
-                </button>
-                <!-- Puedes agregar un botón para enviar la calificación al servidor si lo deseas -->
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
+    
 @section Scripts {
     <script>
-        $(document).ready(function () {
-            $('.more-details').click(function () {
-                var teacherId = $(this).closest('tr').find('.teacher-id').val();
-                // Redirigir a la página de detalles del profesor pasando el ID como parámetro
-                window.location.href = '@Url.Action("TeacherDetails", "Teacher")?teacherId=' + teacherId;
-            });
-        });
+       
     </script>
 }

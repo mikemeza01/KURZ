@@ -64,6 +64,23 @@ namespace KURZ.Controllers
             }
         }
 
+            public TeacherGradesView MapGradesToTeacherGradesView(Grades grades)
+        {
+            var teacherGradesView = new TeacherGradesView();
+
+            // Asignar los valores de Grades a los campos de TeacherGradesView
+            teacherGradesView.ID_GRADE = grades.ID_GRADE;
+            teacherGradesView.COMMENTARY = grades.COMMENTARY;
+            teacherGradesView.GRADE = grades.GRADE;
+            teacherGradesView.DATE_GRADE = grades.DATE_GRADE;
+            teacherGradesView.ID_ADVICE = grades.ID_ADVICE;
+            teacherGradesView.ID_TEACHER = grades.ID_TEACHER;
+            teacherGradesView.ID_STUDENT = grades.ID_STUDENT;
+
+            return teacherGradesView;
+        }
+    
+    
         public TeacherController(IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel, IAdvicesModel advicesModel, IGradesModel gradesModel)
         {
             _configuration = configuration;
@@ -421,27 +438,34 @@ namespace KURZ.Controllers
 
         // Acción para mostrar la página de calificación
         [HttpGet]
-        public IActionResult RateTeacher()
+        public IActionResult RateTeacher(int id)
         {
-            ClaimsPrincipal claimTeacher = HttpContext.User;
-            string nombreUsuario = "";
+            try
+{
+    // Obtener el objeto GetAdvicesById_Result
+    var advice = _advicesModel.GetAdvicesById(id);
 
-            if (claimTeacher.Identity.IsAuthenticated)
-            {
-                nombreUsuario = claimTeacher.Claims
-                    .Where(c => c.Type == ClaimTypes.Name)
-                    .Select(c => c.Value)
-                    .SingleOrDefault();
-            }
-            var user = _usersModel.byUserName(nombreUsuario);
+    // Mapear el objeto GetAdvicesById_Result a TeacherGradesView
+    var teacherGradesView = new TeacherGradesView
+    {
+        ID_ADVICE = advice.ID_ADVICE
+        // Asigna los demás campos de acuerdo a tu lógica
+    };
 
-            return View(user);
+    // Devolver la vista con el modelo de tipo TeacherGradesView
+    return View(teacherGradesView);
+}
+catch (Exception)
+{
+    throw;
+}
+            
         }
 
 
         // Acción para enviar la calificación del profesor
         [HttpPost]
-        public IActionResult RateTeacher(Users teacher, int rating)
+        public IActionResult RateTeacher(TeacherGradesView teacher, int nota)
         {
             try
             {
@@ -454,7 +478,7 @@ namespace KURZ.Controllers
                 }
                 var user = _usersModel.byUserName(nombreusuario);
 
-                var resultado = _teacherModel.RateTeacher(teacher, rating);
+                var resultado = _teacherModel.RateTeacher(teacher, nota);
 
                 if (resultado == "ok")
                 {

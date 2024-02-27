@@ -228,33 +228,37 @@ namespace KURZ.Models
             }
         }
 
-        public string RateTeacher(Users teacher, int rating)
+        public string RateTeacher(TeacherGradesView teacher, int nota)
+{
+    try
+    {
+        if (teacher != null)
         {
-            try
-            {
-                if (teacher != null)
-                {
-                    // Actualizar la calificación del profesor
-                    teacher.Rating = teacher.rating;
+            // Actualizar la calificación del profesor
+            teacher.GRADE = nota;
 
-                    // Guardar los cambios en la base de datos
-                    _context.ChangeTracker.Clear();
-                    _context.Users.Update(teacher);
-                    _context.SaveChanges();
+            // Guardar los cambios en la base de datos
+            
+            _context.SaveChanges();
 
-                    return "ok";
-                }
-                else
-                {
-                    // El profesor no fue encontrado en la base de datos
-                    return "Profesor no encontrado.";
-                }
-            }
-            catch (Exception)
-            {
-                return "error";
-            }
-
+            return "ok";
         }
+        else
+        {
+            // El profesor no fue encontrado en la base de datos
+            return "Profesor no encontrado.";
+        }
+    }
+    catch (DbUpdateException ex)
+    {
+        // Log de errores, notificación al usuario, etc.
+        return "Error al guardar en la base de datos: " + ex.Message;
+    }
+    catch (Exception ex)
+    {
+        // Log de errores, notificación al usuario, etc.
+        return "Error inesperado: " + ex.Message;
+    }
+}
     }
 }
