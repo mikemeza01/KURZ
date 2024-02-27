@@ -254,7 +254,7 @@ namespace KURZ.Models
                 }
                 else
                 {
-                    string cuerpo = ArmarHTMLFP(user, host);
+                    string cuerpo = ArmarHTMLFP(user_by_email, host);
                     //StringBuilder cuerpo = new StringBuilder("");
                     //cuerpo.Append(user_by_email.NAME +" "+ user_by_email.LASTNAME);
                     //cuerpo.Append("<br>");
@@ -476,11 +476,12 @@ namespace KURZ.Models
         {
             string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//CForgotPass.html");
             string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
-            htmlArchivo = htmlArchivo.Replace("@@Nombre", datos.NAME);
+            htmlArchivo = htmlArchivo.Replace("@@Name", datos.NAME);
+            htmlArchivo = htmlArchivo.Replace("@@FullName", $"{datos.NAME} {datos.LASTNAME}");
 
 
 
-            htmlArchivo = htmlArchivo.Replace("@@Link", host + "/Authentication/ForgotPasswordConfirmation/?username=" + datos.EMAIL + "&token=" + datos.TOKEN);
+            htmlArchivo = htmlArchivo.Replace("@@URL", host + "/Authentication/ForgotPasswordConfirmation/?username=" + datos.EMAIL + "&token=" + datos.TOKEN);
 
             return htmlArchivo;
         }
