@@ -64,7 +64,7 @@ namespace KURZ.Controllers
             }
         }
 
-            public TeacherGradesView MapGradesToTeacherGradesView(Grades grades)
+        public TeacherGradesView MapGradesToTeacherGradesView(Grades grades)
         {
             var teacherGradesView = new TeacherGradesView();
 
@@ -79,8 +79,8 @@ namespace KURZ.Controllers
 
             return teacherGradesView;
         }
-    
-    
+
+
         public TeacherController(IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel, IAdvicesModel advicesModel, IGradesModel gradesModel)
         {
             _configuration = configuration;
@@ -89,7 +89,7 @@ namespace KURZ.Controllers
             _countriesModel = countriesModel;
             _usersModel = usersModel;
             _advicesModel = advicesModel;
-            _gradesModel= gradesModel;
+            _gradesModel = gradesModel;
         }
 
 
@@ -438,28 +438,40 @@ namespace KURZ.Controllers
 
         // Acción para mostrar la página de calificación
         [HttpGet]
-        public IActionResult RateTeacher(int id)
+        public IActionResult RateTeacher(int adviceID)
         {
             try
-{
-    // Obtener el objeto GetAdvicesById_Result
-    var advice = _advicesModel.GetAdvicesById(id);
+            {
 
-    // Mapear el objeto GetAdvicesById_Result a TeacherGradesView
-    var teacherGradesView = new TeacherGradesView
-    {
-        ID_ADVICE = advice.ID_ADVICE
-        // Asigna los demás campos de acuerdo a tu lógica
-    };
+            ClaimsPrincipal claimstudent = HttpContext.User;
+                string nombreusuario = "";
 
-    // Devolver la vista con el modelo de tipo TeacherGradesView
-    return View(teacherGradesView);
-}
-catch (Exception)
-{
-    throw;
-}
-            
+                // if (claimstudent.Identity.IsAuthenticated)
+                // {
+                //     nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                // }
+                // var user = _usersModel.byUserName(nombreusuario);
+                // var data = _gradesModel.TeacherinfoByID(adviceID);
+                // return View(data);
+
+                // Obtener el objeto GetAdvicesById_Result
+                var advice = _advicesModel.GetAdvicesById(adviceID);
+
+                // Mapear el objeto GetAdvicesById_Result a TeacherGradesView
+                var teacherGradesView = new TeacherGradesView
+                {
+                    ID_ADVICE = advice.ID_ADVICE
+                    // Asigna los demás campos de acuerdo a tu lógica
+                };
+
+                // Devolver la vista con el modelo de tipo TeacherGradesView
+                return View(teacherGradesView);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
 

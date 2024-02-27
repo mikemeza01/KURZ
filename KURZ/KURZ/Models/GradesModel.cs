@@ -24,23 +24,23 @@ namespace KURZ.Models
                             join s in _context.Users on g.ID_STUDENT equals s.ID_USER
                             join at in _context.Topics on a.ID_TOPIC equals at.ID_TOPIC
                             join c in _context.Categories on at.ID_CATEGORY equals c.ID_CATEGORY
-                            join sc in _context.SubCategories on at.ID_SUBCATEGORY equals sc.ID_SUBCATEGORY 
+                            join sc in _context.SubCategories on at.ID_SUBCATEGORY equals sc.ID_SUBCATEGORY
                             where g.ID_TEACHER == teacherId
 
                             select new TeacherGradesView
                             {
                                 ID_GRADE = g.ID_GRADE,
-                                COMMENTARY = g.COMMENTARY,  
-                                GRADE = g.GRADE,    
-                                StudentName =  s.NAME +" "+ s.LASTNAME,
-                                TeacherName= t.NAME +" "+ t.LASTNAME,
+                                COMMENTARY = g.COMMENTARY,
+                                GRADE = g.GRADE,
+                                StudentName = s.NAME + " " + s.LASTNAME,
+                                TeacherName = t.NAME + " " + t.LASTNAME,
                                 Topic = at.NAME,
                                 Category = c.NAME,
                                 Subcategory = sc.NAME
 
 
                             };
-                return query.ToList();  
+                return query.ToList();
             }
             catch (Exception)
             {
@@ -49,6 +49,38 @@ namespace KURZ.Models
             }
 
         }//TeacherGradesByUser
+
+        public TeacherGradesView TeacherinfoByID(int adviceID)
+        {
+            try
+            {
+                var query = from a in _context.Advices
+                            join g in _context.Grades on a.ID_ADVICE equals g.ID_ADVICE
+                            join t in _context.Topics on a.ID_TOPIC equals t.ID_TOPIC
+                            join u in _context.Users on a.ID_TEACHER equals u.ID_USER
+                            join s in _context.Status on a.ID_STATUS equals s.ID_STATUS
+                            where a.ID_ADVICE == adviceID
+
+                            select new TeacherGradesView
+                            {
+                                ID_GRADE = g.ID_GRADE,
+                                COMMENTARY = g.COMMENTARY,
+                                GRADE = g.GRADE,
+                                TeacherName = u.NAME + " " + u.LASTNAME,
+                                Topic = t.NAME,
+                                // Category = ,
+                                // Subcategory = sc.NAME
+
+
+                            };
+                return query.FirstOrDefault();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
     }//Public Class
 
