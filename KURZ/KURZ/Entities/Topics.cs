@@ -51,6 +51,6 @@ namespace KURZ.Entities
 
 
         [Display(Name = "Estado")]
-        public string? STATUS { get; set; }
+        public bool STATUS { get; set; }
     }
 }

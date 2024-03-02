@@ -120,9 +120,12 @@
                     ID_SUBCATEGORY: id_subcategory
                 },
                 success: function (data) {
-
-                    $('#deleteCategory').modal('hide');
-                    alertaSuccess();
+                    if (data === "ERROR") {
+                        alertaError();
+                    } else {
+                        $('#deleteCategory').modal('hide');
+                        alertaSuccess();
+                    }
 
                 },
                 error: function () {

@@ -11,6 +11,8 @@ namespace KURZ.Interfaces
 
         public Topics TopicsDetail(int? ID);
 
+        public TopicsView TopicsDetailView(int? ID);
+
         public int TopicDelete(Topics topic);
 
     }

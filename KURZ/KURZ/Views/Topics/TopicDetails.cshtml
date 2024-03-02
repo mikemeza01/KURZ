@@ -1,0 +1,52 @@
+﻿@model KURZ.Entities.TopicsView
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = null;
+}
+@if (Model == null)
+{
+    @switch (Convert.ToInt32(ViewData["Error"]))
+    {
+        case 1:
+            <h3>Identicador no es valido o no se encontro</h3>
+            break;
+        case 2:
+            <h3>El tema que busca no fue encontrado</h3>
+            break;
+    }
+}
+else
+{
+    <div class="page-separator">
+        <div class="page-separator__text">@Model.NAME</div>
+    </div>
+    <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+        <div class="card-body d-flex flex-column">
+            <div class="d-flex align-items-center">
+                <div class="flex">
+                    <p><strong>Nombre: </strong>@Model.NAME</p>
+                    <p><strong>Descripción: </strong>@Model.DESCRIPTION</p>
+                    <p><strong>Categoría: </strong>@Model.CATEGORY</p>
+                    <p><strong>Subcategoría: </strong>@Model.SUBCATEGORY</p>
+                    <p>
+                        <strong>Estado:</strong>
+                        @{
+                            if (@Model.STATUS == true)
+                            {
+                                @Html.Raw("Activo")
+                                ;
+
+                            }
+                            else
+                            {
+                                @Html.Raw("Inactivo")
+                                ;
+                            }
+                        }
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}

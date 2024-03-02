@@ -10,6 +10,8 @@
             <div class="flex"
                  style="max-width: 100%">
 
+                <input asp-for="ID_TOPIC" type="hidden" class="form-control" readonly />
+
                 <div class="form-group">
                     <label class="form-label" asp-for="NAME"></label>
                     <input type="text" asp-for="NAME" class="form-control" placeholder="Ingrese un nombre" />
@@ -38,6 +40,7 @@
 
                     </select>
                     <span asp-validation-for="ID_SUBCATEGORY" style="color:red"></span>
+                    <input type="hidden" id="ID_SUBCATEGORY_VALUE" readonly value="@Model.ID_SUBCATEGORY" />
                 </div>
                 <div class="form-group">
                     <label class="form-label" asp-for="STATUS"></label>
@@ -54,7 +57,7 @@
                     </a>
                     <button type="submit"
                             class="btn btn-primary">
-                        Crear
+                        Editar
                     </button>
                 </div>
             </div>
@@ -63,13 +66,13 @@
         @{
             if (@ViewBag.mensaje == "SUCCESS")
             {
-                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+                            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
                 ;
 
             }
             if (@ViewBag.mensaje == "ERROR")
             {
-                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+                            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
                 ;
 
             }
@@ -83,8 +86,20 @@
         $(document).on('change', '#ID_CATEGORY', function (event) {
             event.preventDefault();
             event.stopImmediatePropagation();
+            select_subcategorie();
+        });
 
-            var id_category = $(this).val();
+
+        
+        select_subcategorie();
+        
+
+       
+
+        function select_subcategorie() {
+            var id_category = $('#ID_CATEGORY').val();
+            var id_subcategory = parseInt($('#ID_SUBCATEGORY_VALUE').val());
+            debugger;
             $.ajax({
                 url: '/Topics/SubcategoriesByCategory/' + id_category,
                 type: 'POST',
@@ -96,22 +111,27 @@
                     $('#ID_SUBCATEGORY').append('<option value="">Seleccione una subcategoría</option>');
 
                     $.each(data, function (key, value) {
-                        $('#ID_SUBCATEGORY').append('<option value="' + value.iD_SUBCATEGORY + '">' + value.name + '</option>');
+                        debugger;
+                        var selected = '';
+                        if (value.iD_SUBCATEGORY === id_subcategory) {
+                            selected = 'selected';
+                        }
+                        $('#ID_SUBCATEGORY').append('<option '+selected+' value="' + value.iD_SUBCATEGORY + '">' + value.name + '</option>');
                     });
                 },
                 error: function () {
                     debugger;
                 }
-            });
-        });
+            }); 
+        }
     });
 
     function alertaSuccess() {
         Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: 'Tema creado.',
-            text: 'Tema creado correctamente',
+            title: 'Tema editado.',
+            text: 'Tema editado correctamente',
             timer: 3000,
             showConfirmButton: true
         }).then((result) => {
@@ -128,8 +148,8 @@
         Swal.fire({
             position: 'top-center',
             icon: 'error',
-            title: 'Tema no creado.',
-            text: 'Hubo un error al crear el tema',
+            title: 'Tema no editado.',
+            text: 'Hubo un error al editar el tema',
             showConfirmButton: true
         })
     }

@@ -86,6 +86,35 @@ namespace KURZ.Models
             }
         }
 
+        public TopicsView TopicsDetailView(int? ID)
+        {
+            try
+            {
+
+                var consulta = from top in _context.Topics
+                               join cat in _context.Categories on top.ID_CATEGORY equals cat.ID_CATEGORY
+                               join sub in _context.SubCategories on top.ID_SUBCATEGORY equals sub.ID_SUBCATEGORY
+                               where top.ID_TOPIC == ID
+                               select new TopicsView
+                               {
+                                   ID_TOPIC = top.ID_TOPIC,
+                                   NAME = top.NAME,
+                                   DESCRIPTION = top.DESCRIPTION,
+                                   CATEGORY = cat.NAME,
+                                   SUBCATEGORY = sub.NAME,
+                                   STATUS = top.STATUS,
+                               };
+
+
+                var topic = _context.Topics.Find(ID);
+                return consulta.First();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error interno en el modelo de temas: " + ex.Message);
+            }
+        }
+
         public int TopicDelete(Topics topic)
         {
             try

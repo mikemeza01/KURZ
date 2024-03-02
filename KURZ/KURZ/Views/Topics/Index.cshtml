@@ -37,17 +37,13 @@
 
                                 <td class="acciones">
 
-                                    <a class="btn btn-primary" asp-controller="Topics" asp-route-ID="@item.ID_TOPIC" asp-action="EditTopic">
-                                        <i class="material-icons">create</i>
+                                    <a class="btn btn-dark detailsTopic" data-id="@item.ID_TOPIC">
+                                        <i class="material-icons">remove_red_eye</i>
                                     </a>
 
-
-                                    @if (@item.ID_TOPIC != 1)
-                                    {
-                                        <a class="btn btn-accent deleteTopic" data-id="@item.ID_TOPIC">
-                                            <i class="material-icons">close</i>
-                                        </a>
-                                    }
+                                    <a class="btn btn-primary" asp-controller="Topics" asp-route-ID="@item.ID_TOPIC" asp-action="EditTopic">
+                                        <i class="material-icons">create</i>
+                                    </a>  
 
                                 </td>
                             </tr>
@@ -58,6 +54,25 @@
         </div>
     </div>
 
+</div>
+
+<div class="modal" tabindex="1" role="dialog" id="detailsTopic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalles Usuario</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="detailsTopicbody" class="modal-body">
+            </div>
+            <div class="modal-footer form-group buttons">
+                <button type="button" class="btn btn-accent pull-left" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
 </div>
 
 <div class="modal" tabindex="1" role="dialog" id="deleteTopic" aria-hidden="true">
@@ -85,6 +100,26 @@
 
 <script>
     $(document).ready(function () {
+        //details
+        $(document).on('click', '.detailsTopic', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var id_topic = $(this).data('id');
+
+            $.ajax({
+                url: '/Topics/TopicDetails/' + id_topic,
+                type: 'GET',
+                success: function (data) {
+                    $('#detailsTopicbody').html(data);
+                    $('#detailsTopic').modal('show');
+                    $("#detailsTopic").appendTo("body");
+                },
+                error: function () {
+                    alert("Hubo un problema para obtener los datos")
+                }
+            });
+        });
 
         //delete
         $(document).on('click', '.deleteTopic', function (event) {

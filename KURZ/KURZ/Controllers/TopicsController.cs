@@ -177,7 +177,7 @@ namespace KURZ.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteCategorie(Categories category)
+        public String DeleteCategorie(Categories category)
         {
             try
             {
@@ -186,17 +186,17 @@ namespace KURZ.Controllers
                 if (resultado > 0)
                 {
                     ViewBag.mensaje = "SUCCESS";
-                    return View(category);
+                    return "SUCCESS";
                 }
                 else
                     ViewBag.mensaje = "ERROR";
-                return View(category);
+                    return "ERROR";
 
 
             }
             catch (Exception)
             {
-                return View("Error");
+                return "ERROR";
             }
         }
 
@@ -318,7 +318,7 @@ namespace KURZ.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteSubcategorie(SubCategories subcategory)
+        public string DeleteSubcategorie(SubCategories subcategory)
         {
             try
             {
@@ -327,17 +327,17 @@ namespace KURZ.Controllers
                 if (resultado > 0)
                 {
                     ViewBag.mensaje = "SUCCESS";
-                    return View(subcategory);
+                    return "SUCCESS";
                 }
                 else
                     ViewBag.mensaje = "ERROR";
-                return View(subcategory);
+                    return "ERROR";
 
 
             }
             catch (Exception)
             {
-                return View("Error");
+                return "ERROR";
             }
         }
 
@@ -345,7 +345,7 @@ namespace KURZ.Controllers
 
 
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult TopicsList()
         {
             return View();
@@ -361,21 +361,76 @@ namespace KURZ.Controllers
         public IActionResult CreateTopic(string name)
         {
             return RedirectToAction(nameof(CategoriesList));
+        }*/
+
+        [HttpGet]
+        public IActionResult TopicDetails(int? ID)
+        {
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var topic = _topicsModel.TopicsDetailView(ID);
+            if (topic == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+            return View(topic);
         }
 
         [HttpGet]
-        public IActionResult EditTopic()
+        public IActionResult EditTopic(int ID)
         {
-            return View();
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var topic = _topicsModel.TopicsDetail(ID);
+            if (topic == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+
+            var categories = _categoriesModel.CategoriesList();
+            ViewBag.categories = categories;
+
+            return View(topic);
         }
 
         [HttpPost]
-        public IActionResult EditTopic(string name)
+        public IActionResult EditTopic(Topics topic)
         {
-            return RedirectToAction(nameof(CategoriesList));
+            try
+            {
+                var categories = _categoriesModel.CategoriesList();
+                ViewBag.categories = categories;
+
+                /*if (topic.ID_SUBCATEGORY == 1)
+                {
+                    topic.ID_CATEGORY = 1;
+                }*/
+
+                var resultado = _topicsModel.TopicsEdit(topic);
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(topic);
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(topic);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult DeleteTopic()
         {
             return View();
@@ -385,7 +440,7 @@ namespace KURZ.Controllers
         public IActionResult DeleteTopic(string delete)
         {
             return RedirectToAction(nameof(CategoriesList));
-        }
+        }*/
 
 
     }
