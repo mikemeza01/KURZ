@@ -1,7 +1,8 @@
+
 @model KURZ.Entities.TeacherGradesView
 @{
     ViewData["Title"] = "Calificar Profesor";
-    Layout = "_TeacherH";
+    Layout = "_StudentH";
 }
 
 @if (Model == null)
@@ -9,7 +10,7 @@
     @switch (Convert.ToInt32(ViewData["Error"]))
     {
         case 1:
-            <h3>Identicador no es valido o no se encontro</h3>
+            <h3>Identificador no es válido o no se encontró</h3>
             break;
         case 2:
             <h3>El usuario que busca no fue encontrado</h3>
@@ -19,68 +20,67 @@
 else
 {
 
+    <head>
+    
+    <style>
+       .rating {
+            font-size: 0;
+            margin-top: 5px; 
+           
+        }
+
+        .rating input[type="radio"] {
+            display: none;
+        }
+
+        .rating label {
+            color: #ddd;
+            font-size: 34px;
+            cursor: pointer;
+        }
+
+        .rating input[type="radio"]:checked ~ label {
+            color: #087a90;
+        }
+    </style>
+</head>
     <div class="row">
-    <div class="col-md-8 p-0 mb-5">
-        <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
-            <div class="card-body d-flex flex-column">
-                 <form asp-action="EditAccount" class="align-items-center" enctype="multipart/form-data">
-                <div class="col-md-12 p-0">
-                    <div asp-validation-summary="ModelOnly"></div>
-                    @* ID *@
-                    <input asp-for="ID_TEACHER" type="hidden" class="form-control" readonly />
-                    @* NOTA *@
-                    <div class="form-group">
-                        <label class="form-label" for="Nota">Nota</label>
-                        <input type="text" id="Nota" name="Nota" class="form-control" placeholder="Ingrese una nota con la cual desea calificar al profesor" />
-                    </div>
-                    @* COMENTARIO *@
-                    <div class="form-group">
-                        <label class="form-label" for="Comentario">Comentario</label>
-                        <textarea id="Comentario" name="Comentario" class="form-control" placeholder="Ingrese un comentario adicional"></textarea>
-                    </div>
-                    @* ESTUDIANTE *@
-                    @* <div class="form-group">
-                        <label class="form-label" for="Estudiante">Estudiante</label>
-                         <input asp-for="StudentName" type="text" class="form-control" readonly="readonly" />
-                    </div> *@
-                    @* PROFESOR *@
-                    @* <div class="form-group">
-                        <label class="form-label" for="Profesor">Profesor</label>
-                        <input asp-for="TeacherName" type="text" class="form-control" readonly="readonly" />
-                    </div> *@
-                    @* TEMA *@
-                    @* <div class="form-group">
-                        <label class="form-label" for="Tema">Tema</label>
-                        <input type="text" id="Tema" name="Tema" class="form-control" />
-                    </div> *@
-                    @* CATEGORIA *@
-                    @* <div class="form-group">
-                        <label class="form-label" for="Categoria">Categoría</label>
-                        <input type="text" id="Categoria" name="Categoria" class="form-control" />
-                    </div> *@
-                    @* SUBCATEGORIA *@
-                    @* <div class="form-group">
-                        <label class="form-label" for="Subcategoria">Subcategoría</label>
-                        <input type="text" id="Subcategoria" name="Subcategoria" class="form-control" />
-                    </div> *@
-                    <div class="form-group buttons">
-                        <a asp-controller="Student" asp-action="MyAccount" class="btn btn-accent">
-                            Cancelar
-                        </a>
-                        <button type="submit" class="btn btn-primary">
-                           Enviar calificación
-                        </button>
-                    </div>
-                </div>
-            </form>
+    <div class="col-md-6">
+        <form asp-action="EditAccount" class="align-items-center" enctype="multipart/form-data">
+            <div class="form-group">
+                <input asp-for="ID_TEACHER" type="hidden" class="form-control" readonly />
             </div>
-        </div>
+            <div class="form-group">
+                            <label class="form-label" for="Calificacion">Calificación</label>
+                            <div class="rating">
+                                <input type="radio" id="star5" name="rating" value="5"><label for="star5"><i
+                                        class="fas fa-star"></i></label>
+                                <input type="radio" id="star4" name="rating" value="4"><label for="star4"><i
+                                        class="fas fa-star"></i></label>
+                                <input type="radio" id="star3" name="rating" value="3"><label for="star3"><i
+                                        class="fas fa-star"></i></label>
+                                <input type="radio" id="star2" name="rating" value="2"><label for="star2"><i
+                                        class="fas fa-star"></i></label>
+                                <input type="radio" id="star1" name="rating" value="1"><label for="star1"><i
+                                        class="fas fa-star"></i></label>
+                            </div>
+                        </div>
+            <div class="form-group">
+                <label class="form-label" for="Comentario">Comentario</label>
+                <textarea id="Comentario" name="Comentario" class="form-control"
+                    placeholder="Ingrese un comentario adicional"></textarea>
+            </div>
+            <div class="form-group buttons">
+                <a asp-controller="Student" asp-action="MyAccount" class="btn btn-accent">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Enviar calificación</button>
+            </div>
+        </form>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-body text-center">
                 <h3 class="card-title mb-3">Datos de la asesoría</h3>
-                 <label class="form-label" for="Profesor">Profesor:</label>
+                <label class="form-label" for="Profesor">Profesor:</label>
                 <p class="card-subtitle text-70 mb-3">Profesor J Cubero</p>
                 <label class="form-label" for="Tema">Tema:</label>
                 <p class="card-subtitle text-70 mb-3">Lineales</p>
@@ -90,4 +90,25 @@ else
         </div>
     </div>
 </div>
+}
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.min.css"
+        rel="stylesheet">
+    <script>
+        $(document).ready(function () {
+            $('#input-estrellas').rating({
+                min: 0,
+                max: 5,
+                step: 1,
+                size: 'md',
+                stars: '5',
+                showClear: false,
+                showCaption: false,
+                readonly: false
+            });
+        });
+    </script>
 }

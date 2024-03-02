@@ -443,16 +443,16 @@ namespace KURZ.Controllers
             try
             {
 
-            ClaimsPrincipal claimstudent = HttpContext.User;
-                string nombreusuario = "";
+            // ClaimsPrincipal claimstudent = HttpContext.User;
+            //     string nombreusuario = "";
 
-                // if (claimstudent.Identity.IsAuthenticated)
-                // {
-                //     nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
-                // }
-                // var user = _usersModel.byUserName(nombreusuario);
-                // var data = _gradesModel.TeacherinfoByID(adviceID);
-                // return View(data);
+            //     if (claimstudent.Identity.IsAuthenticated)
+            //     {
+            //         nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+            //     }
+            //     var user = _usersModel.byUserName(nombreusuario);
+            //     var data = _gradesModel.TeacherinfoByID(adviceID);
+            //     return View(data);
 
                 // Obtener el objeto GetAdvicesById_Result
                 var advice = _advicesModel.GetAdvicesById(adviceID);
@@ -466,7 +466,7 @@ namespace KURZ.Controllers
 
                 // Devolver la vista con el modelo de tipo TeacherGradesView
                 return View(teacherGradesView);
-            }
+             }
             catch (Exception)
             {
                 throw;
