@@ -5,6 +5,8 @@
     Layout = "_Student";
     var photo = Context.Session.Get("USER_PHOTO");
 }
+
+
 <div class="page-section bg-secondary account">
     <div class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
         @if (photo.Length > 0 && photo != null)
@@ -20,50 +22,64 @@
                 <span class="avatar-title rounded-circle bg-primary"><i class="material-icons">account_box</i></span>
             </span>
         }
-        <div class="flex mb-32pt mb-md-0">
-            <h2 class="text-white mb-0">Estudiante @Model.NAME @Model.LASTNAME</h2>
-            <div class="rating mb-16pt d-inline-flex">
-                <div class="rating__item"><i class="material-icons">star</i></div>
-                <div class="rating__item"><i class="material-icons">star</i></div>
-                <div class="rating__item"><i class="material-icons">star</i></div>
-                <div class="rating__item"><i class="material-icons">star</i></div>
-                <div class="rating__item"><i class="material-icons">star_border</i></div>
-                <span class="ml-1 text-white">4,3</span>
-            </div>
+       <div class="flex mb-32pt mb-md-0">
+    <h2 class="text-white mb-0"><span id="icono-saludo" class="material-icons mr-8pt" style="font-size: 45px;"></span><span id="saludo"></span>, @Model.NAME @Model.LASTNAME</h2>
+    <h4 class="text-white mb-0">Estudiante</h4>
+</div>
 
-        </div>
         <a asp-controller="Student" asp-action="Edit"
            class="btn btn-outline-white">Editar</a>
     </div>
 </div>
 
-<div class="page-section bg-white border-bottom-2">
-    <div class="container page__container">
-        <div class="row">
-            <div class="col-md-12">
-                <h4>Perfil</h4>
-                <p>@Model.PROFILE</p>
-                <h4>Identificación</h4>
-                <p>@Model.IDENTICATION</p>
-                <h4>Correo Electrónico</h4>
-                <p>@Model.EMAIL</p>
-                <h4>País</h4>
-                <p>
-                    <div class="form-control" asp-for="ID_COUNTRY" disabled="true">
-                        @foreach (var country in ViewBag.countries)
-                        {
-                            if (Model.ID_COUNTRY == country.ID_COUNTRY)
-                            {
-                                <span>@country.NAME</span>
-                            }
-                        }
-                    </div>
-                </p>
+<div class="page-section bg-white">
+    <div class="container page__container page-section">
+        <div class="page-headline text-center">
+            <h2>Perfil del Usuario</h2>
+        </div>
 
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card bg-secondary shadow mb-4" style="border-radius: 20px;">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3 text-white" style="font-size: 20px;">Sobre mi:</h3>
+                        <p class="card-text text-white" style="font-size: 18px;">@Model.PROFILE</p>
+                    </div>
+                </div>
+
+                <div class="card bg-secondary shadow mb-4" style="border-radius: 20px;">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3 text-white" style="font-size: 20px;">Identificación:</h3>
+                        <p class="card-text text-white" style="font-size: 18px;">@Model.IDENTICATION</p>
+                    </div>
+                </div>
+
+                <div class="card bg-secondary shadow mb-4" style="border-radius: 20px;">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3 text-white" style="font-size: 20px;">Correo Electrónico:</h3>
+                        <p class="card-text text-white" style="font-size: 18px;">@Model.EMAIL</p>
+                    </div>
+                </div>
+
+                <div class="card bg-secondary shadow mb-4" style="border-radius: 20px;">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3 text-white" style="font-size: 20px;">País</h3>
+                        <p class="card-text text-white" style="font-size: 18px;">
+                            @foreach (var country in ViewBag.countries)
+                            {
+                                if (Model.ID_COUNTRY == country.ID_COUNTRY)
+                                {
+                                    <span>@country.NAME</span>
+                                }
+                            }
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <div class="container page__container page-section">
 
@@ -119,3 +135,22 @@
 
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var saludo = document.getElementById('saludo');
+        var iconoSaludo = document.getElementById('icono-saludo');
+        var hora = new Date().getHours();
+
+        if (hora >= 6 && hora < 12) {
+            saludo.textContent = "Buenos días";
+            iconoSaludo.textContent = "wb_sunny"; // Icono de sol
+        } else if (hora >= 12 && hora < 18) {
+            saludo.textContent = "Buenas tardes";
+            iconoSaludo.textContent = "brightness_5"; // Icono de sol
+        } else {
+            saludo.textContent = "Buenas noches";
+            iconoSaludo.textContent = "nights_stay"; // Icono de luna
+        }
+    });
+</script>
