@@ -11,6 +11,7 @@ namespace KURZ.Controllers
         private readonly ITopicsModel _topicsModel;
         private readonly ICategoriesModel _categoriesModel;
         private readonly ISubCategoriesModel _SubcategoriesModel;
+
         //CREACION DEL CONTROLADOR.
         public TopicsController(ITopicsModel topicsModel, ICategoriesModel categoriesModel, ISubCategoriesModel subcategoriesModel)
         {
@@ -70,6 +71,13 @@ namespace KURZ.Controllers
         {
             var subcategories = _SubcategoriesModel.SubcategoriesByCategory(subcategory.ID_CATEGORY);
             return subcategories;
+        }
+
+        [HttpPost]
+        public List<Topics> TopicsByCatSub(int ID_CATEGORY, int ID_SUBCATEGORY)
+        {
+            var topics = _topicsModel.TopicsByCatSub(ID_CATEGORY, ID_SUBCATEGORY);
+            return topics;
         }
 
         [HttpGet]

@@ -28,6 +28,7 @@ builder.Services.AddScoped<ICountriesModel, CountriesModel>();
 builder.Services.AddScoped<IAdvicesModel, AdvicesModel>();
 builder.Services.AddScoped<IStatusModel, StatusModel>();
 builder.Services.AddScoped<IGradesModel, GradesModel>();
+builder.Services.AddScoped<IPriceTopicModel, PriceTopicModel>();
 
 //builder.Services.AddSingleton<IWebHostEnvironment>();
 

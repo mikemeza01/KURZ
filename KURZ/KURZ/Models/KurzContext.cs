@@ -27,5 +27,7 @@ namespace KURZ.Models
         public DbSet<GetAdvicesById_Result> GetAdvicesById_Result { get; set; }
         public DbSet<GetAdvicesByTeacherId_Result> GetAdvicesByTeacherId_Result { get; set; }
 
+        public DbSet<Price_Topics> Price_Topics { get; set; }
+
     }
 }

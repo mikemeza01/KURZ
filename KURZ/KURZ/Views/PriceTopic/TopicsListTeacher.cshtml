@@ -1,0 +1,203 @@
+﻿
+@model IEnumerable<KURZ.Entities.Price_Topics_Teacher>
+@{
+    ViewData["Title"] = "Mis Temas";
+    Layout = "_TeacherH";
+}
+
+<div class="row mb-2">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="ID_CATEGORY" class="form-label">Categorías</label>
+            <select id="ID_CATEGORY" class="form-control">
+                <option value="">Seleccione una categoría</option>
+                @foreach (var categories in ViewBag.categories)
+                {
+                    <option value="@categories.ID_CATEGORY"> @categories.NAME</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="ID_SUBCATEGORY" class="form-label">Subcategorías</label>
+            <select id="ID_SUBCATEGORY" class="form-control">
+                <option value="">Seleccione una subcategoría</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="ID_TOPIC" class="form-label">Tema</label>
+            <select id="ID_TOPIC" class="form-control">
+                <option value="">Seleccione un tema</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label for="ADD_PRICE" class="form-label">Precio</label>
+            <input type="text" id="ADD_PRICE" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <button type="submit"
+                    class="btn btn-primary">
+                Agregar
+            </button>
+        </div>
+    </div>
+</div>
+<div class="page-separator">
+    <div class="page-separator__text"></div>
+</div>
+    <div class="card mb-lg-32pt">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Temas</h4>
+                    <br />
+                    @if (Model.Count() == 0)
+                    {
+                        <p>Aun no a agregado temas en los cuales desea impartir Asesorías</p>
+                    }
+                    else
+                    {
+                    <table id="TableList" class="table tableSmall">
+                        <thead>
+                            <tr>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.TOPIC_NAME)</th>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.PRICE)</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td class="text-center">@item.TOPIC_NAME</td>
+                                    <td class="text-center">@item.PRICE</td>
+
+                                    <td class="acciones">
+
+                                        <a class="btn btn-dark detailsTopic" data-id="@item.ID_PRICE_TOPIC">
+                                            <i class="material-icons">remove_red_eye</i>
+                                        </a>
+
+                                        <a class="btn btn-primary" asp-controller="Topics" asp-route-ID="@item.ID_PRICE_TOPIC" asp-action="EditTopic">
+                                            <i class="material-icons">create</i>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#ID_TOPIC').select2();
+
+        $(document).on('change', '#ID_CATEGORY', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var id_category = $(this).val();
+            $.ajax({
+                url: '/Topics/SubcategoriesByCategory/' + id_category,
+                type: 'POST',
+                data: {
+                    ID_CATEGORY: id_category
+                },
+                success: function (data) {
+                    $('#ID_SUBCATEGORY').html('');
+                    $('#ID_SUBCATEGORY').append('<option value="0">Todas</option>');
+
+                    $.each(data, function (key, value) {
+                        $('#ID_SUBCATEGORY').append('<option value="' + value.iD_SUBCATEGORY + '">' + value.name + '</option>');
+                    });
+
+                    get_topics_cat_sub();
+                },
+                error: function () {
+                    debugger;
+                }
+            });
+        });
+
+        $(document).on('change', '#ID_SUBCATEGORY', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            get_topics_cat_sub();
+        });
+
+        function get_topics_cat_sub() {
+            var id_category = $('#ID_CATEGORY').val();
+            var id_subcategory = $('#ID_SUBCATEGORY').val();
+
+            debugger;
+
+            $.ajax({
+                url: '/Topics/TopicsByCatSub/',
+                type: 'POST',
+                data: {
+                    ID_CATEGORY: parseInt(id_category),
+                    ID_SUBCATEGORY: parseInt(id_subcategory),
+                },
+                success: function (data) {
+                    $('#ID_TOPIC').html('');
+                    $('#ID_TOPIC').append('<option value="">Seleccionar un Tema</option>');
+
+                    $.each(data, function (key, value) {
+                        $('#ID_TOPIC').append('<option value="' + value.iD_TOPIC + '">' + value.name + '</option>');
+                    });
+
+                },
+                error: function () {
+                    debugger;
+                }
+            });
+        }
+
+    });
+
+    function alertaSuccess() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Tema creado.',
+            text: 'Tema creado correctamente',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Topics';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Topics';
+        }, 3000);
+    }
+
+    function alertaError() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Tema no creado.',
+            text: 'Hubo un error al crear el tema',
+            showConfirmButton: true
+        })
+    }
+
+</script>

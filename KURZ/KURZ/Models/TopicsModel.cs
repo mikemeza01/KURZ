@@ -131,5 +131,25 @@ namespace KURZ.Models
                 return 0;
             }
         }
+
+
+        public List<Topics> TopicsByCatSub(int ID_CATEGORY, int ID_SUBCATEGORY) {
+            try
+            {
+
+                if (ID_SUBCATEGORY == 0)
+                {
+                    return _context.Topics.Where(x => x.ID_CATEGORY == ID_CATEGORY).ToList();
+                }
+                else {
+                    return _context.Topics.Where(x => x.ID_CATEGORY == ID_CATEGORY && x.ID_SUBCATEGORY == ID_SUBCATEGORY).ToList();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de temas: " + ex.Message);
+            }
+        }
     }
 }
