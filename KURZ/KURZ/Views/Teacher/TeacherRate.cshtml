@@ -6,75 +6,114 @@
     Layout = "_Teacher";
 }
 
-
-<div class="card mb-lg-32pt">
-    <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title text-center">Evaluaciones</h4>
-                <br />
-                <table id="TableTeacherGrades" class="table tableSmall">
-                    <thead>
-                        <tr>
-                            <th class="text-center" style="display:none"></th>
-                            <th class="text-center">
-                                Nota 
-                            </th>
-                            <th class="text-center">
-                                Comentario
-                            </th>
-                            <th class="text-center">
-                                Estudiante
-                            </th>
-                            <th class="text-center">
-                                Profesor
-                            </th>
-                            <th class="text-center">
-                                Tema
-                            </th>
-                            <th class="text-center">
-                                Categoría
-                            </th>
-                            <th class="text-center">
-                                Subcategoría
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td class="text-center"  style="display:none">
-                                    @Html.DisplayFor(modelItem => item.ID_GRADE)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.GRADE)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.COMMENTARY)
-                                </td class="text-center">
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.StudentName)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.TeacherName)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.Topic)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.Category)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.Subcategory)
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title text-center">Evaluaciones</h4>
+        <br />
+        <table id="TableTeacherGrades" class="table tableSmall">
+            <thead>
+                <tr>
+                    <th class="text-center" style="display:none"></th>
+                    <th class="text-center">
+                        Nota 
+                    </th>
+                    <th class="text-center">
+                        Comentario
+                    </th>
+                    <th class="text-center">
+                        Estudiante
+                    </th>
+                    <th class="text-center">
+                        Profesor
+                    </th>
+                    <th class="text-center">
+                        Tema
+                    </th>
+                    <th class="text-center">
+                        Categoría
+                    </th>
+                    <th class="text-center">
+                        Subcategoría
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center"  style="display:none">
+                            @Html.DisplayFor(modelItem => item.ID_GRADE)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.GRADE)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.COMMENTARY)
+                        </td class="text-center">
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.StudentName)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.TeacherName)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Topic)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Subcategory)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
+
+
+
+
+
+<!-- Después de tu tabla -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Obtener todas las celdas de la columna de notas
+        var gradeCells = document.querySelectorAll("#TableTeacherGrades tbody td:nth-child(2)");
+
+        // Calcular el promedio de las notas
+        var totalGrades = 0;
+        gradeCells.forEach(function (cell) {
+            totalGrades += parseFloat(cell.textContent.trim());
+        });
+        var promedioNotas = totalGrades / gradeCells.length;
+
+         var notas = Array.from(gradeCells).map(function (cell) {
+         return parseFloat(cell.textContent.trim());
+        });
+        var notaMasAlta = Math.max(...notas);
+        let suma = promedioNotas / notaMasAlta
+        let promedioEscalado = suma * 5
+
+        console.log("Suma de notas", totalGrades)
+        console.log("Cantidad de notas", gradeCells.length)
+        console.log("Promedio", promedioNotas)
+        console.log("Nota máxima", notaMasAlta)
+        console.log("Suma promedio + Nota más alta", suma)
+        console.log("Promedio escalado", promedioEscalado)
+
+        // Crear una nueva fila para mostrar el promedio
+        var nuevaFila = document.createElement("tr");
+        nuevaFila.innerHTML = `
+            <td colspan="8" class="text-right"><strong>Promedio:</strong></td>
+            <td class="text-center">${promedioEscalado.toFixed(2)}</td>
+       `;
+
+        // Agregar la nueva fila al final de la tabla
+        var tbody = document.querySelector("#TableTeacherGrades tbody");
+        tbody.appendChild(nuevaFila);
+    });
+</script>
 
 
