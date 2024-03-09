@@ -10,7 +10,7 @@ namespace KURZ.Entities
 
         [Required(ErrorMessage = "El precio es requerido")]
         [Display(Name = "Precio")]
-        public float PRICE { get; set; }
+        public double PRICE { get; set; }
 
         [Required(ErrorMessage = "Debe existir un id de profesor")]
         [Display(Name = "ID Profesor")]
@@ -28,7 +28,7 @@ namespace KURZ.Entities
         public int ID_PRICE_TOPIC { get; set; }
 
         [Display(Name = "Precio")]
-        public float PRICE { get; set; }
+        public double PRICE { get; set; }
 
         [Display(Name = "Nombre Profesor")]
         public string? TEACHER_NAME { get; set; }

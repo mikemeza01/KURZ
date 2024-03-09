@@ -4,51 +4,53 @@
     ViewData["Title"] = "Mis Temas";
     Layout = "_TeacherH";
 }
-
-<div class="row mb-2">
-    <div class="col-md-2">
-        <div class="form-group">
-            <label for="ID_CATEGORY" class="form-label">Categorías</label>
-            <select id="ID_CATEGORY" class="form-control">
-                <option value="">Seleccione una categoría</option>
-                @foreach (var categories in ViewBag.categories)
-                {
-                    <option value="@categories.ID_CATEGORY"> @categories.NAME</option>
-                }
-            </select>
+<form asp-action="CreateTopicTeacher" class="align-items-center">
+    <div class="row mr-0 ml-0 mb-2 row-cols-5">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ID_CATEGORY" class="form-label">Categorías</label>
+                <select id="ID_CATEGORY" class="form-control">
+                    <option value="">Seleccione una categoría</option>
+                    @foreach (var categories in ViewBag.categories)
+                    {
+                        <option value="@categories.ID_CATEGORY"> @categories.NAME</option>
+                    }
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="col-md-2">
-        <div class="form-group">
-            <label for="ID_SUBCATEGORY" class="form-label">Subcategorías</label>
-            <select id="ID_SUBCATEGORY" class="form-control">
-                <option value="">Seleccione una subcategoría</option>
-            </select>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ID_SUBCATEGORY" class="form-label">Subcategorías</label>
+                <select id="ID_SUBCATEGORY" class="form-control">
+                    <option value="">Seleccione una subcategoría</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="col-md-2">
-        <div class="form-group">
-            <label for="ID_TOPIC" class="form-label">Tema</label>
-            <select id="ID_TOPIC" class="form-control">
-                <option value="">Seleccione un tema</option>
-            </select>
+        <div class="col">
+            <div class="form-group">
+                <label for="ID_TOPIC" class="form-label">Tema</label>
+                <select id="ID_TOPIC_NEW" name="ID_TOPIC_NEW" class="form-control">
+                    <option value="">Seleccione un tema</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="col-md-2">
-        <div class="form-group">
-            <label for="ADD_PRICE" class="form-label">Precio</label>
-            <input type="text" id="ADD_PRICE" class="form-control">
+        <div class="col">
+            <div class="form-group">
+                <label for="ADD_PRICE" class="form-label">Precio</label>
+                <input type="text" id="ADD_PRICE" name="ADD_PRICE" class="form-control" placeholder="Ingrese un precio">
+            </div>
         </div>
-    </div>
-    <div class="col-md-2">
-        <div class="form-group">
-            <button type="submit"
-                    class="btn btn-primary">
-                Agregar
-            </button>
+        <div class="col-md-1 buttons-vertical-flex-end">
+            <div class="form-group">
+                <button type="submit"
+                        class="btn btn-success">
+                    Agregar
+                </button>
+            </div>
         </div>
+        <input id="ID_TEACHER_NEW" name="ID_TEACHER_NEW" type="hidden" readonly value="@ViewBag.ID_TEACHER" />
     </div>
-</div>
+</form>
 <div class="page-separator">
     <div class="page-separator__text"></div>
 </div>
@@ -83,14 +85,12 @@
 
                                     <td class="acciones">
 
-                                        <a class="btn btn-dark detailsTopic" data-id="@item.ID_PRICE_TOPIC">
-                                            <i class="material-icons">remove_red_eye</i>
-                                        </a>
-
-                                        <a class="btn btn-primary" asp-controller="Topics" asp-route-ID="@item.ID_PRICE_TOPIC" asp-action="EditTopic">
+                                        <a class="btn btn-primary editTopicTeacher" data-id="@item.ID_PRICE_TOPIC">
                                             <i class="material-icons">create</i>
                                         </a>
 
+                                        <a class="btn btn-accent deleteTopicTeacher" data-id="@item.ID_PRICE_TOPIC">
+                                            <i class="material-icons">close</i>
                                     </td>
                                 </tr>
                             }
@@ -103,10 +103,37 @@
 
     </div>
 
+<div class="modal" tabindex="1" role="dialog" id="editTopicTeacher" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Tema</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="editTopicTeacherbody" class="modal-body">
+            </div>
+            <div class="modal-footer form-group buttons">
+                <button type="button" class="btn btn-accent pull-left" data-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button"
+                        class="btn btn-primary" id="editTopicTeacherConfirm">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
 <script>
     $(document).ready(function () {
 
         $('#ID_TOPIC').select2();
+
+        $('#ADD_PRICE').mask('0000000000', { reverse: true });
 
         $(document).on('change', '#ID_CATEGORY', function (event) {
             event.preventDefault();
@@ -146,8 +173,6 @@
             var id_category = $('#ID_CATEGORY').val();
             var id_subcategory = $('#ID_SUBCATEGORY').val();
 
-            debugger;
-
             $.ajax({
                 url: '/Topics/TopicsByCatSub/',
                 type: 'POST',
@@ -157,7 +182,7 @@
                 },
                 success: function (data) {
                     $('#ID_TOPIC').html('');
-                    $('#ID_TOPIC').append('<option value="">Seleccionar un Tema</option>');
+                    $('#ID_TOPIC').append('<option value="">Seleccione un Tema</option>');
 
                     $.each(data, function (key, value) {
                         $('#ID_TOPIC').append('<option value="' + value.iD_TOPIC + '">' + value.name + '</option>');
@@ -169,6 +194,58 @@
                 }
             });
         }
+
+        //edit
+        $(document).on('click', '.editTopicTeacher', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var id_price_topic = $(this).data('id');
+
+            $.ajax({
+                url: '/PriceTopic/EditTopicTeacher/' + id_price_topic,
+                type: 'GET',
+                success: function (data) {
+                    $('#editTopicTeacherbody').html(data);
+                    $('#editTopicTeacher').modal('show');
+                    $("#editTopicTeacher").appendTo("body");
+                },
+                error: function () {
+                    alert("Hubo un problema para obtener los datos")
+                }
+            });
+        });
+
+        //delete user confirm
+        $(document).on('click', '#editTopicTeacherConfirm', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var id_price_topic = $('#ID_PRICE_TOPIC').val();
+            var price = $('#PRICE').val();
+            var id_teacher = $('#ID_TEACHER').val();
+            var id_topic = $('#ID_TOPIC').val();
+
+            $.ajax({
+                url: '/PriceTopic/EditTopicTeacher/',
+                type: 'POST',
+                data: {
+                    ID_PRICE_TOPIC: id_price_topic,
+                    PRICE: price,
+                    ID_TEACHER: id_teacher,
+                    ID_TOPIC: id_topic
+                },
+                success: function (data) {
+
+                    $('#editTopicTeacher').modal('hide');
+                    alertaSuccessEdit();
+
+                },
+                error: function () {
+                    alertaErrorEdit();
+                }
+            });
+        });
 
     });
 

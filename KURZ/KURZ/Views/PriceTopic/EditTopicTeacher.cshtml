@@ -1,0 +1,37 @@
+﻿@model KURZ.Entities.Price_Topics
+@{
+    ViewData["Title"] = "Editar Tema";
+    Layout = null;
+}
+<div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+    <div class="card-body d-flex flex-column">
+        <form asp-action="EditTopic" class="align-items-center">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="flex"
+                 style="max-width: 100%">
+
+                <input asp-for="ID_PRICE_TOPIC" type="hidden" class="form-control" readonly />
+
+                <div class="form-group">
+                    <label class="form-label" asp-for="PRICE"></label>
+                    <input type="text" asp-for="PRICE" class="form-control" placeholder="Ingrese un precio" />
+                    <span asp-validation-for="PRICE" style="color:red"></span>
+                </div>
+
+                <input asp-for="ID_TEACHER" type="hidden" class="form-control" readonly />
+
+                <input asp-for="ID_TOPIC" type="hidden" class="form-control" readonly />
+                
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#PRICE').mask('0000000000', { reverse: true });
+
+    });
+
+</script>
