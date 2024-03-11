@@ -50,13 +50,14 @@ namespace KURZ.Models
 
         }//TeacherGradesByUser
 
-        public TeacherGradesView TeacherinfoByID(int adviceID)
+        public object TeacherinfoByID(int adviceID)
         {
             try
             {
                 var query = from a in _context.Advices
                             join g in _context.Grades on a.ID_ADVICE equals g.ID_ADVICE
                             join t in _context.Topics on a.ID_TOPIC equals t.ID_TOPIC
+                            join c in _context.Categories on t.ID_CATEGORY equals c.ID_CATEGORY
                             join u in _context.Users on a.ID_TEACHER equals u.ID_USER
                             join s in _context.Status on a.ID_STATUS equals s.ID_STATUS
                             where a.ID_ADVICE == adviceID
@@ -64,23 +65,21 @@ namespace KURZ.Models
                             select new TeacherGradesView
                             {
                                 ID_GRADE = g.ID_GRADE,
-                                COMMENTARY = g.COMMENTARY,
-                                GRADE = g.GRADE,
                                 TeacherName = u.NAME + " " + u.LASTNAME,
                                 Topic = t.NAME,
-                                // Category = ,
-                                // Subcategory = sc.NAME
-
-
+                                Category = c.NAME
                             };
-                return query.FirstOrDefault();
-            }
-            catch (Exception)
-            {
+                              
 
-                throw;
+                return query.SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                throw ex;
             }
         }
+
 
     }//Public Class
 

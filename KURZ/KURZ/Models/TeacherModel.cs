@@ -1,9 +1,11 @@
 ﻿using KURZ.Entities;
 using KURZ.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Hosting;
 using System.Text;
+using ZoomNet.Models;
 
 namespace KURZ.Models
 {
@@ -228,37 +230,45 @@ namespace KURZ.Models
             }
         }
 
-        public string RateTeacher(TeacherGradesView teacher, int nota)
-{
-    try
-    {
-        if (teacher != null)
+        public string SendRating(int IdTeacher, int IdStudent, int rating, string commentary, int IDADVICE)
         {
-            // Actualizar la calificación del profesor
-            teacher.GRADE = nota;
+            try
+            {
+                if (IdTeacher != null)
+                {
+                    //Crear Objeto Grade
+                    Grades rate = new Grades();
+                    rate.ID_TEACHER = IdTeacher;
+                    rate.GRADE = rating;
+                    rate.DATE_GRADE = DateTime.Now;
+                    rate.COMMENTARY = commentary;
+                    rate.ID_ADVICE = IDADVICE;
+                    rate.ID_STUDENT = IdStudent;
 
-            // Guardar los cambios en la base de datos
-            
-            _context.SaveChanges();
+                    //Agregar el nuevo objeto al contexto
+                    _context.Grades.Add(rate);
 
-            return "ok";
+                    //Guardar los cambios
+                    _context.SaveChanges();
+
+                    return "ok";
+                }
+                else
+                {
+                    // El profesor no fue encontrado en la base de datos
+                    return "Profesor no encontrado.";
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                // Log de errores, notificación al usuario, etc.
+                return "Error al guardar en la base de datos: " + ex.Message;
+            }
+            catch (Exception ex)
+            {
+                // Log de errores, notificación al usuario, etc.
+                return "Error inesperado: " + ex.Message;
+            }
         }
-        else
-        {
-            // El profesor no fue encontrado en la base de datos
-            return "Profesor no encontrado.";
-        }
-    }
-    catch (DbUpdateException ex)
-    {
-        // Log de errores, notificación al usuario, etc.
-        return "Error al guardar en la base de datos: " + ex.Message;
-    }
-    catch (Exception ex)
-    {
-        // Log de errores, notificación al usuario, etc.
-        return "Error inesperado: " + ex.Message;
-    }
-}
     }
 }

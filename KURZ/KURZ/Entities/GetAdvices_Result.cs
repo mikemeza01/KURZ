@@ -17,8 +17,11 @@ namespace KURZ.Entities
         public string TOPICNAME { get; set; }
         public string TOPICDESCRIPTION { get; set; }
         public string TEACHERNAME { get; set; }
+        public int IDTEACHER {get; set;}
+        public int IDSTUDENT {get; set;}
         public string STUDENTNAME { get; set; }
         public string STATUSNAME { get; set; }
+        
     }
 
     [Keyless]

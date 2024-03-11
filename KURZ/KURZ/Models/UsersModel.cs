@@ -337,6 +337,12 @@ namespace KURZ.Models
             return user;
         }
 
+         public Users byID(int ID)
+        {
+            var user = _context.Users.Find(ID);
+            return user;
+        }
+
         public string confirmAccount(Users user)
         {
 

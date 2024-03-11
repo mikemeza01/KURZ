@@ -32,17 +32,13 @@ namespace KURZ.Entities
 
     public class TeacherGradesView : Grades
     {
-        
-        public int? ID_GRADE { get; set; }
-        public string? COMMENTARY { get; set; }
-        public int? GRADE { get; set; }
-
         public string? TeacherName { get; set; }
 
         public string? StudentName { get; set; }
         public string? Topic { get; set; }
         public string? Category { get; set; }
         public string? Subcategory { get; set; }
+        public string? Status {get; set;}
 
     }//TeacherGrades
 

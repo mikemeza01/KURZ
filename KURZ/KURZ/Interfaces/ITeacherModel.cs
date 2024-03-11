@@ -18,6 +18,6 @@ namespace KURZ.Interfaces
 
         public string base64Decode(string sData);
 
-        public string RateTeacher(TeacherGradesView teacher, int rating);
+        public string SendRating(int IdTeacher, int IdStudent, int rating, string commentary, int IDADVICE);
     }
 }

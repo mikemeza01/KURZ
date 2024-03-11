@@ -5,6 +5,7 @@ using KURZ.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 //using NuGet.DependencyResolver;
 using System.Security.Claims;
@@ -435,62 +436,58 @@ namespace KURZ.Controllers
             }
         }//TeacherRate
 
-
         // Acción para mostrar la página de calificación
+
         [HttpGet]
-        public IActionResult RateTeacher(int adviceID)
+        public IActionResult RateTeacher(int ID)
         {
             try
             {
+                var advice = _advicesModel.GetAdvicesById(ID);
+                if (advice == null)
+                {
+                    return View("Error");
+                }
 
-            // ClaimsPrincipal claimstudent = HttpContext.User;
-            //     string nombreusuario = "";
-
-            //     if (claimstudent.Identity.IsAuthenticated)
-            //     {
-            //         nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
-            //     }
-            //     var user = _usersModel.byUserName(nombreusuario);
-            //     var data = _gradesModel.TeacherinfoByID(adviceID);
-            //     return View(data);
-
-                // Obtener el objeto GetAdvicesById_Result
-                var advice = _advicesModel.GetAdvicesById(adviceID);
-
-                // Mapear el objeto GetAdvicesById_Result a TeacherGradesView
                 var teacherGradesView = new TeacherGradesView
                 {
-                    ID_ADVICE = advice.ID_ADVICE
-                    // Asigna los demás campos de acuerdo a tu lógica
+                    ID_ADVICE = advice.ID_ADVICE,
+                   
+                    TeacherName = advice.TEACHERNAME,
+                    Topic = advice.TOPICNAME,
+                    DATE_GRADE = advice.DATE_UPDATE,
+                    Status = advice.STATUSNAME,
                 };
 
-                // Devolver la vista con el modelo de tipo TeacherGradesView
                 return View(teacherGradesView);
-             }
+            }
             catch (Exception)
             {
                 throw;
             }
-
         }
-
 
         // Acción para enviar la calificación del profesor
         [HttpPost]
-        public IActionResult RateTeacher(TeacherGradesView teacher, int nota)
+        public IActionResult RateTeacher(int IDADVICE, int ratingValue, string commentary)
         {
+
             try
             {
-                ClaimsPrincipal claimteacher = HttpContext.User;
-                string nombreusuario = "";
-
-                if (claimteacher.Identity.IsAuthenticated)
+                var advice = _advicesModel.GetAdvicesById(IDADVICE);
+                if (advice == null)
                 {
-                    nombreusuario = claimteacher.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                    return View("Error");
                 }
-                var user = _usersModel.byUserName(nombreusuario);
 
-                var resultado = _teacherModel.RateTeacher(teacher, nota);
+                int idteacher = advice.IDTEACHER;
+                int Idstudent = advice.IDSTUDENT;
+
+                var teacher = _usersModel.byID(idteacher);
+                var student = _usersModel.byID(Idstudent);
+
+
+                var resultado = _teacherModel.SendRating(teacher.ID_USER, student.ID_USER, ratingValue, commentary, IDADVICE);
 
                 if (resultado == "ok")
                 {

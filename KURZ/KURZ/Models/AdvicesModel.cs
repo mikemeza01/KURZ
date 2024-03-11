@@ -65,6 +65,7 @@ namespace KURZ.Models
             }
         }
 
+
         public List<GetAdvicesByTeacherId_Result> GetAdvicesByTeacherId(int id)
         {
             try

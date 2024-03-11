@@ -26,6 +26,7 @@ namespace KURZ.Interfaces
         public Users byEmail(string email);
 
         public Users byUserName(string username);
+        public Users byID(int ID);
 
         public string confirmAccount(Users user);
 
