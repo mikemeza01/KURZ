@@ -42,7 +42,7 @@
         </div>
         <div class="col-md-1 buttons-vertical-flex-end">
             <div class="form-group">
-                <button type="submit"
+                <button disabled type="submit" id="SUBMIT_CREATE_TOPIC_PRICE"
                         class="btn btn-success">
                     Agregar
                 </button>
@@ -51,6 +51,26 @@
         <input id="ID_TEACHER_NEW" name="ID_TEACHER_NEW" type="hidden" readonly value="@ViewBag.ID_TEACHER" />
     </div>
 </form>
+@{
+    if (@ViewBag.mensaje == "SUCCESS")
+    {
+    @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+        ;
+
+    }
+    if (@ViewBag.mensaje == "EXISTS")
+    {
+    @Html.Raw("<script> $(document).ready(function() {\r\n         alertaExists();\r\n      });       </script>")
+        ;
+
+    }
+    if (@ViewBag.mensaje == "ERROR")
+    {
+    @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+        ;
+
+    }
+}
 <div class="page-separator">
     <div class="page-separator__text"></div>
 </div>
@@ -119,7 +139,7 @@
                     Cancelar
                 </button>
                 <button type="button"
-                        class="btn btn-primary" id="editTopicTeacherConfirm">
+                        class="btn btn-primary" id="editTopicTeacherConfirm" disabled>
                     Confirmar
                 </button>
             </div>
@@ -127,6 +147,33 @@
         <!-- /.modal-content -->
     </div>
 </div>
+
+
+<div class="modal" tabindex="1" role="dialog" id="deleteTopicTeacher" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Eliminar Tema</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="deleteTopicTeacherbody" class="modal-body">
+            </div>
+            <div class="modal-footer form-group buttons">
+                <button type="button" class="btn btn-accent pull-left" data-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button"
+                        class="btn btn-primary" id="deleteTopicTeacherConfirm">
+                    Confirmar
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
 
 <script>
     $(document).ready(function () {
@@ -160,6 +207,8 @@
                     debugger;
                 }
             });
+
+            check_select_topic_and_price();
         });
 
         $(document).on('change', '#ID_SUBCATEGORY', function (event) {
@@ -167,7 +216,48 @@
             event.stopImmediatePropagation();
 
             get_topics_cat_sub();
+            check_select_topic_and_price();
         });
+
+        $(document).on('change', '#ID_TOPIC_NEW', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            check_select_topic_and_price();
+        });
+
+        $(document).on('keyup', '#ADD_PRICE', function () {
+            check_select_topic_and_price();
+        });
+
+        $(document).on('keyup', '#PRICE', function () {
+            check_topic_and_price_edit();
+        });
+
+        function check_select_topic_and_price() {
+            var topic = $('#ID_TOPIC_NEW').val();
+            var price = $('#ADD_PRICE').val();
+            
+            if (topic !== '' && topic !== '0' && price !== '') {
+                $('#SUBMIT_CREATE_TOPIC_PRICE').prop('disabled', false);
+                $('#SUBMIT_CREATE_TOPIC_PRICE').attr('disabled', false);
+            } else { 
+                $('#SUBMIT_CREATE_TOPIC_PRICE').prop('disabled', true);
+                $('#SUBMIT_CREATE_TOPIC_PRICE').attr('disabled', true);
+            }
+        }
+
+        function check_topic_and_price_edit() {
+            var price = $('#PRICE').val();
+
+            if (price !== '') {
+                $('#editTopicTeacherConfirm').prop('disabled', false);
+                $('#editTopicTeacherConfirm').attr('disabled', false);
+            } else {
+                $('#editTopicTeacherConfirm').prop('disabled', true);
+                $('#editTopicTeacherConfirm').attr('disabled', true);
+            }
+        }
 
         function get_topics_cat_sub() {
             var id_category = $('#ID_CATEGORY').val();
@@ -181,11 +271,11 @@
                     ID_SUBCATEGORY: parseInt(id_subcategory),
                 },
                 success: function (data) {
-                    $('#ID_TOPIC').html('');
-                    $('#ID_TOPIC').append('<option value="">Seleccione un Tema</option>');
+                    $('#ID_TOPIC_NEW').html('');
+                    $('#ID_TOPIC_NEW').append('<option value="">Seleccione un Tema</option>');
 
                     $.each(data, function (key, value) {
-                        $('#ID_TOPIC').append('<option value="' + value.iD_TOPIC + '">' + value.name + '</option>');
+                        $('#ID_TOPIC_NEW').append('<option value="' + value.iD_TOPIC + '">' + value.name + '</option>');
                     });
 
                 },
@@ -195,7 +285,7 @@
             });
         }
 
-        //edit
+        //edit topic
         $(document).on('click', '.editTopicTeacher', function (event) {
             event.preventDefault();
             event.stopImmediatePropagation();
@@ -209,6 +299,7 @@
                     $('#editTopicTeacherbody').html(data);
                     $('#editTopicTeacher').modal('show');
                     $("#editTopicTeacher").appendTo("body");
+                    check_topic_and_price_edit();
                 },
                 error: function () {
                     alert("Hubo un problema para obtener los datos")
@@ -216,7 +307,7 @@
             });
         });
 
-        //delete user confirm
+        //edit topic confirm
         $(document).on('click', '#editTopicTeacherConfirm', function (event) {
             event.preventDefault();
             event.stopImmediatePropagation();
@@ -247,24 +338,81 @@
             });
         });
 
+
+        //delete topic
+        $(document).on('click', '.deleteTopicTeacher', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var id_price_topic = $(this).data('id');
+
+            $.ajax({
+                url: '/PriceTopic/DeleteTopicTeacher/' + id_price_topic,
+                type: 'GET',
+                success: function (data) {
+                    $('#deleteTopicTeacherbody').html(data);
+                    $('#deleteTopicTeacher').modal('show');
+                    $("#deleteTopicTeacher").appendTo("body");
+                },
+                error: function () {
+                    alert("Hubo un problema para obtener los datos")
+                }
+            });
+        });
+
+        //delete topic confirm
+        $(document).on('click', '#deleteTopicTeacherConfirm', function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            var id_price_topic = $('#ID_PRICE_TOPIC').val();
+
+            $.ajax({
+                url: '/PriceTopic/DeleteTopicTeacher/',
+                type: 'POST',
+                data: {
+                    ID_PRICE_TOPIC: id_price_topic,
+                },
+                success: function (data) {
+
+                    $('#deleteTopicTeacher').modal('hide');
+                    alertaSuccessDelete();
+
+                },
+                error: function () {
+                    alertaErrorDelete();
+                }
+            });
+        });
+
     });
 
     function alertaSuccess() {
         Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: 'Tema creado.',
-            text: 'Tema creado correctamente',
+            title: 'Tema agregado.',
+            text: 'Tema agregado a sus temas por impartir.',
             timer: 3000,
             showConfirmButton: true
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '/Topics';
+                window.location.href = '/PriceTopic/TopicsListTeacher';
             }
         });
         setTimeout(() => {
-            window.location.href = '/Topics';
+            window.location.href = '/PriceTopic/TopicsListTeacher';
         }, 3000);
+    }
+
+    function alertaExists() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'No se agrego el tema.',
+            text: 'Ya tiene agregado este tema para impartir.',
+            showConfirmButton: true
+        })
     }
 
     function alertaError() {
@@ -272,7 +420,63 @@
             position: 'top-center',
             icon: 'error',
             title: 'Tema no creado.',
-            text: 'Hubo un error al crear el tema',
+            text: 'Hubo un error al crear agregar el tema a impartir.',
+            showConfirmButton: true
+        })
+    }
+
+    function alertaSuccessEdit() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Tema editado.',
+            text: 'Tema para impartir editado',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/PriceTopic/TopicsListTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/PriceTopic/TopicsListTeacher';
+        }, 3000);
+    }
+
+    function alertaErrorEdit() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Tema no creado.',
+            text: 'Hubo un error al editar el tema para impartir.',
+            showConfirmButton: true
+        })
+    }
+
+    function alertaSuccessDelete() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Tema eliminado.',
+            text: 'Tema para impartir eliminado.',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/PriceTopic/TopicsListTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/PriceTopic/TopicsListTeacher';
+        }, 3000);
+    }
+
+    function alertaErrorDelete() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Tema no creado.',
+            text: 'Hubo un error al eliminar el tema para impartir.',
             showConfirmButton: true
         })
     }

@@ -13,5 +13,7 @@ namespace KURZ.Interfaces
 
         public string EditTopicTeacher(Price_Topics Price_Topic);
 
+        public int DeleteTopicTeacher(Price_Topics Price_Topic);
+
     }
 }

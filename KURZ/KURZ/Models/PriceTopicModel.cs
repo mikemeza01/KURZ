@@ -41,13 +41,45 @@ namespace KURZ.Models
             }
         }
 
+        public List<Price_Topics> Price_Topics_Teacher_by_Topic(int ID_TEACHER, int ID_TOPIC)
+        {
+            try
+            {
+
+                var consulta = from prt in _context.Price_Topics
+                               where prt.ID_TEACHER == ID_TEACHER && prt.ID_TOPIC == ID_TOPIC
+                               select new Price_Topics
+                               {
+                                   ID_PRICE_TOPIC = prt.ID_PRICE_TOPIC,
+                                   PRICE = prt.PRICE,
+                                   ID_TEACHER = prt.ID_TEACHER,
+                                   ID_TOPIC = prt.ID_TOPIC
+                               };
+
+                return consulta.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al validar si ya el profesor agrego el tema a impartir: " + ex.Message);
+            }
+        }
+
         public string CreateTopicTeacher(Price_Topics Price_Topic) {
             try
             {
-                _context.Price_Topics.Add(Price_Topic);
-                _context.SaveChanges();
 
-                return "ok";
+                var topic_teacher_list = Price_Topics_Teacher_by_Topic(Price_Topic.ID_TEACHER, Price_Topic.ID_TOPIC);
+
+                if (topic_teacher_list.Count == 0)
+                {
+                    _context.Price_Topics.Add(Price_Topic);
+                    _context.SaveChanges();
+
+                    return "ok";
+                }
+                else {;
+                    return "exists";
+                }
             }
             catch (DbUpdateException ex)
             {
@@ -84,6 +116,23 @@ namespace KURZ.Models
                 Console.WriteLine("Ocurrió un error al editar el precio del tema del profesor.");
                 Console.WriteLine(ex.ToString());
                 return "error";
+            }
+        }
+
+        public int DeleteTopicTeacher(Price_Topics Price_Topic)
+        {
+            try
+            {
+                _context.Price_Topics.Remove(Price_Topic);
+                _context.SaveChanges();
+
+                return 1;
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error el tema a impartir.");
+                Console.WriteLine(ex.ToString());
+                return 0;
             }
         }
     }

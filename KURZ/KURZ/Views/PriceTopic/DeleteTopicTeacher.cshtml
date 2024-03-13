@@ -1,0 +1,37 @@
+﻿@model KURZ.Entities.Price_Topics
+@{
+    ViewData["Title"] = "Eliminar Tema";
+    Layout = null;
+}
+@if (Model == null)
+{
+    @switch (Convert.ToInt32(ViewData["Error"]))
+    {
+        case 1:
+            <h3>Identicador no es valido o no se encontro</h3>
+            break;
+        case 2:
+            <h3>El usuario que busca no fue encontrado</h3>
+            break;
+    }
+}
+else
+{
+    
+    <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+        <div class="card-body d-flex flex-column">
+            <form asp-action="Delete" class="align-items-center">
+                <div asp-validation-summary="ModelOnly"></div>
+
+                <input asp-for="ID_PRICE_TOPIC" type="hidden" class="form-control" readonly />
+
+                <div class="flex"
+                     style="max-width: 100%">
+                    <div class="d-flex align-items-center">
+                        <p>Desea realmente eliminar el tema para impartir.</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+}
