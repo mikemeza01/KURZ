@@ -44,6 +44,8 @@ namespace KURZ.Controllers
             //LLamada a la lista de datos de los topics.
             var datos = _priceTopicsModel.Price_Topics_Teacher(user.ID_USER);
             var categories = _categoriesModel.CategoriesList();
+            var itemToRemove = categories.Single(r => r.ID_CATEGORY == 1);
+            categories.Remove(itemToRemove);
             ViewBag.Categories = categories;
             ViewBag.ID_TEACHER = user.ID_USER;
             return View(datos);
@@ -59,18 +61,30 @@ namespace KURZ.Controllers
                 Price_Topics.ID_TOPIC = int.Parse(ID_TOPIC_NEW);
 
                 var resultado = _priceTopicsModel.CreateTopicTeacher(Price_Topics);
+                var datos = _priceTopicsModel.Price_Topics_Teacher(int.Parse(ID_TEACHER_NEW));
+                var categories = _categoriesModel.CategoriesList();
+                var itemToRemove = categories.Single(r => r.ID_CATEGORY == 1);
+                categories.Remove(itemToRemove);
                 if (resultado == "ok")
                 {
-                    var datos = _priceTopicsModel.Price_Topics_Teacher(int.Parse(ID_TEACHER_NEW));
-                    var categories = _categoriesModel.CategoriesList();
                     ViewBag.Categories = categories;
                     ViewBag.ID_TEACHER = int.Parse(ID_TEACHER_NEW);
                     ViewBag.mensaje = "SUCCESS";
                     return View("TopicsListTeacher", datos);
+                } else if (resultado == "exists") {
+                    ViewBag.Categories = categories;
+                    ViewBag.ID_TEACHER = int.Parse(ID_TEACHER_NEW);
+                    ViewBag.mensaje = "EXISTS";
+                    return View("TopicsListTeacher", datos);
                 }
                 else
+                {
+                    ViewBag.Categories = categories;
+                    ViewBag.ID_TEACHER = int.Parse(ID_TEACHER_NEW);
                     ViewBag.mensaje = "ERROR";
-                return View("TopicsListTeacher");
+                    return View("TopicsListTeacher", datos);
+                }
+                    
 
             }
             catch (Exception)
@@ -112,12 +126,56 @@ namespace KURZ.Controllers
                 var resultado = _priceTopicsModel.EditTopicTeacher(Price_Topic);
                 if (resultado == "ok")
                 {
+                    ViewBag.mensaje = "SUCCESSEDIT";
+                    return View(Price_Topic);
+                }
+                else
+                    ViewBag.mensaje = "ERROREDIT";
+                return View(Price_Topic);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult DeleteTopicTeacher(int? ID)
+        {
+            if (ID == null)
+            {
+                ViewData["Error"] = 1;
+                return View();
+            }
+            var price_topic = _priceTopicsModel.TopicTeacherDetail(ID);
+            if (price_topic == null)
+            {
+                ViewData["Error"] = 2;
+                return View();
+            }
+            return View(price_topic);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteTopicTeacher(string ID_PRICE_TOPIC)
+        {
+            try
+            {
+
+                var Price_Topic = new Price_Topics();
+                Price_Topic.ID_PRICE_TOPIC = int.Parse(ID_PRICE_TOPIC);
+
+                var resultado = _priceTopicsModel.DeleteTopicTeacher(Price_Topic);
+                if (resultado > 0)
+                {
                     ViewBag.mensaje = "SUCCESS";
                     return View(Price_Topic);
                 }
                 else
                     ViewBag.mensaje = "ERROR";
                 return View(Price_Topic);
+
+
             }
             catch (Exception)
             {
