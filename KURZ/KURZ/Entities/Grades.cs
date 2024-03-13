@@ -11,8 +11,10 @@ namespace KURZ.Entities
         public int ID_GRADE { get; set; }
 
         [Display(Name = "Evaluación")]
-        public int GRADE { get; set; }
+        [Range(1, 5, ErrorMessage = "La calificación debe estar entre 1 y 5.")]
+        public int? GRADE { get; set; }
 
+        [Required(ErrorMessage = "El comentario es requerido.")]
         [Display(Name = "Comentario")]
         [StringLength(500, ErrorMessage = "El comentario no puede exceder de 500 carácteres")]
         public string? COMMENTARY { get; set; }
@@ -38,7 +40,7 @@ namespace KURZ.Entities
         public string? Topic { get; set; }
         public string? Category { get; set; }
         public string? Subcategory { get; set; }
-        public string? Status {get; set;}
+        public string? Status { get; set; }
 
     }//TeacherGrades
 

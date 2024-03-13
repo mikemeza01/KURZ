@@ -9,93 +9,100 @@
     @switch (Convert.ToInt32(ViewData["Error"]))
     {
         case 1:
-            <h3>Identificador no es válido o no se encontró</h3>
+                                                            <h3>Identificador no es válido o no se encontró</h3>
             break;
         case 2:
-            <h3>El usuario que busca no fue encontrado</h3>
+                                                            <h3>El usuario que busca no fue encontrado</h3>
             break;
     }
 }
 else
 {
+                    <head>
 
-    <head>
+                        <style>
+                            .rating {
+                                font-size: 0;
+                                margin-top: 5px;
 
-        <style>
-            .rating {
-                font-size: 0;
-                margin-top: 5px;
+                            }
 
-            }
+                            .rating input[type="radio"] {
+                                display: none;
+                            }
 
-            .rating input[type="radio"] {
-                display: none;
-            }
+                            .rating label {
+                                color: #ddd;
+                                font-size: 34px;
+                                cursor: pointer;
+                            }
 
-            .rating label {
-                color: #ddd;
-                font-size: 34px;
-                cursor: pointer;
-            }
+                            .rating input[type="radio"]:checked~label {
+                                color: #087a90;
+                            }
+                        </style>
+                    </head>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form asp-action="RateTeacher" class="align-items-center" enctype="multipart/form-data" name="adviceForm">
+                                <div class="form-group">
+                                    <input asp-for="ID_ADVICE" type="hidden" name="IDADVICE" class="form-control" readonly />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="Calificacion">Calificación</label>
+                                    <div class="rating">
+                                        <input type="radio" id="star5" name="GRADE"  value="5">
+                                        <label for="star5"><i
+                                                class="fas fa-star"></i>
+                                        </label>
+                                        <input type="radio" id="star4" name="GRADE" value="4">
+                                        <label for="star4"><i
+                                                class="fas fa-star"></i>
+                                        </label>
+                                        <input type="radio" id="star3" name="GRADE" value="3">
+                                        <label for="star3"><i
+                                                class="fas fa-star"></i>
+                                        </label>
+                                        <input type="radio" id="star2" name="GRADE" value="2">
+                                        <label for="star2"><i
+                                                class="fas fa-star"></i>
+                                        </label>
+                                        <input type="radio" id="star1" name="GRADE" value="1">
+                                        <label for="star1"><i
+                                                class="fas fa-star"></i>
+                                        </label>
+                                    </div>
+                                    <input type="hidden" id="ratingValue" name="RatingValue" />
+                                </div>
 
-            .rating input[type="radio"]:checked~label {
-                color: #087a90;
-            }
-        </style>
-    </head>
-    <div class="row">
-        <div class="col-md-6">
-            <form asp-action="RateTeacher" class="align-items-center" enctype="multipart/form-data" name="adviceForm">
-                <div class="form-group">
-                    <input asp-for="ID_ADVICE" type="hidden" name="IDADVICE" class="form-control" readonly />
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="Calificacion">Calificación</label>
-                    <div class="rating">
-                        <input type="radio" id="star5" name="GRADE" value="5"><label for="star5"><i
-                                class="fas fa-star"></i></label>
-                        <input type="radio" id="star4" name="GRADE" value="4"><label for="star4"><i
-                                class="fas fa-star"></i></label>
-                        <input type="radio" id="star3" name="GRADE" value="3"><label for="star3"><i
-                                class="fas fa-star"></i></label>
-                        <input type="radio" id="star2" name="GRADE" value="2"><label for="star2"><i
-                                class="fas fa-star"></i></label>
-                        <input type="radio" id="star1" name="GRADE" value="1"><label for="star1"><i
-                                class="fas fa-star"></i></label>
+                                <div class="form-group">
+                                    <label class="form-label" for="Comentario">Comentario</label>
+                                    <textarea id="Comentario" name="commentary" class="form-control"
+                                        placeholder="Ingrese un comentario adicional"></textarea>
+                                </div>
+                                <div class="form-group buttons">
+                                    <a asp-controller="Student" asp-action="MyAccount" class="btn btn-accent">Cancelar</a>
+                                    <button type="submit" class="btn btn-primary">Enviar calificación</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h3 class="card-title mb-3">Datos de la asesoría</h3>
+                                    <label class="form-label" for="Profesor">Profesor:</label>
+                                    <p class="card-subtitle text-70 mb-3">@Model.TeacherName</p>
+                                    <label class="form-label" for="Tema">Tema:</label>
+                                    <p class="card-subtitle text-70 mb-3">@Model.Topic</p>
+                                    <label class="form-label" for="Categoria">Estado:</label>
+                                    <p class="card-subtitle text-70 mb-3">@Model.Status</p>
+                                    <label class="form-label" for="Categoria">Última actualización:</label>
+                                    <p class="card-subtitle text-70 mb-3">@Model.DATE_GRADE</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <input type="hidden" id="ratingValue" name="RatingValue" />
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="Comentario">Comentario</label>
-                    <textarea id="Comentario" name="commentary" class="form-control"
-                        placeholder="Ingrese un comentario adicional"></textarea>
-                </div>
-                <div class="form-group buttons">
-                    <a asp-controller="Student" asp-action="MyAccount" class="btn btn-accent">Cancelar</a>
-                    <button type="submit" class="btn btn-primary">Enviar calificación</button>
-                </div>
-            </form>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body text-center">
-                    <h3 class="card-title mb-3">Datos de la asesoría</h3>
-                    <label class="form-label" for="Profesor">Profesor:</label>
-                    <p class="card-subtitle text-70 mb-3">@Model.TeacherName</p>
-                    <label class="form-label" for="Tema">Tema:</label>
-                    <p class="card-subtitle text-70 mb-3">@Model.Topic</p>
-                    <label class="form-label" for="Categoria">Estado:</label>
-                    <p class="card-subtitle text-70 mb-3">@Model.Status</p>
-                    <label class="form-label" for="Categoria">Última actualización:</label>
-                    <p class="card-subtitle text-70 mb-3">@Model.DATE_GRADE</p>
-                </div>
-            </div>
-        </div>
-    </div>
 }
-
-
 @{
     if (@ViewBag.mensaje == "SUCCESS")
     {
@@ -117,89 +124,91 @@ else
 
     }
 }
-
 @section Scripts {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.min.css"
-        rel="stylesheet">
-    <script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"></script>
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.min.css"
+                        rel="stylesheet">
+                    <script>
 
-        $(document).ready(function () {
-            // Event listener para el clic en cualquier parte en blanco de la fila
-            $('.row').on('click', function (e) {
-                // Obtener el elemento clicado
-                var target = $(e.target);
+        $('.rating').on('click', function (event) {
+            if (event.target.tagName !== 'INPUT') {
+                $('.rating input[type="radio"]').prop('checked', false);
+                $('#ratingValue').val('');
+            }
+        });
 
-                // Verificar si el clic no fue en el área de las estrellas
-                if (!target.closest('.rating').length) {
-                    // Desmarcar todas las estrellas
-                    $('.rating input[type="radio"]').prop('checked', false);
-                }
-            });
+            $('.rating input[type="radio"]').on('click', function () {
+            var checkedStars = $('.rating input[type="radio"]:checked');
+            if (checkedStars.length > 1) {
+                checkedStars.last().prop('checked', false);
+                $('#ratingValue').val(checkedStars.first().val());
+            } else {
+                $('#ratingValue').val($(this).val());
+            }
         });
 
 
-        $(document).ready(function () {
-            $('#GRADE').rating({
-                min: 0,
-                max: 5,
-                step: 1,
-                size: 'md',
-                stars: '5',
-                showClear: true,
-                showCaption: false,
-                readonly: false
-            });
-        });
+                        $(document).ready(function () {
+                            $('#GRADE').rating({
+                                min: 0,
+                                max: 5,
+                                step: 1,
+                                size: 'md',
+                                stars: '5',
+                                showClear: true,
+                                showCaption: false,
+                                readonly: false
+                            });
+                        });
 
 
-        $(document).ready(function () {
-            $('.rating input[type="radio"]').change(function () {
-                var selectedRating = $(this).val();
-                $('#ratingValue').val(selectedRating);
-            });
-        });
+                        $(document).ready(function () {
+                            $('.rating input[type="radio"]').change(function () {
+                                var selectedRating = $(this).val();
+                                $('#ratingValue').val(selectedRating);
+                            });
+                        });
 
-        function alertaSuccess() {
-            Swal.fire({
-                position: 'top-center',
-                icon: 'success',
-                title: 'Calificación enviada.',
-                text: 'La calificación ha sido enviada correctamente.',
-                timer: 3000,
-                showConfirmButton: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '/Student/History/';
-                }
-            });
-            setTimeout(() => {
-                window.location.href = '/Student/History/';
-            }, 3000);
-        }
+                        function alertaSuccess() {
+                            Swal.fire({
+                                position: 'top-center',
+                                icon: 'success',
+                                title: 'Calificación enviada.',
+                                text: 'La calificación ha sido enviada correctamente.',
+                                timer: 3000,
+                                showConfirmButton: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '/Student/History/';
+                                }
+                            });
+                            setTimeout(() => {
+                                window.location.href = '/Student/History/';
+                            }, 3000);
+                        }
 
-        function alertaError() {
-            Swal.fire({
-                position: 'top-center',
-                icon: 'error',
-                title: 'Calificación no enviada.',
-                text: 'Hubo un error al enviar la calificación.',
-                showConfirmButton: true
-            })
-        }
+                        function alertaError() {
+                            Swal.fire({
+                                position: 'top-center',
+                                icon: 'error',
+                                title: 'Calificación no enviada.',
+                                text: 'Hubo un error al enviar la calificación.',
+                                showConfirmButton: true
+                            })
+                        }
 
-        function alertaErrorMensaje() {
-            Swal.fire({
-                position: 'top-center',
-                icon: 'error',
-                title: 'No se pudo hacer la calificación.',
-                html: '@{
+                        function alertaErrorMensaje() {
+                            Swal.fire({
+                                position: 'top-center',
+                                icon: 'error',
+                                title: 'No se pudo hacer la calificación.',
+                                html: '@{
             @ViewBag.mensaje
         }',
-                            showConfirmButton: true
-                        })
-                    }
+                                            showConfirmButton: true
+                                        })
+                                    }
 
-    </script>
+                    </script>
 }
