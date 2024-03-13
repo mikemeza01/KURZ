@@ -449,10 +449,13 @@ namespace KURZ.Controllers
                     return View("Error");
                 }
 
+                    // Crear funcion para validar si existe una calificacion en la asesoria.
+            //    var checkrating = _gradesModel.GetGradeByID(ID);
+
                 var teacherGradesView = new TeacherGradesView
                 {
                     ID_ADVICE = advice.ID_ADVICE,
-                   
+
                     TeacherName = advice.TEACHERNAME,
                     Topic = advice.TOPICNAME,
                     DATE_GRADE = advice.DATE_UPDATE,
