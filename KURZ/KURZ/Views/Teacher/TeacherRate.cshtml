@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = "Evaluación Docente";
-    Layout = "_Teacher";
+    Layout = "_TeacherH";
 }
 
 <div class="card">
@@ -95,13 +95,6 @@
         var notaMasAlta = Math.max(...notas);
         let suma = promedioNotas / notaMasAlta
         let promedioEscalado = suma * 5
-
-        console.log("Suma de notas", totalGrades)
-        console.log("Cantidad de notas", gradeCells.length)
-        console.log("Promedio", promedioNotas)
-        console.log("Nota máxima", notaMasAlta)
-        console.log("Suma promedio + Nota más alta", suma)
-        console.log("Promedio escalado", promedioEscalado)
 
         // Crear una nueva fila para mostrar el promedio
         var nuevaFila = document.createElement("tr");

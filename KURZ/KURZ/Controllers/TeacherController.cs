@@ -27,6 +27,18 @@ namespace KURZ.Controllers
         private readonly IWebHostEnvironment _hostingEnvironment;
         private FilesHelper filesHelper = new FilesHelper();
 
+        public TeacherController(IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel, IAdvicesModel advicesModel, IGradesModel gradesModel, IStatusModel statusModel)
+        {
+            _configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
+            _teacherModel = teacherModel;
+            _countriesModel = countriesModel;
+            _usersModel = usersModel;
+            _advicesModel = advicesModel;
+            _gradesModel = gradesModel;
+            _statusModel= statusModel;
+        }
+
         protected UserDetails ConvertUsers(Users user)
         {
             try
@@ -80,19 +92,6 @@ namespace KURZ.Controllers
 
             return teacherGradesView;
         }
-
-
-        public TeacherController(IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel, IAdvicesModel advicesModel, IGradesModel gradesModel)
-        {
-            _configuration = configuration;
-            _hostingEnvironment = hostingEnvironment;
-            _teacherModel = teacherModel;
-            _countriesModel = countriesModel;
-            _usersModel = usersModel;
-            _advicesModel = advicesModel;
-            _gradesModel = gradesModel;
-        }
-
 
         [HttpGet]
         public IActionResult RegisterTeachers()
