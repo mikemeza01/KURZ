@@ -1,0 +1,792 @@
+﻿@model KURZ.Entities.Timesheets
+@{
+    ViewData["Title"] = "Mi Horario";
+    Layout = "_TeacherH";
+}
+<div class="card timesheets-card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+    <div class="card-body d-flex flex-column">
+        <div class="flex"
+             style="max-width: 100%">
+            <!-- 1 Lunes start -->
+            <div class="form-group">
+                <div class="row">
+                    <h5 class="col-12 mt-3">1. Lunes</h5>
+                    <div class="col-md-5">
+                        <label for="timesheet_start_2">Hora Inicio</label>
+                        <select class="form-control timesheet-hour" id="timesheet_start_1" name="timesheet_start_1">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="timesheet_end_2">Hora Finalización</label>
+                        <select class="form-control timesheet-hour" id="timesheet_end_1" name="timesheet_end_1">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 timesheet_free">
+                        <div class="custom-control custom-checkbox" >
+                            <input class="custom-control-input" type="checkbox" value="" id="timesheet_1_free">
+                            <label class="custom-control-label" for="timesheet_1_free">
+                                Agregar día libre
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 timesheet_break_div breaks_1">
+
+                        <h6 class="mt-3 mb-0">Descanso</h6>
+
+                        <div class="timebreak-item-row mt-3">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_1[1]">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_1[1]" name="timesheet_break_start_1[1]" data-name="timesheet_break_start_1">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_1[1]">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_1[1]" name="timesheet_break_end_1[1]" data-name="timesheet_break_end_1">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2 timesheet_break_remove">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-outline-secondary timesheet_break mt-3" id="timesheet_break_1">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">
+                                <span class="material-symbols-outlined">
+                                    add_circle
+                                </span>
+                            </span>Agregar descanso
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 1 Lunes end -->
+
+            <div class="page-separator mt-5 mb-5"></div>
+
+            <!-- 2 Martes start -->
+            <div class="form-group">
+                <div class="row">
+                    <h5 class="col-12">2. Martes</h5>
+                    <div class="col-md-5">
+                        <label for="timesheet_start_2">Hora Inicio</label>
+                        <select class="form-control timesheet-hour" id="timesheet_start_2" name="timesheet_start_2">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="timesheet_end_2">Hora Finalización</label>
+                        <select class="form-control timesheet-hour" id="timesheet_end_2" name="timesheet_end_2">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 timesheet_free">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="timesheet_2_free">
+                            <label class="custom-control-label" for="timesheet_2_free">
+                                Agregar día libre
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 timesheet_break_div breaks_2">
+                        <h6 class="mt-3 mb-0">Descanso</h6>
+
+                        <div class="timebreak-item-row mt-3">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_2[1]">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_2[1]" name="timesheet_break_start_2[1]" data-name="timesheet_break_start_2">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_1[1]">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_2[1]" name="timesheet_break_end_2[1]" data-name="timesheet_break_end_2">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2 timesheet_break_remove">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-3 timesheet_break_div">
+                        <button type="button" class="btn btn-outline-secondary timesheet_break" id="timesheet_break_2">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">
+                                <span class="material-symbols-outlined">
+                                    add_circle
+                                </span>
+                            </span>Agregar descanso
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 2 Martes end -->
+
+            <div class="page-separator mt-5 mb-5"></div>
+
+            <!-- 3 Miercoles start -->
+            <div class="form-group">
+                <div class="row">
+                    <h5 class="col-12">3. Miércoles</h5>
+                    <div class="col-md-5">
+                        <label for="timesheet_start_3">Hora Inicio</label>
+                        <select class="form-control timesheet-hour" id="timesheet_start_3" name="timesheet_start_3">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="timesheet_end_3">Hora Finalización</label>
+                        <select class="form-control timesheet-hour" id="timesheet_end_3" name="timesheet_end_3">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 timesheet_free">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="timesheet_3_free">
+                            <label class="custom-control-label" for="timesheet_3_free">
+                                Agregar día libre
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 timesheet_break_div breaks_3">
+
+                        <h6 class="mt-3 mb-0">Descanso</h6>
+
+                        <div class="timebreak-item-row mt-3">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_3[1]">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_3[1]" name="timesheet_break_start_3[1]" data-name="timesheet_break_start_3">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_3[1]">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_3[1]" name="timesheet_break_end_3[1]" data-name="timesheet_break_end_3">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2 timesheet_break_remove">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-outline-secondary timesheet_break mt-3" id="timesheet_break_3">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">
+                                <span class="material-symbols-outlined">
+                                    add_circle
+                                </span>
+                            </span>Agregar descanso
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 3 Miercoles end -->
+
+            <div class="page-separator mt-5 mb-5"></div>
+
+            <!-- 4 Jueves start -->
+            <div class="form-group">
+                <div class="row">
+                    <h5 class="col-12">4. Jueves</h5>
+                    <div class="col-md-5">
+                        <label for="timesheet_start_4">Hora Inicio</label>
+                        <select class="form-control timesheet-hour" id="timesheet_start_4" name="timesheet_start_4">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="timesheet_end_4">Hora Finalización</label>
+                        <select class="form-control timesheet-hour" id="timesheet_end_4" name="timesheet_end_4">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 timesheet_free">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="timesheet_4_free">
+                            <label class="custom-control-label" for="timesheet_4_free">
+                                Agregar día libre
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 timesheet_break_div breaks_4">
+
+                        <h6 class="mt-3 mb-0">Descanso</h6>
+
+                        <div class="timebreak-item-row mt-3">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_4[1]">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_4[1]" name="timesheet_break_start_4[1]" data-name="timesheet_break_start_4">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_4[1]">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_4[1]" name="timesheet_break_end_4[1]" data-name="timesheet_break_end_4">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2 timesheet_break_remove">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-outline-secondary timesheet_break mt-3" id="timesheet_break_4">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">
+                                <span class="material-symbols-outlined">
+                                    add_circle
+                                </span>
+                            </span>Agregar descanso
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 4 Jueves end -->
+
+
+            <div class="page-separator mt-5 mb-5"></div>
+
+            <!-- 5 Viernes start -->
+            <div class="form-group">
+                <div class="row">
+                    <h5 class="col-12">5. Viernes</h5>
+                    <div class="col-md-5">
+                        <label for="timesheet_start_5">Hora Inicio</label>
+                        <select class="form-control timesheet-hour" id="timesheet_start_5" name="timesheet_start_5">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="timesheet_end_2">Hora Finalización</label>
+                        <select class="form-control timesheet-hour" id="timesheet_end_5" name="timesheet_end_5">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 timesheet_free">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="timesheet_5_free">
+                            <label class="custom-control-label" for="timesheet_5_free">
+                                Agregar día libre
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 timesheet_break_div breaks_5">
+
+                        <h6 class="mt-3 mb-0">Descanso</h6>
+
+                        <div class="timebreak-item-row mt-3">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_5[1]">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_5[1]" name="timesheet_break_start_5[1]" data-name="timesheet_break_start_5">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_5[1]">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_5[1]" name="timesheet_break_end_5[1]" data-name="timesheet_break_end_5">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2 timesheet_break_remove">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-outline-secondary timesheet_break mt-3" id="timesheet_break_5">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">
+                                <span class="material-symbols-outlined">
+                                    add_circle
+                                </span>
+                            </span>Agregar descanso
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 5 Viernes end -->
+
+
+            <div class="page-separator mt-5 mb-5"></div>
+
+            <!-- 6 Sabado start -->
+            <div class="form-group">
+                <div class="row">
+                    <h5 class="col-12">6. Sábado</h5>
+                    <div class="col-md-5">
+                        <label for="timesheet_start_6">Hora Inicio</label>
+                        <select class="form-control timesheet-hour" id="timesheet_start_6" name="timesheet_start_6">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="timesheet_end_6">Hora Finalización</label>
+                        <select class="form-control timesheet-hour" id="timesheet_end_6" name="timesheet_end_6">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 timesheet_free">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="timesheet_6_free">
+                            <label class="custom-control-label" for="timesheet_6_free">
+                                Agregar día libre
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 timesheet_break_div breaks_6">
+
+                        <h6 class="mt-3 mb-0">Descanso</h6>
+
+                        <div class="timebreak-item-row mt-3">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_6[1]">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_6[1]" name="timesheet_break_start_6[1]" data-name="timesheet_break_start_6">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_6[1]">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_6[1]" name="timesheet_break_end_6[1]" data-name="timesheet_break_end_6">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2 timesheet_break_remove">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-outline-secondary timesheet_break mt-3" id="timesheet_break_6">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">
+                                <span class="material-symbols-outlined">
+                                    add_circle
+                                </span>
+                            </span>Agregar descanso
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 6 Sabado end -->
+
+
+            <div class="page-separator mt-5 mb-5"></div>
+
+            <!-- 7 Domingo start -->
+            <div class="form-group">
+                <div class="row">
+                    <h5 class="col-12">7. Domingo</h5>
+                    <div class="col-md-5">
+                        <label for="timesheet_start_7">Hora Inicio</label>
+                        <select class="form-control timesheet-hour" id="timesheet_start_7" name="timesheet_start_7">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="timesheet_end_2">Hora Finalización</label>
+                        <select class="form-control timesheet-hour" id="timesheet_end_7" name="timesheet_start_7">
+                            <option value="">Seleccionar</option>
+                            @foreach (var timesheethours in ViewBag.timesheethours)
+                            {
+                                <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 timesheet_free">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" value="" id="timesheet_7_free">
+                            <label class="custom-control-label" for="timesheet_7_free">
+                                Agregar día libre
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 timesheet_break_div breaks_7">
+
+                        <h6 class="mt-3 mb-0">Descanso</h6>
+
+                        <div class="timebreak-item-row mt-3">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_7[1]">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_7[1]" name="timesheet_break_start_7[1]" data-name="timesheet_break_start_7">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_7[1]">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_7[1]" name="timesheet_break_end_7[1]" data-name="timesheet_break_end_7">
+                                        <option value="">Seleccionar</option>
+                                        @foreach (var timesheethours in ViewBag.timesheethours)
+                                        {
+                                            <option value="@timesheethours.ID_TIMESHEETHOURS" data-value="@timesheethours.VALUE"> @timesheethours.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2 timesheet_break_remove">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-outline-secondary timesheet_break mt-3" id="timesheet_break_1">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">
+                                <span class="material-symbols-outlined">
+                                    add_circle
+                                </span>
+                            </span>Agregar descanso
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 7 Domingo end -->
+
+            <div class="page-separator mt-5 mb-5"></div>
+
+            <div class="form-group buttons">
+                <button type="button" id="saveTimesheets"
+                        class="btn btn-success">
+                    Guardar Horario
+                </button>
+            </div>
+         </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.timesheet-hour').select2();
+
+        $('#saveTimesheets').on('click', function () {
+
+            var timesheet_1_free = $('#timesheet_1_free').is(':checked') ? 1 : 0;
+            var timesheet_start_1 = $('#timesheet_start_1').find(':selected').data('value');
+            var timesheet_end_1 = $('#timesheet_end_1').find(':selected').data('value');
+
+            var breaks_1 = [];
+            $('.breaks_1 .timebreak-item-row').each(function (index, item) {
+                var break_start = $('.timesheet-start', item).find(':selected').data('value');
+                var break_end = $('.timesheet-end', item).find(':selected').data('value');
+                break_start = break_start !== undefined ? break_start : "";
+                break_end = break_end !== undefined ? break_end : "";
+
+                breaks_1[index] = [break_start, break_end];
+            });
+
+            var timesheet_2_free = $('#timesheet_2_free').is(':checked') ? 1 : 0;
+            var timesheet_start_2 = $('#timesheet_start_2').find(':selected').data('value');
+            var timesheet_end_2 = $('#timesheet_end_2').find(':selected').data('value');
+
+            var breaks_2 = [];
+            $('.breaks_2 .timebreak-item-row').each(function (index, item) {
+                var break_start = $('.timesheet-start', item).find(':selected').data('value');
+                var break_end = $('.timesheet-end', item).find(':selected').data('value');
+                break_start = break_start !== undefined ? break_start : "";
+                break_end = break_end !== undefined ? break_end : "";
+                breaks_2[index] = [break_start, break_end];
+            });
+
+         
+            var timesheet_3_free = $('#timesheet_3_free').is(':checked') ? 1 : 0;
+            var timesheet_start_3 = $('#timesheet_start_3').find(':selected').data('value');
+            var timesheet_end_3 = $('#timesheet_end_3').find(':selected').data('value');
+            
+            var breaks_3 = [];
+            $('.breaks_3 .timebreak-item-row').each(function (index, item) {
+                var break_start = $('.timesheet-start', item).find(':selected').data('value');
+                var break_end = $('.timesheet-end', item).find(':selected').data('value');
+                break_start = break_start !== undefined ? break_start : "";
+                break_end = break_end !== undefined ? break_end : "";
+                breaks_3[index] = [break_start, break_end];
+            });
+
+
+            var timesheet_4_free = $('#timesheet_4_free').is(':checked') ? 1 : 0;
+            var timesheet_start_4 = $('#timesheet_start_4').find(':selected').data('value');
+            var timesheet_end_4 = $('#timesheet_end_4').find(':selected').data('value');
+            
+            var breaks_4 = [];
+            $('.breaks_4 .timebreak-item-row').each(function (index, item) {
+                var break_start = $('.timesheet-start', item).find(':selected').data('value');
+                var break_end = $('.timesheet-end', item).find(':selected').data('value');
+                break_start = break_start !== undefined ? break_start : "";
+                break_end = break_end !== undefined ? break_end : "";
+                breaks_4[index] = [break_start, break_end];
+            });
+
+
+            var timesheet_5_free = $('#timesheet_5_free').is(':checked') ? 1 : 0;
+            var timesheet_start_5 = $('#timesheet_start_5').find(':selected').data('value');
+            var timesheet_end_5 = $('#timesheet_end_5').find(':selected').data('value');
+            
+            var breaks_5 = [];
+            $('.breaks_5 .timebreak-item-row').each(function (index, item) {
+                var break_start = $('.timesheet-start', item).find(':selected').data('value');
+                var break_end = $('.timesheet-end', item).find(':selected').data('value');
+                break_start = break_start !== undefined ? break_start : "";
+                break_end = break_end !== undefined ? break_end : "";
+                breaks_5[index] = [break_start, break_end];
+            });
+
+            var timesheet_6_free = $('#timesheet_6_free').is(':checked') ? 1 : 0;
+            var timesheet_start_6 = $('#timesheet_start_6').find(':selected').data('value');
+            var timesheet_end_6 = $('#timesheet_end_6').find(':selected').data('value');
+            
+            var breaks_6 = [];
+            $('.breaks_6 .timebreak-item-row').each(function (index, item) {
+                var break_start = $('.timesheet-start', item).find(':selected').data('value');
+                var break_end = $('.timesheet-end', item).find(':selected').data('value');
+                break_start = break_start !== undefined ? break_start : "";
+                break_end = break_end !== undefined ? break_end : "";
+                breaks_6[index] = [break_start, break_end];
+            });
+
+
+            var timesheet_7_free = $('#timesheet_7_free').is(':checked') ? 1 : 0;
+            var timesheet_start_7 = $('#timesheet_start_7').find(':selected').data('value');
+            var timesheet_end_7 = $('#timesheet_end_7').find(':selected').data('value');
+            
+            var breaks_7 = [];
+            $('.breaks_7 .timebreak-item-row').each(function (index, item) {
+                var break_start = $('.timesheet-start', item).find(':selected').data('value');
+                var break_end = $('.timesheet-end', item).find(':selected').data('value');
+                break_start = break_start !== undefined ? break_start : "";
+                break_end = break_end !== undefined ? break_end : "";
+                breaks_7[index] = [break_start, break_end];
+            });
+
+
+
+            debugger;
+
+            var timesheet = [
+                {
+                    "day_off": timesheet_1_free,
+                    "start": timesheet_start_1 !== undefined ? timesheet_start_1 : "",
+                    "end": timesheet_end_1 !== undefined ? timesheet_end_1 : "",
+                    "breaks": [breaks_1],
+                },
+                {
+                    "day_off": timesheet_2_free,
+                    "start": timesheet_start_2 !== undefined ? timesheet_start_2 : "",
+                    "end": timesheet_end_2 !== undefined ? timesheet_end_2 : "",
+                    "breaks": [breaks_2],
+                },
+                {
+                    "day_off": timesheet_3_free,
+                    "start": timesheet_start_3 !== undefined ? timesheet_start_3 : "",
+                    "end": timesheet_end_3 !== undefined ? timesheet_end_3 : "",
+                    "breaks": [breaks_3],
+                },
+                {
+                    "day_off": timesheet_4_free,
+                    "start": timesheet_start_4 !== undefined ? timesheet_start_4 : "",
+                    "end": timesheet_end_4 !== undefined ? timesheet_end_4 : "",
+                    "breaks": [breaks_4],
+                },
+                {
+                    "day_off": timesheet_5_free,
+                    "start": timesheet_start_5 !== undefined ? timesheet_start_5 : "",
+                    "end": timesheet_end_5 !== undefined ? timesheet_end_5 : "",
+                    "breaks": [breaks_5],
+                },
+                {
+                    "day_off": timesheet_6_free,
+                    "start": timesheet_start_6 !== undefined ? timesheet_start_6 : "",
+                    "end": timesheet_end_6 !== undefined ? timesheet_end_6 : "",
+                    "breaks": [breaks_6],
+                },
+                {
+                    "day_off": timesheet_7_free,
+                    "start": timesheet_start_7 !== undefined ? timesheet_start_7 : "",
+                    "end": timesheet_end_7 !== undefined ? timesheet_start_7 : "",
+                    "breaks": [breaks_7],
+                }
+            ];
+
+            debugger;
+            console.log(timesheet);
+        });
+
+
+        $('.custom-control-input').on('change', function () {
+            var item = $(this).parent().parent().parent();
+            if ($(this).is(':checked')) {
+                $('.timesheet-hour', item).val('').change();
+                $('.timesheet-hour', item).select2({
+                    disabled: true
+                });
+
+                $('.timesheet_break_div', item).hide();
+            } else {
+                $('.timesheet-hour', item).select2({
+                    disabled: false
+                });
+                $('.timesheet_break_div', item).show();
+            }
+            
+        });
+
+
+        $('.timesheet_break').on('click', function () {
+
+            var item = $(this).parent().parent().parent();
+
+            let maxElements = 3;
+            let timebreak_item_row = $('.timebreak-item-row', item);
+            let timebreak_item_current_clone = timebreak_item_row.length + 1;
+
+            if (timebreak_item_row.length >= maxElements) {
+                alert('No puede agregar más elementos.');
+                return;
+            }
+
+            let timebreak_item_row_last = timebreak_item_row.last();
+            let cloned_item = timebreak_item_row_last.clone();
+            let item_cloned_value_start = cloned_item.find('.timesheet-start', cloned_item).data('name');
+            let item_cloned_value_end = cloned_item.find('.timesheet-end', cloned_item).data('name');
+
+            cloned_item.find('.timesheet_break_remove .remove_timebreak_item_row').remove();
+            cloned_item.find('.timesheet_break_remove').append('<div class="remove_timebreak_item_row"><i class="fas fa-times-circle"></i></div>');
+        
+
+            cloned_item.find('span.select2').remove();
+            if (cloned_item.find('.timesheet-start').data('select2-id')) {
+                cloned_item.find('.timesheet-start').select2('destroy');
+            }
+
+            cloned_item.find('.timesheet-start-label').attr('for', item_cloned_value_start + '[' + timebreak_item_current_clone + ']');
+            cloned_item.find('.timesheet-start').attr('id', item_cloned_value_start + '[' + timebreak_item_current_clone + ']');
+            cloned_item.find('.timesheet-start').attr('name', item_cloned_value_start + '[' + timebreak_item_current_clone + ']');
+            cloned_item.find('.timesheet-start').attr('data-select2-id', item_cloned_value_start + '[' + timebreak_item_current_clone + ']');
+            cloned_item.find('.timesheet-start').select2();
+
+            if (cloned_item.find('.timesheet-end').data('select2-id')) {
+                cloned_item.find('.timesheet-end').select2('destroy');
+            }
+            cloned_item.find('.timesheet-end-label').attr('for', item_cloned_value_end + '[' + timebreak_item_current_clone + ']');
+            cloned_item.find('.timesheet-end').attr('id', item_cloned_value_end + '[' + timebreak_item_current_clone + ']');
+            cloned_item.find('.timesheet-end').attr('name', item_cloned_value_end + '[' + timebreak_item_current_clone + ']');
+            cloned_item.find('.timesheet-end').attr('data-select2-id', item_cloned_value_end + '[' + timebreak_item_current_clone + ']');
+            $('.timesheet_break_div .timesheet-end', item).select2();
+            cloned_item.find('.timesheet-end').select2();
+            
+            
+            
+
+            timebreak_item_row_last.after(cloned_item);
+
+            $('.remove_timebreak_item_row i').on('click', function () {
+                var item_remove = $(this).parent().parent().parent().parent();
+                $(item_remove).fadeOut().remove();
+            });
+        });
+
+    });
+</script>

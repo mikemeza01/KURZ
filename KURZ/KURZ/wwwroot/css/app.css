@@ -37498,3 +37498,33 @@ label {
 .buttons-vertical-flex-end {
     align-self: flex-end;
 }
+
+.timesheet_free {
+    align-self: center;
+    margin-top: 20px;
+}
+
+.timebreak-item-row .select2.select2-container--default {
+    width: 100% !important;
+}
+
+.timesheets-card h5 {
+    color: var(--secondary);
+}
+
+.timesheets-card h6 {
+    color: var(--kurz);
+}
+
+.timesheets-card .timesheet_break_remove {
+    align-self: center;
+    margin-top: 27px;
+}
+
+
+.timesheets-card .timesheet_break_remove i {
+    font-size: 21px;
+    color: var(--red);
+    cursor: pointer;
+
+}

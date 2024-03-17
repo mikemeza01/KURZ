@@ -29,5 +29,7 @@ namespace KURZ.Models
 
         public DbSet<Price_Topics> Price_Topics { get; set; }
 
+        public DbSet<Timesheets> Timesheets { get; set; }
+
     }
 }
