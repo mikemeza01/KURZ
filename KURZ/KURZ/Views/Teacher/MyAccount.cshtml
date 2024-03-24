@@ -21,18 +21,11 @@
             </span>
         }
         <div class="flex mb-32pt mb-md-0">
-            <h2 class="text-white mb-0">Profesor @Model.NAME @Model.LASTNAME</h2>
-            <div class="rating mb-16pt d-inline-flex">
-                <div class="rating__item"><i class="material-icons">star</i></div>
-                <div class="rating__item"><i class="material-icons">star</i></div>
-                <div class="rating__item"><i class="material-icons">star</i></div>
-                <div class="rating__item"><i class="material-icons">star</i></div>
-                <div class="rating__item"><i class="material-icons">star_border</i></div>
-                <span class="ml-1 text-white">4,3</span>
-            </div>
-
+            <h2 class="text-white mb-0"><span id="icono-saludo" class="material-icons mr-8pt" style="font-size: 45px;"></span><span id="saludo"></span>, @Model.NAME @Model.LASTNAME</h2>
+            <h4 class="text-white mb-0">Estudiante</h4>
         </div>
-        <a asp-controller="Teacher" asp-action="Edit"
+
+        <a asp-controller="Student" asp-action="Edit"
            class="btn btn-outline-white">Editar</a>
     </div>
 </div>
