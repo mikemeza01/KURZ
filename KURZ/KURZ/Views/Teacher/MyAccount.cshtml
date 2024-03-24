@@ -37,23 +37,49 @@
     </div>
 </div>
 
-<div class="page-section bg-white border-bottom-2">
-    <div class="container page__container">
-        <div class="row">
-            <div class="col-md-12">
-                <h4>Perfil</h4>
-                <p>@Model.PROFILE</p>
-                <h4>Identificación</h4>
-                <p>@Model.IDENTICATION</p>
-                <h4>Correo Electrónico</h4>
-                <p>@Model.EMAIL</p>
-                <h4>País</h4>
-                <p><select class="form-control" asp-for="ID_COUNTRY" disabled ="true">
-                    @foreach (var countries in ViewBag.countries)
-                    {
-                        <option value="@countries.ID_COUNTRY"> @countries.NAME</option>
-                    }
-                </select></p>
+<div class="page-section bg-white">
+    <div class="container page__container page-section">
+        <div class="page-headline text-center">
+            <h2>Perfil del Usuario</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card bg-secondary shadow mb-4" style="border-radius: 20px;">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3 text-white" style="font-size: 20px;">Sobre mi:</h3>
+                        <p class="card-text text-white" style="font-size: 18px;">@Model.PROFILE</p>
+                    </div>
+                </div>
+
+                <div class="card bg-secondary shadow mb-4" style="border-radius: 20px;">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3 text-white" style="font-size: 20px;">Identificación:</h3>
+                        <p class="card-text text-white" style="font-size: 18px;">@Model.IDENTICATION</p>
+                    </div>
+                </div>
+
+                <div class="card bg-secondary shadow mb-4" style="border-radius: 20px;">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3 text-white" style="font-size: 20px;">Correo Electrónico:</h3>
+                        <p class="card-text text-white" style="font-size: 18px;">@Model.EMAIL</p>
+                    </div>
+                </div>
+
+                <div class="card bg-secondary shadow mb-4" style="border-radius: 20px;">
+                    <div class="card-body text-center">
+                        <h3 class="card-title mb-3 text-white" style="font-size: 20px;">País</h3>
+                        <p class="card-text text-white" style="font-size: 18px;">
+                            @foreach (var country in ViewBag.countries)
+                            {
+                                if (Model.ID_COUNTRY == country.ID_COUNTRY)
+                                {
+                                    <span>@country.NAME</span>
+                                }
+                            }
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
