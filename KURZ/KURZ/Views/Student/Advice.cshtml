@@ -1,318 +1,307 @@
-﻿@model IEnumerable<KURZ.Entities.GetAdvicesByTeacherId_Result>
+﻿@model IEnumerable<KURZ.Entities.TopicsView>
 @{
     ViewData["Title"] = "Asesorías";
     Layout = "_StudentH";
 }
-
-<div class="card mb-lg-32pt">
-    <div class="page-section"></div>
-    <div class="container page__container">
-        <div class="page-separator">
-            <div class="page-separator__text">Matematicas</div>
+<form class="align-items-center">
+    <div class="row mr-0 ml-0 mb-2 row-cols-5">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ID_CATEGORY" class="form-label">Categorías</label>
+                <select id="ID_CATEGORY" class="form-control">
+                    <option value="">Seleccione una categoría</option>
+                    @foreach (var categories in ViewBag.categories)
+                    {
+                        <option value="@categories.ID_CATEGORY"> @categories.NAME</option>
+                    }
+                </select>
+            </div>
         </div>
-        <div class="row card-group-row">
-            <!-- PRIMERO -->
-            <div class="col-md-6 col-lg-4 col-xl-3 card-group-row__col">
-
-                <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary-dodger-blue js-overlay mdk-reveal js-mdk-reveal card-group-row__card"
-                    data-overlay-onload-show data-popover-onload-show data-force-reveal data-partial-height="44"
-                    data-toggle="popover" data-trigger="click">
-
-                    <a href="student-course.html" class="js-image" data-position="">
-                        <img src="../../public/images/paths/mailchimp_430x168.png" alt="course">
-                        <span class="overlay__content align-items-start justify-content-start">
-                            <span class="overlay__action card-body d-flex align-items-center">
-                            </span>
-                        </span>
-                    </a>
-
-                    <div class="mdk-reveal__content">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <div class="flex">
-                                    <a class="card-title" href="student-course.html">Algebra</a>
-                                    <small class="text-50 font-weight-bold mb-4pt">Elijah Murray</small>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="popoverContainer d-none">
-                    <div class="media">
-                        <div class="media-left mr-12pt">
-                            <img src="../../public/images/paths/mailchimp_40x40.png" width="40" height="40"
-                                alt="Angular" class="rounded">
-                        </div>
-                        <div class="media-body">
-                            <div class="card-title mb-0">Algebra</div>
-                            <p class="lh-1 mb-0">
-                                <span class="text-50 small">con</span>
-                                <span class="text-50 small font-weight-bold">Elijah Murray</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <p class="my-16pt text-70">Aprende sobre algebra lineal.</p>
-
-
-
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <div class="d-flex align-items-center mb-4pt">
-                                <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
-                                <p class="flex text-50 lh-1 mb-0"><small>6 hours</small></p>
-                            </div>
-
-                            <div class="d-flex align-items-center">
-                                <span class="material-icons icon-16pt text-50 mr-4pt">assessment</span>
-                                <p class="flex text-50 lh-1 mb-0"><small>Principiante</small></p>
-                            </div>
-                        </div>
-                        <div class="col text-right">
-                            <a href="student-course.html" class="btn btn-primary">Inscribirse</a>
-                        </div>
-                    </div>
-
-                </div>
-
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ID_SUBCATEGORY" class="form-label">Subcategorías</label>
+                <select id="ID_SUBCATEGORY" class="form-control">
+                    <option value="">Seleccione una subcategoría</option>
+                </select>
             </div>
-
-            <!-- SEGUNDO -->
-            <div class="col-md-6 col-lg-4 col-xl-3 card-group-row__col">
-
-                <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary-dodger-blue js-overlay mdk-reveal js-mdk-reveal card-group-row__card"
-                    data-overlay-onload-show data-popover-onload-show data-force-reveal data-partial-height="44"
-                    data-toggle="popover" data-trigger="click">
-
-                    <a href="student-course.html" class="js-image" data-position="">
-                        <img src="../../public/images/paths/mailchimp_430x168.png" alt="course">
-                        <span class="overlay__content align-items-start justify-content-start">
-                            <span class="overlay__action card-body d-flex align-items-center">
-                            </span>
-                        </span>
-                    </a>
-
-                    <div class="mdk-reveal__content">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <div class="flex">
-                                    <a class="card-title" href="student-course.html">Algebra</a>
-                                    <small class="text-50 font-weight-bold mb-4pt">Elijah Murray</small>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="popoverContainer d-none">
-                    <div class="media">
-                        <div class="media-left mr-12pt">
-                            <img src="../../public/images/paths/mailchimp_40x40.png" width="40" height="40"
-                                alt="Angular" class="rounded">
-                        </div>
-                        <div class="media-body">
-                            <div class="card-title mb-0">Algebra</div>
-                            <p class="lh-1 mb-0">
-                                <span class="text-50 small">con</span>
-                                <span class="text-50 small font-weight-bold">Elijah Murray</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <p class="my-16pt text-70">Aprende sobre algebra lineal.</p>
-
-
-
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <div class="d-flex align-items-center mb-4pt">
-                                <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
-                                <p class="flex text-50 lh-1 mb-0"><small>6 hours</small></p>
-                            </div>
-
-                            <div class="d-flex align-items-center">
-                                <span class="material-icons icon-16pt text-50 mr-4pt">assessment</span>
-                                <p class="flex text-50 lh-1 mb-0"><small>Principiante</small></p>
-                            </div>
-                        </div>
-                        <div class="col text-right">
-                            <a href="student-course.html" class="btn btn-primary">Inscribirse</a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- TERCERO -->
-            <div class="col-md-6 col-lg-4 col-xl-3 card-group-row__col">
-
-                <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary-dodger-blue js-overlay mdk-reveal js-mdk-reveal card-group-row__card"
-                    data-overlay-onload-show data-popover-onload-show data-force-reveal data-partial-height="44"
-                    data-toggle="popover" data-trigger="click">
-
-                    <a href="student-course.html" class="js-image" data-position="">
-                        <img src="../../public/images/paths/mailchimp_430x168.png" alt="course">
-                        <span class="overlay__content align-items-start justify-content-start">
-                            <span class="overlay__action card-body d-flex align-items-center">
-                            </span>
-                        </span>
-                    </a>
-
-                    <div class="mdk-reveal__content">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <div class="flex">
-                                    <a class="card-title" href="student-course.html">Algebra</a>
-                                    <small class="text-50 font-weight-bold mb-4pt">Elijah Murray</small>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="popoverContainer d-none">
-                    <div class="media">
-                        <div class="media-left mr-12pt">
-                            <img src="../../public/images/paths/mailchimp_40x40.png" width="40" height="40"
-                                alt="Angular" class="rounded">
-                        </div>
-                        <div class="media-body">
-                            <div class="card-title mb-0">Algebra</div>
-                            <p class="lh-1 mb-0">
-                                <span class="text-50 small">con</span>
-                                <span class="text-50 small font-weight-bold">Elijah Murray</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <p class="my-16pt text-70">Aprende sobre algebra lineal.</p>
-
-
-
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <div class="d-flex align-items-center mb-4pt">
-                                <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
-                                <p class="flex text-50 lh-1 mb-0"><small>6 hours</small></p>
-                            </div>
-
-                            <div class="d-flex align-items-center">
-                                <span class="material-icons icon-16pt text-50 mr-4pt">assessment</span>
-                                <p class="flex text-50 lh-1 mb-0"><small>Principiante</small></p>
-                            </div>
-                        </div>
-                        <div class="col text-right">
-                            <a href="student-course.html" class="btn btn-primary">Inscribirse</a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            <!-- CUARTO -->
-            <div class="col-md-6 col-lg-4 col-xl-3 card-group-row__col">
-
-                <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary-dodger-blue js-overlay mdk-reveal js-mdk-reveal card-group-row__card"
-                    data-overlay-onload-show data-popover-onload-show data-force-reveal data-partial-height="44"
-                    data-toggle="popover" data-trigger="click">
-
-                    <a href="student-course.html" class="js-image" data-position="">
-                        <img src="../../public/images/paths/mailchimp_430x168.png" alt="course">
-                        <span class="overlay__content align-items-start justify-content-start">
-                            <span class="overlay__action card-body d-flex align-items-center">
-                            </span>
-                        </span>
-                    </a>
-
-                    <div class="mdk-reveal__content">
-                        <div class="card-body">
-                            <div class="d-flex">
-                                <div class="flex">
-                                    <a class="card-title" href="student-course.html">Algebra</a>
-                                    <small class="text-50 font-weight-bold mb-4pt">Elijah Murray</small>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="popoverContainer d-none">
-                    <div class="media">
-                        <div class="media-left mr-12pt">
-                            <img src="../../public/images/paths/mailchimp_40x40.png" width="40" height="40"
-                                alt="Angular" class="rounded">
-                        </div>
-                        <div class="media-body">
-                            <div class="card-title mb-0">Algebra</div>
-                            <p class="lh-1 mb-0">
-                                <span class="text-50 small">con</span>
-                                <span class="text-50 small font-weight-bold">Elijah Murray</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <p class="my-16pt text-70">Aprende sobre algebra lineal.</p>
-
-
-
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <div class="d-flex align-items-center mb-4pt">
-                                <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
-                                <p class="flex text-50 lh-1 mb-0"><small>6 hours</small></p>
-                            </div>
-
-                            <div class="d-flex align-items-center">
-                                <span class="material-icons icon-16pt text-50 mr-4pt">assessment</span>
-                                <p class="flex text-50 lh-1 mb-0"><small>Principiante</small></p>
-                            </div>
-                        </div>
-                        <div class="col text-right">
-                            <a href="student-course.html" class="btn btn-primary">Inscribirse</a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
         </div>
-
-
-        <div class="mb-32pt">
-
-            <ul class="pagination justify-content-start pagination-xsm m-0">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true" class="material-icons">chevron_left</span>
-                        <span>Anterior</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Page 1">
-                        <span>1</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Page 2">
-                        <span>2</span>
-                    </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span>Siguiente</span>
-                        <span aria-hidden="true" class="material-icons">chevron_right</span>
-                    </a>
-                </li>
-            </ul>
-
+        <div class="col-md-1 buttons-vertical-flex-end">
+            <div class="form-group">
+                <button type="button" id="buscar" class="btn btn-success">
+                    Buscar
+                </button>
+            </div>
         </div>
     </div>
+</form>
+
+
+<div id="cardContainer">
+
+    @foreach (var categoria in ViewBag.categories)
+    {
+
+        <div class="card mb-lg-32pt">
+            <div class="page-section"></div>
+            <div class="container page__container">
+                <div class="page-separator">
+                    <div class="page-separator__text">@categoria.NAME</div>
+                </div>
+
+
+                <div class="row card-group-row">
+                    <div class="col-md-6 col-lg-4 col-xl-3 card-group-row__col">
+                        <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary-dodger-blue js-overlay mdk-reveal
+                        js-mdk-reveal card-group-row__card" data-overlay-onload-show data-popover-onload-show
+                            data-force-reveal data-partial-height="44" data-toggle="popover" data-trigger="click">
+
+                            <a href="student-course.html" class="js-image" data-position="">
+                                <img src="../../public/images/paths/mailchimp_430x168.png" alt="course">
+                                <span class="overlay__content align-items-start justify-content-start">
+                                    <span class="overlay__action card-body d-flex align-items-center">
+                                    </span>
+                                </span>
+                            </a>
+                            <div class="mdk-reveal__content">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex">
+                                            <a class="card-title" href="student-course.html">@topic.NAME</a>
+                                            <small class="text-50 font-weight-bold mb-4pt">Elijah Murray</small>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popoverContainer d-none">
+                            <div class="media">
+                                <div class="media-left mr-12pt">
+                                    <img src="../../public/images/paths/mailchimp_40x40.png" width="40" height="40"
+                                        alt="Angular" class="rounded">
+                                </div>
+                                <div class="media-body">
+                                    <div class="card-title mb-0">@topic.NAME</div>
+                                    <p class="lh-1 mb-0">
+                                        <span class="text-50 small">con</span>
+                                        <span class="text-50 small font-weight-bold">Elijah Murray</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <p class="my-16pt text-70">@topic.DESCRIPTION</p>
+
+
+
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <div class="d-flex align-items-center mb-4pt">
+                                        <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
+                                        <p class="flex text-50 lh-1 mb-0"><small>6 hours</small></p>
+                                    </div>
+
+                                    <div class="d-flex align-items-center">
+                                        <span class="material-icons icon-16pt text-50 mr-4pt">assessment</span>
+                                        <p class="flex text-50 lh-1 mb-0"><small>Principiante</small></p>
+                                    </div>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="student-course.html" class="btn btn-primary">Buscar Horarios</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary-dodger-blue js-overlay mdk-reveal
+                        js-mdk-reveal card-group-row__card" data-overlay-onload-show data-popover-onload-show
+                            data-force-reveal data-partial-height="44" data-toggle="popover" data-trigger="click">
+
+                            <a href="student-course.html" class="js-image" data-position="">
+                                <img src="../../public/images/paths/mailchimp_430x168.png" alt="course">
+                                <span class="overlay__content align-items-start justify-content-start">
+                                    <span class="overlay__action card-body d-flex align-items-center">
+                                    </span>
+                                </span>
+                            </a>
+
+                            <div class="mdk-reveal__content">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex">
+                                            <a class="card-title" href="student-course.html">tema.NAME</a>
+                                            <small class="text-50 font-weight-bold mb-4pt">Elijah Murray</small>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popoverContainer d-none">
+                            <div class="media">
+                                <div class="media-left mr-12pt">
+                                    <img src="../../public/images/paths/mailchimp_40x40.png" width="40" height="40"
+                                        alt="Angular" class="rounded">
+                                </div>
+                                <div class="media-body">
+                                    <div class="card-title mb-0">tema.NAME</div>
+                                    <p class="lh-1 mb-0">
+                                        <span class="text-50 small">con</span>
+                                        <span class="text-50 small font-weight-bold">Elijah Murray</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <p class="my-16pt text-70">tema.DESCRIPTION</p>
+
+
+
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <div class="d-flex align-items-center mb-4pt">
+                                        <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
+                                        <p class="flex text-50 lh-1 mb-0"><small>6 hours</small></p>
+                                    </div>
+
+                                    <div class="d-flex align-items-center">
+                                        <span class="material-icons icon-16pt text-50 mr-4pt">assessment</span>
+                                        <p class="flex text-50 lh-1 mb-0"><small>Principiante</small></p>
+                                    </div>
+                                </div>
+                                <div class="col text-right">
+                                    <a href="student-course.html" class="btn btn-primary">Buscar Horarios</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Aquí se insertarán las tarjetas de temas filtrados -->
+                    </div>
+
+
+
+
+                    <div class="mb-32pt">
+                        <ul class="pagination justify-content-start pagination-xsm m-0">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true" class="material-icons">chevron_left</span>
+                                    <span>Anterior</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Page 1">
+                                    <span>1</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Page 2">
+                                    <span>2</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span>Siguiente</span>
+                                    <span aria-hidden="true" class="material-icons">chevron_right</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                  
+            </div>
+        </div>
+
+    }
+
 </div>
 
+
+
+<script>
+    $(document).ready(function () {
+        // Manejar el cambio en el select de categorías
+        $('#ID_CATEGORY').change(function () {
+            var categoryId = $(this).val();
+            // Lógica para cargar las subcategorías relacionadas con la categoría seleccionada
+            // Usar AJAX para obtener las subcategorías y actualizar el select de subcategorías
+            // Una vez que se hayan cargado las subcategorías,  habilitar el botón de búsqueda si se ha seleccionado una categoría válida
+            $('#buscar').prop('disabled', categoryId === '');
+        });
+
+        // Manejar el cambio en el select de subcategorías
+        $('#ID_SUBCATEGORY').change(function () {
+            var subcategoryId = $(this).val();
+            // Habilitar el botón de búsqueda si se ha seleccionado una subcategoría válida
+            // $('#buscar').prop('disabled', subcategoryId === '');
+        });
+    });
+
+    $(document).on('change', '#ID_CATEGORY', function (event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        var id_category = $(this).val();
+        $.ajax({
+            url: '/Topics/SubcategoriesByCategory/' + id_category,
+            type: 'POST',
+            data: {
+                ID_CATEGORY: id_category
+            },
+            success: function (data) {
+                $('#ID_SUBCATEGORY').html('');
+                $('#ID_SUBCATEGORY').append('<option value="0">Todas</option>');
+
+                $.each(data, function (key, value) {
+                    $('#ID_SUBCATEGORY').append('<option value="' + value.iD_SUBCATEGORY + '">' + value.name + '</option>');
+                });
+
+                get_topics_cat_sub();
+            },
+            error: function () {
+                debugger;
+            }
+        });
+
+    });
+
+
+    $(document).ready(function () {
+        // Manejar el evento click del botón de búsqueda
+        $('#buscar').click(function (e) {
+            e.preventDefault(); // Evitar que el formulario se envíe automáticamente
+
+            // Obtener los valores seleccionados de categoría y subcategoría
+            var categoryId = $('#ID_CATEGORY').val();
+            var subcategoryId = $('#ID_SUBCATEGORY').val();
+
+            // Realizar la solicitud AJAX al servidor para obtener los temas filtrados
+            obtenerTemasFiltrados(categoryId, subcategoryId);
+        });
+    });
+
+    function obtenerTemasFiltrados(categoryId, subcategoryId) {
+        // Realizar la solicitud AJAX al servidor para obtener los temas filtrados
+        $.ajax({
+            url: '/Topics/TopicsByCatSub',
+            type: 'POST',
+            data: {
+                ID_CATEGORY: categoryId,
+                ID_SUBCATEGORY: subcategoryId
+            },
+            success: function (response) {
+                // Limpiar el contenido actual de las cards
+                $('#cardContainer').empty();
+
+                // Mostrar los temas filtrados en las cards
+                $.each(response, function (index, tema) {
+                    var cardHtml =
+
+                        $('#cardContainer').append(cardHtml);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
+</script>

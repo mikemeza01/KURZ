@@ -15,6 +15,8 @@ namespace KURZ.Controllers
         private readonly IUsersModel _usersModel;
         private readonly IAdvicesModel _advicesModel;
         private readonly ICountriesModel _countriesModel;
+        private readonly ITopicsModel _topicsModel;
+        private readonly ICategoriesModel _categoriesModel;
         private readonly IStatusModel _statusModel;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IConfiguration _configuration;
@@ -58,11 +60,13 @@ namespace KURZ.Controllers
             }
         }
 
-        public StudentController(IStudentModel studentModel, IUsersModel usersModel, ICountriesModel countriesModel, IWebHostEnvironment hostingEnvironment, IConfiguration configuration, IAdvicesModel advicesModel, IStatusModel statusModel)
+        public StudentController(IStudentModel studentModel, IUsersModel usersModel, ICountriesModel countriesModel, ITopicsModel topicsModel, ICategoriesModel categoriesModel, IWebHostEnvironment hostingEnvironment, IConfiguration configuration, IAdvicesModel advicesModel, IStatusModel statusModel)
         {
             _studentModel = studentModel;
             _usersModel = usersModel;
             _countriesModel = countriesModel;
+            _topicsModel = topicsModel;
+            _categoriesModel = categoriesModel;
             _hostingEnvironment = hostingEnvironment;
             _configuration = configuration;
             _advicesModel = advicesModel;
@@ -359,8 +363,11 @@ namespace KURZ.Controllers
             }
             var user = _usersModel.byUserName(nombreusuario);
 
-            var advices = _advicesModel.GetAdvicesByStudentId(user.ID_USER);
-            return View(advices);
+             var listAdvices = _topicsModel.TopicsList();
+             var categories = _categoriesModel.CategoriesList();
+             ViewBag.listAdvices = listAdvices;
+             ViewBag.categories = categories;
+            return View(listAdvices);
         }
 
         [Authorize(Roles = "Student")]
