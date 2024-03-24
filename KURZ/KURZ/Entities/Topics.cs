@@ -33,7 +33,7 @@ namespace KURZ.Entities
         public bool STATUS { get; set; }
     }
 
-    public class TopicsView
+    public class TopicsView : Topics
     {
         public int ID_TOPIC { get; set; }
 
