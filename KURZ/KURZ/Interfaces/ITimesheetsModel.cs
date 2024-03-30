@@ -8,7 +8,7 @@ namespace KURZ.Interfaces
 
         public Timesheets TimesheetDetail(int? ID);
 
-
+        public string Update(Timesheets timesheets);
 
         public List<TimesheetHours> TimesheetHours();
     }

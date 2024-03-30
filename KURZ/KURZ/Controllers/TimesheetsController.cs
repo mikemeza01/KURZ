@@ -3,7 +3,14 @@ using KURZ.Interfaces;
 using KURZ.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using NuGet.Protocol;
+using System;
+using System.Collections;
 using System.Security.Claims;
+using ZoomNet.Models;
+using ZoomNet.Resources;
 
 namespace KURZ.Controllers
 {
@@ -37,9 +44,65 @@ namespace KURZ.Controllers
 
             var datos = _timesheetsModel.TimesheetDetailbyTeacher(user.ID_USER);
             var timesheethours = _timesheetsModel.TimesheetHours();
+            dynamic jsonDatos = JsonConvert.DeserializeObject(datos.TIMESHEET);
+            ViewBag.datos = jsonDatos;
             ViewBag.timesheethours = timesheethours;
+            ViewBag.ID_TEACHER = user.ID_USER;
 
             return View();
+        }
+
+        [HttpPost]
+        public string Update(int ID_TEACHER, string TIMESHEET) {
+            try
+            {
+                var timesheets = new Timesheets();
+                timesheets.TIMESHEET = TIMESHEET;
+                timesheets.ID_TEACHER  = ID_TEACHER;
+
+                var resultado = _timesheetsModel.Update(timesheets);
+                
+
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return "SUCCESS";
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                    return "ERROR";
+            }
+            catch (Exception)
+            {
+                return "ERROR";
+            }
+        }
+
+
+        [HttpPost]
+        public List<TimesheetData> LoadTimesheetData(int ID_TEACHER)
+        {
+            try
+            {
+                var datos = _timesheetsModel.TimesheetDetailbyTeacher(ID_TEACHER);
+                dynamic jsonDatos = JsonConvert.DeserializeObject(datos.TIMESHEET);
+
+                List<TimesheetData> items = ((JArray)jsonDatos).Select(x => new TimesheetData
+                {
+                    day_off = (string)x["day_off"],
+                    start = (string)x["start"],
+                    end = (string)x["end"],
+                    breaks = x["breaks"].ToJson(),
+                }).ToList();
+
+
+
+                return items;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

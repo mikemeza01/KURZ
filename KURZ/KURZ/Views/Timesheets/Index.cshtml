@@ -7,12 +7,16 @@
     <div class="card-body d-flex flex-column">
         <div class="flex"
              style="max-width: 100%">
+
+
+            <input type="hidden" id="ID_TEACHER" class="form-control" readonly value="@ViewBag.ID_TEACHER" />
+
             <!-- 1 Lunes start -->
             <div class="form-group">
                 <div class="row">
                     <h5 class="col-12 mt-3">1. Lunes</h5>
                     <div class="col-md-5">
-                        <label for="timesheet_start_2">Hora Inicio</label>
+                        <label for="timesheet_start_1">Hora Inicio</label>
                         <select class="form-control timesheet-hour" id="timesheet_start_1" name="timesheet_start_1">
                             <option value="">Seleccionar</option>
                             @foreach (var timesheethours in ViewBag.timesheethours)
@@ -22,7 +26,7 @@
                         </select>
                     </div>
                     <div class="col-md-5">
-                        <label for="timesheet_end_2">Hora Finalización</label>
+                        <label for="timesheet_end_1">Hora Finalización</label>
                         <select class="form-control timesheet-hour" id="timesheet_end_1" name="timesheet_end_1">
                             <option value="">Seleccionar</option>
                             @foreach (var timesheethours in ViewBag.timesheethours)
@@ -46,8 +50,8 @@
                         <div class="timebreak-item-row mt-3">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="timesheet-start-label" for="timesheet_break_start_1[1]">Hora Inicio</label>
-                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_1[1]" name="timesheet_break_start_1[1]" data-name="timesheet_break_start_1">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_1-1">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_1-1" name="timesheet_break_start_1-1" data-name="timesheet_break_start_1">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -56,8 +60,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5">
-                                    <label class="timesheet-end-label" for="timesheet_break_end_1[1]">Hora Finalización</label>
-                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_1[1]" name="timesheet_break_end_1[1]" data-name="timesheet_break_end_1">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_1-1">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_1-1" name="timesheet_break_end_1-1" data-name="timesheet_break_end_1">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -122,8 +126,8 @@
                         <div class="timebreak-item-row mt-3">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="timesheet-start-label" for="timesheet_break_start_2[1]">Hora Inicio</label>
-                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_2[1]" name="timesheet_break_start_2[1]" data-name="timesheet_break_start_2">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_2-1">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_2-1" name="timesheet_break_start_2-1" data-name="timesheet_break_start_2">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -132,8 +136,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5">
-                                    <label class="timesheet-end-label" for="timesheet_break_end_1[1]">Hora Finalización</label>
-                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_2[1]" name="timesheet_break_end_2[1]" data-name="timesheet_break_end_2">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_2-1">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_2-1" name="timesheet_break_end_2-1" data-name="timesheet_break_end_2">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -200,8 +204,8 @@
                         <div class="timebreak-item-row mt-3">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="timesheet-start-label" for="timesheet_break_start_3[1]">Hora Inicio</label>
-                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_3[1]" name="timesheet_break_start_3[1]" data-name="timesheet_break_start_3">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_3-1">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_3-1" name="timesheet_break_start_3-1" data-name="timesheet_break_start_3">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -210,8 +214,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5">
-                                    <label class="timesheet-end-label" for="timesheet_break_end_3[1]">Hora Finalización</label>
-                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_3[1]" name="timesheet_break_end_3[1]" data-name="timesheet_break_end_3">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_3-1">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_3-1" name="timesheet_break_end_3-1" data-name="timesheet_break_end_3">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -277,8 +281,8 @@
                         <div class="timebreak-item-row mt-3">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="timesheet-start-label" for="timesheet_break_start_4[1]">Hora Inicio</label>
-                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_4[1]" name="timesheet_break_start_4[1]" data-name="timesheet_break_start_4">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_4-1">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_4-1" name="timesheet_break_start_4-1" data-name="timesheet_break_start_4">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -287,8 +291,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5">
-                                    <label class="timesheet-end-label" for="timesheet_break_end_4[1]">Hora Finalización</label>
-                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_4[1]" name="timesheet_break_end_4[1]" data-name="timesheet_break_end_4">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_4-1">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_4-1" name="timesheet_break_end_4-1" data-name="timesheet_break_end_4">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -355,8 +359,8 @@
                         <div class="timebreak-item-row mt-3">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="timesheet-start-label" for="timesheet_break_start_5[1]">Hora Inicio</label>
-                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_5[1]" name="timesheet_break_start_5[1]" data-name="timesheet_break_start_5">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_5-1">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_5-1" name="timesheet_break_start_5-1" data-name="timesheet_break_start_5">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -365,8 +369,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5">
-                                    <label class="timesheet-end-label" for="timesheet_break_end_5[1]">Hora Finalización</label>
-                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_5[1]" name="timesheet_break_end_5[1]" data-name="timesheet_break_end_5">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_5-1">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_5-1" name="timesheet_break_end_5-1" data-name="timesheet_break_end_5">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -433,8 +437,8 @@
                         <div class="timebreak-item-row mt-3">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="timesheet-start-label" for="timesheet_break_start_6[1]">Hora Inicio</label>
-                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_6[1]" name="timesheet_break_start_6[1]" data-name="timesheet_break_start_6">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_6-1">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_6-1" name="timesheet_break_start_6-1" data-name="timesheet_break_start_6">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -443,8 +447,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5">
-                                    <label class="timesheet-end-label" for="timesheet_break_end_6[1]">Hora Finalización</label>
-                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_6[1]" name="timesheet_break_end_6[1]" data-name="timesheet_break_end_6">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_6-1">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_6-1" name="timesheet_break_end_6-1" data-name="timesheet_break_end_6">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -487,8 +491,8 @@
                         </select>
                     </div>
                     <div class="col-md-5">
-                        <label for="timesheet_end_2">Hora Finalización</label>
-                        <select class="form-control timesheet-hour" id="timesheet_end_7" name="timesheet_start_7">
+                        <label for="timesheet_end_7">Hora Finalización</label>
+                        <select class="form-control timesheet-hour" id="timesheet_end_7" name="timesheet_end_7">
                             <option value="">Seleccionar</option>
                             @foreach (var timesheethours in ViewBag.timesheethours)
                             {
@@ -511,8 +515,8 @@
                         <div class="timebreak-item-row mt-3">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="timesheet-start-label" for="timesheet_break_start_7[1]">Hora Inicio</label>
-                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_7[1]" name="timesheet_break_start_7[1]" data-name="timesheet_break_start_7">
+                                    <label class="timesheet-start-label" for="timesheet_break_start_7-1">Hora Inicio</label>
+                                    <select class="form-control timesheet-hour timesheet-start" id="timesheet_break_start_7-1" name="timesheet_break_start_7-1" data-name="timesheet_break_start_7">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -521,8 +525,8 @@
                                     </select>
                                 </div>
                                 <div class="col-md-5">
-                                    <label class="timesheet-end-label" for="timesheet_break_end_7[1]">Hora Finalización</label>
-                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_7[1]" name="timesheet_break_end_7[1]" data-name="timesheet_break_end_7">
+                                    <label class="timesheet-end-label" for="timesheet_break_end_7-1">Hora Finalización</label>
+                                    <select class="row form-control timesheet-hour timesheet-end" id="timesheet_break_end_7-1" name="timesheet_break_end_7-1" data-name="timesheet_break_end_7">
                                         <option value="">Seleccionar</option>
                                         @foreach (var timesheethours in ViewBag.timesheethours)
                                         {
@@ -562,6 +566,8 @@
 <script>
     $(document).ready(function () {
         $('.timesheet-hour').select2();
+
+        loadDataFields();
 
         $('#saveTimesheets').on('click', function () {
 
@@ -661,10 +667,6 @@
                 breaks_7[index] = [break_start, break_end];
             });
 
-
-
-            debugger;
-
             var timesheet = [
                 {
                     "day_off": timesheet_1_free,
@@ -705,14 +707,102 @@
                 {
                     "day_off": timesheet_7_free,
                     "start": timesheet_start_7 !== undefined ? timesheet_start_7 : "",
-                    "end": timesheet_end_7 !== undefined ? timesheet_start_7 : "",
+                    "end": timesheet_end_7 !== undefined ? timesheet_end_7 : "",
                     "breaks": [breaks_7],
                 }
             ];
 
-            debugger;
+            save_timesheet_teacher(timesheet);
             console.log(timesheet);
         });
+
+        function save_timesheet_teacher(timesheet) {
+            var timesheetJson = JSON.stringify(timesheet);
+            var id_teacher = $('#ID_TEACHER').val();
+
+            $.ajax({
+                url: '/Timesheets/Update/',
+                type: 'POST',
+                data: {
+                    ID_TEACHER: parseInt(id_teacher),
+                    TIMESHEET: timesheetJson
+                },
+                success: function (data) {
+                    alert('exito');
+                    if (data === 'SUCCESS') {
+                        alertaSuccess();
+                    } else {
+                        alertaError();
+                    }
+                },
+                error: function () {
+                    alertaError();
+                }
+            });
+        }
+
+        function loadDataFields() {
+            var id_teacher = $('#ID_TEACHER').val();
+
+            $.ajax({
+                url: '/Timesheets/LoadTimesheetData/',
+                type: 'POST',
+                data: {
+                    ID_TEACHER: parseInt(id_teacher),
+                },
+                success: function (data) {
+                    $(data).each(function (index, value) {
+                        var indexOption = index + 1;
+                        if (value.day_off === '0') {
+                            var startOption = $('#timesheet_start_' + indexOption + ' option[data-value="' + value.start + '"]').val();
+                            var endOption = $('#timesheet_end_' + indexOption + ' option[data-value="' + value.end + '"]').val();
+                            $('#timesheet_start_' + indexOption).select2().val(startOption).trigger('change');
+                            $('#timesheet_end_' + indexOption).select2().val(endOption).trigger('change');
+
+                            var breaks = JSON.parse(value.breaks);
+
+                            if (breaks[0].length > 1) {
+                                $(breaks[0]).each(function (index, breakValue) {
+                                    var breakIndex = index + 1;
+
+                                    if (breakIndex > 1) {
+                                        var item = $('.breaks_' + indexOption).parent();
+                                        clonebreakrow(item);
+                                    }
+
+                                    var startFreeOption = $('#timesheet_break_start_' + indexOption + '-' + breakIndex + ' option[data-value="' + breakValue[0] + '"]').val();
+                                    //var selectfree = $('#timesheet_break_start_1[1]').val('11');
+                                    var endFreeEndOption = $('#timesheet_break_end_' + indexOption + '-' + breakIndex + ' option[data-value="' + breakValue[1] + '"]').val();
+                                    $('#timesheet_break_start_' + indexOption + '-' + breakIndex).select2().val(startFreeOption).trigger('change');
+                                    $('#timesheet_break_end_' + indexOption + '-' + breakIndex).select2().val(endFreeEndOption).trigger('change');
+                                });
+                            } else {
+                                var breaksFree = breaks[0][0];
+                                var startFreeOption = $('#timesheet_break_start_' + indexOption + '-1' + ' option[data-value="' + breaksFree[0] + '"]').val();
+                                //var selectfree = $('#timesheet_break_start_1[1]').val('11');
+                                var endFreeEndOption = $('#timesheet_break_end_' + indexOption + '-1' + ' option[data-value="' + breaksFree[1] + '"]').val();
+                                $('#timesheet_break_start_' + indexOption + '-1').select2().val(startFreeOption).trigger('change');
+                                $('#timesheet_break_end_' + indexOption + '-1').select2().val(endFreeEndOption).trigger('change');
+                            }
+                        } else {
+                            var item = $('.breaks_' + indexOption).parent();
+                            $('.timesheet-hour', item).val('').change();
+                            $('.timesheet-hour', item).select2({
+                                disabled: true
+                            });
+
+                            $('.timesheet_break_div', item).hide();
+
+                            $('.custom-control-input', item).prop('checked', true);
+                        }
+                    });
+                                  },
+                error: function () {
+                    //todo:
+                    //alertaErrorData();
+                }
+            });
+        }
 
 
         $('.custom-control-input').on('change', function () {
@@ -738,6 +828,11 @@
 
             var item = $(this).parent().parent().parent();
 
+            clonebreakrow(item);
+        });
+
+
+        function clonebreakrow(item) {
             let maxElements = 3;
             let timebreak_item_row = $('.timebreak-item-row', item);
             let timebreak_item_current_clone = timebreak_item_row.length + 1;
@@ -754,31 +849,31 @@
 
             cloned_item.find('.timesheet_break_remove .remove_timebreak_item_row').remove();
             cloned_item.find('.timesheet_break_remove').append('<div class="remove_timebreak_item_row"><i class="fas fa-times-circle"></i></div>');
-        
+
 
             cloned_item.find('span.select2').remove();
             if (cloned_item.find('.timesheet-start').data('select2-id')) {
                 cloned_item.find('.timesheet-start').select2('destroy');
             }
 
-            cloned_item.find('.timesheet-start-label').attr('for', item_cloned_value_start + '[' + timebreak_item_current_clone + ']');
-            cloned_item.find('.timesheet-start').attr('id', item_cloned_value_start + '[' + timebreak_item_current_clone + ']');
-            cloned_item.find('.timesheet-start').attr('name', item_cloned_value_start + '[' + timebreak_item_current_clone + ']');
-            cloned_item.find('.timesheet-start').attr('data-select2-id', item_cloned_value_start + '[' + timebreak_item_current_clone + ']');
+            cloned_item.find('.timesheet-start-label').attr('for', item_cloned_value_start + '-' + timebreak_item_current_clone);
+            cloned_item.find('.timesheet-start').attr('id', item_cloned_value_start + '-' + timebreak_item_current_clone);
+            cloned_item.find('.timesheet-start').attr('name', item_cloned_value_start + '-' + timebreak_item_current_clone);
+            cloned_item.find('.timesheet-start').attr('data-select2-id', item_cloned_value_start + '-' + timebreak_item_current_clone);
             cloned_item.find('.timesheet-start').select2();
 
             if (cloned_item.find('.timesheet-end').data('select2-id')) {
                 cloned_item.find('.timesheet-end').select2('destroy');
             }
-            cloned_item.find('.timesheet-end-label').attr('for', item_cloned_value_end + '[' + timebreak_item_current_clone + ']');
-            cloned_item.find('.timesheet-end').attr('id', item_cloned_value_end + '[' + timebreak_item_current_clone + ']');
-            cloned_item.find('.timesheet-end').attr('name', item_cloned_value_end + '[' + timebreak_item_current_clone + ']');
-            cloned_item.find('.timesheet-end').attr('data-select2-id', item_cloned_value_end + '[' + timebreak_item_current_clone + ']');
+            cloned_item.find('.timesheet-end-label').attr('for', item_cloned_value_end + '-' + timebreak_item_current_clone);
+            cloned_item.find('.timesheet-end').attr('id', item_cloned_value_end + '-' + timebreak_item_current_clone);
+            cloned_item.find('.timesheet-end').attr('name', item_cloned_value_end + '-' + timebreak_item_current_clone);
+            cloned_item.find('.timesheet-end').attr('data-select2-id', item_cloned_value_end + '-' + timebreak_item_current_clone);
             $('.timesheet_break_div .timesheet-end', item).select2();
             cloned_item.find('.timesheet-end').select2();
-            
-            
-            
+
+
+
 
             timebreak_item_row_last.after(cloned_item);
 
@@ -786,7 +881,35 @@
                 var item_remove = $(this).parent().parent().parent().parent();
                 $(item_remove).fadeOut().remove();
             });
-        });
+        }
 
     });
+
+    function alertaSuccess() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Horario Actualizado.',
+            text: 'Su horario para impartir asesorías a sido actualizado.',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Timesheets/Index';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Timesheets/Index';
+        }, 3000);
+    }
+
+    function alertaError() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Error al actualizar.',
+            text: 'Hubo un error al actualizar su horario para impartir asesorías',
+            showConfirmButton: true
+        })
+    }
 </script>

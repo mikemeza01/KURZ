@@ -30,4 +30,13 @@ namespace KURZ.Entities
             NAME = nAME;
         }
     }
+
+    public class TimesheetData {
+        public string? day_off { get; set; }
+        public string? start { get; set; }
+
+        public string? end { get; set; }
+
+        public dynamic? breaks { get; set; }
+    }
 }

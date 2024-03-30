@@ -44,6 +44,33 @@ namespace KURZ.Models
             }
         }
 
+        public string Update(Timesheets timesheets)
+        {
+            try
+            {
+                var existTimesheet = TimesheetDetailbyTeacher(timesheets.ID_TEACHER);
+
+                if (existTimesheet != null)
+                {
+                    existTimesheet.TIMESHEET = timesheets.TIMESHEET;
+                    _context.Timesheets.Update(timesheets);
+                    _context.SaveChanges();
+                }
+                else {
+                    _context.Timesheets.Add(timesheets);
+                    _context.SaveChanges();
+                }
+
+                return "ok";
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error crear o actualizar el horario.");
+                Console.WriteLine(ex.ToString());
+                return "error";
+            }
+        }
+
         public List<TimesheetHours> TimesheetHours()
         {
             var timesheethours = new List<TimesheetHours>();
