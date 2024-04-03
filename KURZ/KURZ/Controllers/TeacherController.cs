@@ -494,7 +494,7 @@ namespace KURZ.Controllers
                 if (resultado == "ok")
                 {
                     ViewBag.mensaje = "SUCCESS";
-                var teacherRate = new TeacherGradesView
+                    var teacherRate = new TeacherGradesView
                 {
                     ID_ADVICE = advice.ID_ADVICE,
                     TeacherName = advice.TEACHERNAME,

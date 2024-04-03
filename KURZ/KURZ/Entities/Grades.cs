@@ -30,6 +30,9 @@ namespace KURZ.Entities
 
         [Display(Name = "ID del Estudiante")]
         public int ID_STUDENT { get; set; }
+
+        [Display(Name = "Promedio Calificación")]
+        public decimal? AverageRating {get; set;}
     }
 
     public class TeacherGradesView : Grades

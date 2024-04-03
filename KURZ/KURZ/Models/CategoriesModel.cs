@@ -90,5 +90,27 @@ namespace KURZ.Models
             }
         }
 
+        public string GetCategoryNameById(int? ID)
+        {
+            try
+            {
+                var category = _context.Categories.Find(ID);
+                if (category != null)
+                {
+                    return category.NAME;
+                }
+                else
+                {
+                    throw new Exception("No se encontró una categoría con el ID especificado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la categoría: " + ex.Message);
+            }
+
+
+        }
+
     }
 }

@@ -1,6 +1,10 @@
 ﻿using KURZ.Interfaces;
 using KURZ.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace KURZ.Models
 {
@@ -133,7 +137,8 @@ namespace KURZ.Models
         }
 
 
-        public List<Topics> TopicsByCatSub(int ID_CATEGORY, int ID_SUBCATEGORY) {
+        public List<Topics> TopicsByCatSub(int ID_CATEGORY, int ID_SUBCATEGORY)
+        {
             try
             {
 
@@ -141,7 +146,8 @@ namespace KURZ.Models
                 {
                     return _context.Topics.Where(x => x.ID_CATEGORY == ID_CATEGORY).ToList();
                 }
-                else {
+                else
+                {
                     return _context.Topics.Where(x => x.ID_CATEGORY == ID_CATEGORY && x.ID_SUBCATEGORY == ID_SUBCATEGORY).ToList();
                 }
 
@@ -151,5 +157,79 @@ namespace KURZ.Models
                 throw new Exception("Error al obtener la lista de temas: " + ex.Message);
             }
         }
+
+        public List<TeacherTopicsView> TopicByTeacherView(int ID)
+        {
+
+            // {
+            //     try
+            //     {
+            //         string sql = "[dbo].[TopicsByTeacherView] @ID";
+
+            //         var param = new SqlParameter[]
+            //         {
+            //         new SqlParameter()
+            //         {
+            //             ParameterName= "@ID",
+            //             SqlDbType = System.Data.SqlDbType.Int,
+            //             Value = ID
+            //         }
+            //         };
+
+            //         var result = _context.TopicsViews.FromSqlRaw(sql, param).AsEnumerable().ToList();
+
+
+
+            //         return result;
+            //     }
+            //     catch (Exception ex)
+            //     {
+            //         throw new Exception("Error al obtener la lista de profesores: " + ex.Message);
+            //     }
+            // }
+
+
+            try
+            {
+                var tema = _context.Topics.FirstOrDefault(t => t.ID_TOPIC == ID);
+
+                if (tema != null)
+                {
+                    var consulta = from pricT in _context.Price_Topics
+                                   join prof in _context.Users on pricT.ID_TEACHER equals prof.ID_USER
+                                   join cou in _context.Countries on prof.ID_COUNTRY equals cou.ID_COUNTRY
+                                   join t in _context.Topics on pricT.ID_TOPIC equals t.ID_TOPIC
+                                   join gra in _context.Grades on prof.ID_USER equals gra.ID_TEACHER into grade
+                                   from gra in grade.DefaultIfEmpty()
+                                   where t.ID_TOPIC == ID
+                                   select new TeacherTopicsView
+                                   {
+                                       TeacherName = prof.NAME,
+                                       TeacherCountry = cou.NAME,
+                                       Price = pricT.PRICE,
+                                       NAME = t.NAME,
+                                        AvgGrade = gra != null ? gra.AverageRating.GetValueOrDefault(5) : 5
+                                   };
+
+                    var profesoresDelTema = consulta.ToList();
+
+
+
+                    return profesoresDelTema;
+
+                }
+                else
+                {
+                    // Manejar el caso en que el tema no existe
+                    return new List<TeacherTopicsView>();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error interno en obteniendo los datos de la vista: " + ex.Message);
+            }
+        }
+
+
     }
 }

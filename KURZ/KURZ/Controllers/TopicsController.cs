@@ -1,4 +1,5 @@
-﻿using KURZ.Entities;
+﻿using System.Data.Common;
+using KURZ.Entities;
 using KURZ.Interfaces;
 using KURZ.Models;
 //using Microsoft.AspNetCore.Authorization;
@@ -17,7 +18,7 @@ namespace KURZ.Controllers
         {
             _topicsModel = topicsModel;
             _categoriesModel = categoriesModel;
-            _SubcategoriesModel = subcategoriesModel;   
+            _SubcategoriesModel = subcategoriesModel;
         }
 
         public IActionResult Index()
@@ -198,7 +199,7 @@ namespace KURZ.Controllers
                 }
                 else
                     ViewBag.mensaje = "ERROR";
-                    return "ERROR";
+                return "ERROR";
 
 
             }
@@ -288,7 +289,8 @@ namespace KURZ.Controllers
                 var categories = _categoriesModel.CategoriesList();
                 ViewBag.categories = categories;
 
-                if (subcategory.ID_SUBCATEGORY == 1) {
+                if (subcategory.ID_SUBCATEGORY == 1)
+                {
                     subcategory.ID_CATEGORY = 1;
                 }
 
@@ -339,7 +341,7 @@ namespace KURZ.Controllers
                 }
                 else
                     ViewBag.mensaje = "ERROR";
-                    return "ERROR";
+                return "ERROR";
 
 
             }
@@ -349,6 +351,33 @@ namespace KURZ.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Search(int idCategory, int IdSubcatgory)
+        {
+            // Realizar la busqueda de los temas segun categoria y subcategoria.
+            var temasFiltrados = _topicsModel.TopicsByCatSub(idCategory, IdSubcatgory);
+            var categories = _categoriesModel.CategoriesList();
+
+            // Obtener el nombre de la categoría seleccionada
+            var selectedCategoryName = _categoriesModel.GetCategoryNameById(idCategory);  // Obtener el nombre de la categoría seleccionada
+
+
+            ViewBag.categories = categories;
+            ViewBag.SelectedCategoryName = selectedCategoryName;
+
+            var temasFiltradosView = temasFiltrados.Select(t => new TopicsView
+            {
+                // Mapear  campos de Topics a TopicsView 
+                ID_TOPIC = t.ID_TOPIC,
+                NAME = t.NAME,
+                DESCRIPTION = t.DESCRIPTION,
+                ID_CATEGORY = t.ID_CATEGORY
+
+            }).ToList();
+
+            // Devolver la vista con los resultados
+            return View("~/Views/Student/Advice.cshtml", temasFiltradosView);
+        }
 
 
 
@@ -450,6 +479,15 @@ namespace KURZ.Controllers
             return RedirectToAction(nameof(CategoriesList));
         }*/
 
+        public IActionResult TopicsByTeacher(int ID)
+        {
+            var topicsdetail = _topicsModel.TopicByTeacherView(ID);
+            
+
+           
+
+            return View(topicsdetail);
+        }
 
     }
 }

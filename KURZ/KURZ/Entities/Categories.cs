@@ -16,5 +16,6 @@ namespace KURZ.Entities
         [Display(Name = "Descripción")]
         [StringLength(1000, ErrorMessage = "La descripción no puede exceder de 1000 carácteres")]
         public string? DESCRIPTION { get; set; }
+        
     }
 }

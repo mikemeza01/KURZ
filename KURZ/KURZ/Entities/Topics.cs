@@ -31,6 +31,8 @@ namespace KURZ.Entities
         [Required(ErrorMessage = "Seleccionar un estado es requerido")]
         [Display(Name = "Estado")]
         public bool STATUS { get; set; }
+
+
     }
 
     public class TopicsView : Topics
@@ -49,8 +51,30 @@ namespace KURZ.Entities
         [Display(Name = "Subcategoría")]
         public string? SUBCATEGORY { get; set; }
 
-
         [Display(Name = "Estado")]
         public bool STATUS { get; set; }
+
+       
+    }
+
+    public class TeacherTopicsView
+    {
+        [Display(Name = "Nombre Tema")]
+        public string? NAME { get; set; }
+
+         [Display(Name = "Nombre Profesro(a)")]
+        public string? TeacherName { get; set; }
+
+        [Display(Name = "Calificación")]
+        public int? TeacherRate { get; set; }
+
+        [Display(Name = "País")]
+        public string? TeacherCountry { get; set; }
+
+        [Display(Name = "Precio")]
+        public double Price { get; set; }
+
+        [Display(Name = "Calificación promedio")]
+        public decimal? AvgGrade { get; set; }
     }
 }

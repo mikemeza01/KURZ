@@ -13,5 +13,6 @@ namespace KURZ.Interfaces
         public Categories CategoryDetail(int? ID);
 
         public int CategoryDelete(Categories category);
+       public string GetCategoryNameById(int? ID);
     }
 }
