@@ -127,5 +127,37 @@ namespace KURZ.Models
                 throw new Exception("Error al obtener la lista de advices: " + ex.Message);
             }
         }
+
+        public TeacherTopicsView TopicTeacherDetails(int ID_TEACHER, int ID_TOPIC)
+        {
+            try
+            {
+                var consulta = from pricT in _context.Price_Topics
+                               join prof in _context.Users on pricT.ID_TEACHER equals ID_TEACHER
+                               join cou in _context.Countries on prof.ID_COUNTRY equals cou.ID_COUNTRY
+                               join t in _context.Topics on pricT.ID_TOPIC equals t.ID_TOPIC
+                               join gra in _context.Grades on prof.ID_USER equals gra.ID_TEACHER into grade
+                               from gra in grade.DefaultIfEmpty()
+                               where t.ID_TOPIC == ID_TOPIC && prof.ID_USER == ID_TEACHER
+                               select new TeacherTopicsView
+                               {
+                                   ID_TOPIC = t.ID_TOPIC,
+                                   ID_TEACHER = prof.ID_USER,
+                                   TeacherName = prof.NAME,
+                                   TeacherCountry = cou.NAME,
+                                   Price = pricT.PRICE,
+                                   NAME = t.NAME,
+                                   AvgGrade = gra != null ? gra.AverageRating.GetValueOrDefault(5) : 5
+                               };
+
+                var TopicTeacherDetail = consulta.First();
+
+                return TopicTeacherDetail;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error interno en obteniendo los datos del profesor y tema para solicitar asesoría: " + ex.Message);
+            }
+        }
     }
 }

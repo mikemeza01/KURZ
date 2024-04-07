@@ -104,5 +104,11 @@ namespace KURZ.Controllers
                 return null;
             }
         }
+
+        [HttpPost]
+        public List<TimesheetHours> TimesheetHours() {
+            var timesheethours = _timesheetsModel.TimesheetHours();
+            return timesheethours;
+        }
     }
 }

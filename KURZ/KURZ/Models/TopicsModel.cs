@@ -204,6 +204,8 @@ namespace KURZ.Models
                                    where t.ID_TOPIC == ID
                                    select new TeacherTopicsView
                                    {
+                                       ID_TOPIC = t.ID_TOPIC,
+                                       ID_TEACHER = prof.ID_USER,
                                        TeacherName = prof.NAME,
                                        TeacherCountry = cou.NAME,
                                        Price = pricT.PRICE,

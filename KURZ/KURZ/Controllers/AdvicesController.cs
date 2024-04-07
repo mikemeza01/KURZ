@@ -1,31 +1,62 @@
 ﻿using KURZ.Entities;
+using KURZ.Helpers;
 using KURZ.Interfaces;
 using KURZ.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Configuration;
 using System.Net.Http.Headers;
 using System.Text;
 using ZoomNet;
 using ZoomNet.Models;
+using ZoomNet.Resources;
 
 namespace KURZ.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    
     public class AdvicesController : Controller
     {
         private readonly IAdvicesModel _advicesModel;
+        //llamado a los modelos a usar
+        private readonly IUsersModel _usersModel;
+        private readonly IConfiguration _configuration;
+
 
         private const string AccountId = "OAg6Ia1DS1K0bjF_KVgmYQ";
         private const string ZoomApiKey = "rfTbKS3zQJOCjw7wYUlCw";
         private const string ZoomApiSecret = "kTwuSsWKo448kJmfVaj3lHqT6YsGCRpY";
         private const string ApiURL = "https://api.zoom.us/v2";
         private const string ApiUser = "info@educandoteya.org";
+        private FilesHelper filesHelper = new FilesHelper();
 
-        public AdvicesController(IAdvicesModel advicesModel)
+        public AdvicesController(IAdvicesModel advicesModel, IUsersModel usersModel, IConfiguration configuration)
         {
             _advicesModel = advicesModel;
+            _usersModel = usersModel;
+            _configuration = configuration;
         }
 
+        [Authorize(Roles = "Student")]
+        [HttpGet]
+        public IActionResult CreateAdvice(int te, int to) 
+        {
+            //te = teacher
+            //to = topic
+            
+            var TeacherTopicDetail = _advicesModel.TopicTeacherDetails(te, to);
+
+            ViewBag.teacherTopicDetail = TeacherTopicDetail;
+            var user = _usersModel.byID(te);
+
+            var userDetail = _usersModel.ConvertUsers(user);
+
+            userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
+            ViewBag.user_photo = userDetail.ProfilePicture;
+
+            return View();
+        }
+
+        [Authorize(Roles = "Administrator")]
         public IActionResult GetAdvices()
         {
             try
@@ -39,6 +70,7 @@ namespace KURZ.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IActionResult DetailsAdvice(int id)
         {
@@ -60,6 +92,7 @@ namespace KURZ.Controllers
             var meeting = new MeetingsZoom();
             return View(meeting);
         }
+
 
         [HttpPost]
         public async Task<ActionResult> CreateMeeting(MeetingsZoom MeetingZoom)

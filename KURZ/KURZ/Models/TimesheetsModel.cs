@@ -53,7 +53,7 @@ namespace KURZ.Models
                 if (existTimesheet != null)
                 {
                     existTimesheet.TIMESHEET = timesheets.TIMESHEET;
-                    _context.Timesheets.Update(timesheets);
+                    _context.Timesheets.Update(existTimesheet);
                     _context.SaveChanges();
                 }
                 else {

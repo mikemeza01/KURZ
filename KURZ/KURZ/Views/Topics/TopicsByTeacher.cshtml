@@ -34,10 +34,9 @@
                                 <td>
 
                                    <div class="col text-center">
-                                    @* CAMBIAR DIRECCION DE LA PAGINA Y ENVIAR EL ID DEL USER*@
-                                    <a asp-controller="#" asp-action="#" class="btn btn-primary" asp-route-id="#">Buscar Horario</a>
-                                </div> 
-
+                                        @* CAMBIAR DIRECCION DE LA PAGINA Y ENVIAR EL ID DEL USER*@
+                                        <a href="/Advices/CreateAdvice/?te=@item.ID_TEACHER&to=@item.ID_TOPIC" class="btn btn-success search-schedule" data-topic="@item.ID_TOPIC" data-teacher="@item.ID_TEACHER" data-price="@item.Price">Buscar Horario</a>
+                                    </div> 
                                 </td>
                             </tr>
                         }
@@ -49,5 +48,12 @@
 
 </div>
 
+
+<script>
+    $(document).ready(function () {
+
+        
+    });
+</script>
 
    

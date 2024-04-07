@@ -37528,3 +37528,7 @@ label {
     cursor: pointer;
 
 }
+
+.flatpickr-day.flatpickr-disabled {
+    color: #dddddd;
+}

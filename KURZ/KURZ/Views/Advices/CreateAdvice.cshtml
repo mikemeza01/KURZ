@@ -1,0 +1,142 @@
+﻿@{
+    ViewData["Title"] = "Solicitar Asesoría";
+    Layout = "_StudentH";
+}
+
+<div class="row">
+    <div class="col-md-4 p-0 mb-5">
+        <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+            <div class="card-body d-flex flex-column">
+                <input type="hidden" id="ID_TEACHER" value="@ViewBag.teacherTopicDetail.ID_TEACHER" />
+                <div class="flex">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded mr-12pt z-0 o-hidden">
+                            <div class="overlay">
+                                @if (ViewBag.user_photo != null)
+                                {
+                                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(ViewBag.user_photo)"
+                                         alt="people"
+                                         id="profilePicturePreview"
+                                         width="40"
+                                         height="40"
+                                         class="rounded-circle border" />
+                                }
+                                else
+                                {
+                                    <span class="avatar avatar-sm mr-8pt2">
+                                        <span class="avatar-title rounded-circle bg-primary"><i class="material-icons">account_box</i></span>
+                                    </span>
+                                }
+                            </div>
+                         </div>
+                        <div class="flex">
+                            <div class="card-title">@ViewBag.teacherTopicDetail.TeacherName</div>
+                            <p class="flex text-50 lh-1 mb-0"><small>@ViewBag.teacherTopicDetail.TeacherCountry</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rating mt-8pt">
+                    @ViewBag.teacherTopicDetail.AvgGrade
+                </div>
+            </div>
+            <div class="card-body d-flex flex-column justify-content-center">
+                <div class="d-flex">
+                    <div class="card-title">@ViewBag.teacherTopicDetail.NAME</div>
+                </div>
+                <div class="d-flex">
+                    <div class="card-title price"><h4>₡ @ViewBag.teacherTopicDetail.Price</h4></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card stack stack--1">
+            <div class="card-body text-center">
+                <div class="d-flex align-items-center">
+                    <div class="card-title mr-2">Fecha de Asesoría</div>
+                    <div class="form-group mb-0">
+                        <input id="date-advice-select"
+                               type="hidden"
+                               placeholder="Seleccionar"
+                               class="form-control flatpickr-input"
+                               data-toggle="flatpickr"
+                               value="today">
+                    </div>
+                    <div id="schedules" class="d-flex">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var $dateAdviceSelect = $("#date-advice-select");
+        var id_teacher = $('#ID_TEACHER').val();
+
+        $dateAdviceSelect.flatpickr({
+            minDate: "today",
+            enable: [
+                {
+                    from: "today",
+                    to: "2030-12-31"
+                },
+            ],
+            locale : "es",
+            altInput: true,
+            dateFormat: "F j, Y",
+            onChange: function (selectedDates, dateStr, instance) {
+                var dia = selectedDates[0].getDay();
+                if (dia == 0) {
+                    dia = 7;
+                }
+
+                $.ajax({
+                    url: '/Timesheets/LoadTimesheetData/',
+                    type: 'POST',
+                    data: {
+                        ID_TEACHER: parseInt(id_teacher),
+                    },
+                    success: function (data) {
+                        $(data).each(function (index, value) {
+                            debugger;
+                            var indexOption = index + 1;
+                            if (indexOption === dia) {
+                                if (value.day_off === '0') {
+                                    var startOption = value.start;
+                                    var starOptionHour = parseInt(startOption.slice(0, 2));
+                                    var endOption = value.end;
+                                    var endOptionHour = parseInt(endOption.slice(0, 2));
+                                    var timesheetsDay;
+
+                                    $.ajax({
+                                        async: false,
+                                        url: '/Timesheets/TimesheetHours/',
+                                        type: 'POST',
+                                        success: function (timesheets) {
+                                            debugger;
+                                        }
+                                    });
+                                    /*for (var i = starOptionHour; i <= endOptionHour; i++) {
+                                        $('#schedules').append('<button class="chip chip-outline-secondary">' +  + '</button>');
+                                        i++;
+                                    }*/
+
+                                    
+                                } else {
+                                    
+                                }
+                            }
+                        });
+                    },
+                    error: function () {
+                        //todo:
+                        //alertaErrorData();
+                    }
+                });
+            },
+        });
+    });
+</script>
+

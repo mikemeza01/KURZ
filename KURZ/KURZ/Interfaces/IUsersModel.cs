@@ -43,5 +43,7 @@ namespace KURZ.Interfaces
         public string ArmarHTMLCC(Users datos, String host);
 
         public void SendEmail(string correoDestino, string asunto, string cuerpoCorreo);
+
+        public UserDetails ConvertUsers(Users user);
     }
 }

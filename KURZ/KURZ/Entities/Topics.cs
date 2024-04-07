@@ -59,10 +59,18 @@ namespace KURZ.Entities
 
     public class TeacherTopicsView
     {
+
+        [Display(Name = "Id del Tema")]
+        public int ID_TOPIC { get; set; }
+
         [Display(Name = "Nombre Tema")]
         public string? NAME { get; set; }
 
-         [Display(Name = "Nombre Profesro(a)")]
+
+        [Display(Name = "Id del Profesor")]
+        public int ID_TEACHER { get; set; }
+
+        [Display(Name = "Nombre Profesro(a)")]
         public string? TeacherName { get; set; }
 
         [Display(Name = "Calificación")]

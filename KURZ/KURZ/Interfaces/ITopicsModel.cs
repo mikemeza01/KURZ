@@ -17,7 +17,7 @@ namespace KURZ.Interfaces
 
         public List<Topics> TopicsByCatSub(int ID_CATEGORY, int ID_SUBCATEGORY);
         public List<TeacherTopicsView> TopicByTeacherView(int ID);
-        
+
 
         }
 }

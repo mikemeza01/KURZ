@@ -513,5 +513,43 @@ namespace KURZ.Models
             client.EnableSsl = true;
             client.Send(msg);
         }
+
+        public UserDetails ConvertUsers(Users user)
+        {
+            try
+            {
+                if (user != null)
+                {
+                    return new UserDetails
+                    {
+                        ADDRESS = user.ADDRESS,
+                        CELLPHONE = user.CELLPHONE,
+                        CITY = user.CITY,
+                        CONFIRMATION = user.CONFIRMATION,
+                        EMAIL = user.EMAIL,
+                        IDENTICATION = user.IDENTICATION,
+                        ID_COUNTRY = user.ID_COUNTRY,
+                        ID_ROL = user.ID_ROL,
+                        ID_USER = user.ID_USER,
+                        LASTNAME = user.LASTNAME,
+                        NAME = user.NAME,
+                        PASSWORD = user.PASSWORD,
+                        PASSWORDTEMP = user.PASSWORDTEMP,
+                        PHOTO = user.PHOTO,
+                        PROFILE = user.PROFILE,
+                        STATE = user.STATE,
+                        STATUS = user.STATUS,
+                        TOKEN = user.TOKEN,
+                        USERNAME = user.USERNAME,
+                    };
+                }
+
+                return new UserDetails();
+            }
+            catch (Exception)
+            {
+                return new UserDetails();
+            }
+        }
     }
 }
