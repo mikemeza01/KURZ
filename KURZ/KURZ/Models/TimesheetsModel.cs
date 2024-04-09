@@ -22,7 +22,10 @@ namespace KURZ.Models
 
                 var timesheet = _context.Timesheets.Where(d => d.ID_TEACHER == ID_TEACHER).FirstOrDefault();
 
-                return timesheet;
+                if (timesheet != null) 
+                    return timesheet;
+
+                return new Timesheets();
             }
             catch (Exception ex)
             {
@@ -36,7 +39,10 @@ namespace KURZ.Models
             try
             {
                 var timesheet = _context.Timesheets.Find(ID);
-                return timesheet;
+                if (timesheet != null)
+                    return timesheet;
+
+                return new Timesheets();
             }
             catch (Exception ex)
             {

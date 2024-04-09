@@ -44,8 +44,11 @@ namespace KURZ.Controllers
 
             var datos = _timesheetsModel.TimesheetDetailbyTeacher(user.ID_USER);
             var timesheethours = _timesheetsModel.TimesheetHours();
-            dynamic jsonDatos = JsonConvert.DeserializeObject(datos.TIMESHEET);
-            ViewBag.datos = jsonDatos;
+            if (datos.TIMESHEET != null)
+            {
+                dynamic jsonDatos = JsonConvert.DeserializeObject(datos.TIMESHEET);
+                ViewBag.datos = jsonDatos;
+            }
             ViewBag.timesheethours = timesheethours;
             ViewBag.ID_TEACHER = user.ID_USER;
 

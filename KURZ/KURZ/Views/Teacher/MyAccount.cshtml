@@ -21,11 +21,11 @@
             </span>
         }
         <div class="flex mb-32pt mb-md-0">
-            <h2 class="text-white mb-0"><span id="icono-saludo" class="material-icons mr-8pt" style="font-size: 45px;"></span><span id="saludo"></span>, @Model.NAME @Model.LASTNAME</h2>
-            <h4 class="text-white mb-0">Estudiante</h4>
+            <h2 class="text-white mb-0"><span id="icono-saludo" class="material-icons mr-8pt" style="font-size: 45px;"></span><span id="saludo"></span>@Model.NAME @Model.LASTNAME</h2>
+            <h4 class="text-white mb-0">Profesor</h4>
         </div>
 
-        <a asp-controller="Student" asp-action="Edit"
+        <a asp-controller="Teacher" asp-action="Edit"
            class="btn btn-outline-white">Editar</a>
     </div>
 </div>
