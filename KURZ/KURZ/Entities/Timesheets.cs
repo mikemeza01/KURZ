@@ -39,4 +39,11 @@ namespace KURZ.Entities
 
         public dynamic? breaks { get; set; }
     }
+
+    public class TimesheetBreak
+    {
+        public string? breakStart { get; set; }
+
+        public string? breakEnd { get; set; }
+    }
 }

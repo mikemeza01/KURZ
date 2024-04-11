@@ -87,19 +87,28 @@
             altInput: true,
             dateFormat: "F j, Y",
             onChange: function (selectedDates, dateStr, instance) {
+                debugger;
                 var dia = selectedDates[0].getDay();
+                var dia_fecha = selectedDates[0].getDate();
+                var mes = selectedDates[0].getMonth();
+                var year = selectedDates[0].getFullYear();
+
+                var fecha = year + "-" + mes + "-" + dia_fecha;
+
                 if (dia == 0) {
                     dia = 7;
                 }
 
                 $.ajax({
-                    url: '/Timesheets/LoadTimesheetData/',
+                    url: '/Timesheets/FilterTimesheetHoursByTeacher/',
                     type: 'POST',
                     data: {
                         ID_TEACHER: parseInt(id_teacher),
+                        ID_DIA: dia,
+                        DATE_SELECTED: fecha
                     },
                     success: function (data) {
-                        $(data).each(function (index, value) {
+                        /*$(data).each(function (index, value) {
                             debugger;
                             var indexOption = index + 1;
                             if (indexOption === dia) {
@@ -118,17 +127,17 @@
                                             debugger;
                                         }
                                     });
-                                    /*for (var i = starOptionHour; i <= endOptionHour; i++) {
+                                    for (var i = starOptionHour; i <= endOptionHour; i++) {
                                         $('#schedules').append('<button class="chip chip-outline-secondary">' +  + '</button>');
                                         i++;
-                                    }*/
+                                    }
 
                                     
                                 } else {
                                     
                                 }
                             }
-                        });
+                        });*/
                     },
                     error: function () {
                         //todo:

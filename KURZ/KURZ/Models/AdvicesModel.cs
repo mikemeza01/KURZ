@@ -159,5 +159,25 @@ namespace KURZ.Models
                 throw new Exception("Ocurrió un error interno en obteniendo los datos del profesor y tema para solicitar asesoría: " + ex.Message);
             }
         }
+
+        public List<Advices> AdvicesforTeacherAndDate(int ID_TEACHER, DateTime DATE_SELECTED) {
+
+            try
+            {
+                var consulta = from adv in _context.Advices
+                               where adv.ID_TEACHER == ID_TEACHER && 
+                               (adv.DATE_ADVICE.Date >= DATE_SELECTED)
+                               select new Advices
+                               { 
+                                   DATE_ADVICE = adv.DATE_ADVICE
+                               };
+
+                return consulta.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener la lista de categorías: " + ex.Message);
+            }
+        }
     }
 }

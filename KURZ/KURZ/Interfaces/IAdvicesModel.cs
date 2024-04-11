@@ -10,5 +10,7 @@ namespace KURZ.Interfaces
         public List<GetAdvicesByTeacherId_Result> GetAdvicesByStudentId(int id);
 
         public TeacherTopicsView TopicTeacherDetails(int ID_TEACHER, int ID_TOPIC);
+
+        public List<Advices> AdvicesforTeacherAndDate(int ID_TEACHER, DateTime DATE_SELECTED);
     }
 }
