@@ -97,7 +97,7 @@ namespace KURZ.Entities
         public string? PASSWORD_REPEAT { get; set; }
     }
 
-    public class UsersBindingEdit 
+    public class UsersBindingEdit : Users
     {
 
         [Key]

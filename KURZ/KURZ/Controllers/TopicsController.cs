@@ -481,12 +481,26 @@ namespace KURZ.Controllers
 
         public IActionResult TopicsByTeacher(int ID)
         {
-            var topicsdetail = _topicsModel.TopicByTeacherView(ID);
-            
+            try
+            {
+                var topicsdetail = _topicsModel.TopicByTeacherView(ID);
 
-           
+                if (topicsdetail == null || topicsdetail.Count == 0)
+                {
+                    ViewBag.mensaje = "ERROR";
+                    return View();
+                }
+                    return View(topicsdetail);
+                
 
-            return View(topicsdetail);
+
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error de manera adecuada
+                ViewBag.ErrorMessage = "Se produjo un error al obtener los datos: " + ex.Message;
+                return View();
+            }
         }
 
     }

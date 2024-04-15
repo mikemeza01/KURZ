@@ -3,6 +3,7 @@
     ViewData["Title"] = "Profesores por Tema";
     Layout = "_StudentH";
 }
+
 <div class="card mb-lg-32pt">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
@@ -15,45 +16,77 @@
                             <th class="text-center">@Html.DisplayNameFor(model => model.TeacherName)</th>
                             <th class="text-center">@Html.DisplayNameFor(model => model.AvgGrade)</th>
                             <th class="text-center">@Html.DisplayNameFor(model => model.TeacherCountry)</th>
-                             <th class="text-center">@Html.DisplayNameFor(model => model.NAME)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.NAME)</th>
                             <th class="text-center">@Html.DisplayNameFor(model => model.Price)</th>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
-
-                        @foreach (var item in Model)
+                        @if (Model != null)
                         {
-                            <tr>
-                                <td class="text-center">@item.TeacherName</td>
-                                <td class="text-center">@item.AvgGrade</td>
-                                <td class="text-center">@item.TeacherCountry</td>
-                                <td class="text-center">@item.NAME</td>
-                                <td class="text-center">@item.Price</td>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        <a
+                                            href="@Url.Action("TeacherAccount", "Teacher", new { id = item.ID_TEACHER })">@item.TeacherName
+                                        </a>
 
-                                <td>
+                                    </td>
 
-                                   <div class="col text-center">
-                                        @* CAMBIAR DIRECCION DE LA PAGINA Y ENVIAR EL ID DEL USER*@
-                                        <a href="/Advices/CreateAdvice/?te=@item.ID_TEACHER&to=@item.ID_TOPIC" class="btn btn-success search-schedule" data-topic="@item.ID_TOPIC" data-teacher="@item.ID_TEACHER" data-price="@item.Price">Buscar Horario</a>
-                                    </div> 
-                                </td>
-                            </tr>
+                                    <td class="text-center">@item.AvgGrade</td>
+                                    <td class="text-center">@item.TeacherCountry</td>
+                                    <td class="text-center">@item.NAME</td>
+                                    <td class="text-center">₡ @item.Price</td>
+
+                                    <td>
+
+                                        <div class="col text-center">
+                                            @* CAMBIAR DIRECCION DE LA PAGINA Y ENVIAR EL ID DEL USER*@
+                                            <a href="/Advices/CreateAdvice/?te=@item.ID_TEACHER&to=@item.ID_TOPIC"
+                                                class="btn btn-success search-schedule" data-topic="@item.ID_TOPIC"
+                                                data-teacher="@item.ID_TEACHER" data-price="@item.Price">Buscar Horario</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
-
 </div>
+@{
+    if (@ViewBag.mensaje == "ERROR")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n alertaError();\r\n }); </script>")
+        ;
+
+    }
+}
 
 
 <script>
-    $(document).ready(function () {
-
-        
-    });
+    function alertaError() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Profesores no encontrados.',
+            text: 'Lo sentimos, de momento no hay profesores para este tema.',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Student/Advice/';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Student/Advice/';
+        }, 3000);
+    }
 </script>
 
-   
+
+

@@ -214,9 +214,6 @@ namespace KURZ.Models
                                    };
 
                     var profesoresDelTema = consulta.ToList();
-
-
-
                     return profesoresDelTema;
 
                 }

@@ -36,7 +36,7 @@ namespace KURZ.Controllers
             _usersModel = usersModel;
             _advicesModel = advicesModel;
             _gradesModel = gradesModel;
-            _statusModel= statusModel;
+            _statusModel = statusModel;
         }
 
         protected UserDetails ConvertUsers(Users user)
@@ -448,8 +448,8 @@ namespace KURZ.Controllers
                     return View("Error");
                 }
 
-                    // Crear funcion para validar si existe una calificacion en la asesoria.
-            //    var checkrating = _gradesModel.GetGradeByID(ID);
+                // Crear funcion para validar si existe una calificacion en la asesoria.
+                //    var checkrating = _gradesModel.GetGradeByID(ID);
 
                 var teacherGradesView = new TeacherGradesView
                 {
@@ -495,15 +495,15 @@ namespace KURZ.Controllers
                 {
                     ViewBag.mensaje = "SUCCESS";
                     var teacherRate = new TeacherGradesView
-                {
-                    ID_ADVICE = advice.ID_ADVICE,
-                    TeacherName = advice.TEACHERNAME,
-                    Topic = advice.TOPICNAME,
-                    DATE_GRADE = advice.DATE_UPDATE,
-                    Status = advice.STATUSNAME,
-                };
+                    {
+                        ID_ADVICE = advice.ID_ADVICE,
+                        TeacherName = advice.TEACHERNAME,
+                        Topic = advice.TOPICNAME,
+                        DATE_GRADE = advice.DATE_UPDATE,
+                        Status = advice.STATUSNAME,
+                    };
 
-                return View(teacherRate);
+                    return View(teacherRate);
                 }
                 else if (resultado != "ok" && resultado != "error")
                 {
@@ -519,6 +519,28 @@ namespace KURZ.Controllers
             {
                 return View("Error");
             }
+        }
+
+        public IActionResult TeacherAccount(int ID)
+        {
+            // Obtener el usuario por su ID
+            var user = _usersModel.byID(ID);
+
+            // Verificar si el usuario existe
+            if (user == null)
+            {
+                // Manejar el caso en que el usuario no exista, por ejemplo, redirigiendo a una página de error
+                return RedirectToAction("Error", "Home");
+            }
+
+            var teacherviewdetail = new UsersBindingEdit
+            {
+                NAME = user.NAME,
+                
+            };
+
+            // Pasar el usuario a la vista
+            return View(user);
         }
 
     }
