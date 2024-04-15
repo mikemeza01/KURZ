@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using System;
 //using NuGet.DependencyResolver;
 using System.Security.Claims;
@@ -15,21 +16,22 @@ namespace KURZ.Controllers
 
     public class TeacherController : Controller
     {
-
+        
         private readonly ITeacherModel _teacherModel;
         private readonly ICountriesModel _countriesModel;
         private readonly IUsersModel _usersModel;
         private readonly IAdvicesModel _advicesModel;
         private readonly IStatusModel _statusModel;
         private readonly IGradesModel _gradesModel;
-
+        private readonly KurzContext _context;
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private FilesHelper filesHelper = new FilesHelper();
 
-        public TeacherController(IConfiguration configuration, IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel, IAdvicesModel advicesModel, IGradesModel gradesModel, IStatusModel statusModel)
+        public TeacherController(IConfiguration configuration, KurzContext context,IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel, IAdvicesModel advicesModel, IGradesModel gradesModel, IStatusModel statusModel)
         {
             _configuration = configuration;
+            _context = context;
             _hostingEnvironment = hostingEnvironment;
             _teacherModel = teacherModel;
             _countriesModel = countriesModel;
@@ -533,14 +535,25 @@ namespace KURZ.Controllers
                 return RedirectToAction("Error", "Home");
             }
 
-            var teacherviewdetail = new UsersBindingEdit
-            {
-                NAME = user.NAME,
-                
-            };
+            var consulta = from prof in _context.Users
+                           join cou in _context.Countries on prof.ID_COUNTRY equals cou.ID_COUNTRY
+                           join gra in _context.Grades on prof.ID_USER equals gra.ID_TEACHER into grade
+                           from gra in grade.DefaultIfEmpty()
+                           where prof.ID_USER == ID
+                           select new TeacherAccountView
+                           {
+                               NAME = prof.NAME,
+                               PHOTO = prof.PHOTO,
+                               PROFILE = prof.PROFILE,
+                               Country = cou.NAME,
+                               EMAIL = prof.EMAIL,
+                               AvgRating = gra != null ? gra.AverageRating : 5
+                           };
+
+            var teacherviewdetail = consulta.FirstOrDefault();
 
             // Pasar el usuario a la vista
-            return View(user);
+            return View(teacherviewdetail);
         }
 
     }

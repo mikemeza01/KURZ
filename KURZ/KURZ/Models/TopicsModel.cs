@@ -161,34 +161,6 @@ namespace KURZ.Models
         public List<TeacherTopicsView> TopicByTeacherView(int ID)
         {
 
-            // {
-            //     try
-            //     {
-            //         string sql = "[dbo].[TopicsByTeacherView] @ID";
-
-            //         var param = new SqlParameter[]
-            //         {
-            //         new SqlParameter()
-            //         {
-            //             ParameterName= "@ID",
-            //             SqlDbType = System.Data.SqlDbType.Int,
-            //             Value = ID
-            //         }
-            //         };
-
-            //         var result = _context.TopicsViews.FromSqlRaw(sql, param).AsEnumerable().ToList();
-
-
-
-            //         return result;
-            //     }
-            //     catch (Exception ex)
-            //     {
-            //         throw new Exception("Error al obtener la lista de profesores: " + ex.Message);
-            //     }
-            // }
-
-
             try
             {
                 var tema = _context.Topics.FirstOrDefault(t => t.ID_TOPIC == ID);

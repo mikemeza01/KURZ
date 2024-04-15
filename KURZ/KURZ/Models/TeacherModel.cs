@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Hosting;
+using System.Drawing;
 using System.Text;
 using ZoomNet.Models;
 
@@ -270,5 +271,6 @@ namespace KURZ.Models
                 return "Error inesperado: " + ex.Message;
             }
         }
+
     }
 }

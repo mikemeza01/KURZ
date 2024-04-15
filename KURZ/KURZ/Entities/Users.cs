@@ -170,6 +170,8 @@ namespace KURZ.Entities
         [Display(Name = "Confirmación")]
         public bool CONFIRMATION { get; set; } //1 confirmo la cuenta 0 no la a confirmado
 
+        [Display(Name = "Promedio confirmación")]
+        public decimal? AvgRating { get; set; }
     }
 
     public class Login
@@ -184,7 +186,6 @@ namespace KURZ.Entities
         [Display(Name = "Contraseña")]
         public string? PASSWORD { get; set; }
 
-    
     }
 
     public class UserDetails : Users
@@ -194,4 +195,14 @@ namespace KURZ.Entities
         [Range(1, 5, ErrorMessage = "La calificación debe estar entre 1 y 5.")]
         public int Rating { get; set; }
     }
+
+    public class TeacherAccountView : Users 
+    {
+        [Display(Name = "Promedio confirmación")]
+        public decimal? AvgRating { get; set; }
+
+        [Display(Name = "Pais profesor")]
+        public string Country { get; set; }
+    }
+
 }

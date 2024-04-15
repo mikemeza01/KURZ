@@ -1,4 +1,4 @@
-@model KURZ.Entities.UsersBindingEdit
+@model KURZ.Entities.TeacherAccountView
 @{
     ViewData["Title"] = "Datos del profesor";
     Layout = "_StudentH";
@@ -37,8 +37,10 @@
                         }
                     </div>
                     <div class="text-center mt-3">
-                        <h5 class="mt-2 mb-1">@Model.NAME</h5>
+                        <h5 class="mt-2 mb-1"><i class="fa fa-user"></i> @Model.NAME</h5>
+                        <p class="fonts"><i class="fa fa-star"></i> @Model.AvgRating</p>
                         <span>Profesor</span>
+                        <p class="fonts"><i class="fa fa-globe"></i> @Model.Country</p>
                         <div class="px-4 mt-1">
                             @if (string.IsNullOrEmpty(Model.PROFILE))
                             {
@@ -48,7 +50,6 @@
                             {
                                 <p class="fonts">@Model.PROFILE</p>
                             }
-                            <p class="fonts">5 estrellas</p>
                         </div>
                         @* <ul class="social-list">
                         <li><i class="fa fa-facebook"></i></li>
