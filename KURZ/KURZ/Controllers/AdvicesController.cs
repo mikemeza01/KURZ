@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Configuration;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Text;
 using ZoomNet;
 using ZoomNet.Models;
@@ -53,7 +54,65 @@ namespace KURZ.Controllers
             userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
             ViewBag.user_photo = userDetail.ProfilePicture;
 
+
+            ClaimsPrincipal claimstudent = HttpContext.User;
+            string nombreusuario = "";
+
+            if (claimstudent.Identity.IsAuthenticated)
+            {
+                nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+            }
+            var student = _usersModel.byUserName(nombreusuario);
+
+            ViewBag.ID_STUDENT = student.ID_USER;
+
             return View();
+        }
+
+        [HttpPost]
+        public string CreateAdvice(string dateAdvice, Double price, int idTeacher, int idTopic, int idStudent)
+        {
+
+            try
+            {
+                //domain to send email
+                var request = HttpContext.Request;
+                var host = request.Host.ToUriComponent();
+                var pathBase = request.PathBase.ToUriComponent();
+                var domain = $"{request.Scheme}://{host}{pathBase}";
+
+
+                DateTime DATE_ADVICE = DateTime.Parse(dateAdvice);
+                DateTime CURRENT_TIME = DateTime.Now;
+
+                var Advice = new Advices()
+                {
+                    DATE_ADVICE = DATE_ADVICE,
+                    DATE_CREATE = CURRENT_TIME,
+                    DATE_UPDATE = CURRENT_TIME,
+                    PRICE = price,
+                    LINK = "",
+                    ID_TOPIC = idTopic,
+                    ID_TEACHER = idTeacher,
+                    ID_STUDENT = idStudent,
+                    ID_STATUS = 1, //1 es el ID del status en espera.
+                };
+
+                var resultado = _advicesModel.AdviceCreate(Advice, domain);
+
+                if (resultado == "ok")
+                {
+                    return "ok";
+                }
+                else
+                {
+                    return "error";
+                }
+            }
+            catch (Exception)
+            {
+                return "error";
+            }                
         }
 
         [Authorize(Roles = "Administrator")]
@@ -69,6 +128,276 @@ namespace KURZ.Controllers
                 throw;
             }
         }
+
+        [Authorize(Roles = "Student")]
+        [HttpGet]
+        public IActionResult AdvicesStudent()
+        {
+            try
+            {
+                ClaimsPrincipal claimstudent = HttpContext.User;
+                string nombreusuario = "";
+
+                if (claimstudent.Identity.IsAuthenticated)
+                {
+                    nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                }
+                var student = _usersModel.byUserName(nombreusuario);
+
+                var advices = _advicesModel.GetAdvicesByStudentId(student.ID_USER);
+
+                return View(advices);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [Authorize(Roles = "Teacher")]
+        [HttpGet]
+        public IActionResult AdvicesTeacher()
+        {
+            try
+            {
+                ClaimsPrincipal claimstudent = HttpContext.User;
+                string nombreusuario = "";
+
+                if (claimstudent.Identity.IsAuthenticated)
+                {
+                    nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                }
+                var teacher = _usersModel.byUserName(nombreusuario);
+
+                var advices = _advicesModel.GetAdvicesByTeacherId(teacher.ID_USER);
+
+                return View(advices);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [Authorize(Roles = "Teacher")]
+        [HttpGet]
+        public IActionResult ConfirmAdvice(string advice)
+        {
+            try
+            {
+                if (advice != "")
+                {
+                    //domain to send email
+                    var request = HttpContext.Request;
+                    var host = request.Host.ToUriComponent();
+                    var pathBase = request.PathBase.ToUriComponent();
+                    var domain = $"{request.Scheme}://{host}{pathBase}";
+
+                    ClaimsPrincipal claimstudent = HttpContext.User;
+                    string nombreusuario = "";
+
+                    if (claimstudent.Identity.IsAuthenticated)
+                    {
+                        nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                    }
+                    var teacher = _usersModel.byUserName(nombreusuario);
+
+
+                    var adviceDetail = _advicesModel.AdviceDetail(Int32.Parse(advice));
+
+
+                    if (adviceDetail.ID_TEACHER == teacher.ID_USER)
+                    {
+                        if (adviceDetail.ID_STATUS != 2)
+                        {
+                            adviceDetail.ID_STATUS = 2; //Solicitud Aceptada
+
+                            var resultado = _advicesModel.AdvicesEdit(adviceDetail);
+
+                            var notifyStudent = _advicesModel.notifyStudent(adviceDetail, true, domain);
+
+                            ViewBag.result = "ok";
+
+                            return View(adviceDetail);
+                        }
+                        else {
+                            ViewBag.result = "already_confirm";
+
+                            return View(adviceDetail);
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.result = "error_teacher";
+
+                        return View(adviceDetail);
+                    }
+                }
+                else {
+                    ViewBag.result = "error_id";
+
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.result = "error";
+
+                return View();
+            }
+        }
+
+        [Authorize(Roles = "Teacher")]
+        [HttpGet]
+        public IActionResult DeclineAdvice(string advice)
+        {
+            try
+            {
+                if (advice != "")
+                {
+                    //domain to send email
+                    var request = HttpContext.Request;
+                    var host = request.Host.ToUriComponent();
+                    var pathBase = request.PathBase.ToUriComponent();
+                    var domain = $"{request.Scheme}://{host}{pathBase}";
+
+                    ClaimsPrincipal claimstudent = HttpContext.User;
+                    string nombreusuario = "";
+
+                    if (claimstudent.Identity.IsAuthenticated)
+                    {
+                        nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                    }
+                    var teacher = _usersModel.byUserName(nombreusuario);
+
+
+                    var adviceDetail = _advicesModel.AdviceDetail(Int32.Parse(advice));
+
+
+                    if (adviceDetail.ID_TEACHER == teacher.ID_USER)
+                    {
+                        if (adviceDetail.ID_STATUS != 3)
+                        {
+                            adviceDetail.ID_STATUS = 3; //Solicitud Rechazada
+
+                            var resultado = _advicesModel.AdvicesEdit(adviceDetail);
+
+                            var notifyStudent = _advicesModel.notifyStudent(adviceDetail, true, domain);
+
+                            ViewBag.result = "ok";
+
+                            return View(adviceDetail);
+                        }
+                        else {
+                            ViewBag.result = "already_decline";
+
+                            return View(adviceDetail);
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.result = "error_teacher";
+
+                        return View(adviceDetail);
+                    }
+                }
+                else
+                {
+                    ViewBag.result = "error_id";
+
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.result = "error";
+
+                return View();
+            }
+        }
+
+        [Authorize(Roles = "Student")]
+        [HttpGet]
+        public IActionResult ConfirmAdviceStudent(string advice)
+        {
+            try
+            {
+                if (advice != "")
+                {
+
+                    ClaimsPrincipal claimstudent = HttpContext.User;
+                    string nombreusuario = "";
+
+                    if (claimstudent.Identity.IsAuthenticated)
+                    {
+                        nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+                    }
+                    var student = _usersModel.byUserName(nombreusuario);
+
+
+                    var adviceDetail = _advicesModel.AdviceDetail(Int32.Parse(advice));
+
+
+                    if (adviceDetail.ID_STUDENT == student.ID_USER)
+                    {
+                        if (adviceDetail.ID_STATUS != 5)
+                        {
+                            adviceDetail.ID_STATUS = 5; //Solicitud Pendiente de Pago, el estudiante confirma que realizo el pago, el administrador lo verifica
+
+                            var resultado = _advicesModel.AdvicesEdit(adviceDetail);
+
+                            ViewBag.result = "ok";
+
+                            return View(adviceDetail);
+                        }
+                        else {
+                            ViewBag.result = "already_confirm";
+
+                            return View(adviceDetail);
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.result = "error_student";
+
+                        return View(adviceDetail);
+                    }
+                }
+                else
+                {
+                    ViewBag.result = "error_id";
+
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.result = "error";
+
+                return View();
+            }
+        }
+
+        [Authorize(Roles = "Student,Teacher,Administrator")]
+        [HttpGet]
+        public IActionResult DetailsAdviceId(int id)
+        {
+            try
+            {
+                var advice = _advicesModel.GetAdvicesById(id);
+                if (advice == null)
+                {
+                    ViewData["Error"] = 1;
+                    return View();
+                }
+                return View(advice);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
         [Authorize(Roles = "Administrator")]
         [HttpGet]

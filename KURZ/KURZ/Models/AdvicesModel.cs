@@ -2,6 +2,8 @@
 using KURZ.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
+using ZoomNet.Models;
 
 namespace KURZ.Models
 {
@@ -9,10 +11,114 @@ namespace KURZ.Models
     {
         private readonly KurzContext _context;
 
-        public AdvicesModel(KurzContext context)
+        private IHostEnvironment _hostingEnvironment;
+        private readonly IUsersModel _usersModel;
+
+
+        public AdvicesModel(KurzContext context,  IHostEnvironment hostingEnvironment, IUsersModel usersModel)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
+            _usersModel = usersModel;
         }
+
+        public string AdviceCreate(Advices advice, string host) {
+            try {
+                _context.Advices.Add(advice);
+                _context.SaveChanges();
+
+                var teacher = _usersModel.byID(advice.ID_TEACHER);
+                
+                string cuerpo = EmailTeacherAdvice(advice, host);
+
+                try
+                {
+                    _usersModel.SendEmail(teacher.EMAIL, "Nueva Solicitud Asesoria", cuerpo);
+                }
+                catch (Exception ex)
+                {
+                    return "Asesoría creada pero hubo un error al enviar el correo de solicitud de asesoría al profesor, pongase en contacto con el administrador.";
+                }
+
+                return "ok";
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error al agregar la asesoría:");
+                Console.WriteLine(ex.ToString());
+                return "error";
+            }
+        }
+
+        public Advices AdviceDetail(int? ID) {
+            try
+            {
+                var advice = _context.Advices.Find(ID);
+                return advice;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocurrió un error interno en el modelo Asesorías: " + ex.Message);
+            }
+        }
+
+        public string AdvicesEdit(Advices advice)
+        {
+            try
+            {
+                _context.Advices.Update(advice);
+                _context.SaveChanges();
+
+                return "ok";
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error al editar la asesoría.");
+                Console.WriteLine(ex.ToString());
+                return "error";
+            }
+        }
+
+        public string notifyStudent(Advices advice, bool confirm, string host) {
+            try
+            {
+
+                var student = _usersModel.byID(advice.ID_STUDENT);
+
+                if (confirm)
+                {
+                    try
+                    {
+                        string cuerpo = EmailTeacherAdviceConfirm(advice, host);
+                        _usersModel.SendEmail(student.EMAIL, "Solicitud Asesoría Confirmada", cuerpo);
+                    }
+                    catch (Exception ex)
+                    {
+                        return "Asesoría confirmada pero hubo un error al enviar el correo de solicitud de asesoría al estudiante, pongase en contacto con el administrador.";
+                    }
+                }
+                else {
+                    try
+                    {
+                        string cuerpo = EmailTeacherAdviceDecline(advice, host);
+                        _usersModel.SendEmail(student.EMAIL, "Solicitud Asesoría Rechazada", cuerpo);
+                    }
+                    catch (Exception ex)
+                    {
+                        return "Asesoría confirmada pero hubo un error al enviar el correo de solicitud de asesoría al estudiante, pongase en contacto con el administrador.";
+                    }
+                }
+
+                return "ok";
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error al agregar la asesoría:");
+                Console.WriteLine(ex.ToString());
+                return "error";
+            }
+        }
+
 
         public List<GetAdvices_Result> GetAdvices()
         {
@@ -179,5 +285,60 @@ namespace KURZ.Models
                 throw new Exception("Error al obtener la lista de categorías: " + ex.Message);
             }
         }
+
+        public string EmailTeacherAdvice(Advices advice, String host)
+        {
+            var adviceResult = GetAdvicesById(advice.ID_ADVICE);
+
+
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//ConfirmarAsesoriaTeacher.html");
+            string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
+            htmlArchivo = htmlArchivo.Replace("@@NombreProfesor", adviceResult.TEACHERNAME);
+            htmlArchivo = htmlArchivo.Replace("@@DATE_ADVICE", adviceResult.DATE_ADVICE.ToString());
+            htmlArchivo = htmlArchivo.Replace("@@PRICE", adviceResult.PRICE.ToString());
+            htmlArchivo = htmlArchivo.Replace("@@STUDENT", adviceResult.STUDENTNAME); 
+            htmlArchivo = htmlArchivo.Replace("@@TOPIC", adviceResult.TOPICNAME);
+
+            htmlArchivo = htmlArchivo.Replace("@@CONFIRMADVICE", host + "/Advices/ConfirmAdvice/?advice=" + adviceResult.ID_ADVICE);
+            htmlArchivo = htmlArchivo.Replace("@@DECLINEADVICE", host + "/Advices/DeclineAdvice/?advice=" + adviceResult.ID_ADVICE);
+
+            return htmlArchivo;
+        }
+
+        public string EmailTeacherAdviceConfirm(Advices advice, String host)
+        {
+            var adviceResult = GetAdvicesById(advice.ID_ADVICE);
+
+
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//NotificacionAsesoriaAceptada.html");
+            string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
+            htmlArchivo = htmlArchivo.Replace("@@NombreProfesor", adviceResult.TEACHERNAME);
+            htmlArchivo = htmlArchivo.Replace("@@DATE_ADVICE", adviceResult.DATE_ADVICE.ToString());
+            htmlArchivo = htmlArchivo.Replace("@@PRICE", adviceResult.PRICE.ToString());
+            htmlArchivo = htmlArchivo.Replace("@@STUDENT", adviceResult.STUDENTNAME);
+            htmlArchivo = htmlArchivo.Replace("@@TOPIC", adviceResult.TOPICNAME);
+
+            htmlArchivo = htmlArchivo.Replace("@@CONFIRMADVICE", host + "/Advices/ConfirmAdviceStudent/?advice=" + adviceResult.ID_ADVICE);
+
+            return htmlArchivo;
+        }
+
+        public string EmailTeacherAdviceDecline(Advices advice, String host)
+        {
+            var adviceResult = GetAdvicesById(advice.ID_ADVICE);
+
+
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//NotificacionAsesoriaRechazada.html");
+            string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
+            htmlArchivo = htmlArchivo.Replace("@@NombreProfesor", adviceResult.TEACHERNAME);
+            htmlArchivo = htmlArchivo.Replace("@@DATE_ADVICE", adviceResult.DATE_ADVICE.ToString());
+            htmlArchivo = htmlArchivo.Replace("@@PRICE", adviceResult.PRICE.ToString());
+            htmlArchivo = htmlArchivo.Replace("@@STUDENT", adviceResult.STUDENTNAME);
+            htmlArchivo = htmlArchivo.Replace("@@TOPIC", adviceResult.TOPICNAME);
+
+            return htmlArchivo;
+        }
+
+
     }
 }

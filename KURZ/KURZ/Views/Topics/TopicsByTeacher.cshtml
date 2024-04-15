@@ -1,4 +1,4 @@
-@model IEnumerable<KURZ.Entities.TeacherTopicsView>
+﻿@model IEnumerable<KURZ.Entities.TeacherTopicsView>
 @{
     ViewData["Title"] = "Profesores por Tema";
     Layout = "_StudentH";
@@ -9,15 +9,15 @@
             <div class="card-body">
                 <h4 class="card-title text-center">Lista de Profesores</h4>
                 <br />
-                <table id="TableList" class="table tableSmall">
+                <table class ="table table-responsive" id="TableTopicsByTeacher">
                     <thead>
                         <tr>
                             <th class="text-center">@Html.DisplayNameFor(model => model.TeacherName)</th>
                             <th class="text-center">@Html.DisplayNameFor(model => model.AvgGrade)</th>
                             <th class="text-center">@Html.DisplayNameFor(model => model.TeacherCountry)</th>
-                             <th class="text-center">@Html.DisplayNameFor(model => model.NAME)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.NAME)</th>
                             <th class="text-center">@Html.DisplayNameFor(model => model.Price)</th>
-                           
+                            <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,7 +29,7 @@
                                 <td class="text-center">@item.AvgGrade</td>
                                 <td class="text-center">@item.TeacherCountry</td>
                                 <td class="text-center">@item.NAME</td>
-                                <td class="text-center">@item.Price</td>
+                                <td class="text-center">₡ @item.Price</td>
 
                                 <td>
 

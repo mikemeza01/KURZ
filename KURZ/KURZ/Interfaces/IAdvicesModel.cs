@@ -4,6 +4,15 @@ namespace KURZ.Interfaces
 {
     public interface IAdvicesModel
     {
+
+        public string AdviceCreate(Advices advice, string host);
+
+        public string AdvicesEdit(Advices advice);
+
+        public string notifyStudent(Advices advice, bool confirm, string host);
+
+        public Advices AdviceDetail(int? ID);
+
         public List<GetAdvices_Result> GetAdvices();
         public GetAdvicesById_Result GetAdvicesById(int id);
         public List<GetAdvicesByTeacherId_Result> GetAdvicesByTeacherId(int id);

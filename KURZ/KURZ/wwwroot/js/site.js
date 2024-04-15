@@ -13,6 +13,9 @@
             var tableTeacherGrades = $('#TableTeacherGrades');
             var tableSubcategories = $('#TableSubcategories');
             var tableList = $('#TableList');
+            var tableTopicsByTeacher = $('#TableTopicsByTeacher');
+            var TableAdvicesStudent = $('#TableAdvicesStudent');
+            var tableTeacherRates = $('#TableTeacherRates');
 
             if (tableUsers.length > 0) {
                 new DataTable('#TableUsers', {
@@ -58,6 +61,34 @@
             if (tableList.length > 0) {
                 new DataTable('#TableList', {
                     language: languageDatatable
+                });
+            }
+
+            if (tableTopicsByTeacher.length > 0) {
+                new DataTable('#TableTopicsByTeacher', {
+                    language: languageDatatable,
+                    "columns": [
+                        { "width": "20%" },
+                        { "width": "20%" },
+                        { "width": "20%" },
+                        { "width": "20%" },
+                        { "width": "20%" },
+                        { "width": "25%" },
+                    ]
+                });
+            }
+
+            if (TableAdvicesStudent.length > 0) {
+                new DataTable('#TableAdvicesStudent', {
+                    language: languageDatatable,
+                    "columns": [
+                        { "width": "25%" },
+                        { "width": "10%" },
+                        { "width": "25%" },
+                        { "width": "25%" },
+                        { "width": "25%" },
+                        { "width": "10%" },
+                    ]
                 });
             }
 

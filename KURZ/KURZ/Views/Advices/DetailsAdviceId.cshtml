@@ -1,0 +1,43 @@
+﻿@model KURZ.Entities.GetAdvicesById_Result
+@{
+    ViewData["Title"] = "Detalles Asesoría";
+    Layout = null;
+}
+@if (Model == null)
+{
+    @switch (Convert.ToInt32(ViewData["Error"]))
+    {
+        case 1:
+            <h3>La asesoría que busca no fue encontrada</h3>
+            break;
+    }
+}
+else
+{
+    <div class="page-separator">
+        <div class="page-separator__text">@Model.TEACHERNAME</div>
+    </div>
+    <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+        <div class="card-body d-flex flex-column">
+            <div class="d-flex align-items-center">
+                <div class="flex">
+                    <p><strong>Fecha de Asesoría: </strong>@Model.DATE_ADVICE</p>
+                    <p><strong>Precio: </strong>₡ @Model.PRICE</p>
+                    <p><strong>Enlace: </strong>
+                        @if (Model.LINK == "")
+                        {
+                            @Model.LINK
+                        } else
+                        {
+                            <a href="@Model.LINK" target="_blank">@Model.LINK</a>
+                        }
+                    </p>
+                    <p><strong>Estudiante: </strong>@Model.STUDENTNAME</p>
+                    <p><strong>Tema: </strong>@Model.TOPICNAME</p>
+                    <p><strong>Descripción: </strong>@Model.TOPICDESCRIPTION</p>
+                    <p><strong>Estado: </strong>@Model.STATUSNAME</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
