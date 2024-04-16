@@ -37532,3 +37532,12 @@ label {
 .flatpickr-day.flatpickr-disabled {
     color: #dddddd;
 }
+
+[dir] .seleccionar-fecha-asesoria input:disabled, [dir] .seleccionar-fecha-asesoria input[readonly] {
+    background-color: #fff;
+    color: #000;
+}
+
+[dir] .seleccionar-fecha-asesoria input::placeholder {
+    color: #000;
+}

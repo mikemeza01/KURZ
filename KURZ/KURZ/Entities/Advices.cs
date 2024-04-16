@@ -22,7 +22,7 @@ namespace KURZ.Entities
         public string LINK { get; set; }
 
         [Display(Name = "Precio")]
-        public decimal PRICE { get; set; }
+        public Double PRICE { get; set; }
 
         [Display(Name = "Id del Tema")]
         public int ID_TOPIC { get; set; }

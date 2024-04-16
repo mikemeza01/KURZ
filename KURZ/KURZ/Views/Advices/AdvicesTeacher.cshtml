@@ -1,0 +1,88 @@
+﻿@model IEnumerable<KURZ.Entities.GetAdvicesByTeacherId_Result>
+@{
+    ViewData["Title"] = "Mis Asesorías";
+    Layout = "_TeacherH";
+}
+<div class="card mb-lg-32pt">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center">Asesorías</h4>
+                <br />
+                <table class="table table-responsive" id="TableAdvicesStudent">
+                    <thead>
+                        <tr>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.DATE_ADVICE)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.PRICE)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.TOPICNAME)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.STUDENTNAME)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.STATUSNAME)</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td class="text-center">@item.DATE_ADVICE</td>
+                                <td class="text-center">₡ @item.PRICE</td>
+                                <td class="text-center">@item.TOPICNAME</td>
+                                <td class="text-center">@item.STUDENTNAME</td>
+                                <td class="text-center">@item.STATUSNAME</td>
+                                <td class="acciones">
+                                    <a class="btn btn-dark detailsAdvice" data-id="@item.ID_ADVICE">
+                                        <i class="material-icons">remove_red_eye</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="1" role="dialog" id="detailsAdvice" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detalles Asesoría</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="detailsAdvicebody" class="modal-body">
+            </div>
+            <div class="modal-footer form-group buttons">
+                <button type="button" class="btn btn-accent pull-left" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+
+<script>
+    //details
+    $(document).on('click', '.detailsAdvice', function (event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        var id_advice = $(this).data('id');
+
+        $.ajax({
+            url: '/Advices/DetailsAdviceId/' + id_advice,
+            type: 'GET',
+            success: function (data) {
+                $('#detailsAdvicebody').html(data);
+                $('#detailsAdvice').modal('show');
+                $("#detailsAdvice").appendTo("body");
+            },
+            error: function () {
+                alert("Hubo un problema para obtener los datos");
+            }
+        });
+    });
+</script>

@@ -200,24 +200,33 @@
                                 </li>
 
                                 <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" asp-controller="Student" asp-action="Advice">
-                                        <span
-                                            class="material-icons sidebar-menu-icon sidebar-menu-icon--left">live_tv</span>
+                                    <a class="sidebar-menu-button" data-toggle="collapse" href="#student_advice">
+                                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">live_tv</span>
                                         Asesorías
+                                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                     </a>
+                                    <ul class="sidebar-submenu collapse sm-indent" id="student_advice">
+
+                                        <li class="sidebar-menu-item">
+                                            <a class="sidebar-menu-button" asp-controller="Student"
+                                               asp-action="Advice">
+
+                                                <span class="sidebar-menu-text">Solicitar Asesoría</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-menu-item">
+                                            <a class="sidebar-menu-button" asp-controller="Advices" asp-action="AdvicesStudent">
+
+                                                <span class="sidebar-menu-text">Mis Asesorías</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li class="sidebar-menu-item">
                                     <a class="sidebar-menu-button" asp-controller="Student" asp-action="History">
                                         <span
                                             class="material-icons sidebar-menu-icon sidebar-menu-icon--left">history</span>
                                         Historial
-                                    </a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" asp-controller="Student" asp-action="Calendar">
-                                        <span
-                                            class="material-icons sidebar-menu-icon sidebar-menu-icon--left">calendar_today</span>
-                                        Calendario
                                     </a>
                                 </li>
                             </ul>
@@ -512,6 +521,12 @@
 
     <!-- Preloader -->
     <script src="~/js/preloader.js"></script>
+
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
 
     <!-- Flatpickr -->
     <script src="~/vendor/flatpickr/flatpickr.min.js"></script>

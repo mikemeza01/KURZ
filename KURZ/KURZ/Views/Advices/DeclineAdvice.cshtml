@@ -1,0 +1,126 @@
+﻿@model KURZ.Entities.Advices
+@{
+    ViewData["Title"] = "Rechazar Asesoría";
+    Layout = "_TeacherH";
+}
+@{
+    if (@ViewBag.result == "ok")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+        ;
+
+    }
+    if (@ViewBag.result == "already_decline")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaAlreadyDecline();\r\n      });       </script>")
+        ;
+
+    }
+    if (@ViewBag.result == "error_teacher")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaErrorTeacher();\r\n      });       </script>")
+        ;
+
+    }
+    if (@ViewBag.result == "error_id")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaErrorID();\r\n      });       </script>")
+        ;
+
+    }
+    if (@ViewBag.mensaje == "error")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+        ;
+
+    }
+}
+
+<script>
+    function alertaSuccess() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Solicitud Asesoría rechazada.',
+            text: 'La solicitud de Asesoría ha sido rechazada correctamente',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/AdvicesTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/AdvicesTeacher';
+        }, 3000);
+    }
+
+    function alertaAlreadyDecline() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'warning',
+            title: 'Asesoría ya Rechazada',
+            text: 'La asesoría ya había sido rechazada.',
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/AdvicesTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/AdvicesTeacher';
+        }, 3000);
+    }
+
+
+    function alertaErrorTeacher() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Error al rechazar asesoría',
+            text: 'La asesoría a rechazar no corresponde a su usuario.',
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/AdvicesTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/AdvicesTeacher';
+        }, 3000);
+    }
+
+    function alertaErrorID() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Error al rechazar asesoría',
+            text: 'El sistema no detecto cual es la asesoría a rechazar.',
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/AdvicesTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/AdvicesTeacher';
+        }, 3000);
+    }
+
+    function alertaError() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Error al rechazar asesoría',
+            text: 'Hubo un error al rechazar la solicitud de asesoría',
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/AdvicesTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/AdvicesTeacher';
+        }, 3000);
+    }
+</script>

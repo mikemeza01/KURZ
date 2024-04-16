@@ -1,0 +1,127 @@
+﻿@model KURZ.Entities.Advices
+@{
+    ViewData["Title"] = "Confirmar Asesoría";
+    Layout = "_TeacherH";
+}
+
+@{
+    if (@ViewBag.result == "ok")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+        ;
+
+    }
+    if (@ViewBag.result == "already_confirm")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaAlreadyConfirm();\r\n      });       </script>")
+        ;
+
+    }
+    if (@ViewBag.result == "error_teacher")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaErrorTeacher();\r\n      });       </script>")
+        ;
+
+    }
+    if (@ViewBag.result == "error_id")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaErrorID();\r\n      });       </script>")
+        ;
+
+    }
+    if (@ViewBag.mensaje == "error")
+    {
+        @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+        ;
+
+    }
+}
+
+<script>
+    function alertaSuccess() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Solicitud Asesoría confirmada.',
+            text: 'La solicitud de Asesoría ha sido confirmada correctamente',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/AdvicesTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/AdvicesTeacher';
+        }, 3000);
+    }
+
+    function alertaAlreadyConfirm() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'warning',
+            title: 'Asesoría ya Confirmada',
+            text: 'La asesoría ya había sido confirmada.',
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/AdvicesTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/AdvicesTeacher';
+        }, 3000);
+    }
+    
+
+    function alertaErrorTeacher() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Error al confirmar asesoría',
+            text: 'La asesoría a confirmar no corresponde a su usuario.',
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/AdvicesTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/AdvicesTeacher';
+        }, 3000);
+    }
+
+    function alertaErrorID() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Error al confirmar asesoría',
+            text: 'El sistema no detecto cual es la asesoría a confirmar.',
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/AdvicesTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/AdvicesTeacher';
+        }, 3000);
+    }
+
+    function alertaError() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Error al confirmar asesoría',
+            text: 'Hubo un error al confirmar la solicitud de asesoría',
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/AdvicesTeacher';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/AdvicesTeacher';
+        }, 3000);
+    }
+</script>

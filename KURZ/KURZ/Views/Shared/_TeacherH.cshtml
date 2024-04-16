@@ -216,19 +216,11 @@
                                 </li>
                                 <li class="sidebar-menu-item">
                                     <a class="sidebar-menu-button"
-                                       asp-controller="Teacher" asp-action="Advice">
+                                       asp-controller="Advices" asp-action="AdvicesTeacher">
                                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">live_tv</span>
                                         Asesorías
                                     </a>
                                 </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button"
-                                       asp-controller="Teacher" asp-action="Calendar">
-                                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">calendar_today</span>
-                                        Calendario
-                                    </a>
-                                </li>
-
                                 <li class="sidebar-menu-item">
                                     <a class="sidebar-menu-button"
                                        asp-controller="Teacher" asp-action="TeacherRate">
@@ -564,6 +556,12 @@
 
     <!-- Preloader -->
     <script src="~/js/preloader.js"></script>
+
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
 
     <!-- Required by Calendar (fullcalendar) -->
     <script src="~/vendor/moment.min.js"></script>
