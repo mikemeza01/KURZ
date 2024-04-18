@@ -64,3 +64,11 @@ KURZ/KURZ/obj/KURZ.csproj.nuget.g.props
 KURZ/KURZ/obj/KURZ.csproj.nuget.g.targets
 KURZ/KURZ/obj/project.assets.json
 KURZ/KURZ/obj/project.nuget.cache
+.vscode/settings.json
+KURZ/KURZ/obj/Debug/net6.0/apphost.exe
+KURZ/KURZ/obj/Debug/net6.0/KURZ.AssemblyInfo.cs
+KURZ/KURZ/obj/Debug/net6.0/KURZ.AssemblyInfoInputs.cache
+KURZ/KURZ/obj/Debug/net6.0/KURZ.assets.cache
+KURZ/KURZ/obj/Debug/net6.0/KURZ.GeneratedMSBuildEditorConfig.editorconfig
+KURZ/KURZ/obj/Debug/net6.0/KURZ.RazorAssemblyInfo.cache
+KURZ/KURZ/obj/Debug/net6.0/KURZ.RazorAssemblyInfo.cs
