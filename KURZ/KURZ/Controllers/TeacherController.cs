@@ -150,9 +150,15 @@ namespace KURZ.Controllers
                 //}
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return View("Error");
+                var error = new Error
+                {
+                    Message = ex.Message,
+                    Name = "Error al registrar el profesor",
+                };
+
+                return RedirectToAction("Error", "Teacher", error);
             }
         }
 
@@ -554,6 +560,12 @@ namespace KURZ.Controllers
 
             // Pasar el usuario a la vista
             return View(teacherviewdetail);
+        }
+
+        public ActionResult Error(Error error)
+        {
+            
+            return View(error);
         }
 
     }

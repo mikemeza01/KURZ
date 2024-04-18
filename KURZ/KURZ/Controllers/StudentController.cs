@@ -92,41 +92,41 @@ namespace KURZ.Controllers
                 ViewBag.countries = countries;
                 //if (ModelState.IsValid)
                 //{
-                    var request = HttpContext.Request;
-                    var host = request.Host.ToUriComponent();
-                    var pathBase = request.PathBase.ToUriComponent();
-                    var domain = $"{request.Scheme}://{host}{pathBase}";
+                var request = HttpContext.Request;
+                var host = request.Host.ToUriComponent();
+                var pathBase = request.PathBase.ToUriComponent();
+                var domain = $"{request.Scheme}://{host}{pathBase}";
 
-                    var student_create = new Users()
-                    {
-                        IDENTICATION = student.IDENTICATION,
-                        NAME = student.NAME,
-                        LASTNAME = student.LASTNAME,
-                        EMAIL = student.EMAIL,
-                        PASSWORD = student.PASSWORD,
-                        ID_COUNTRY = student.ID_COUNTRY
-                    };
+                var student_create = new Users()
+                {
+                    IDENTICATION = student.IDENTICATION,
+                    NAME = student.NAME,
+                    LASTNAME = student.LASTNAME,
+                    EMAIL = student.EMAIL,
+                    PASSWORD = student.PASSWORD,
+                    ID_COUNTRY = student.ID_COUNTRY
+                };
 
 
                 var resultado = _studentModel.StudentCreate(student_create, domain);
-                    if (resultado == "ok")
-                    {
-                        ViewBag.mensaje = "SUCCESS";
-                        return View(student);
-                    }
-                    else if (resultado != "ok" && resultado != "error")
-                    {
-                        ViewBag.mensaje = resultado;
-                    }
-                    else
-                        ViewBag.mensaje = "ERROR";
-                        return View(student);
+                if (resultado == "ok")
+                {
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(student);
+                }
+                else if (resultado != "ok" && resultado != "error")
+                {
+                    ViewBag.mensaje = resultado;
+                }
+                else
+                    ViewBag.mensaje = "ERROR";
+                return View(student);
             }
-            catch(Exception)
-             {
+            catch (Exception ex)
+            {
                 return View("ERROR");
             }
-            
+
         }
 
         [Authorize(Roles = "Student")]
@@ -168,7 +168,7 @@ namespace KURZ.Controllers
             return View(userDetail);
         }
 
-        
+
         [HttpPost]
         public IActionResult Edit(UserDetails student, IFormFile newProfilePicture)
         {
@@ -363,10 +363,10 @@ namespace KURZ.Controllers
             }
             var user = _usersModel.byUserName(nombreusuario);
 
-             var listAdvices = _topicsModel.TopicsList();
-             var categories = _categoriesModel.CategoriesList();
-             ViewBag.listAdvices = listAdvices;
-             ViewBag.categories = categories;
+            var listAdvices = _topicsModel.TopicsList();
+            var categories = _categoriesModel.CategoriesList();
+            ViewBag.listAdvices = listAdvices;
+            ViewBag.categories = categories;
             return View(listAdvices);
         }
 
@@ -375,7 +375,7 @@ namespace KURZ.Controllers
         {
             try
             {
-                var status = _statusModel.StatusList(); 
+                var status = _statusModel.StatusList();
                 ViewBag.status = status;
                 var advices = _advicesModel.GetAdvicesById(id);
 
