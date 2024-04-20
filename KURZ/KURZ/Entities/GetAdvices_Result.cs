@@ -25,7 +25,8 @@ namespace KURZ.Entities
         public string DateUpdateFormat => DATE_UPDATE.ToString("dd/MM/yyyy");
 
         [Display(Name = "Enlace")]
-        public string LINK { get; set; }
+
+        public string? LINK { get; set; }
 
         [Display(Name = "Precio")]
         public double PRICE { get; set; }

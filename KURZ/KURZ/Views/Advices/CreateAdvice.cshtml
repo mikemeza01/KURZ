@@ -116,6 +116,7 @@
                 var dia = selectedDates[0].getDay();
                 var dia_fecha = selectedDates[0].getDate();
                 var mes = selectedDates[0].getMonth();
+                mes = mes + 1; //se hace porque el la funcion devuelve como mes inicial 0
                 var year = selectedDates[0].getFullYear();
 
                 var fecha = year + "-" + mes + "-" + dia_fecha;
@@ -184,13 +185,13 @@
 
 
         $('#createAdviceSubmit').on('click', function () {
-            debugger;
             var date = $("#date-advice-select");
             var dateData = date[0]._flatpickr;
             var dateData = dateData.selectedDates;
 
             var dia_fecha = dateData[0].getDate();
             var mes = dateData[0].getMonth();
+            mes = mes + 1; //se hace porque el la funcion devuelve como mes inicial 0
             var year = dateData[0].getFullYear();
 
             var fecha = year + "-" + mes + "-" + dia_fecha;

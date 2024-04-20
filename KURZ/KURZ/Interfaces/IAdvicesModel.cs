@@ -11,6 +11,10 @@ namespace KURZ.Interfaces
 
         public string notifyStudent(Advices advice, bool confirm, string host);
 
+        public string notifyStudentLink(int idAdvice, string host);
+
+        public string notifyTeacherLink(int idAdvice, string host);
+
         public Advices AdviceDetail(int? ID);
 
         public List<GetAdvices_Result> GetAdvices();
@@ -21,5 +25,9 @@ namespace KURZ.Interfaces
         public TeacherTopicsView TopicTeacherDetails(int ID_TEACHER, int ID_TOPIC);
 
         public List<Advices> AdvicesforTeacherAndDate(int ID_TEACHER, DateTime DATE_SELECTED);
+
+        public string EmailStudentLink(GetAdvices_Result adviceResult, String host);
+
+        public string EmailTeacherLink(GetAdvices_Result adviceResult, String host);
     }
 }

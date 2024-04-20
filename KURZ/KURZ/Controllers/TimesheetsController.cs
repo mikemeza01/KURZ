@@ -195,7 +195,7 @@ namespace KURZ.Controllers
                 DateTime dateSelected = DateTime.Parse(DATE_SELECTED);
 
 
-                var teacherAdvicesDay = _advicesModel.AdvicesforTeacherAndDate(121, dateSelected);
+                var teacherAdvicesDay = _advicesModel.AdvicesforTeacherAndDate(ID_TEACHER, dateSelected);
 
 
                 foreach (var teacherAdviceDay in teacherAdvicesDay)

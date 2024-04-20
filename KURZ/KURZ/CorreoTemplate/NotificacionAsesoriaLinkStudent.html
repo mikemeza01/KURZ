@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email de Solicitud Asesoria Confirmada</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #F7F9FA;">
+    <table id="x_udemy-email" width="100%" cellpadding="0" cellspacing="0" style="padding: 24px; max-width: 600px; margin: auto; background-color: #F7F9FA;">
+        <tbody>
+            <tr>
+                <td style="padding: 0 0 16px 0; text-align: center;">
+                    <img src="https://i.ibb.co/SBwNQgP/Logo-Kurz-v5-4x.png" width="150" style="display: block; margin: 0 auto;" alt="Logo Kurz">
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 16px 0; text-align: center;">
+                    <p style="font-weight: bold;">Hola <b>@@STUDENT</b>,</p>
+                    <p>Su pago a sido confirmado por la plataforma.</p>
+                    <p>
+                        Haz clic en el botón de <b>Unirse</b> para ingresar a la sesión de <b>Asesoría</b> en <b>la fecha y hora programada.</b><br>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 16px 0; text-align: center;">
+                    <table width="100%" style="border-collapse: collapse;">
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #087a90;"><strong>Información Asesoría:</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #087a90;">Fecha y Hora Asesoría: @@DATE_ADVICE</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #087a90;">Precio: ₡ @@PRICE</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #087a90;">Profesor: @@NombreProfesor</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #087a90;">Tema: @@TOPIC</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 16px 0; text-align: center;">
+                    <a href="@@LINK" target="_blank" rel="noopener noreferrer" style="background-color: #77c13a; color: #FFF; display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 20px;">Unirse</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top: 16px;">
+                    <table width="100%" style="background-color: #087a90; color: #FFF; text-align: center;">
+                        <tr>
+                            <td style="padding: 20px;">
+                                <img src="https://i.ibb.co/t4Y9MjW/Logo-Kurz-v4-4x.png" alt="Kurz Logo" width="150">
+                                <p>TODOS LOS DERECHOS RESERVADOS.</p>
+                                <p>&copy; <span id="currentYear"></span> Kurz.</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

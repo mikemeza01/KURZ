@@ -9,6 +9,7 @@
 
             var tableUsers = $('#TableUsers');
             var tableAdvices = $('#TableAdvices');
+            var tableAdvicesAdmin = $('#TableAdvicesAdmin');
             var tableCategories = $('#TableCategories');
             var tableTeacherGrades = $('#TableTeacherGrades');
             var tableSubcategories = $('#TableSubcategories');
@@ -27,6 +28,22 @@
                     language: languageDatatable
                 });
             }
+
+            if (tableAdvicesAdmin.length > 0) {
+                new DataTable('#TableAdvicesAdmin', {
+                    language: languageDatatable,
+                    "columns": [
+                        { "width": "15%" },
+                        { "width": "10%" },
+                        { "width": "15%" },
+                        { "width": "15%" },
+                        { "width": "15%" },
+                        { "width": "15%" },
+                        { "width": "20%" },
+                    ]
+                });
+            }
+
             if (tableCategories.length > 0) {
                 new DataTable('#TableCategories', {
                     language: languageDatatable,

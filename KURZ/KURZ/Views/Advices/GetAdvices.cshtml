@@ -10,24 +10,15 @@
             <div class="card-body">
                 <h4 class="card-title text-center">Asesorías</h4>
                 <br />
-                <table class="table table-responsive mx-auto" id="TableAdvices">
+                <table class="table table-responsive" id="TableAdvicesAdmin">
                     <thead>
                         <tr>
-                            <th>
-                                Fecha de asesoría
-                            </th>
-                            <th>
-                                Tema
-                            </th>
-                            <th>
-                                Profesor(a)
-                            </th>
-                            <th>
-                                Estudiante
-                            </th>
-                            <th>
-                                Estado
-                            </th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.DATE_ADVICE)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.PRICE)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.TOPICNAME)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.TEACHERNAME)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.STUDENTNAME)</th>
+                            <th class="text-center">@Html.DisplayNameFor(model => model.STATUSNAME)</th>
                             <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
@@ -38,7 +29,10 @@
 
                             <tr>
                                 <td class="text-center">
-                                    @Html.DisplayFor(modelItem => item.DateAdviceFormat)
+                                    @Html.DisplayFor(modelItem => item.DATE_ADVICE)
+                                </td>
+                                <td class="text-center">
+                                    ₡ @Html.DisplayFor(modelItem => item.PRICE)
                                 </td>
                                 <td class="text-center">
                                     @Html.DisplayFor(modelItem => item.TOPICNAME)
@@ -57,6 +51,9 @@
                                 <td class="acciones">
                                     <a class="btn btn-dark detailsAdvices" data-id="@item.ID_ADVICE">
                                         <i class="material-icons">remove_red_eye</i>
+                                    </a>
+                                    <a class="btn btn-primary" asp-controller="Advices" asp-route-ID="@item.ID_ADVICE" asp-action="EditAdvice">
+                                        <i class="material-icons">create</i>
                                     </a>
                                 </td>
                             </tr>
@@ -106,7 +103,7 @@
                         "<br /> Fecha de Creación: " + data.dateCreateFormat +
                         "<br /> Fecha de Actualización: " + data.dateUpdateFormat +
                         "<br /> URL: " + data.link +
-                        "<br /> Precio: " + data.price +
+                        "<br /> Precio: ₡" + data.price +
                         "<br /> Descripción: " + data.topicdescription
                     $('#detailsAdvicesBody').html(dataHTML);
                     $('#detailsAdvices').modal('show');
