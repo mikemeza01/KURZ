@@ -21,6 +21,7 @@ namespace KURZ.Controllers
         //llamado a los modelos a usar
         private readonly IUsersModel _usersModel;
         private readonly IConfiguration _configuration;
+        private readonly IStatusModel _statusModel;
 
 
         private const string AccountId = "OAg6Ia1DS1K0bjF_KVgmYQ";
@@ -30,11 +31,12 @@ namespace KURZ.Controllers
         private const string ApiUser = "info@educandoteya.org";
         private FilesHelper filesHelper = new FilesHelper();
 
-        public AdvicesController(IAdvicesModel advicesModel, IUsersModel usersModel, IConfiguration configuration)
+        public AdvicesController(IAdvicesModel advicesModel, IUsersModel usersModel, IConfiguration configuration, IStatusModel statusModel)
         {
             _advicesModel = advicesModel;
             _usersModel = usersModel;
             _configuration = configuration;
+            _statusModel = statusModel;
         }
 
         [Authorize(Roles = "Student")]
@@ -126,6 +128,110 @@ namespace KURZ.Controllers
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpGet]
+        public IActionResult EditAdvice(int id)
+        {
+            try
+            {
+                var adviceDetail = _advicesModel.GetAdvicesById(id);
+                var status = _statusModel.StatusList();
+                ViewBag.status = status;
+
+                return View(adviceDetail);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [Authorize(Roles = "Administrator")]
+        [HttpPost]
+        public IActionResult EditAdvice(GetAdvicesById_Result adviceResult)
+        {
+            try
+            {
+                var status = _statusModel.StatusList();
+                ViewBag.status = status;
+
+                var adviceDetail = _advicesModel.AdviceDetail(adviceResult.ID_ADVICE);
+
+                adviceDetail.ID_STATUS = Int32.Parse(adviceResult.STATUSNAME); //viene con el id del formulario
+
+                var resultado = _advicesModel.AdvicesEdit(adviceDetail);
+
+                if (resultado == "ok")
+                {
+
+                    //crear sesión zoom 
+                    var idStatus = adviceDetail.ID_STATUS;
+                    var link = adviceDetail.LINK;
+
+                    if (idStatus == 4 && link == "") { //status 4 es confirmada
+                        //domain to send email
+                        var request = HttpContext.Request;
+                        var host = request.Host.ToUriComponent();
+                        var pathBase = request.PathBase.ToUriComponent();
+                        var domain = $"{request.Scheme}://{host}{pathBase}";
+
+                        try
+                        {
+                            var meeting = CreateMeeting(adviceResult.TOPICNAME, adviceResult.DATE_ADVICE, adviceDetail);
+
+                            adviceDetail.LINK = meeting.Result.JOIN_URL;
+
+                            if (meeting.Result.JOIN_URL != null)
+                            {
+                                var resUpdateLink = _advicesModel.AdvicesEdit(adviceDetail);
+
+
+                                try {
+                                    var notifyStudent = _advicesModel.notifyStudentLink(adviceDetail.ID_ADVICE, domain);
+                                    var notifyTeacher = _advicesModel.notifyTeacherLink(adviceDetail.ID_ADVICE, domain);
+
+                                    ViewBag.status = status;
+                                    ViewBag.mensaje = "SUCCESS";
+                                    return View(adviceResult);
+
+                                } catch(Exception)
+                                {
+                                    ViewBag.status = status;
+                                    ViewBag.mensaje = "ERROR_EMAIL";
+                                    return View(adviceResult);
+                                }   
+                            }
+                            else {
+                                ViewBag.status = status;
+                                ViewBag.mensaje = "ERROR_MEETING";
+                                return View(adviceResult);
+                            } 
+                        }
+                        catch (Exception)
+                        {
+                            ViewBag.status = status;
+                            ViewBag.mensaje = "ERROR_MEETING";
+                            return View(adviceResult);
+                        }
+
+                        
+                    }
+
+                    ViewBag.status = status;
+                    ViewBag.mensaje = "SUCCESS";
+                    return View(adviceResult);
+                }
+                else
+                    ViewBag.status = status;
+                    ViewBag.mensaje = "ERROR";
+                    return View(adviceResult);
+            }
+            catch (Exception)
+            {
+                return View("ERROR");
             }
         }
 
@@ -422,25 +528,31 @@ namespace KURZ.Controllers
             return View(meeting);
         }
 
-
         [HttpPost]
-        public async Task<ActionResult> CreateMeeting(MeetingsZoom MeetingZoom)
+        public async Task<MeetingsZoom> CreateMeeting(string title, DateTime timeStart, Advices adviceDetail)
         {
-            string meetingTopic = "Título de la reunión";
-            DateTime meetingStartTime = DateTime.UtcNow.AddMinutes(10);
+            string meetingTopic = title;
+            DateTime meetingStartTime = timeStart;
             int meetingDuration = 60; //Duración de la sesión en minutos
             //TimeZones timeZonesDetail = new TimeZones();
 
 
             var zoomClient = getZoomClient();
 
-            var meeting = await zoomClient.Meetings.CreateScheduledMeetingAsync(ApiUser, meetingTopic, meetingTopic, meetingStartTime, meetingDuration, TimeZones.America_Costa_Rica);
 
+            var meetingSettings = new MeetingSettings();
+            meetingSettings.ContactEmail = "info@educandoteya.org";
+            meetingSettings.ContactName = "KURZ";
+
+            var meeting = await zoomClient.Meetings.CreateScheduledMeetingAsync(ApiUser, meetingTopic, meetingTopic, meetingStartTime, meetingDuration, TimeZones.America_Costa_Rica, null, meetingSettings);
+
+            var MeetingZoom = new MeetingsZoom();
 
             MeetingZoom.ID = meeting.Id;
             MeetingZoom.DURATION = meeting.Duration;
             MeetingZoom.START_TIME = meeting.StartTime;
             MeetingZoom.JOIN_URL = meeting.JoinUrl;
+
 
             //var accessToken = await generateToken();
 
@@ -493,7 +605,7 @@ namespace KURZ.Controllers
 
             */
 
-            return View(MeetingZoom);
+            return MeetingZoom;
         }
 
         private ZoomClient getZoomClient()

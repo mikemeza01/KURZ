@@ -120,6 +120,61 @@ namespace KURZ.Models
         }
 
 
+        public string notifyStudentLink(int idAdvice, string host)
+        {
+            try
+            {
+                var adviceDetail = GetAdvicesById(idAdvice);
+                var student = _usersModel.byID(adviceDetail.IDSTUDENT);
+                    try
+                    {
+                        string cuerpo = EmailStudentLink(adviceDetail, host);
+                        _usersModel.SendEmail(student.EMAIL, "Pago Asesoría Confirmado", cuerpo);
+                        return "ok";
+                    }
+                    catch (Exception ex)
+                    {
+                        return "Asesoría confirmada pero hubo un error al enviar el correo de pago de asesoría confirmado al estudiante, pongase en contacto con el administrador.";
+                    }
+
+               
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error al agregar la asesoría:");
+                Console.WriteLine(ex.ToString());
+                return "error";
+            }
+        }
+
+        public string notifyTeacherLink(int idAdvice, string host)
+        {
+            try
+            {
+                var adviceDetail = GetAdvicesById(idAdvice);
+                var teacher = _usersModel.byID(adviceDetail.IDTEACHER);
+                try
+                {
+                    string cuerpo = EmailTeacherLink(adviceDetail, host);
+                    _usersModel.SendEmail(teacher.EMAIL, "Asesoría Confirmada", cuerpo);
+                    return "ok";
+                }
+                catch (Exception ex)
+                {
+                    return "Asesoría confirmada pero hubo un error al enviar el correo con en enlace de la sesión al profesor, pongase en contacto con el administrador.";
+                }
+
+
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine("Ocurrió un error al agregar la asesoría:");
+                Console.WriteLine(ex.ToString());
+                return "error";
+            }
+        }
+
+
         public List<GetAdvices_Result> GetAdvices()
         {
             try
@@ -339,6 +394,37 @@ namespace KURZ.Models
             return htmlArchivo;
         }
 
+        public string EmailStudentLink(GetAdvices_Result adviceResult, String host)
+        {
+
+
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//NotificacionAsesoriaLinkStudent.html");
+            string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
+            htmlArchivo = htmlArchivo.Replace("@@NombreProfesor", adviceResult.TEACHERNAME);
+            htmlArchivo = htmlArchivo.Replace("@@DATE_ADVICE", adviceResult.DATE_ADVICE.ToString());
+            htmlArchivo = htmlArchivo.Replace("@@PRICE", adviceResult.PRICE.ToString());
+            htmlArchivo = htmlArchivo.Replace("@@STUDENT", adviceResult.STUDENTNAME);
+            htmlArchivo = htmlArchivo.Replace("@@TOPIC", adviceResult.TOPICNAME);
+            htmlArchivo = htmlArchivo.Replace("@@LINK", adviceResult.LINK);
+
+            return htmlArchivo;
+        }
+
+        public string EmailTeacherLink(GetAdvices_Result adviceResult, String host)
+        {
+
+
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//NotificacionAsesoriaLinkTeacher.html");
+            string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
+            htmlArchivo = htmlArchivo.Replace("@@NombreProfesor", adviceResult.TEACHERNAME);
+            htmlArchivo = htmlArchivo.Replace("@@DATE_ADVICE", adviceResult.DATE_ADVICE.ToString());
+            htmlArchivo = htmlArchivo.Replace("@@PRICE", adviceResult.PRICE.ToString());
+            htmlArchivo = htmlArchivo.Replace("@@STUDENT", adviceResult.STUDENTNAME);
+            htmlArchivo = htmlArchivo.Replace("@@TOPIC", adviceResult.TOPICNAME);
+            htmlArchivo = htmlArchivo.Replace("@@LINK", adviceResult.LINK);
+
+            return htmlArchivo;
+        }
 
     }
 }

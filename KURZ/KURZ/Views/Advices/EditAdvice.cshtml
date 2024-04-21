@@ -1,0 +1,178 @@
+﻿@model KURZ.Entities.GetAdvicesById_Result
+@{
+    ViewData["Title"] = "Editar Asesoría";
+    Layout = "_Admin";
+}
+<div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1">
+    <div class="card-body d-flex flex-column">
+        <form asp-action="EditAdvice" class="align-items-center">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="flex"
+                 style="max-width: 100%">
+
+                <input asp-for="ID_ADVICE" type="hidden" class="form-control" readonly />
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="form-label" asp-for="DATE_ADVICE"></label>
+                        <input type="text" asp-for="DATE_ADVICE" class="form-control" placeholder="Fecha" readonly />
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="form-label" asp-for="DATE_CREATE"></label>
+                        <input type="text" asp-for="DATE_CREATE" class="form-control" placeholder="Fecha creación" readonly />
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="form-label" asp-for="LINK"></label>
+                        <input type="text" asp-for="LINK" class="form-control" placeholder="Enlace" readonly />
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="form-label" asp-for="PRICE"></label>
+                        <input type="text" asp-for="PRICE" class="form-control" placeholder="Precio" readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="form-label" asp-for="TOPICNAME"></label>
+                        <input type="text" asp-for="TOPICNAME" class="form-control" placeholder="Tema" readonly />
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="form-label" asp-for="TOPICDESCRIPTION"></label>
+                        <textarea asp-for="TOPICDESCRIPTION" class="form-control" placeholder="Descripción Tema" readonly></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="form-label" asp-for="TEACHERNAME"></label>
+                        <input type="text" asp-for="TEACHERNAME" class="form-control" placeholder="Tema" readonly />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="form-label" asp-for="STUDENTNAME"></label>
+                        <input type="text" asp-for="STUDENTNAME" class="form-control" placeholder="Tema" readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="form-label" asp-for="STATUSNAME"></label>
+                        <select class="form-control" asp-for="STATUSNAME">
+                            <option value="">Seleccione un estado</option>
+                            @foreach (var status in ViewBag.status)
+                            {
+                                <option value="@status.ID_STATUS" selected="@(Model.STATUSNAME == status.NAME)"> @status.NAME</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group buttons">
+                    <a asp-controller="Advices" asp-action="GetAdvices" class="btn btn-accent">
+                        Cancelar
+                    </a>
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Editar
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        @{
+            if (@ViewBag.mensaje == "SUCCESS")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+                ;
+
+            }
+            if (@ViewBag.mensaje == "ERROR_EMAIL")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaErrorMeeting();\r\n      });       </script>")
+                ;
+
+            }
+            if (@ViewBag.mensaje == "ERROR_MEETING")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaErrorEmail();\r\n      });       </script>")
+                ;
+
+            }
+            if (@ViewBag.mensaje == "ERROR")
+            {
+                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+                ;
+
+            }
+        }
+    </div>
+</div>
+
+<script>
+
+    function alertaSuccess() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Asesoría editada.',
+            text: 'Asesoría editada correctamente',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/GetAdvices';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/GetAdvices';
+        }, 3000);
+    }
+
+    function alertaErrorMeeting() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'warning',
+            title: 'Asesoría editada.',
+            text: 'Asesoría editada pero no hubo un error al crear el enlace.',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/GetAdvices';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/GetAdvices';
+        }, 3000);
+    }
+
+    function alertaErrorEmail() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'warning',
+            title: 'Asesoría editada.',
+            text: 'Asesoría editada pero no hubo un error al enviar los correos de notificación al profesor y estudiante.',
+            timer: 3000,
+            showConfirmButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Advices/GetAdvices';
+            }
+        });
+        setTimeout(() => {
+            window.location.href = '/Advices/GetAdvices';
+        }, 3000);
+    }
+
+
+    function alertaError() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Asesoría no editada.',
+            text: 'Hubo un error al editar la Asesoría',
+            showConfirmButton: true
+        })
+    }
+
+</script>
