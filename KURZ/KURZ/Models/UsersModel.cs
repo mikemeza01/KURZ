@@ -255,19 +255,6 @@ namespace KURZ.Models
                 else
                 {
                     string cuerpo = ArmarHTMLFP(user_by_email, host);
-                    //StringBuilder cuerpo = new StringBuilder("");
-                    //cuerpo.Append(user_by_email.NAME +" "+ user_by_email.LASTNAME);
-                    //cuerpo.Append("<br>");
-                    //cuerpo.Append("<br>");
-                    //cuerpo.Append("Se ha recibido su solicitud de cambiar su contraseña, dar clic en 'Cambiar contraseña' para proceder.");
-                    //cuerpo.Append("<br>");
-                    //cuerpo.Append("<br>");
-                    //cuerpo.Append("<a href='" + host + "/Authentication/ForgotPasswordConfirmation/?username=" + user_by_email.EMAIL + "&token=" + user_by_email.TOKEN + "'>Cambiar contraseña</a>");
-                    //cuerpo.Append("<br>");
-                    //cuerpo.Append("<br>");
-                    //cuerpo.Append("Saludos cordiales,");
-                    //cuerpo.Append("<br>");
-                    //cuerpo.Append("KURZ");
 
                     try
                     {

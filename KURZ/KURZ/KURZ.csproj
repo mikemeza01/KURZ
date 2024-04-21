@@ -27,4 +27,28 @@
   <ItemGroup>
     <None Remove="CorreoTemplate\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\CorreoTemplate\CConfirmarCuenta.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\CorreoTemplate\CForgotPass.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\CorreoTemplate\ConfirmarAsesoriaTeacher.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\CorreoTemplate\NotificacionAsesoriaAceptada.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\CorreoTemplate\NotificacionAsesoriaLinkStudent.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\CorreoTemplate\NotificacionAsesoriaLinkTeacher.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\CorreoTemplate\NotificacionAsesoriaRechazada.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

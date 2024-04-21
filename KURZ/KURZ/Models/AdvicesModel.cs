@@ -383,7 +383,7 @@ namespace KURZ.Models
             var adviceResult = GetAdvicesById(advice.ID_ADVICE);
 
 
-            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//NotificacionAsesoriaRechazada.html");
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "wwwroot/CorreoTemplate//NotificacionAsesoriaRechazada.html");
             string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
             htmlArchivo = htmlArchivo.Replace("@@NombreProfesor", adviceResult.TEACHERNAME);
             htmlArchivo = htmlArchivo.Replace("@@DATE_ADVICE", adviceResult.DATE_ADVICE.ToString());
@@ -398,7 +398,7 @@ namespace KURZ.Models
         {
 
 
-            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//NotificacionAsesoriaLinkStudent.html");
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "wwwroot/CorreoTemplate//NotificacionAsesoriaLinkStudent.html");
             string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
             htmlArchivo = htmlArchivo.Replace("@@NombreProfesor", adviceResult.TEACHERNAME);
             htmlArchivo = htmlArchivo.Replace("@@DATE_ADVICE", adviceResult.DATE_ADVICE.ToString());
@@ -414,7 +414,7 @@ namespace KURZ.Models
         {
 
 
-            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//NotificacionAsesoriaLinkTeacher.html");
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "wwwroot/CorreoTemplate//NotificacionAsesoriaLinkTeacher.html");
             string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
             htmlArchivo = htmlArchivo.Replace("@@NombreProfesor", adviceResult.TEACHERNAME);
             htmlArchivo = htmlArchivo.Replace("@@DATE_ADVICE", adviceResult.DATE_ADVICE.ToString());
