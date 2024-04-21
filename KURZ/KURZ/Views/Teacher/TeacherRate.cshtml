@@ -15,7 +15,7 @@
                 <tr>
                     <th class="text-center" style="display:none"></th>
                     <th class="text-center">
-                        Calificación 
+                        Calificación
                     </th>
                     <th class="text-center">
                         Comentario
@@ -41,7 +41,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td class="text-center"  style="display:none">
+                        <td class="text-center" style="display:none"><i class="fa fa-star"></i>
                             @Html.DisplayFor(modelItem => item.ID_GRADE)
                         </td>
                         <td class="text-center">
@@ -69,6 +69,10 @@
                 }
             </tbody>
         </table>
+        <td colspan="8" class="text-right"><strong>Promedio:</strong></td>
+        <td class="text-center">
+            10
+        </td>
     </div>
 </div>
 
@@ -77,36 +81,34 @@
 
 
 <!-- Después de tu tabla -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Obtener todas las celdas de la columna de notas
-        var gradeCells = document.querySelectorAll("#TableTeacherGrades tbody td:nth-child(2)");
+@* <script>
+document.addEventListener("DOMContentLoaded", function () {
+// Obtener todas las celdas de la columna de notas
+var gradeCells = document.querySelectorAll("#TableTeacherGrades tbody td:nth-child(2)");
 
-        // Calcular el promedio de las notas
-        var totalGrades = 0;
-        gradeCells.forEach(function (cell) {
-            totalGrades += parseFloat(cell.textContent.trim());
-        });
-        var promedioNotas = totalGrades / gradeCells.length;
+// Calcular el promedio de las notas
+var totalGrades = 0;
+gradeCells.forEach(function (cell) {
+totalGrades += parseFloat(cell.textContent.trim());
+});
+var promedioNotas = totalGrades / gradeCells.length;
 
-         var notas = Array.from(gradeCells).map(function (cell) {
-         return parseFloat(cell.textContent.trim());
-        });
-        var notaMasAlta = Math.max(...notas);
-        let suma = promedioNotas / notaMasAlta
-        let promedioEscalado = suma * 5
+var notas = Array.from(gradeCells).map(function (cell) {
+return parseFloat(cell.textContent.trim());
+});
+var notaMasAlta = Math.max(...notas);
+let suma = promedioNotas / notaMasAlta
+let promedioEscalado = suma * 5
 
-        // Crear una nueva fila para mostrar el promedio
-        var nuevaFila = document.createElement("tr");
-        nuevaFila.innerHTML = `
-            <td colspan="8" class="text-right"><strong>Promedio:</strong></td>
-            <td class="text-center">${promedioEscalado.toFixed(2)}</td>
-       `;
+// Crear una nueva fila para mostrar el promedio
+var nuevaFila = document.createElement("tr");
+nuevaFila.innerHTML = `
+<td colspan="8" class="text-right"><strong>Promedio:</strong></td>
+<td class="text-center">${promedioEscalado.toFixed(2)}</td>
+`;
 
-        // Agregar la nueva fila al final de la tabla
-        var tbody = document.querySelector("#TableTeacherGrades tbody");
-        tbody.appendChild(nuevaFila);
-    });
-</script>
-
-
+// Agregar la nueva fila al final de la tabla
+var tbody = document.querySelector("#TableTeacherGrades tbody");
+tbody.appendChild(nuevaFila);
+});
+</script> *@

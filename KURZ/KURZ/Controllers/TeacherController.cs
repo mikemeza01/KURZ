@@ -16,7 +16,7 @@ namespace KURZ.Controllers
 
     public class TeacherController : Controller
     {
-        
+
         private readonly ITeacherModel _teacherModel;
         private readonly ICountriesModel _countriesModel;
         private readonly IUsersModel _usersModel;
@@ -28,7 +28,7 @@ namespace KURZ.Controllers
         private readonly IWebHostEnvironment _hostingEnvironment;
         private FilesHelper filesHelper = new FilesHelper();
 
-        public TeacherController(IConfiguration configuration, KurzContext context,IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel, IAdvicesModel advicesModel, IGradesModel gradesModel, IStatusModel statusModel)
+        public TeacherController(IConfiguration configuration, KurzContext context, IWebHostEnvironment hostingEnvironment, ITeacherModel teacherModel, ICountriesModel countriesModel, IUsersModel usersModel, IAdvicesModel advicesModel, IGradesModel gradesModel, IStatusModel statusModel)
         {
             _configuration = configuration;
             _context = context;
@@ -433,6 +433,8 @@ namespace KURZ.Controllers
                 }
                 var user = _usersModel.byUserName(nombreusuario);
                 var data = _gradesModel.TeacherGradesByUser(user.ID_USER);
+
+
                 return View(data);
 
             }
@@ -555,6 +557,12 @@ namespace KURZ.Controllers
                                EMAIL = prof.EMAIL,
                                AvgRating = gra != null ? gra.AverageRating : 5
                            };
+            // Conversion de objeto.
+            var userDetail = _usersModel.ConvertUsers(user);
+
+            //Obtener la foto del Usuario.
+            userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
+            ViewBag.user_photo = userDetail.ProfilePicture;
 
             var teacherviewdetail = consulta.FirstOrDefault();
 
@@ -564,7 +572,7 @@ namespace KURZ.Controllers
 
         public ActionResult Error(Error error)
         {
-            
+
             return View(error);
         }
 

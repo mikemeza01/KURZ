@@ -28,7 +28,8 @@
                             {
                                 <tr>
                                     <td class="text-center">
-                                        <a href="@Url.Action("TeacherAccount", "Teacher", new { id = item.ID_TEACHER })">@item.TeacherName</a>
+                                        <a
+                                            href="@Url.Action("TeacherAccount", "Teacher", new { id = item.ID_TEACHER })">@item.TeacherName</a>
                                     </td>
                                     <td class="text-center">@item.AvgGrade</td>
                                     <td class="text-center">@item.TeacherCountry</td>
@@ -36,8 +37,9 @@
                                     <td class="text-center">₡ @item.Price</td>
                                     <td>
                                         <div class="col text-center">
-                                            @* CAMBIAR DIRECCION DE LA PAGINA Y ENVIAR EL ID DEL USER*@
-                                            <a href="/Advices/CreateAdvice/?te=@item.ID_TEACHER&to=@item.ID_TOPIC" class="btn btn-success search-schedule" data-topic="@item.ID_TOPIC" data-teacher="@item.ID_TEACHER" data-price="@item.Price">Buscar Horario</a>
+                                            <a href="/Advices/CreateAdvice/?te=@item.ID_TEACHER&to=@item.ID_TOPIC"
+                                                class="btn btn-success search-schedule" data-topic="@item.ID_TOPIC"
+                                                data-teacher="@item.ID_TEACHER" data-price="@item.Price">Buscar Horario</a>
                                         </div>
                                     </td>
                                 </tr>

@@ -36,8 +36,8 @@ namespace KURZ.Models
                                 TeacherName = t.NAME + " " + t.LASTNAME,
                                 Topic = at.NAME,
                                 Category = c.NAME,
-                                Subcategory = sc.NAME
-
+                                Subcategory = sc.NAME,
+                                AverageRating = g.AverageRating
 
                             };
                 return query.ToList();
@@ -69,7 +69,7 @@ namespace KURZ.Models
                                 Topic = t.NAME,
                                 Category = c.NAME
                             };
-                              
+
 
                 return query.SingleOrDefault();
             }

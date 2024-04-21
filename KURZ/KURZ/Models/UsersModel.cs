@@ -466,7 +466,7 @@ namespace KURZ.Models
 
         public string ArmarHTMLCC(Users datos, String host)
         {
-            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//CConfirmarCuenta.html");
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "wwwroot/CorreoTemplate//CConfirmarCuenta.html");
             string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
             htmlArchivo = htmlArchivo.Replace("@@Nombre", datos.NAME);
             htmlArchivo = htmlArchivo.Replace("@@NombreC", $"{datos.NAME} {datos.LASTNAME}");
@@ -480,7 +480,7 @@ namespace KURZ.Models
 
         public string ArmarHTMLFP(Users datos, String host)
         {
-            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "CorreoTemplate//CForgotPass.html");
+            string rutaArchivo = Path.Combine(_hostingEnvironment.ContentRootPath, "wwwroot/CorreoTemplate//CForgotPass.html");
             string htmlArchivo = System.IO.File.ReadAllText(rutaArchivo);
             htmlArchivo = htmlArchivo.Replace("@@Name", datos.NAME);
             htmlArchivo = htmlArchivo.Replace("@@FullName", $"{datos.NAME} {datos.LASTNAME}");
