@@ -124,7 +124,7 @@ namespace KURZ.Models
             {
                 Console.WriteLine("Ocurrió un error al agregar el profesor:");
                 Console.WriteLine(ex.ToString());
-                return "error";
+                return ex.ToString();
             }
         }
         public string TeacherEdit(Users teacher)
