@@ -141,7 +141,7 @@ namespace KURZ.Controllers
                     ViewBag.mensaje = resultado;
                 }
                 else
-                    ViewBag.mensaje = "ERROR";
+                    ViewBag.mensaje = resultado;
                 return View(teacher);
                 //}
                 //else
