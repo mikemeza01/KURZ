@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/425b58fa-a208-471b-ad42-0c236981f403/resourceGroups/testkurz/providers/Microsoft.Web/sites/KURZV-1",
+    "appService.deploySubpath": "."
+}
