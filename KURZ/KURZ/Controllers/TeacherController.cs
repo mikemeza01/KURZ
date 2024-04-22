@@ -205,16 +205,6 @@ namespace KURZ.Controllers
         {
             try
             {
-                if (newProfilePicture != null && newProfilePicture.Length > 0)
-                {
-                    bool deleted = filesHelper.DeleteFile(teacher.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + teacher.IDENTICATION + "\\");
-
-                    teacher.PHOTO = newProfilePicture.FileName;
-                    filesHelper.UploadFile(teacher.PHOTO, _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + teacher.IDENTICATION + "\\", newProfilePicture);
-                    var user_photo = filesHelper.ReadFiles(teacher.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + teacher.IDENTICATION);
-                    HttpContext.Session.Set("USER_PHOTO", user_photo);
-                }
-
                 ClaimsPrincipal claimstudent = HttpContext.User;
                 string nombreusuario = "";
 
@@ -223,6 +213,16 @@ namespace KURZ.Controllers
                     nombreusuario = claimstudent.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
                 }
                 var user = _usersModel.byUserName(nombreusuario);
+
+                if (newProfilePicture != null && newProfilePicture.Length > 0)
+                {
+                    bool deleted = filesHelper.DeleteFile(user.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + teacher.IDENTICATION + "\\");
+
+                    teacher.PHOTO = newProfilePicture.FileName;
+                    filesHelper.UploadFile(teacher.PHOTO, _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + teacher.IDENTICATION + "\\", newProfilePicture);
+                    var user_photo = filesHelper.ReadFiles(teacher.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + teacher.IDENTICATION);
+                    HttpContext.Session.Set("USER_PHOTO", user_photo);
+                }
 
                 user.NAME = teacher.NAME;
                 user.LASTNAME = teacher.LASTNAME;
