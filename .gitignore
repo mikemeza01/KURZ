@@ -73,3 +73,6 @@ KURZ/KURZ/obj/Debug/net6.0/KURZ.GeneratedMSBuildEditorConfig.editorconfig
 KURZ/KURZ/obj/Debug/net6.0/KURZ.RazorAssemblyInfo.cache
 KURZ/KURZ/obj/Debug/net6.0/KURZ.RazorAssemblyInfo.cs
 /KURZ/KURZ/PhotosUsers
+KURZ/KURZ/obj/Debug/net6.0/KURZ.AssemblyInfo.cs
+KURZ/KURZ/obj/KURZ.csproj.nuget.g.props
+KURZ/KURZ/obj/project.assets.json
