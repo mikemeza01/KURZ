@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Evaluación Docente";
     Layout = "_TeacherH";
+    var averageRating = Model.FirstOrDefault()?.AverageRating;
 }
 
 <div class="card">
@@ -71,7 +72,14 @@
         </table>
         <td colspan="8" class="text-right"><strong>Promedio:</strong></td>
         <td class="text-center">
-            10
+            @if (averageRating != null)
+            {
+                @Html.DisplayFor(modelItem => averageRating)
+            }
+            else
+            {
+                <span>No hay calificaciones</span>
+            }
         </td>
     </div>
 </div>
