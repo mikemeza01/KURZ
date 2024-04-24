@@ -246,6 +246,9 @@ namespace KURZ.Models
                     rate.ID_ADVICE = IDADVICE;
                     rate.ID_STUDENT = IdStudent;
 
+                    decimal valorAlt = 5.0m;
+                    rate.AverageRating = rate.AverageRating.HasValue ? rate.AverageRating.Value : valorAlt;
+
                     //Agregar el nuevo objeto al contexto
                     _context.Grades.Add(rate);
 
