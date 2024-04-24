@@ -56,14 +56,14 @@ namespace KURZ.Models
             {
                 var existTimesheet = TimesheetDetailbyTeacher(timesheets.ID_TEACHER);
 
-                if (existTimesheet != null)
-                {
-                    existTimesheet.TIMESHEET = timesheets.TIMESHEET;
-                    _context.Timesheets.Update(existTimesheet);
+                if (existTimesheet.TIMESHEET == null)
+                { 
+                    _context.Timesheets.Add(timesheets);
                     _context.SaveChanges();
                 }
                 else {
-                    _context.Timesheets.Add(timesheets);
+                    existTimesheet.TIMESHEET = timesheets.TIMESHEET;
+                    _context.Timesheets.Update(existTimesheet);
                     _context.SaveChanges();
                 }
 
