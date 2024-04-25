@@ -513,6 +513,11 @@ namespace KURZ.Controllers
                         Status = advice.STATUSNAME,
                     };
 
+                    //Obtener la foto del Usuario.
+                    var userDetail = _usersModel.ConvertUsers(teacher);
+                    userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
+                    ViewBag.user_photo = userDetail.ProfilePicture;
+
                     return View(teacherRate);
                 }
                 else if (resultado != "ok" && resultado != "error")
