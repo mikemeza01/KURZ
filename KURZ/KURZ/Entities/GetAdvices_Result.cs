@@ -14,6 +14,10 @@ namespace KURZ.Entities
         [Display(Name = "Fecha")]
         public string DateAdviceFormat => DATE_ADVICE.ToString("dd/MM/yyyy");
 
+        [Display(Name = "Hora")]
+        public string TimeAdviceFormat => DATE_ADVICE.ToString("HH:mm");
+
+
         [Display(Name = "Fecha de creación")]
         public DateTime DATE_CREATE { get; set; }
 

@@ -7,71 +7,69 @@
     var averageRating = Model.FirstOrDefault()?.AverageRating;
 }
 
-<div class="card">
-    <div class="card-body">
+<div class="table-responsive">
+    <table id="TeacherRateH" class="table table-bordered table-striped">
         <h4 class="card-title text-center">Evaluaciones</h4>
-        <br />
-        <table id="TableTeacherGrades" class="table tableSmall">
-            <thead>
-                <tr>
-                    <th class="text-center" style="display:none"></th>
-                    <th class="text-center">
-                        Calificación
-                    </th>
-                    <th class="text-center">
-                        Comentario
-                    </th>
-                    <th class="text-center">
-                        Estudiante
-                    </th>
-                    <th class="text-center">
-                        Profesor
-                    </th>
-                    <th class="text-center">
-                        Tema
-                    </th>
-                    <th class="text-center">
-                        Categoría
-                    </th>
-                    <th class="text-center">
-                        Subcategoría
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td class="text-center" style="display: none;">
-                            @Html.DisplayFor(modelItem => item.ID_GRADE)
-                        </td>
-                        <td class="text-center">
-                            <i class="fa fa-star"></i>
-                            @Html.DisplayFor(modelItem => item.GRADE)
-                        </td>
-                        <td class="text-center">
-                            @Html.DisplayFor(modelItem => item.COMMENTARY)
-                        </td class="text-center">
-                        <td class="text-center">
-                            @Html.DisplayFor(modelItem => item.StudentName)
-                        </td>
-                        <td class="text-center">
-                            @Html.DisplayFor(modelItem => item.TeacherName)
-                        </td>
-                        <td class="text-center">
-                            @Html.DisplayFor(modelItem => item.Topic)
-                        </td>
-                        <td class="text-center">
-                            @Html.DisplayFor(modelItem => item.Category)
-                        </td>
-                        <td class="text-center">
-                            @Html.DisplayFor(modelItem => item.Subcategory)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <td colspan="8" class="text-right"><strong>Promedio:</strong></td>
+        <thead class="bg-primary text-white">
+            <tr>
+                <th class="text-center" style="display:none"></th>
+                <th class="text-center" style="color:white;">
+                    Calificación
+                </th>
+                <th class="text-center" style="color:white;">
+                    Comentario
+                </th>
+                <th class="text-center" style="color:white;">
+                    Estudiante
+                </th>
+                <th class="text-center" style="color:white;">
+                    Profesor
+                </th>
+                <th class="text-center" style="color:white;">
+                    Tema
+                </th>
+                <th class="text-center" style="color:white;">
+                    Categoría
+                </th>
+                <th class="text-center" style="color:white;">
+                    Subcategoría
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+             @foreach (var item in Model)
+         {
+             <tr>
+                 <td class="text-center" style="display: none;">
+                     @Html.DisplayFor(modelItem => item.ID_GRADE)
+                 </td>
+                 <td class="text-center">
+                     <i class="fa fa-star"></i>
+                     @Html.DisplayFor(modelItem => item.GRADE)
+                 </td>
+                 <td class="text-center">
+                     @Html.DisplayFor(modelItem => item.COMMENTARY)
+                 </td class="text-center">
+                 <td class="text-center">
+                     @Html.DisplayFor(modelItem => item.StudentName)
+                 </td>
+                 <td class="text-center">
+                     @Html.DisplayFor(modelItem => item.TeacherName)
+                 </td>
+                 <td class="text-center">
+                     @Html.DisplayFor(modelItem => item.Topic)
+                 </td>
+                 <td class="text-center">
+                     @Html.DisplayFor(modelItem => item.Category)
+                 </td>
+                 <td class="text-center">
+                     @Html.DisplayFor(modelItem => item.Subcategory)
+                 </td>
+             </tr>
+         }
+        </tbody>
+    </table>
+    <td colspan="8" class="text-right"><strong>Promedio:</strong></td>
         <td class="text-center">
             @if (averageRating != null)
             {
@@ -83,5 +81,23 @@
                 <span>No hay calificaciones</span>
             }
         </td>
-    </div>
 </div>
+
+ <script>
+ $(document).ready(function () {
+        $('#TeacherRateH').DataTable({
+            "lengthMenu": [[5, 10, 15], [5, 10, 15]],
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "pagingType": "simple",
+            "language": {
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Siguiente"
+                }
+            }
+        });
+    });
+ </script>

@@ -1,0 +1,265 @@
+﻿@*
+  
+*@
+@{
+    ViewData["Title"] = "Pago Asesoria";
+    Layout = "_StudentH";
+}
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-back {
+            margin-bottom: 30px; /* Reducido el espacio inferior del botón */
+            width: fit-content; /* Ajusta el ancho del botón al contenido */
+        }
+
+        .cart {
+            width: 40%;
+            padding: 20px;
+            border-right: 2px solid #007bff;
+        }
+
+            .cart h4 {
+                margin-bottom: 20px;
+                font-weight: bold;
+                font-size: 24px;
+                color: #007bff;
+            }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+            .cart-item:last-child {
+                border-bottom: none;
+            }
+
+            .cart-item .item-details {
+                flex: 1;
+            }
+
+                .cart-item .item-details h6 {
+                    margin: 0;
+                    font-size: 18px;
+                }
+
+                .cart-item .item-details small {
+                    color: #666;
+                }
+
+            .cart-item .item-price {
+                font-weight: bold;
+                font-size: 18px;
+            }
+
+        form {
+            width: 50%;
+            padding: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 18px;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="cart">
+            <button class="btn btn-outline-secondary mt-1" onclick="goBack()">
+                <i class="fa fa-arrow-left me-2"></i>Atrás
+            </button>
+
+            <h4><i class="fas fa-shopping-cart"></i> Carrito</h4>
+            <div class="cart-item">
+                <div class="item-details">
+                    <h6>Producto 1</h6>
+                    <small>Descripción breve del producto 1</small>
+                </div>
+                <div class="item-price">$12</div>
+            </div>
+            <div class="cart-item">
+                <div class="item-details">
+                    <h6>Producto 2</h6>
+                    <small>Descripción breve del producto 2</small>
+                </div>
+                <div class="item-price">$8</div>
+            </div>
+            <!-- Agregamos un elemento para mostrar el total -->
+            <div class="cart-total">
+                <h4>Total: <span id="cart-total">$20</span></h4>
+            </div>
+        </div>
+        <form class="needs-validation" novalidate>
+            <h4><i class="fas fa-credit-card"></i> Pago</h4>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="firstName">Nombre</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="" required>
+                    <div class="invalid-feedback">Por favor ingresa tu nombre.</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="lastName">Apellido</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="" required>
+                    <div class="invalid-feedback">Por favor ingresa tu apellido.</div>
+                </div>
+                <div class="col-12">
+                    <label for="email">Correo Electrónico <span>(Opcional)</span></label>
+                    <input type="email" class="form-control" id="email" placeholder="correo@ejemplo.com">
+                    <div class="invalid-feedback">Por favor ingresa un correo electrónico válido.</div>
+                </div>
+                <div class="col-12">
+                    <label for="address">Dirección</label>
+                    <input type="text" class="form-control" id="address" placeholder="1234 Calle Principal" required>
+                    <div class="invalid-feedback">Por favor ingresa tu dirección de envío.</div>
+                </div>
+                <div class="col-md-5">
+                    <label for="country">País</label>
+                    <select class="form-select" id="country" required>
+                        <option value="">Elige...</option>
+                        <option>Estados Unidos</option>
+                    </select>
+                    <div class="invalid-feedback">Por favor selecciona un país válido.</div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <h4><i class="fas fa-credit-card"></i> Detalles de Tarjeta</h4>
+
+            <div class="row gy-3">
+                <div class="col-md-6">
+                    <label for="cc-name">Nombre en la Tarjeta</label>
+                    <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                    <div class="invalid-feedback">Se requiere el nombre en la tarjeta.</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="cc-number">Número de Tarjeta</label>
+                    <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                    <div class="invalid-feedback">Se requiere el número de la tarjeta.</div>
+                </div>
+                <div class="col-md-3">
+                    <label for="cc-expiration-month">Mes de Expiración</label>
+                    <select class="form-select" id="cc-expiration-month" required>
+                        <option value="">Elige...</option>
+                        <!-- Opciones de mes generadas dinámicamente con JavaScript -->
+                    </select>
+                    <div class="invalid-feedback">Por favor selecciona el mes de expiración.</div>
+                </div>
+                <div class="col-md-3">
+                    <label for="cc-expiration-year">Año de Expiración</label>
+                    <select class="form-select" id="cc-expiration-year" required>
+                        <option value="">Elige...</option>
+                        <!-- Opciones de año generadas dinámicamente con JavaScript -->
+                    </select>
+                    <div class="invalid-feedback">Por favor selecciona el año de expiración.</div>
+                </div>
+                <div class="col-md-3">
+                    <label for="cc-cvv">CVV</label>
+                    <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                    <div class="invalid-feedback">Se requiere el código de seguridad.</div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <button class="btn btn-primary btn-lg" type="submit">Confirmar Pago</button>
+        </form>
+    </div>
+
+
+
+
+
+    <script>
+        // Función para calcular el total del carrito
+        function calcularTotal() {
+            var precios = document.querySelectorAll('.cart-item .item-price');
+            var total = 0;
+            precios.forEach(function (precio) {
+                total += parseInt(precio.textContent.replace('$', ''));
+            });
+            document.getElementById('cart-total').textContent = '$' + total;
+        }
+
+        // Llamamos a la función para calcular el total al cargar la página
+        window.addEventListener('load', calcularTotal);
+
+        // Generar opciones para el selector de mes (1 a 12)
+        var selectMonth = document.getElementById("cc-expiration-month");
+        for (var i = 1; i <= 12; i++) {
+            var option = document.createElement("option");
+            var monthValue = String(i).padStart(2, "0"); // Agrega un cero inicial si el mes es menor que 10
+            option.value = monthValue;
+            option.text = monthValue;
+            selectMonth.appendChild(option);
+        }
+
+        // Generar opciones para el selector de año (10 años atrás hasta 30 años en el futuro)
+        var selectYear = document.getElementById("cc-expiration-year");
+        var currentYear = new Date().getFullYear();
+        for (var i = -25; i <= 30; i++) {
+            var option = document.createElement("option");
+            var yearValue = currentYear + i;
+            option.value = yearValue;
+            option.text = yearValue;
+            selectYear.appendChild(option);
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>

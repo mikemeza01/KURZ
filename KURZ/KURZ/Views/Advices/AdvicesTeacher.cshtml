@@ -3,47 +3,40 @@
     ViewData["Title"] = "Mis Asesorías";
     Layout = "_TeacherH";
 }
-<div class="card mb-lg-32pt">
-    <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title text-center">Asesorías</h4>
-                <br />
-                <table class="table table-responsive" id="TableAdvicesStudent">
-                    <thead>
-                        <tr>
-                            <th class="text-center">@Html.DisplayNameFor(model => model.DATE_ADVICE)</th>
-                            <th class="text-center">@Html.DisplayNameFor(model => model.PRICE)</th>
-                            <th class="text-center">@Html.DisplayNameFor(model => model.TOPICNAME)</th>
-                            <th class="text-center">@Html.DisplayNameFor(model => model.STUDENTNAME)</th>
-                            <th class="text-center">@Html.DisplayNameFor(model => model.STATUSNAME)</th>
-                            <th class="text-center">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+<div class="table-responsive">
+    <table id="TeacherAdvices" class="table table-bordered table-striped">
+        <h4 class="card-title text-center">Asesorías</h4>
+        <thead class="bg-primary text-white">
+            <tr>
+                <th class="text-center" style="color:white;">@Html.DisplayNameFor(model => model.DATE_ADVICE)</th>
+                <th class="text-center" style="color:white;">@Html.DisplayNameFor(model => model.PRICE)</th>
+                <th class="text-center" style="color:white;">@Html.DisplayNameFor(model => model.TOPICNAME)</th>
+                <th class="text-center" style="color:white;">@Html.DisplayNameFor(model => model.STUDENTNAME)</th>
+                <th class="text-center" style="color:white;">@Html.DisplayNameFor(model => model.STATUSNAME)</th>
+                <th class="text-center" style="color:white;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
 
-                        @foreach (var item in Model)
-                        {
-
-                            <tr>
-                                <td class="text-center">@item.DATE_ADVICE</td>
-                                <td class="text-center">₡ @item.PRICE</td>
-                                <td class="text-center">@item.TOPICNAME</td>
-                                <td class="text-center">@item.STUDENTNAME</td>
-                                <td class="text-center">@item.STATUSNAME</td>
-                                <td class="acciones">
-                                    <a class="btn btn-dark detailsAdvice" data-id="@item.ID_ADVICE">
-                                        <i class="material-icons">remove_red_eye</i>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+                <tr>
+                    <td class="text-center">@item.DATE_ADVICE</td>
+                    <td class="text-center">₡ @item.PRICE</td>
+                    <td class="text-center">@item.TOPICNAME</td>
+                    <td class="text-center">@item.STUDENTNAME</td>
+                    <td class="text-center">@item.STATUSNAME</td>
+                    <td class="acciones">
+                        <a class="btn btn-dark detailsAdvice" data-id="@item.ID_ADVICE">
+                            <i class="material-icons">remove_red_eye</i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
 
 <div class="modal" tabindex="1" role="dialog" id="detailsAdvice" aria-hidden="true">
     <div class="modal-dialog">
@@ -82,6 +75,23 @@
             },
             error: function () {
                 alert("Hubo un problema para obtener los datos");
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('#TeacherAdvices').DataTable({
+            "lengthMenu": [[5, 10, 15], [5, 10, 15]],
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "pagingType": "simple",
+            "language": {
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Siguiente"
+                }
             }
         });
     });

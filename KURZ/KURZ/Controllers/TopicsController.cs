@@ -352,31 +352,44 @@ namespace KURZ.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(int idCategory, int IdSubcatgory)
+        public IActionResult Search(int idCategory, int IdSubcategory)
         {
-            // Realizar la busqueda de los temas segun categoria y subcategoria.
-            var temasFiltrados = _topicsModel.TopicsByCatSub(idCategory, IdSubcatgory);
-            var categories = _categoriesModel.CategoriesList();
 
-            // Obtener el nombre de la categoría seleccionada
-            var selectedCategoryName = _categoriesModel.GetCategoryNameById(idCategory);  // Obtener el nombre de la categoría seleccionada
-
-
-            ViewBag.categories = categories;
-            ViewBag.SelectedCategoryName = selectedCategoryName;
-
-            var temasFiltradosView = temasFiltrados.Select(t => new TopicsView
+            if (idCategory == 0)
             {
-                // Mapear  campos de Topics a TopicsView 
-                ID_TOPIC = t.ID_TOPIC,
-                NAME = t.NAME,
-                DESCRIPTION = t.DESCRIPTION,
-                ID_CATEGORY = t.ID_CATEGORY
+                var listAdvices = _topicsModel.TopicsList();
+                var categories = _categoriesModel.CategoriesList();
+                ViewBag.listAdvices = listAdvices;
+                ViewBag.categories = categories;
+                return View("~/Views/Student/Advice.cshtml", listAdvices);
+            }
+            else
+            {
 
-            }).ToList();
+                // Realizar la busqueda de los temas segun categoria y subcategoria.
+                var temasFiltrados = _topicsModel.TopicsByCatSub(idCategory, IdSubcategory);
+                var categories = _categoriesModel.CategoriesList();
 
-            // Devolver la vista con los resultados
-            return View("~/Views/Student/Advice.cshtml", temasFiltradosView);
+                // Obtener el nombre de la categoría seleccionada
+                var selectedCategoryName = _categoriesModel.GetCategoryNameById(idCategory);  // Obtener el nombre de la categoría seleccionada
+
+
+                ViewBag.categories = categories;
+                ViewBag.SelectedCategoryName = selectedCategoryName;
+
+                var temasFiltradosView = temasFiltrados.Select(t => new TopicsView
+                {
+                    // Mapear  campos de Topics a TopicsView 
+                    ID_TOPIC = t.ID_TOPIC,
+                    NAME = t.NAME,
+                    DESCRIPTION = t.DESCRIPTION,
+                    ID_CATEGORY = t.ID_CATEGORY
+
+                }).ToList();
+
+                // Devolver la vista con los resultados
+                return View("~/Views/Student/Advice.cshtml", temasFiltradosView);
+            }
         }
 
 

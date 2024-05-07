@@ -11,6 +11,7 @@ namespace KURZ.Entities
         public int ID_GRADE { get; set; }
 
         [Display(Name = "Evaluación")]
+        [Required(ErrorMessage = "La calificacion es requerida.")]
         [Range(1, 5, ErrorMessage = "La calificación debe estar entre 1 y 5.")]
         public int? GRADE { get; set; }
 

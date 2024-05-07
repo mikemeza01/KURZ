@@ -443,10 +443,9 @@ namespace KURZ.Controllers
 
                 throw;
             }
-        }//TeacherRate
+        }
 
         // Acción para mostrar la página de calificación
-
         [HttpGet]
         public IActionResult RateTeacher(int ID)
         {
@@ -458,13 +457,9 @@ namespace KURZ.Controllers
                     return View("Error");
                 }
 
-                // Crear funcion para validar si existe una calificacion en la asesoria.
-                //    var checkrating = _gradesModel.GetGradeByID(ID);
-
                 var teacherGradesView = new TeacherGradesView
                 {
                     ID_ADVICE = advice.ID_ADVICE,
-
                     TeacherName = advice.TEACHERNAME,
                     Topic = advice.TOPICNAME,
                     DATE_GRADE = advice.DATE_UPDATE,
@@ -513,11 +508,6 @@ namespace KURZ.Controllers
                         Status = advice.STATUSNAME,
                     };
 
-                    //Obtener la foto del Usuario.
-                    var userDetail = _usersModel.ConvertUsers(teacher);
-                    userDetail.ProfilePicture = filesHelper.ReadFiles(userDetail.PHOTO ?? "", _configuration.GetSection("Variables:carpetaFotos").Value + "\\" + userDetail.IDENTICATION);
-                    ViewBag.user_photo = userDetail.ProfilePicture;
-
                     return View(teacherRate);
                 }
                 else if (resultado != "ok" && resultado != "error")
@@ -526,8 +516,8 @@ namespace KURZ.Controllers
                     ViewBag.error = "ERROR";
                 }
                 else
-                    ViewBag.mensaje = "ERROR";
-                return View(teacher);
+                ViewBag.mensaje = resultado;
+                return View("Error");
 
             }
             catch (Exception)

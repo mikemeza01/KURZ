@@ -3,108 +3,110 @@
     ViewData["Title"] = "Registro de Profesores";
     Layout = "_Authentication";
 }
+
+
 <style>
     .error-message {
         color: #d9534f;
         margin-top: 5px;
     }
 </style>
+
 <form asp-action="RegisterTeachers" novalidate>
     <div asp-validation-summary="ModelOnly"></div>
-    <div class="flex"
-         style="max-width: 100%">
 
-        <div class="form-group">
-            <label class="form-label" asp-for="IDENTICATION"></label>
-            <input asp-for="IDENTICATION" type="number" class="form-control" placeholder="Ingrese la identificacion" />
-            <span asp-validation-for="IDENTICATION" style="color:red"></span>
-        </div>
-        <div class="form-group">
-            <label class="form-label" asp-for="NAME"></label>
-            <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese un nombre para el usuario" />
-            <span asp-validation-for="NAME" style="color:red"></span>
-        </div>
-        <div class="form-group">
-            <label class="form-label" asp-for="LASTNAME"></label>
-            <input asp-for="LASTNAME" type="text" class="form-control" placeholder="Ingrese los apellidos" />
-            <span asp-validation-for="LASTNAME" style="color:red"></span>
-        </div>
-        <div class="form-group">
-            <label class="form-label" asp-for="ID_COUNTRY"></label>
-            <select class="form-control" asp-for="ID_COUNTRY">
-                <option value="">Seleccione un país</option>
-                @foreach (var countries in ViewBag.countries)
-                {
-                    <option value="@countries.ID_COUNTRY"> @countries.NAME</option>
-                }
-            </select>
-            <span asp-validation-for="ID_COUNTRY" style="color:red"></span>
-        </div>
-        <div class="form-group">
-            <label class="form-label" asp-for="EMAIL"></label>
-            <input asp-for="EMAIL" type="email" class="form-control" placeholder="Ingrese un correo electrónico" />
-            <span asp-validation-for="EMAIL" style="color:red"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="PASSWORD" class="form-label"></label>
-            <div class="input-group" style="position: relative;">
-                <input asp-for="PASSWORD" id="password" onchange="ValidatePassword()" type="password" class="form-control" placeholder="Ingrese su contraseña" />
-                <div style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
-                    <i id="eyeIcon" class="fa fa-eye-slash" style="cursor: pointer;" onclick="togglePasswordVisibility()"></i>
-                </div>
-            </div>
-            <span asp-validation-for="PASSWORD" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="PASSWORD_REPEAT" class="form-label"></label>
-            <div class="input-group" style="position: relative;">
-                <input asp-for="PASSWORD_REPEAT" id="passwordRepeat" onchange="ValidatePassword()" type="password" class="form-control" placeholder="Ingrese su contraseña" />
-                <div style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
-                    <i id="eyeIconRepeat" class="fa fa-eye-slash" style="cursor: pointer;" onclick="togglePasswordVisibilityRepeat()"></i>
-                </div>
-            </div>
-            <span asp-validation-for="PASSWORD_REPEAT" class="text-danger"></span>
-        </div>
-        <div class="form-group mb-5">
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox"
-                       onclick="javascript:validar(this);"
-                       false=""
-                       class="custom-control-input"
-                       id="terms" />
-                <label class="custom-control-label"
-                       for="terms">Acepto los <a href="#">Términos y Condiciones</a></label>
-            </div>
-        </div>
-        <div class="form-group text-center">
-            <button class="btn btn-primary mb-2" type="submit" id="btnCrearCuenta"> Crear cuenta de profesor</button>
-            <br>
-            <a class="text-body text-underline"
-               asp-controller="Authentication" asp-action="Login">¿Ya tiene una cuenta? Iniciar Sesión</a>
-        </div>
-        @{
-            if (@ViewBag.mensaje == "SUCCESS")
-            {
-                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
-                ;
-
-            }
-            if (@ViewBag.mensaje == "ERROR")
-            {
-                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
-                ;
-
-            }
-
-            if (@ViewBag.mensaje != "ERROR" && @ViewBag.mensaje != "SUCCESS" && @ViewBag.mensaje != null && @ViewBag.mensaje != "")
-            {
-                @Html.Raw("<script> $(document).ready(function() {\r\n         alertaUsuario();\r\n      });       </script>")
-                ;
-
-            }
-        }
+    <div class="form-group">
+        <label class="form-label" asp-for="IDENTICATION">Identificación:</label>
+        <input asp-for="IDENTICATION" type="number" class="form-control" placeholder="Ingrese la identificación" />
+        <span asp-validation-for="IDENTICATION" style="color:red"></span>
     </div>
+
+    <div class="form-group">
+        <label class="form-label" asp-for="NAME">Nombre:</label>
+        <input asp-for="NAME" type="text" class="form-control" placeholder="Ingrese un nombre para el usuario" />
+        <span asp-validation-for="NAME" style="color:red"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" asp-for="LASTNAME">Apellidos:</label>
+        <input asp-for="LASTNAME" type="text" class="form-control" placeholder="Ingrese los apellidos" />
+        <span asp-validation-for="LASTNAME" style="color:red"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" asp-for="ID_COUNTRY">País:</label>
+        <select class="form-control" asp-for="ID_COUNTRY">
+            <option value="">Seleccione un país</option>
+            @foreach (var countries in ViewBag.countries)
+            {
+                <option value="@countries.ID_COUNTRY"> @countries.NAME</option>
+            }
+        </select>
+        <span asp-validation-for="ID_COUNTRY" style="color:red"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label" asp-for="EMAIL">Correo Electrónico:</label>
+        <input asp-for="EMAIL" type="email" class="form-control" placeholder="Ingrese un correo electrónico" />
+        <span asp-validation-for="EMAIL" style="color:red"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PASSWORD" class="form-label">Contraseña:</label>
+        <div class="input-group" style="position: relative;">
+            <input asp-for="PASSWORD" id="password" onchange="ValidatePassword()" type="password" class="form-control" placeholder="Ingrese su contraseña" />
+            <div style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
+                <i id="eyeIcon" class="fa fa-eye-slash" style="cursor: pointer;" onclick="togglePasswordVisibility()"></i>
+            </div>
+        </div>
+        <span asp-validation-for="PASSWORD" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PASSWORD_REPEAT" class="form-label">Confirmar Contraseña:</label>
+        <div class="input-group" style="position: relative;">
+            <input asp-for="PASSWORD_REPEAT" id="passwordRepeat" onchange="ValidatePassword()" type="password" class="form-control" placeholder="Confirme su contraseña" />
+            <div style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
+                <i id="eyeIconRepeat" class="fa fa-eye-slash" style="cursor: pointer;" onclick="togglePasswordVisibilityRepeat()"></i>
+            </div>
+        </div>
+        <span asp-validation-for="PASSWORD_REPEAT" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-4">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" onclick="javascript:validar(this);" class="custom-control-input" id="terms" />
+            <label class="custom-control-label" for="terms">Acepto los <a href="#">Términos y Condiciones</a></label>
+        </div>
+    </div>
+
+    <div class="form-group text-center">
+        <button class="btn btn-primary" type="submit" id="btnCrearCuenta">Crear cuenta de profesor</button>
+        <br>
+        <a class="text-body text-underline" asp-controller="Authentication" asp-action="Login">¿Ya tiene una cuenta? Iniciar Sesión</a>
+    </div>
+
+    @{
+        if (@ViewBag.mensaje == "SUCCESS")
+        {
+            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaSuccess();\r\n      });       </script>")
+            ;
+        }
+        if (@ViewBag.mensaje == "ERROR")
+        {
+            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaError();\r\n      });       </script>")
+            ;
+        }
+        if (@ViewBag.mensaje != "ERROR" && @ViewBag.mensaje != "SUCCESS" && @ViewBag.mensaje != null && @ViewBag.mensaje != "")
+        {
+            @Html.Raw("<script> $(document).ready(function() {\r\n         alertaUsuario();\r\n      });       </script>")
+            ;
+        }
+    }
 </form>
+
+
+
 
 
 

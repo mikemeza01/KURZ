@@ -3,47 +3,60 @@
     ViewData["Title"] = "Mis Asesorías";
     Layout = "_StudentH";
 }
-<div class="card mb-lg-32pt">
-    <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title text-center">Asesorías</h4>
-                <br />
-                <table class="table table-responsive" id="TableAdvicesStudent">
-                    <thead>
-                        <tr>
-                            <th class="text-center">@Html.DisplayNameFor(model => model.DATE_ADVICE)</th>
-                            <th class="text-center">@Html.DisplayNameFor(model => model.PRICE)</th>
-                            <th class="text-center">@Html.DisplayNameFor(model => model.TOPICNAME)</th>
-                            <th class="text-center">@Html.DisplayNameFor(model => model.TEACHERNAME)</th>
-                            <th class="text-center">@Html.DisplayNameFor(model => model.STATUSNAME)</th>
-                            <th class="text-center">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
 
-                        @foreach (var item in Model)
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+</head>
+
+<div class="table-responsive">
+    <table id="StudentAdvices" class="table table-bordered table-striped">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th class="text-center" style="color: white;">@Html.DisplayNameFor(model => model.DateAdviceFormat)</th>
+                <th class="text-center" style="color: white;">@Html.DisplayNameFor(model => model.TimeAdviceFormat)</th>
+                <th class="text-center" style="color: white;">@Html.DisplayNameFor(model => model.PRICE)</th>
+                <th class="text-center" style="color: white;">@Html.DisplayNameFor(model => model.TOPICNAME)</th>
+                <th class="text-center" style="color: white;">@Html.DisplayNameFor(model => model.TEACHERNAME)</th>
+                <th class="text-center" style="color: white;">@Html.DisplayNameFor(model => model.STATUSNAME)</th>
+                <th class="text-center" style="color: white;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@item.DateAdviceFormat</td>
+                    <td class="text-center">@item.TimeAdviceFormat</td>
+                    <td class="text-center">₡ @item.PRICE</td>
+                    <td class="text-center">@item.TOPICNAME</td>
+                    <td class="text-center">@item.TEACHERNAME</td>
+                    <td class="text-center">@item.STATUSNAME</td>
+                    <td class="acciones">
+                        @if (item.STATUSNAME == "Pendiente de pago")
                         {
+                            <a href="@Url.Action("BillingView", "Billing")" class="btn btn-primary">
+                                Pagar
+                                <span style="margin-left: 5px;"><i class="material-icons">credit_card</i></span>
+                            </a>
 
-                            <tr>
-                                <td class="text-center">@item.DATE_ADVICE</td>
-                                <td class="text-center">₡ @item.PRICE</td>
-                                <td class="text-center">@item.TOPICNAME</td>
-                                <td class="text-center">@item.TEACHERNAME</td>
-                                <td class="text-center">@item.STATUSNAME</td>
-                                <td class="acciones">
-                                    <a class="btn btn-dark detailsAdvice" data-id="@item.ID_ADVICE">
-                                        <i class="material-icons">remove_red_eye</i>
-                                    </a>
-                                </td>
-                            </tr>
+
                         }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+                        else
+                        {
+                            <button class="btn btn-dark detailsAdvice" data-id="@item.ID_ADVICE">
+                                Detalles
+                                <span style="margin-left: 5px;"><i class="material-icons">remove_red_eye</i></span>
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
+
 
 <div class="modal" tabindex="1" role="dialog" id="detailsAdvice" aria-hidden="true">
     <div class="modal-dialog">
@@ -82,6 +95,25 @@
             },
             error: function () {
                 alert("Hubo un problema para obtener los datos");
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#StudentAdvices').DataTable({
+            "lengthMenu": [[5, 10, 15], [5, 10, 15]],
+            "searching": false,
+            "ordering": false,
+            "info": true,
+            "pagingType": "simple",
+            "language": {
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Siguiente"
+                }
             }
         });
     });
